@@ -251,7 +251,6 @@
           "4, monitor:DP-3, persistent:true, defaultName:top, on-created-empty:keepassxc"
         ];
       };
-
     };
   };
 }

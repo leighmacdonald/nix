@@ -5,13 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    #nix-index-database.url = "github:nix-community/nix-index-database";
-    #nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "github:hyprwm/Hyprland";
     hypridle = {
@@ -68,19 +65,15 @@
     };
 
     hy3 = {
-      url = "github:outfoxxed/hy3"; # where {version} is the hyprland release version
-      # or "github:outfoxxed/hy3" to follow the development branch.
-      # (you may encounter issues if you dont do the same for hyprland)
+      url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
     };
 
     nvf = {
       url = "github:NotAShelf/nvf";
-      # You can override the input nixpkgs to follow your system's
-      # instance of nixpkgs. This is safe to do as nvf does not depend
-      # on a binary cache.
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
@@ -96,7 +89,6 @@
       home-manager,
       nixos-hardware,
       stylix,
-      sops-nix,
       ...
     }@inputs:
     {
