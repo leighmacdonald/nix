@@ -1,0 +1,3 @@
+{
+  programs.sqls.enable = true;
+}

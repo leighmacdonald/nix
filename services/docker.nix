@@ -1,0 +1,17 @@
+{
+  hardware.nvidia-container-toolkit.enable = true;
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+      daemon.settings.features.cdi = true;
+
+      # daemon.settings = {
+      #      dns = [ "1.1.1.1" "8.8.8.8" ];
+      #      registry-mirrors = [ "https://mirror.gcr.io" ];
+      #    };
+    };
+  };
+}

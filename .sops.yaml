@@ -1,0 +1,11 @@
+keys:
+  - &admin_leigh age16gjw3nzrxwmjzf0ty34mm3hh9726muwk20yvwddsvlljaszeru5qdpcehe
+  - &server_frankie age1gca3lepsq6mnhpxqnnahqagr0jd58fgvc9cyxculg8e0l8t4q3lqdny8uy
+  - &server_bedroom age1z5656mtlrj8hvfscu8qw0pjfxc2azr2u7c8lu2d4c6q5ur5alg6syyq8q6
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin_leigh
+          - *server_frankie
+          - *server_bedroom
