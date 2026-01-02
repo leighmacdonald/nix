@@ -30,8 +30,6 @@
     ../../programs/rofi.nix
     ../../programs/sqls.nix
     ../../programs/starship.nix
-    ../../programs/steam.nix
-    ../../programs/uwsm.nix
     ../../programs/waybar.nix
     ../../programs/zathura.nix
     ../../programs/zed.nix
