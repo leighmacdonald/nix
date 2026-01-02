@@ -2,7 +2,7 @@
   accounts = {
     email = {
       accounts = {
-        gmail = {
+        default = {
           enable = true;
           realName = "Leigh MacDonald";
           address = "leigh.macdonald@gmail.com";

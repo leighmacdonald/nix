@@ -4,9 +4,7 @@
     # "$schema" = "https://starshiprs/config-schema.json";
     enable = true;
     settings = lib.mkMerge [
-      (builtins.fromTOML (
-        builtins.readFile "${pkgs.starship}/share/starship/presets/catppuccin-powerline.toml"
-      ))
+      (fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/catppuccin-powerline.toml"))
       {
         # here goes my custom configurations
         palette = lib.mkForce "catppuccin_mocha";

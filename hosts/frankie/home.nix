@@ -53,6 +53,9 @@
       nixd
       statix
       package-version-server
+      yaml-language-server
+      superhtml
+      jsonfmt
 
       sqlc
       babelfish

@@ -203,10 +203,10 @@
 
         # Requires playerctl
         bindl = [
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPause, exec, playerctl play-pause"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioPrev, exec, playerctl previous"
+          ", XF86AudioNext, exec, playerctl -p mpd next"
+          ", XF86AudioPause, exec, playerctl -p mpd play-pause"
+          ", XF86AudioPlay, exec, playerctl -p mpd play-pause"
+          ", XF86AudioPrev, exec, playerctl -p mpd previous"
         ];
 
         # Ignore maximize requests from apps. You'll probably like this.

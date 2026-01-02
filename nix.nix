@@ -31,4 +31,9 @@
       dates = "09:00";
     };
   };
+
+  system = {
+    stateVersion = "26.05";
+    copySystemConfiguration = false;
+  };
 }

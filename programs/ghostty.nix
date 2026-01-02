@@ -1,9 +1,6 @@
-{ pkgs, ... }:
 {
   programs.ghostty = {
     enable = true;
-    enableFishIntegration = true;
-    package = pkgs.ghostty;
     settings = {
       window-theme = "dark";
       window-decoration = false;

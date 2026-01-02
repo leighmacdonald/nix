@@ -1,19 +1,30 @@
+{ config, ... }:
+
 let
   # local socket allows `rmpc addyt` to function.
   listenAddress = "/tmp/mpd_socket";
+  musicDirectory = "/mnt/storage/music";
 in
 {
+  imports = [
+    ../accounts/email.nix
+  ];
   services = {
     mpd-discord-rpc.enable = true;
-    mpd-mpris.enable = true;
-    mpd-mpris.mpd.host = listenAddress;
+    mpdris2 = {
+      enable = true;
+      mpd = {
+        host = listenAddress;
+        musicDirectory = musicDirectory;
+      };
+    };
 
     mpd = {
       enable = true;
       network.startWhenNeeded = false;
       network.listenAddress = listenAddress;
-      musicDirectory = "/mnt/storage/music";
-      playlistDirectory = "/mnt/storage/music/_playlists";
+      musicDirectory = musicDirectory;
+      playlistDirectory = "${musicDirectory}/_playlists";
       dbFile = "~/.config/mpd/database";
       extraConfig = ''
         sticker_file                    "~/.config/mpd/sticker.sql"
@@ -35,6 +46,16 @@ in
         replaygain                      "auto"
         filesystem_charset              "UTF-8"
       '';
+    };
+    mpdscribble = {
+      enable = true;
+      host = listenAddress;
+      endpoints = {
+        "last.fm" = {
+          passwordFile = "/run/secrets/lastfm";
+          username = config.accounts.email.accounts.default.address;
+        };
+      };
     };
   };
 }

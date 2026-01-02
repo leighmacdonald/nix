@@ -21,6 +21,11 @@
       password = {
         neededForUsers = true;
       };
+      lastfm = {
+        mode = "0600";
+        owner = username;
+      };
+      tskey = { };
       smb_secrets = {
         path = "/etc/nixos/smb-secrets";
       };

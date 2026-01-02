@@ -6,6 +6,9 @@
 }:
 
 {
+  imports = [
+    ../../accounts/email.nix
+  ];
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -193,8 +196,8 @@
     git = {
       enable = true;
       settings.user = {
-        name = "Leigh MacDonald";
-        email = "leigh.macdonald@gmail.com";
+        name = config.accounts.email.accounts.default.realName;
+        email = config.accounts.email.accounts.default.address;
       };
     };
     home-manager.enable = true;
