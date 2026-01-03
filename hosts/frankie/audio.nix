@@ -6,11 +6,23 @@
 
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    #alsa.enable = true;
+    #alsa.support32Bit = true;
     #pulse.enable = true;
     wireplumber = {
       enable = true;
+      extraConfig = {
+        disableBT = {
+          hardware.bluetooth = false;
+          monitor.bluez = false;
+          wireplumber.profiles = {
+            main-no-bt = {
+              inherits = [ "main" ];
+              hardware.bluetooth = "disabled";
+            };
+          };
+        };
+      };
       configPackages = [
         (pkgs.writeTextDir "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
           	          alsa_monitor.rules = {
@@ -33,7 +45,26 @@
           "module.x11.bell" = false;
         };
       };
-      # pipewire."92-low-latency" = {
+      pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.allowed-rates" = [
+            44100
+            88200
+            176400
+            48000
+            96000
+            192000
+          ];
+          "default.clock.rate" = 192000;
+          "default.clock.quantum" = 300;
+          "default.clock.min-quantum" = 200;
+          "default.clock.max-quantum" = 1024;
+        };
+        "stream.properties" = {
+          "resample.quality" = 14;
+        };
+      };
+      # pipewire."92-low-latency" = ""
       #   "context.properties" = {
       #     "default.clock.rate" = 48000;
       #     "default.clock.quantum" = 32;
@@ -49,11 +80,11 @@
       #     }
       #   ];
       #   "pulse.properties" = {
-      #     "pulse.min.req" = "32/48000";
-      #     "pulse.default.req" = "32/48000";
-      #     "pulse.max.req" = "32/48000";
-      #     "pulse.min.quantum" = "32/48000";
-      #     "pulse.max.quantum" = "32/48000";
+      #     "pulse.min.req" = "200/192000";
+      #     "pulse.default.req" = "300/192000";
+      #     "pulse.max.req" = "1024/192000";
+      #     "pulse.min.quantum" = "200/192000";
+      #     "pulse.max.quantum" = "1024/192000";
       #   };
       #   "stream.properties" = {
       #     "node.latency" = "32/48000";
