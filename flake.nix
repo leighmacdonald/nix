@@ -83,69 +83,65 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      nixos-hardware,
-      stylix,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations = {
-        bedroom =
-          let
-            username = "leigh";
-            specialArgs = {
-              inherit username;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "aarch64-linux";
-            modules = [
-              stylix.nixosModules.stylix
-              ./hosts/bedroom
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/bedroom/home.nix;
-                };
-              }
-              nixos-hardware.nixosModules.raspberry-pi-4
-            ];
-          };
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixos-hardware,
+    stylix,
+    ...
+  } @ inputs: {
+    nixosConfigurations = {
+      bedroom = let
+        username = "leigh";
+        specialArgs = {
+          inherit username;
+          inherit inputs;
+        };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "aarch64-linux";
+          modules = [
+            stylix.nixosModules.stylix
+            ./hosts/bedroom
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = inputs // specialArgs;
+                users.${username} = import ./hosts/bedroom/home.nix;
+              };
+            }
+            nixos-hardware.nixosModules.raspberry-pi-4
+          ];
+        };
 
-        frankie =
-          let
-            username = "leigh";
-            specialArgs = {
-              inherit username;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "x86_64-linux";
-            modules = [
-              ./hosts/frankie
-              #sops-nix.nixosModules.sops
-              stylix.nixosModules.stylix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/frankie/home.nix;
-                };
-              }
-            ];
-          };
-      };
+      frankie = let
+        username = "leigh";
+        specialArgs = {
+          inherit username;
+          inherit inputs;
+        };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/frankie
+            #sops-nix.nixosModules.sops
+            stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = inputs // specialArgs;
+                users.${username} = import ./hosts/frankie/home.nix;
+              };
+            }
+          ];
+        };
     };
+  };
 }

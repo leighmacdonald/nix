@@ -30,7 +30,9 @@
     ../../services/tailscale.nix
   ];
 
+  hardware.bluetooth.enable = false;
   hardware.enableAllFirmware = true;
+
   #hardware.sensor.hddtemp.enable = true;
   nixpkgs.config.allowUnfree = true;
   programs.hyprland = {

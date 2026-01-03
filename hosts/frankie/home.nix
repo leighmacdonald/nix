@@ -51,10 +51,18 @@
       nixfmt
       nixd
       statix
+      alejandra
+      deadnix
       package-version-server
       yaml-language-server
       superhtml
       jsonfmt
+      csharp-ls
+      prettier
+      lua-language-server
+      markdownlint-cli2
+      prettierd
+      rustfmt
 
       sqlc
       babelfish
@@ -70,9 +78,9 @@
       sops
       age
       nil
-
+      click
       yt-dlp
-
+      eslint_d
       delta
       bat
       fastfetch
@@ -80,7 +88,7 @@
       pamixer
       #      steam
       pinentry-all
-
+      typescript-language-server
       grim
       wl-clipboard
       flameshot

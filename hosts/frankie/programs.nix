@@ -11,6 +11,11 @@
       home-manager
       cifs-utils
       playerctl
+      aspell
+      aspellDicts.en
+      aspellDicts.en-computers
+      aspellDicts.en-science
+      #aspellDicts
     ];
   };
 
