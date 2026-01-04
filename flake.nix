@@ -122,15 +122,6 @@
           age
         ];
       };
-      devShells.aarch64-linux.default = pkgs.mkShell {
-        packages = with pkgs; [
-          npins
-          nixos-anywhere
-          nixos-rebuild
-          ssh-to-age
-          age
-        ];
-      };
 
       nixosConfigurations = {
         bedroom =
