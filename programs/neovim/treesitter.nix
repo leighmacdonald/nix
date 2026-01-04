@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nvf.settings.vim = {
     extraPackages = [
       pkgs.tree-sitter
@@ -18,7 +17,6 @@
         haskell
         html
         json
-        jsonc
         markdown_inline
         printf
         typescript

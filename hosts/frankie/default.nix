@@ -69,6 +69,10 @@
       #protontricks.enable = true;
       #remotePlay.openFirewall= true;
     };
+    fish = {
+      enable = true;
+      useBabelfish = true;
+    };
     uwsm = {
       enable = true;
     };

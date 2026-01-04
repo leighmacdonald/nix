@@ -2,7 +2,7 @@
   services = {
     openssh = {
       enable = true;
-      generateHostKeys = false;
+      #generateHostKeys = false;
       openFirewall = true;
       # Define this so that we don't setup RSA keys at all.
       hostKeys = [
