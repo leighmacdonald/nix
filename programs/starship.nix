@@ -12,7 +12,7 @@
         direnv = {
           enable = true;
           nix-direnv.enable = true;
-          #silent = false;
+          silent = true;
         };
         battery.disabled = true;
         os.disabled = lib.mkDefault true;

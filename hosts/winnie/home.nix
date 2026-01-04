@@ -42,8 +42,5 @@
       };
     };
     home-manager.enable = true;
-    starship = {
-      enable = false;
-    };
   };
 }

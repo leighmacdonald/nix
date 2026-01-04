@@ -11,10 +11,8 @@
 2. Boot and set password.
 3. Make initial deployment with built in `nixos` user:
 
-   nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files
-   fakeroot/ --target-host nixos@ip-addr
+   nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host nixos@ip-addr
 
 4. Make further changes with your `username` instead of nixos.
 
-   nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files
-   fakeroot/ --target-host username@ip-addr
+   nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host username@ip-addr
