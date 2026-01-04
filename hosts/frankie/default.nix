@@ -27,6 +27,8 @@
     ../../modules/secrets.nix
     ../../modules/zram.nix
 
+    ../../programs/ssh.nix
+
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix
@@ -42,7 +44,6 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-    ssh.startAgent = true;
     hyprland = {
       enable = true;
       withUWSM = true;
