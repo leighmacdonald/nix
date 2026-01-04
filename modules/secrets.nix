@@ -12,10 +12,12 @@
 
   sops = {
     validateSopsFiles = true;
-    defaultSopsFile = "/home/${username}/nix/secrets/secrets.yaml";
+    defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age = {
+      sshKeyPaths = [ "/home/${username}/.ssh/id_ed25519" ];
       keyFile = "/home/${username}/.config/sops/age/keys.txt";
+      generateKey = false;
     };
 
     secrets = {
