@@ -1,103 +1,51 @@
 {
   inputs,
-  pkgs,
   ...
 }:
 {
   imports = [
     inputs.nvf.homeManagerModules.default
     ./autocomplete.nix
+    ./autopairs.nix
+    ./bufferline.nix
     ./comments.nix
+    ./cursorline.nix
+    ./dashboard.nix
+    ./debugger.nix
+    ./diagnostics.nix
+    ./direnv.nix
+    ./formatter.nix
+    ./gitsigns.nix
+    ./icon-picker.nix
     ./images.nix
-    ./keys.nix
+    #./keys.nix
     ./languages.nix
     ./lsp.nix
     ./mini.nix
-    ./snacks.nix
+    ./neogen.nix
+    ./neogit.nix
+    ./neotest.nix
+    ./neotree.nix
+    ./noice.nix
+    ./notify.nix
+    ./nvim-surround.nix
+    ./options.nix
+    ./plenary.nix
+    ./projects.nix
+    #./snacks.nix
+    ./statusline.nix
+    ./surround.nix
     ./tabline.nix
+    ./telescope.nix
+    ./todo.nix
     ./treesitter.nix
+    ./trouble.nix
+    ./web-devicons.nix
     ./which-key.nix
   ];
 
   programs.nvf = {
     enable = true;
-    settings = {
-      vim = {
-        syntaxHighlighting = true;
-
-        # extraPlugins = with pkgs.vimPlugins; [
-        #   lazy.stats
-        # ];
-        options = {
-          tabstop = 4;
-          shiftwidth = 4;
-          splitright = true;
-        };
-
-        spellcheck = {
-          #enable = true;
-          #programmingWordlist.enable = true;
-          #vim-dirtytalk.enable = true;
-        };
-        undoFile.enable = true;
-        # projects = {
-        #   projects-nvim = {
-        #     enable = true;
-        #   };
-        # };
-
-        visuals = {
-          nvim-cursorline.enable = true;
-          nvim-web-devicons.enable = true;
-        };
-        utility = {
-          direnv.enable = true;
-          icon-picker.enable = true;
-          surround.enable = true;
-        };
-
-        extraPackages = [
-          pkgs.fzf
-          pkgs.ripgrep
-        ];
-        fzf-lua = {
-          enable = true;
-        };
-        formatter = {
-          conform-nvim = {
-            enable = true;
-          };
-        };
-        debugger = {
-          nvim-dap = {
-            enable = true;
-            ui = {
-              enable = true;
-            };
-          };
-        };
-        telescope.enable = true;
-        enableLuaLoader = true;
-        # extraPlugins = with pkgs.vimPlugins; [
-        #   snacks-nvim
-        # ];
-        viAlias = true;
-        vimAlias = true;
-
-        clipboard = {
-          enable = true;
-          providers.wl-copy.enable = true;
-        };
-        diagnostics = {
-          enable = true;
-          nvim-lint = {
-            enable = true;
-          };
-        };
-        statusline = {
-          lualine.enable = true;
-        };
-      };
-    };
+    enableManpages = true;
   };
 }

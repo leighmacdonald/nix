@@ -16,6 +16,5 @@
         friendly-snippets.enable = true;
       };
     };
-
   };
 }

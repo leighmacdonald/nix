@@ -1,6 +1,5 @@
 {
   networking = {
-    hostName = "bedroom";
     wireless = {
       enable = true;
       secretsFile = "/run/secrets/wireless.conf";
@@ -11,10 +10,6 @@
         };
       };
       interfaces = [ "wlan0" ];
-    };
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 22 ];
     };
   };
 }

@@ -1,9 +1,6 @@
 { username, ... }:
 {
   nix = {
-    # extraOptions = ''
-    #   extra-experimental-features = nix-command flakes
-    # '';
     settings = {
       auto-optimise-store = true;
       trusted-users = [ username ];

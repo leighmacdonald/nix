@@ -8,12 +8,13 @@
       {
         # here goes my custom configurations
         palette = lib.mkForce "catppuccin_mocha";
-        add_newline = false;
+        add_newline = true;
         direnv = {
           enable = true;
           nix-direnv.enable = true;
           #silent = false;
         };
+        battery.disabled = true;
         os.disabled = lib.mkDefault true;
         status = {
           style = "";
@@ -39,11 +40,11 @@
             "$git_status"
             "[](bold fg:yellow bg:green)"
             "$c$rust$golang$nodejs$php$haskell$python"
-            "[](bold fg:sapphire bg:lavender)"
+            #"[](bold fg:sapphire bg:lavender)"
             "$status"
             "$time"
             "[ ](bold fg:lavender)"
-            "$cmd_duration"
+            #"$cmd_duration"
             "$line_break"
             "$character"
           ]

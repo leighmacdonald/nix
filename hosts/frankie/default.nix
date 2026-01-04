@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
 {
   imports = [
+    inputs.disko.nixosModules.disko
+
     ./hardware-configuration.nix
     ./boot.nix
     ./audio.nix
@@ -26,48 +28,46 @@
     ../../modules/zram.nix
 
     ../../services/docker.nix
+    ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
+
   ];
 
-  hardware.bluetooth.enable = false;
-  hardware.enableAllFirmware = true;
+  hardware = {
+    bluetooth.enable = false;
+    enableAllFirmware = true;
+  };
 
-  #hardware.sensor.hddtemp.enable = true;
   nixpkgs.config.allowUnfree = true;
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # make sure to also set the portal package, so that they are in sync
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-  programs.steam = {
-    enable = true;
-    # extraCompatPckages = with pkgs; [
-    #   proton-ge-bin
-    # ];
-    extraPackages = with pkgs; [
-      gamescope
-    ];
-    extest.enable = true;
-    gamescopeSession = {
+
+  programs = {
+    ssh.startAgent = true;
+    hyprland = {
       enable = true;
+      withUWSM = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
-    #protontricks.enable = true;
-    #remotePlay.openFirewall= true;
-  };
-
-  programs.uwsm = {
-    enable = true;
-
-    waylandCompositors = {
-      #   hyprland-hm = {
-      #     prettyName = "Hyprland";
-      #     comment = "Hyprland managed by UWSM";
-      #     binPath = "/etc/profiles/per-user/leigh/bin/hyprland";
-      #   };
+    steam = {
+      enable = true;
+      # extraCompatPckages = with pkgs; [
+      #   proton-ge-bin
+      # ];
+      extraPackages = with pkgs; [
+        gamescope
+      ];
+      extest.enable = true;
+      gamescopeSession = {
+        enable = true;
+      };
+      #protontricks.enable = true;
+      #remotePlay.openFirewall= true;
+    };
+    uwsm = {
+      enable = true;
     };
   };
 }

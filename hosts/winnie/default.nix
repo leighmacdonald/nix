@@ -4,15 +4,11 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./boot.nix
-    ./network.nix
-    ./cec.nix
-    ./hardware.nix
-    ./filesystem.nix
     ./audio.nix
-    ./display-manager.nix
+    ./hardware.nix
     ./programs.nix
+
+    ../../hardware/rpi4
 
     ../../nix.nix
 
@@ -22,7 +18,14 @@
     ../../env/no-sudo-pass.nix
 
     ../../users/leigh.nix
+    ../../users/root.nix
+
     ../../fs/cifs.nix
+
+    ../../modules/secrets.nix
+    ../../modules/nodocumentation.nix
+    ../../modules/stylix.nix
+    ../../modules/wifi.nix
 
     ../../services/openssh.nix
     ../../services/tailscale.nix

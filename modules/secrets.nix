@@ -1,6 +1,7 @@
 {
   inputs,
   username,
+  hostName,
   ...
 }:
 
@@ -10,7 +11,7 @@
   ];
 
   sops = {
-    validateSopsFiles = false;
+    validateSopsFiles = true;
     defaultSopsFile = "/home/${username}/nix/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
     age = {
@@ -28,6 +29,11 @@
       tskey = { };
       smb_secrets = {
         path = "/etc/nixos/smb-secrets";
+      };
+      "hostkey_${hostName}_ed25519" = {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        mode = "0600";
+        owner = "root";
       };
       id_rsa = {
         path = "/home/${username}/.ssh/id_rsa";
