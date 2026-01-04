@@ -109,21 +109,8 @@
     }@inputs:
     let
       username = "leigh";
-      pkgs = import nixpkgs { };
     in
     {
-      formatter = pkgs.nixfmt-tree;
-
-      devShells.x86_64-linux.default = pkgs.mkShell {
-        packages = with pkgs; [
-          npins
-          nixos-anywhere
-          nixos-rebuild
-          ssh-to-age
-          age
-        ];
-      };
-
       nixosConfigurations = {
         bedroom =
           let
