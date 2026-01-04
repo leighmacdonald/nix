@@ -1,9 +1,8 @@
-{ username, ... }:
-{
+{username, ...}: {
   nix = {
     settings = {
       auto-optimise-store = true;
-      trusted-users = [ username ];
+      trusted-users = [username];
       extra-platforms = [
         "aarch64-linux"
         "x86_64-linux"

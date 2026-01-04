@@ -9,6 +9,7 @@
       #raspberrypi-eeprom
       home-manager
       cifs-utils
+      sops
     ];
   };
 

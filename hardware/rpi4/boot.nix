@@ -11,7 +11,7 @@
       grub.enable = false;
       generic-extlinux-compatible = {
         enable = true;
-        configurationLimit = 3;
+        configurationLimit = 30;
       };
     };
     # Enable audio devices

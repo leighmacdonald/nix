@@ -1,17 +1,20 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs = {
     gh.enable = true;
     lazygit.enable = true;
     git = {
       enable = true;
+      signing = {
+        format = "ssh";
+        signByDefault = true;
+      };
       settings = {
-        gpg = {
-          format = "ssh";
-        };
-        commit = {
-          gpgsign = true;
-        };
+        #gpg = {
+        #          format = "ssh";
+        #        };
+        #        commit = {
+        #          gpgsign = true;
+        #        };
         rerere = {
           enabled = true;
         };
@@ -48,7 +51,7 @@
         user = {
           name = config.accounts.email.accounts.default.realName;
           email = config.accounts.email.accounts.default.address;
-          signingkey = "~/.ssh/id_rsa.pub";
+          signingkey = "~/.ssh/id_ed25519.pub";
         };
       };
       ignores = [

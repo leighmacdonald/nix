@@ -3,9 +3,7 @@
   username,
   hostName,
   ...
-}:
-
-{
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -15,8 +13,8 @@
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age = {
-      sshKeyPaths = [ "/home/${username}/.ssh/id_ed25519" ];
-      keyFile = "/home/${username}/.config/sops/age/keys.txt";
+      #sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
+      keyFile = "/etc/sops/age/keys.txt";
       generateKey = false;
     };
 
@@ -28,7 +26,7 @@
         mode = "0600";
         owner = username;
       };
-      tskey = { };
+      tskey = {};
       smb_secrets = {
         path = "/etc/nixos/smb-secrets";
       };
@@ -36,6 +34,11 @@
         path = "/etc/ssh/ssh_host_ed25519_key";
         mode = "0600";
         owner = "root";
+      };
+      id_ed25519 = {
+        path = "/home/${username}/.ssh/id_ed25519";
+        mode = "0600";
+        owner = username;
       };
       id_rsa = {
         path = "/home/${username}/.ssh/id_rsa";

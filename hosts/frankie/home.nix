@@ -3,9 +3,7 @@
   hyprland,
   username,
   ...
-}:
-
-{
+}: {
   imports = [
     ../../programs/bat.nix
     ../../programs/btop.nix
@@ -29,6 +27,7 @@
     ../../programs/rmpc.nix
     ../../programs/rofi.nix
     ../../programs/sqls.nix
+    ../../programs/ssh.nix
     ../../programs/starship.nix
     ../../programs/waybar.nix
     ../../programs/zathura.nix
