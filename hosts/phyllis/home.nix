@@ -202,7 +202,7 @@
     };
     home-manager.enable = true;
     starship = {
-      enable = true;
+      enable = false;
       # custom settings
       #settings = {
       #  add_newline = false;

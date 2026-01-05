@@ -29,7 +29,10 @@
     fsType = "ext4";
   };
 
+  boot.supportedFilesystems.zfs = lib.mkForce false;
+  sdImage.compressImage = false;
+
   swapDevices = [ ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
 }
