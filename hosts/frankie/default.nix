@@ -1,9 +1,11 @@
 {
   pkgs,
   inputs,
+  username,
   ...
 }: {
   imports = [
+#    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
 
     ./hardware-configuration.nix
@@ -44,6 +46,11 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+ services.getty = {
+   autologinUser = username;
+   autologinOnce = true;
+ };
 
   programs = {
     hyprland = {
