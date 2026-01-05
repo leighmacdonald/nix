@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -17,6 +16,7 @@
       aspellDicts.en-science
       clang
       #aspellDicts
+      nfs-utils
     ];
   };
 

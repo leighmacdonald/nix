@@ -20,7 +20,7 @@
     ../../users/leigh.nix
     ../../users/root.nix
 
-    ../../fs/cifs.nix
+    ../../fs/nfs.nix
 
     ../../modules/secrets.nix
     ../../modules/nodocumentation.nix

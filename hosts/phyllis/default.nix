@@ -23,7 +23,7 @@
     ../../users/root.nix
     ../../users/leigh.nix
     ../../modules/wifi.nix
-    ../../fs/cifs.nix
+    ../../fs/nfs.nix
 
     ../../services/openssh.nix
     ../../services/tailscale.nix

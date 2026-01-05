@@ -3,9 +3,10 @@
   inputs,
   username,
   ...
-}: {
+}:
+{
   imports = [
-#    inputs.impermanence.nixosModules.impermanence
+    #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
 
     ./hardware-configuration.nix
@@ -23,8 +24,7 @@
 
     ../../users/leigh.nix
 
-    ../../fs/cifs.nix
-
+    ../../fs/nfs.nix
     ../../modules/documentation.nix
     ../../modules/fonts.nix
     ../../modules/nvidia.nix
@@ -47,10 +47,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
- services.getty = {
-   autologinUser = username;
-   autologinOnce = true;
- };
+  services.getty = {
+    autologinUser = username;
+    autologinOnce = true;
+  };
 
   programs = {
     hyprland = {

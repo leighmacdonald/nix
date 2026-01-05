@@ -3,7 +3,8 @@
   username,
   hostName,
   ...
-}: {
+}:
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -26,10 +27,7 @@
         mode = "0600";
         owner = username;
       };
-      tskey = {};
-      smb_secrets = {
-        path = "/etc/nixos/smb-secrets";
-      };
+      tskey = { };
       "hostkey_${hostName}_ed25519" = {
         path = "/etc/ssh/ssh_host_ed25519_key";
         mode = "0600";
