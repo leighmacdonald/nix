@@ -38,8 +38,18 @@
         mode = "0600";
         owner = username;
       };
+      id_ed25519_pub = {
+        path = "/home/${username}/.ssh/id_ed25519.pub";
+        mode = "0600";
+        owner = username;
+      };
       id_rsa = {
         path = "/home/${username}/.ssh/id_rsa";
+        mode = "0600";
+        owner = username;
+      };
+      id_rsa_pub = {
+        path = "/home/${username}/.ssh/id_rsa.pub";
         mode = "0600";
         owner = username;
       };
