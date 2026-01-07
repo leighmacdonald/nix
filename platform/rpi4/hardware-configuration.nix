@@ -14,7 +14,7 @@
     #(modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
-  hardware.enableAllHardware = false;
+  #hardware.enableAllHardware = lib. false;
   boot = {
     initrd = {
       availableKernelModules = {

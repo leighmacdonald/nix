@@ -19,7 +19,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
-    ../../programs/hyprland.nix
+    ./hyprland.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
     ../../programs/manpages.nix

@@ -216,13 +216,6 @@
         #  "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         #];
         # fix tooltips (always have a title of `win.<id>`)
-        windowrulev2 = [
-          "noinitialfocus, class:^(.*jetbrains.*)$, title:^(win.*)$"
-          "nofocus, class:^(.*jetbrains.*)$, title:^(win.*)$"
-          # fix tab dragging (always have a single space character as their title)
-          "noinitialfocus, class:^(.*jetbrains.*)$, title:^\\s$"
-          "nofocus, class:^(.*jetbrains.*)$, title:^\\s$"
-        ];
         #windowrule {
         #    # Ignore maximize requests from all apps. You'll probably like this.
         #    name = suppress-maximize-events

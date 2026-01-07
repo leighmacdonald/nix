@@ -26,14 +26,25 @@
     loader = {
       systemd-boot = {
         enable = true;
+        sortKey = "a";
         memtest86 = {
+          sortKey = "c";
           enable = true;
         };
         netbootxyz = {
+          sortKey = "d";
           enable = true;
         };
         edk2-uefi-shell = {
+          sortKey = "e";
           enable = true;
+        };
+        windows = {
+          "Windows" = {
+            title = "Windows";
+            efiDeviceHandle = "FS1";
+            sortKey = "b";
+          };
         };
       };
       efi.canTouchEfiVariables = true;

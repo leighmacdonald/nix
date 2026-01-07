@@ -51,7 +51,7 @@
     autologinUser = username;
     autologinOnce = true;
   };
-
+  security.nesting = true;
   programs = {
     hyprland = {
       enable = true;
