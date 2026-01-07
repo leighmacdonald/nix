@@ -141,7 +141,7 @@
         };
       };
     };
-    chromium.enable = true;
+    #chromium.enable = true;
     firefox = {
       enable = true;
       nativeMessagingHosts = [ pkgs.keepassxc ];
@@ -181,10 +181,10 @@
         };
       };
     };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
+    #direnv = {
+      #enable = true;
+      #nix-direnv.enable = true;
+    #};
     git = {
       enable = true;
       settings.user = {
