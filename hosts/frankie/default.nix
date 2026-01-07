@@ -3,8 +3,7 @@
   inputs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
