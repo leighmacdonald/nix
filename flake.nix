@@ -223,6 +223,32 @@
               }
             ];
           };
+
+        rupert =
+          let
+            hostName = "rupert";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/${hostName}
+              # home-manager.nixosModules.home-manager
+              # {
+              #   home-manager = {
+              #     useGlobalPkgs = true;
+              #     useUserPackages = true;
+              #     extraSpecialArgs = inputs // specialArgs;
+              #     users.${username} = import ./hosts/${hostName}/home.nix;
+              #   };
+              # }
+            ];
+          };
       };
     };
 }

@@ -1,11 +1,9 @@
-{ ... }:
 {
-
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/scsi-SATA_Samsung_SSD_850_S2RENX0H717117Z";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -48,6 +46,14 @@
                     mountpoint = "/home";
                     mountOptions = [
                       "subvol=home"
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/backup" = {
+                    mountpoint = "/backup";
+                    mountOptions = [
+                      "subvol=backup"
                       "compress=zstd"
                       "noatime"
                     ];

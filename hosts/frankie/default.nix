@@ -43,6 +43,7 @@
   hardware = {
     bluetooth.enable = false;
     enableAllFirmware = true;
+    nvidia-container-toolkit.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -51,7 +52,6 @@
     autologinUser = username;
     autologinOnce = true;
   };
-  security.nesting = true;
   programs = {
     hyprland = {
       enable = true;

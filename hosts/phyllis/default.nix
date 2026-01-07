@@ -10,5 +10,6 @@
     ../../nix.nix
 
     ../../platform/rpi4
+    ../../modules/secrets.nix
   ];
 }

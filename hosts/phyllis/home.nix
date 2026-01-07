@@ -44,15 +44,7 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.11";
 
-    packages = with pkgs; [
-      neofetch
-      which
-      lm_sensors
-      ethtool
-      pciutils # lspci
-      usbutils # lsusb
-      kdePackages.falkon
-    ];
+    #packages = with pkgs; [ ];
   };
   wayland.windowManager.hyprland = {
     systemd.variables = [ "--all" ];
