@@ -1,6 +1,4 @@
-{ ... }:
-{
-
+{...}: {
   disko.devices = {
     disk = {
       main = {
@@ -17,12 +15,11 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             luks = {
               size = "100%";
-              label = "luks";
               content = {
                 type = "luks";
                 name = "cryptroot";
@@ -101,42 +98,4 @@
       };
     };
   };
-  #  fileSystems."/" = {
-  #	device = "none";
-  #	fsType = "tmpfs";
-  #	options = [
-  #		"size=3G"
-  #	  	"mode=755"
-  #	];
-  #  };
-  #
-  #  fileSystems."/persist".neededForBoot = true;
-
-  #  environment.persistence."/persist" = {
-  #	enable = true;
-  #	hideMounts = true;
-  #	directories = [
-  #		"/var/log"
-  #		"/var/lib/nixos"
-  #		"/var/lib/systemd/coredump"
-  #	];
-  #	files = [
-  #		"/etc/machine-id"
-  #		"/etc/enc.key"
-  #		"/etc/sops/age/keys.txt"
-  #	];
-  #	users.${username} = {
-  #		directories = [
-  #			"nix"
-  #			"projects"
-  #			".local/share/direnv"
-  #			#{ directory = ".ssh"; mode = "0700"; }
-  #			{ directory = ".gnupg"; mode = "0700"; }
-  #			{ directory = ".local/share/keyrings"; mode = "0700";}
-  #			#{ directory = ".local/share/Steam"; method = "symlink";}
-  #
-  #		];
-  #
-  #  	};
-  #};
 }

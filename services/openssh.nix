@@ -24,14 +24,14 @@
   };
   programs.ssh = {
     knownHosts = {
-      frankie = {
-        hostNames = [ "192.168.0.200" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPOROI6UBd3pC0BVQox3q/XFboITZS6hrsrZwcTbXUD2";
-      };
-      rupert = {
-        hostNames = [ "192.168.0.201" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8hr1jEi+Gr+tPiYg3K3bmR4cSdMeCHsPR44/wx3dZ2";
-      };
+#      frankie = {
+#        hostNames = [ "192.168.0.200" ];
+#        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPOROI6UBd3pC0BVQox3q/XFboITZS6hrsrZwcTbXUD2";
+#      };
+#      rupert = {
+#        hostNames = [ "192.168.0.201" ];
+#        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8hr1jEi+Gr+tPiYg3K3bmR4cSdMeCHsPR44/wx3dZ2";
+#      };
       # pi2
       mika = {
         hostNames = [ "192.168.0.210" ];
