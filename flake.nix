@@ -2,9 +2,9 @@
   description = "NixOS configuration";
 
   inputs = {
-   impermanence = {
-	url = "github:nix-community/impermanence";
-   };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -107,7 +107,6 @@
     {
       nixpkgs,
       home-manager,
-      nixos-hardware,
       stylix,
       ...
     }@inputs:
@@ -116,7 +115,34 @@
     in
     {
       nixosConfigurations = {
-        bedroom =
+        mika =
+          let
+            hostName = "mika";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "armv7l-linux";
+            modules = [
+              stylix.nixosModules.stylix
+              ./hosts/${hostName}
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = inputs // specialArgs;
+                  users.${username} = import ./hosts/${hostName}/home.nix;
+                };
+              }
+
+            ];
+          };
+        phyllis =
           let
             hostName = "phyllis";
             specialArgs = {
@@ -140,7 +166,7 @@
                   users.${username} = import ./hosts/${hostName}/home.nix;
                 };
               }
-              nixos-hardware.nixosModules.raspberry-pi-4
+
             ];
           };
         winnie =
@@ -168,7 +194,6 @@
                   users.${username} = import ./hosts/${hostName}/home.nix;
                 };
               }
-              nixos-hardware.nixosModules.raspberry-pi-4
             ];
           };
         frankie =

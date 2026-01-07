@@ -21,15 +21,23 @@
     ];
     binfmt.emulatedSystems = [
       "aarch64-linux"
+      "armv7l-linux"
     ];
     loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
+      systemd-boot = {
         enable = true;
-        device = "nodev";
-        efiSupport = true;
-        useOSProber = true;
+        memtest86 = {
+          enable = true;
+        };
+        netbootxyz = {
+          enable = true;
+        };
+        edk2-uefi-shell = {
+          enable = true;
+        };
       };
+      efi.canTouchEfiVariables = true;
+      grub.enable = false;
     };
     # Enable audio devices
     kernelParams = [

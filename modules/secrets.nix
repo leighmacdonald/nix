@@ -20,6 +20,19 @@
     };
 
     secrets = {
+      sops_key = {
+        path = "/home/${username}/.config/sops/age/keys.txt";
+        mode = "0600";
+        owner = username;
+      };
+      keepass_main = {
+        path = "/home/${username}/.keepass.key";
+        format = "binary";
+        mode = "0600";
+        owner = username;
+        sopsFile = ../secrets/secrets.key;
+      };
+
       password = {
         neededForUsers = true;
       };
@@ -27,6 +40,7 @@
         mode = "0600";
         owner = username;
       };
+
       tskey = { };
       "hostkey_${hostName}_ed25519" = {
         path = "/etc/ssh/ssh_host_ed25519_key";

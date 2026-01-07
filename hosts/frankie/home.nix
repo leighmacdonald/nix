@@ -3,7 +3,8 @@
   hyprland,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ../../programs/bat.nix
     ../../programs/btop.nix
@@ -27,7 +28,7 @@
     ../../programs/rmpc.nix
     ../../programs/rofi.nix
     ../../programs/sqls.nix
-    ../../programs/ssh.nix
+    ../../programs/home-ssh.nix
     ../../programs/starship.nix
     ../../programs/waybar.nix
     ../../programs/zathura.nix
@@ -46,48 +47,20 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [
-      nixpkgs-fmt
-      nixfmt
-      nixd
-      statix
-      alejandra
-      deadnix
-      package-version-server
-      yaml-language-server
-      superhtml
-      jsonfmt
-      csharp-ls
-      prettier
-      lua-language-server
-      markdownlint-cli2
-      prettierd
-      rustfmt
-
-      sqlc
       babelfish
-      gci
-      gofumpt
-      gopls
-      goreleaser
-      govulncheck
-      nilaway
-      oapi-codegen
-      templ
-      vhs
+
       sops
+      ssh-to-age
       age
-      nil
-      click
+
       yt-dlp
-      eslint_d
       delta
       bat
       fastfetch
       pavucontrol
       pamixer
-      #      steam
       pinentry-all
-      typescript-language-server
+
       grim
       wl-clipboard
       flameshot

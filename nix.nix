@@ -1,5 +1,6 @@
 { username, ... }:
 {
+  nixpkgs.config.allowUnsupportedSystem = true;
   nix = {
     settings = {
       auto-optimise-store = true;

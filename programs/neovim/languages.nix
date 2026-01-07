@@ -1,91 +1,92 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    nil
+    nixpkgs-fmt
+    nixfmt
+    statix
+    deadnix
+    package-version-server
+    csharp-ls
+    prettier
+    rustfmt
+    jsonfmt
+    clang-tools
+    clang-analyzer
+    stylua
+    lua-language-server
+    markdownlint-cli2
+    prettierd
+    sqlc
+    eslint_d
+    gci
+    gofumpt
+    gopls
+    typescript-language-server
+  ];
   programs.nvf.settings.vim = {
     languages = {
       enableDAP = true;
       enableExtraDiagnostics = true;
       enableFormat = true;
       enableTreesitter = true;
-
+      bash = {
+        enable = true;
+      };
       clang = {
         enable = true;
-        treesitter.enable = true;
       };
       csharp = {
         enable = true;
-        treesitter.enable = true;
-        lsp.enable = true;
       };
       css = {
         enable = true;
-        format.enable = true;
-        treesitter.enable = true;
-        lsp.enable = true;
       };
       go = {
         enable = true;
-        dap = {
-          enable = true;
-        };
         format = {
-          enable = true;
           type = [ "gofumpt" ];
         };
-        lsp = {
-          enable = true;
-        };
-        treesitter.enable = true;
       };
       html = {
         enable = true;
-        extraDiagnostics.enable = true;
-        format.enable = true;
       };
       json = {
         enable = true;
-        format.enable = true;
       };
-
       lua = {
+        enable = true;
         lsp.lazydev.enable = true;
-        extraDiagnostics.enable = true;
-        lsp.enable = true;
       };
-
       markdown = {
         enable = true;
-        extraDiagnostics.enable = true;
-        format.enable = true;
-        lsp.enable = true;
-        treesitter.enable = true;
+        lsp.servers = [ "marksman" ];
+        format.type = [ "prettierd" ];
         extensions.markview-nvim.enable = true;
       };
-
       nix = {
         enable = true;
-        extraDiagnostics = {
-          enable = true;
-        };
-        format.enable = true;
-        treesitter.enable = true;
+        lsp.servers = [ "nixd" ];
+        format.type = [ "alejandra" ];
       };
-
+      python = {
+        enable = true;
+        dap.debugger = "debugpy";
+        format.type = [ "black" ];
+        lsp.servers = [ "basedpyright" ];
+      };
       sql = {
-        enable = false;
-        format.enable = false;
-        treesitter.enable = true;
-        #extraDiagnostics.enable = true;
-        dialect = "postgresql";
-        lsp.enable = true;
+        enable = true;
+        dialect = "postgres";
+        extraDiagnostics.types = [ "sqlfluff" ];
+        format.type = [ "sqlfluff" ];
       };
-
       rust = {
         enable = true;
-        format.enable = true;
-        treesitter.enable = true;
-        lsp.enable = true;
         dap = {
-          enable = true;
+          adapter = "codelldb";
         };
+        format.type = [ "rustfmt" ];
         extensions.crates-nvim = {
           enable = true;
           setupOpts = {
@@ -97,27 +98,23 @@
               hover = true;
             };
           };
-
         };
-
       };
-
       ts = {
         enable = true;
-        extraDiagnostics.enable = true;
         format = {
-          enable = true;
           type = [ "prettierd" ];
         };
-        lsp = {
-          enable = true;
+        extensions = {
+          ts-error-translator.enable = true;
         };
-        treesitter.enable = true;
+        lsp.servers = [
+          "ts_ls"
+        ];
       };
       yaml = {
         enable = true;
-        lsp.enable = true;
-        treesitter.enable = true;
+        lsp.servers = [ "yaml-language-server" ];
       };
     };
   };

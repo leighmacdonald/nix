@@ -5,12 +5,13 @@
     autoEnable = true;
     polarity = "dark";
     imageScalingMode = "fill";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/zenburn.yaml";
     overlays.enable = true;
     opacity.popups = 0.8;
-    override = {
-      base00 = "11111b";
-    };
+    # override = {
+    #   base00 = "11111b";
+    # };
     fonts = {
       sizes = {
         applications = 16;

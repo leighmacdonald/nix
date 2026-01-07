@@ -1,3 +1,5 @@
 result
 .direnv
 keys.txt
+*.img
+work

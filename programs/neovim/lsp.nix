@@ -6,7 +6,7 @@
       formatOnSave = true;
       lspkind.enable = true;
       lightbulb.enable = false;
-      lspsaga.enable = false;
+      lspsaga.enable = true;
       trouble.enable = true;
       #lspSignature.enable = true;
       lspconfig.enable = true;

@@ -4,7 +4,12 @@
     colors = "auto";
     enableFishIntegration = true;
     git = true;
-    icons = "never";
+    extraOptions = [
+      "--group"
+      "--long"
+      "--all"
+    ];
+    #icons = "never";
     theme = ''
       colourful: true
 

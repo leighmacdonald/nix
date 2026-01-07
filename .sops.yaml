@@ -3,11 +3,13 @@ keys:
   - &server_frankie age134n2aknm6gr34drnx2vvmmwc9xxxm3j8ecwctvkwquxs3tnef99q2d90p4
   - &server_phyllis age1z5656mtlrj8hvfscu8qw0pjfxc2azr2u7c8lu2d4c6q5ur5alg6syyq8q6
   - &server_winnie age1ld3p52xq685p8sgvekksz3xeuc09saks0zrldf5afn06k0qncgwq7esftm
+  - &server_mika age1yxdfkmz006t4w4966kupkyx4farrwen8khztlkrfe0u7gtmqddaqnun8sq
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: \.(yaml|json|env|ini|key)$
     key_groups:
       - age:
           - *admin_leigh
           - *server_frankie
           - *server_phyllis
           - *server_winnie
+          - *server_mika

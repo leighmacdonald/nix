@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
   services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    enableBashIntegration = true;
+    enable = false;
+    enableSshSupport = false;
     pinentry.package = pkgs.pinentry-rofi;
   };
 }

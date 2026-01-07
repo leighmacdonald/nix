@@ -7,12 +7,13 @@
 
 ## Raspberry-pi 4 Host Setup
 
-1. Write latest aarch64-linux image to sdcard.
-2. Boot and set password.
-3. Make initial deployment with built in `nixos` user:
+1. Build a sdcard image: ./build_sdimage.sh <hostname>
+2. Write latest aarch64-linux image to sdcard.
+3. Boot and set password.
+4. Make initial deployment with built in `nixos` user:
 
    nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host nixos@ip-addr
 
-4. Make further changes with your `username` instead of nixos.
+5. Make further changes with your `username` instead of nixos.
 
    nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host username@ip-addr

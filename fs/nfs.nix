@@ -1,16 +1,4 @@
 {
-  #fileSystems."/mnt/storage" = {
-  #    device = "192.168.0.201:/storage";
-  #    fsType = "nfs";
-  #    options = mountOpts;
-  #  };
-
-  #  fileSystems."/mnt/backup" = {
-  #    device = "192.168.0.201:/backup";
-  #    fsType = "nfs";
-  #    options = mountOpts;
-  #  };
-  # optional, but ensures rpc-statsd is running for on demand mounting
   boot.supportedFilesystems = [ "nfs" ];
   systemd.mounts = [
     {
@@ -29,6 +17,15 @@
       what = "192.168.0.201:/storage";
       where = "/mnt/storage";
     }
+    {
+      type = "nfs";
+      mountConfig = {
+        Options = "noatime";
+      };
+      what = "192.168.0.201:/storage/music";
+      where = "/mnt/storage/music";
+
+    }
   ];
   systemd.automounts = [
     {
@@ -44,6 +41,13 @@
         TimeoutIdleSec = "3600";
       };
       where = "/mnt/storage";
+    }
+    {
+      wantedBy = [ "multi-user.target" ];
+      automountConfig = {
+        TimeoutIdleSec = "3600";
+      };
+      where = "/mnt/storage/music";
     }
   ];
 }

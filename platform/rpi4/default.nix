@@ -1,29 +1,23 @@
 {
-  ...
-}:
-
-{
   imports = [
-    ./programs.nix
-
-    ../../platform/rpi4
-
-    ../../nix.nix
+    ./audio.nix
+    ./boot.nix
+    ./cec.nix
+    # ./disk.nix
+    ./filesystem.nix
+    ./hardware.nix
+    ./hardware-configuration.nix
+    ./network.nix
 
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
     ../../env/no-sudo-pass.nix
 
-    ../../users/leigh.nix
     ../../users/root.nix
-
-    ../../fs/nfs.nix
-
-    ../../modules/secrets.nix
-    ../../modules/nodocumentation.nix
-    ../../modules/stylix.nix
+    ../../users/leigh.nix
     ../../modules/wifi.nix
+    ../../fs/nfs.nix
 
     ../../services/openssh.nix
     ../../services/tailscale.nix

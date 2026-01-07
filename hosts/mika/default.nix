@@ -1,4 +1,7 @@
 {
+  lib,
+  pkgs,
+  username,
   ...
 }:
 
@@ -6,7 +9,7 @@
   imports = [
     ./programs.nix
 
-    ../../platform/rpi4
+    ../../platform/rpi2
 
     ../../nix.nix
 
@@ -28,4 +31,6 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
+
+  users.users.${username}.shell = lib.mkForce pkgs.bash;
 }
