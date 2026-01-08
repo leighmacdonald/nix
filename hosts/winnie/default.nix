@@ -1,8 +1,4 @@
-{
-  ...
-}:
-
-{
+{...}: {
   imports = [
     ./programs.nix
 
@@ -24,6 +20,8 @@
     ../../modules/nodocumentation.nix
     ../../modules/stylix.nix
     ../../modules/wifi.nix
+
+    ./caddy.nix
 
     ../../services/openssh.nix
     ../../services/tailscale.nix

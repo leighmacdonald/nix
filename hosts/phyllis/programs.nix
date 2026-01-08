@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment = {
     systemPackages = with pkgs; [
       gcc
@@ -9,9 +8,5 @@
       raspberrypi-eeprom
       home-manager
     ];
-  };
-
-  programs = {
-     fish.enable = true;
   };
 }

@@ -17,19 +17,19 @@
   #hardware.enableAllHardware = lib. false;
   boot = {
     initrd = {
-      availableKernelModules = {
-        xhci_pci = true;
-        usbhid = true;
-        dw-hdmi = lib.mkForce false;
-        dw-mipi-dsi = lib.mkForce false;
-        rockchipdrm = lib.mkForce false;
-        rockchip-rga = lib.mkForce false;
-        phy-rockchip-pcie = lib.mkForce false;
-        pcie-rockchip-host = lib.mkForce false;
-        pwm-sun4i = lib.mkForce false;
-        sun4i-drm = lib.mkForce false;
-        sun8i-mixer = lib.mkForce false;
-      };
+      # availableKernelModules = {
+      #   xhci_pci = true;
+      #   usbhid = true;
+      #   dw-hdmi = lib.mkForce false;
+      #   dw-mipi-dsi = lib.mkForce false;
+      #   rockchipdrm = lib.mkForce false;
+      #   rockchip-rga = lib.mkForce false;
+      #   phy-rockchip-pcie = lib.mkForce false;
+      #   pcie-rockchip-host = lib.mkForce false;
+      #   pwm-sun4i = lib.mkForce false;
+      #   sun4i-drm = lib.mkForce false;
+      #   sun8i-mixer = lib.mkForce false;
+      # };
       kernelModules = [ ];
       allowMissingModules = true;
     };

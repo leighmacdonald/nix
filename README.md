@@ -14,6 +14,6 @@
 
    nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host nixos@ip-addr
 
-5. Make further changes with your `username` instead of nixos.
+5. Make further changes with your `username` instead of nixos. Note the use of --no-reexec specifically when deploying to a p.  
 
-   nixos-anywhere switch --flake .#CHANGEME --disko-mode mount --extra-files fakeroot/ --target-host username@ip-addr
+   nixos-rebuild boot --no-reexec --flake .#phyllis --target-host 192.168.0.211 --sudo

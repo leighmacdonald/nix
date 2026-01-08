@@ -2,9 +2,9 @@
   config,
   pkgs,
   username,
+  hostName,
   ...
 }:
-
 {
   imports = [
     ../../accounts/email.nix
@@ -94,14 +94,9 @@
       vimAlias = true;
       #waylandSupport = true;
     };
-    foot = {
-      enable = true;
-    };
+    foot.enable = true;
     mpv.enable = true;
     rofi.enable = true;
-    waybar = {
-      enable = true;
-    };
     keepassxc = {
       enable = true;
       autostart = true;
@@ -149,7 +144,7 @@
       profiles = {
         bedroom = {
           isDefault = true;
-          name = "bedroom";
+          name = hostName;
           settings = {
             "webgl.disabled" = false;
             "privacy.resistFingerprinting" = false;
@@ -181,10 +176,6 @@
         };
       };
     };
-    #direnv = {
-      #enable = true;
-      #nix-direnv.enable = true;
-    #};
     git = {
       enable = true;
       settings.user = {
@@ -193,12 +184,5 @@
       };
     };
     home-manager.enable = true;
-    starship = {
-      enable = false;
-      # custom settings
-      #settings = {
-      #  add_newline = false;
-      #};
-    };
   };
 }

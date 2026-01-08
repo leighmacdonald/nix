@@ -1,8 +1,4 @@
 {
-  ...
-}:
-
-{
   imports = [
     ./programs.nix
     ./display-manager.nix

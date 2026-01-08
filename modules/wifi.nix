@@ -1,8 +1,17 @@
 {
+  sops.secrets."wireless.conf" = {
+    path = "/etc/wireless.conf";
+    owner = "root";
+  };
   networking = {
     wireless = {
       enable = true;
-      secretsFile = "/run/secrets/wireless.conf";
+      userControlled = {
+        enable = true;
+        group = "wheel";
+      };
+      scanOnLowSignal = false;
+      secretsFile = "/etc/wireless.conf";
       networks = {
         badjackie = {
           priority = 1;
