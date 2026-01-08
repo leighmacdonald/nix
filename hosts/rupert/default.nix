@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.disko.nixosModules.disko
 
@@ -12,6 +13,8 @@
     ../../users/leigh.nix
     ../../modules/nodocumentation.nix
     ../../modules/secrets.nix
+
+    ./media.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
@@ -41,22 +44,31 @@
     "/external" = {
       device = "/dev/disk/by-id/usb-Seagate_Expansion_NA8KVQ9C-0:0-part1";
       fsType = "ext4";
-      options = ["noauto"];
+      options = [ "noauto" ];
     };
 
     "/export/storage" = {
       device = "/storage";
-      options = ["bind"];
+      options = [ "bind" ];
+      depends = [
+        "/storage/music"
+      ];
     };
 
     "/export/storage/music" = {
       device = "/storage/music";
-      options = ["bind"];
+      options = [ "bind" ];
+      depends = [
+        "/export/storage"
+      ];
     };
 
     "/export/backup" = {
       device = "/backup";
-      options = ["bind"];
+      options = [ "bind" ];
+      depends = [
+        "/backup"
+      ];
     };
   };
 
@@ -77,7 +89,7 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [2049];
+  networking.firewall.allowedTCPPorts = [ 2049 ];
 
   nixpkgs.config.allowUnfree = false;
 }

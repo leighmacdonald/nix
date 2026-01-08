@@ -1,12 +1,11 @@
 {
   pkgs,
-  hyprland,
   username,
   ...
 }:
 {
   imports = [
-../../accounts/email.nix
+    ../../accounts/email.nix
     ../../programs/btop.nix
     ../../programs/direnv.nix
     ../../programs/git.nix

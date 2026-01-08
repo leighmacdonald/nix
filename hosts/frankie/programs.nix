@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -17,10 +18,13 @@
       clang
       #aspellDicts
       nfs-utils
+      p7zip
+      jellyfin-tui
     ];
   };
 
   programs = {
+    thunar.enable = true;
     appimage = {
       enable = true;
       binfmt = true;

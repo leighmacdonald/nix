@@ -2,6 +2,7 @@
   sops.secrets."wireless.conf" = {
     path = "/etc/wireless.conf";
     owner = "root";
+    mode = "775";
   };
   networking = {
     wireless = {

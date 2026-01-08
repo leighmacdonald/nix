@@ -48,10 +48,11 @@
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [
       babelfish
-
+      nixd
       sops
       ssh-to-age
       age
+      nil
 
       yt-dlp
       delta

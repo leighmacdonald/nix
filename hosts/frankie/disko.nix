@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   disko.devices = {
     disk = {
       main = {
@@ -15,7 +16,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks = {
@@ -81,6 +82,14 @@
                       mountpoint = "/nix";
                       mountOptions = [
                         "subvol=nix"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+                    "/projects" = {
+                      mountpoint = "/projects";
+                      mountOptions = [
+                        "subvol=/projects"
                         "compress=zstd"
                         "noatime"
                       ];

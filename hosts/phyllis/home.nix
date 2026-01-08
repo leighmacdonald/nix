@@ -57,6 +57,21 @@
       animations = {
         enabled = false;
       };
+      decoration = {
+        blur = {
+          enabled = false;
+        };
+      };
+      misc = {
+        disable_hyprland_logo = true;
+      };
+      general = {
+        gaps_in = 0;
+        gaps_out = 0;
+      };
+      ecosystem = {
+        enforce_permissions = false;
+      };
       bindel = [
         " ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         " ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
