@@ -31,6 +31,8 @@
       directories = [
         ".mozilla"
         ".config/vesktop"
+        ".cache/keepassxc"
+        ".cache/mozilla"
         "Downloads"
         {
           directory = ".gnupg";

@@ -1,5 +1,4 @@
-{ username, ... }:
-{
+{username, ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -9,15 +8,14 @@
           type = "gpt";
           partitions = {
             ESP = {
-	label = "boot";
+              label = "boot";
               size = "512M";
               type = "EF00";
               content = {
-               
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             luks = {
@@ -56,59 +54,57 @@
                     #  ];
                     #};
                     "/etc/sops" = {
-                        mountpoint = "/etc/sops";
-                        mountOptions = [
-                          "subvol=sops"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
+                      mountpoint = "/etc/sops";
+                      mountOptions = [
+                        "subvol=sops"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
 
-#                      "/home/${username}" = {
-#                        mountpoint = "/home/${username}";
-#                        mountOptions = [
-#                          "subvol=home"
-#                          "compress=zstd"
-#                          "noatime"
-#                        ];
-#                      };
-                      "/persist" = {
-                        mountpoint = "/persist";
-                        mountOptions = [
-                          "subvol=persist"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-
-                      };
-        #              "/log" = {
-       #                 mountpoint = "/var/log";
-      #                  mountOptions = [
-     #                     "subvol=log"
-    #                      "compress=zstd"
-   #                       "noatime"
-  #                      ];
- #                     };
-                      "/nix" = {
-                        mountpoint = "/nix";
-                        mountOptions = [
-                          "subvol=nix"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                      "/projects" = {
-                        mountpoint = "/projects";
-                        mountOptions = [
-                          "subvol=projects"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                      "/swap" = {
-                        mountpoint = "/swap";
-                        swap.swapfile.size = "32G";
-                      };
+                    #                      "/home/${username}" = {
+                    #                        mountpoint = "/home/${username}";
+                    #                        mountOptions = [
+                    #                          "subvol=home"
+                    #                          "compress=zstd"
+                    #                          "noatime"
+                    #                        ];
+                    #                      };
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = [
+                        "subvol=persist"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+                    #              "/log" = {
+                    #                 mountpoint = "/var/log";
+                    #                  mountOptions = [
+                    #                     "subvol=log"
+                    #                      "compress=zstd"
+                    #                       "noatime"
+                    #                      ];
+                    #                     };
+                    "/nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [
+                        "subvol=nix"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+                    "/projects" = {
+                      mountpoint = "/projects";
+                      mountOptions = [
+                        "subvol=projects"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+                    "/swap" = {
+                      mountpoint = "/swap";
+                      swap.swapfile.size = "32G";
                     };
                   };
                 };
@@ -117,5 +113,6 @@
           };
         };
       };
+    };
   };
 }
