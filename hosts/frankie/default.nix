@@ -1,9 +1,11 @@
 {
   pkgs,
+  lib,
   inputs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -14,6 +16,7 @@
     ./network.nix
     ./cpu.nix
     ./programs.nix
+    ./persistence.nix
 
     ../../nix.nix
 
@@ -23,7 +26,7 @@
 
     ../../users/leigh.nix
 
-    ../../fs/nfs.nix
+    #../../fs/nfs.nix
     ../../modules/documentation.nix
     ../../modules/fonts.nix
     ../../modules/nvidia.nix
@@ -51,6 +54,20 @@
     autologinUser = username;
     autologinOnce = true;
   };
+
+  systemd.services."mnt-storage.automount" = {
+    wantedBy = lib.mkForce [ ];
+    stopIfChanged = lib.mkForce true;
+  };
+  systemd.services."mnt-storage-music.automount" = {
+    wantedBy = lib.mkForce [ ];
+    stopIfChanged = lib.mkForce true;
+  };
+  systemd.services."mnt-backup.automount" = {
+    wantedBy = lib.mkForce [ ];
+    stopIfChanged = lib.mkForce true;
+  };
+
   programs = {
     hyprland = {
       enable = true;

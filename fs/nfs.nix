@@ -1,52 +1,22 @@
 {
   boot.supportedFilesystems = ["nfs"];
-  systemd.mounts = [
-    {
-      type = "nfs4";
-      mountConfig = {
-        Options = "noatime";
-      };
-      what = "192.168.0.201:/backup";
-      where = "/mnt/backup";
-    }
-    {
-      type = "nfs4";
-      mountConfig = {
-        Options = "noatime";
-      };
-      what = "192.168.0.201:/storage";
-      where = "/mnt/storage";
-    }
-    {
-      type = "nfs4";
-      mountConfig = {
-        Options = "noatime";
-      };
-      what = "192.168.0.201:/storage/music";
-      where = "/mnt/storage/music";
-    }
-  ];
-  systemd.automounts = [
-    {
-      wantedBy = ["multi-user.target"];
-      automountConfig = {
-        TimeoutIdleSec = "3600";
-      };
-      where = "/mnt/backup";
-    }
-    {
-      wantedBy = ["multi-user.target"];
-      automountConfig = {
-        TimeoutIdleSec = "3600";
-      };
-      where = "/mnt/storage";
-    }
-    {
-      wantedBy = ["multi-user.target"];
-      automountConfig = {
-        TimeoutIdleSec = "3600";
-      };
-      where = "/mnt/storage/music";
-    }
-  ];
+
+  fileSystems = {
+    "/mnt/storage" = {
+      device = "192.168.0.201:/storage";
+      fsType = "nfs";
+      options = ["async" "nfsvers=4.2"];
+    };
+    "/mnt/storage/music" = {
+      device = "192.168.0.201:/storage/music";
+      fsType = "nfs";
+      options = ["async" "nfsvers=4.2"];
+    };
+
+    "/mnt/backup" = {
+      device = "192.168.0.201:/backup";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
+  };
 }

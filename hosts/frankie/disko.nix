@@ -1,4 +1,4 @@
-{ ... }:
+{ username, ... }:
 {
   disko.devices = {
     disk = {
@@ -13,6 +13,7 @@
               size = "512M";
               type = "EF00";
               content = {
+                name = "boot";
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
@@ -54,30 +55,31 @@
                         "noatime"
                       ];
                     };
-                    "/home" = {
-                      mountpoint = "/home";
+                    "/home/${username}" = {
+                      mountpoint = "/home/${username}";
                       mountOptions = [
                         "subvol=home"
                         "compress=zstd"
                         "noatime"
                       ];
                     };
-                    #            "/persist" = {
-                    #              mountpoint = "/persist";
-                    #              mountOptions = [
-                    #                "subvol=persist"
-                    #                "compress=zstd"
-                    #                "noatime"
-                    #              ];
-                    #            };
-                    #    "/log" = {
-                    #      mountpoint = "/var/log";
-                    #      mountOptions = [
-                    #        "subvol=log"
-                    #        "compress=zstd"
-                    #        "noatime"
-                    #      ];
-                    #    };
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = [
+                        "subvol=persist"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+
+                    };
+                    "/log" = {
+                      mountpoint = "/var/log";
+                      mountOptions = [
+                        "subvol=log"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [
@@ -89,7 +91,7 @@
                     "/projects" = {
                       mountpoint = "/projects";
                       mountOptions = [
-                        "subvol=/projects"
+                        "subvol=projects"
                         "compress=zstd"
                         "noatime"
                       ];

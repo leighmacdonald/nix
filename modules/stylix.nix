@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   stylix = {
     enable = true;
     autoEnable = true;
     polarity = "dark";
     imageScalingMode = "fill";
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/zenburn.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     overlays.enable = true;
     opacity.popups = 0.8;
     # override = {
