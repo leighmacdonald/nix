@@ -3,8 +3,7 @@
   hyprland,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ../../programs/bat.nix
     ../../programs/btop.nix

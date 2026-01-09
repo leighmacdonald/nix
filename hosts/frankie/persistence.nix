@@ -1,6 +1,4 @@
-{ username, ... }:
-{
-
+{username, ...}: {
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
@@ -31,6 +29,8 @@
     ];
     users.${username} = {
       directories = [
+        ".mozilla"
+        ".config/vesktop"
         "Downloads"
         {
           directory = ".gnupg";

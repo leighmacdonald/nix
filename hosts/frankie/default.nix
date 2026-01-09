@@ -4,8 +4,7 @@
   inputs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -26,15 +25,14 @@
 
     ../../users/leigh.nix
 
-    #../../fs/nfs.nix
+    ../../fs/nfs.nix
+
     ../../modules/documentation.nix
     ../../modules/fonts.nix
     ../../modules/nvidia.nix
     ../../modules/stylix.nix
     ../../modules/secrets.nix
     ../../modules/zram.nix
-
-    #../../programs/ssh.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
@@ -55,18 +53,18 @@
     autologinOnce = true;
   };
 
-  systemd.services."mnt-storage.automount" = {
-    wantedBy = lib.mkForce [ ];
-    stopIfChanged = lib.mkForce true;
-  };
-  systemd.services."mnt-storage-music.automount" = {
-    wantedBy = lib.mkForce [ ];
-    stopIfChanged = lib.mkForce true;
-  };
-  systemd.services."mnt-backup.automount" = {
-    wantedBy = lib.mkForce [ ];
-    stopIfChanged = lib.mkForce true;
-  };
+  #  systemd.services."mnt-storage.automount" = {
+  #    wantedBy = lib.mkForce [ ];
+  #    stopIfChanged = lib.mkForce true;
+  #  };
+  #  systemd.services."mnt-storage-music.automount" = {
+  #    wantedBy = lib.mkForce [ ];
+  #    stopIfChanged = lib.mkForce true;
+  #  };
+  # systemd.services."mnt-backup.automount" = {
+  #   wantedBy = lib.mkForce [ ];
+  #   stopIfChanged = lib.mkForce true;
+  # };
 
   programs = {
     hyprland = {

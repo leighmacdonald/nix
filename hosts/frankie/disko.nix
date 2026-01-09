@@ -9,11 +9,11 @@
           type = "gpt";
           partitions = {
             ESP = {
-              label = "boot";
+	label = "boot";
               size = "512M";
               type = "EF00";
               content = {
-                name = "boot";
+               
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
@@ -47,16 +47,15 @@
                     "-f"
                   ];
                   subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = [
-                        "subvol=root"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-                    subvolumes = {
-                      "/etc/sops" = {
+                    #"/root" = {
+                    #  mountpoint = "/";
+                    #  mountOptions = [
+                    #    "subvol=root"
+                    #    "compress=zstd"
+                    #    "noatime"
+                    #  ];
+                    #};
+                    "/etc/sops" = {
                         mountpoint = "/etc/sops";
                         mountOptions = [
                           "subvol=sops"
@@ -65,14 +64,14 @@
                         ];
                       };
 
-                      "/home/${username}" = {
-                        mountpoint = "/home/${username}";
-                        mountOptions = [
-                          "subvol=home"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
+#                      "/home/${username}" = {
+#                        mountpoint = "/home/${username}";
+#                        mountOptions = [
+#                          "subvol=home"
+#                          "compress=zstd"
+#                          "noatime"
+#                        ];
+#                      };
                       "/persist" = {
                         mountpoint = "/persist";
                         mountOptions = [
@@ -82,14 +81,14 @@
                         ];
 
                       };
-                      "/log" = {
-                        mountpoint = "/var/log";
-                        mountOptions = [
-                          "subvol=log"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
+        #              "/log" = {
+       #                 mountpoint = "/var/log";
+      #                  mountOptions = [
+     #                     "subvol=log"
+    #                      "compress=zstd"
+   #                       "noatime"
+  #                      ];
+ #                     };
                       "/nix" = {
                         mountpoint = "/nix";
                         mountOptions = [
@@ -118,6 +117,5 @@
           };
         };
       };
-    };
   };
 }

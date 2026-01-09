@@ -108,6 +108,7 @@
       nixpkgs,
       home-manager,
       stylix,
+	impermanence,
       ...
     }@inputs:
     let
@@ -212,6 +213,7 @@
               ./hosts/${hostName}
               #sops-nix.nixosModules.sops
               stylix.nixosModules.stylix
+		impermanence.nixosModules.impermanence
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
