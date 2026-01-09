@@ -14,6 +14,7 @@
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/nix".neededForBoot = true;
   fileSystems."/var/log".neededForBoot = true;
+  fileSystems."/etc/sops".neededForBoot = true;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -23,7 +24,7 @@
     ];
     files = [
       "/etc/machine-id"
-      "/etc/sops/age/keys.txt"
+      #"/etc/sops/age/keys.txt"
       # Handled with sops
       # "/etc/ssh/ssh_host_ed25519_key"
       # "/etc/ssh/ssh_host_ed25519_key.pub"
