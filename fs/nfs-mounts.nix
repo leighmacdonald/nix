@@ -3,7 +3,7 @@
 
   fileSystems = {
     "/mnt/storage" = {
-      device = "192.168.0.201:/storage";
+      device = "rupert.roto.lol:/storage";
       fsType = "nfs";
       options = [
         "async"
@@ -11,9 +11,8 @@
       ];
     };
     "/mnt/storage/music" = {
-      device = "192.168.0.201:/storage/music";
+      device = "rupert.roto.lol:/storage/music";
       fsType = "nfs";
-      depends = [ "/mnt/storage" ];
       options = [
         "async"
         "nfsvers=4.2"
@@ -21,7 +20,7 @@
     };
 
     "/mnt/backup" = {
-      device = "192.168.0.201:/backup";
+      device = "rupert.roto.lol:/backup";
       fsType = "nfs";
       options = [ "nfsvers=4.2" ];
     };

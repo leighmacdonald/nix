@@ -29,10 +29,6 @@
     ];
     files = [
       "/etc/machine-id"
-      #"/etc/sops/age/keys.txt"
-      # Handled with sops
-      # "/etc/ssh/ssh_host_ed25519_key"
-      # "/etc/ssh/ssh_host_ed25519_key.pub"
     ];
     users.${username} = {
       directories = [
@@ -49,13 +45,14 @@
           mode = "0700";
         }
         ".local/share/direnv"
+        ".local/share/fish"
+        ".local/state/wireplumber"
       ];
       files = [
         # Select exteral DAC by default
-        ".local/state/wireplumber/default-nodes"
+        #".local/state/wireplumber/default-nodes"
         # Configure / Disable io
-        ".local/state/wireplumber/default-profile"
-        ".local/share/fish/fish_history"
+        # ".local/state/wireplumber/default-profile"
       ];
     };
   };

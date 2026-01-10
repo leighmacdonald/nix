@@ -52,7 +52,7 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     shellAliases = {
-      "cd" = lib.getBin pkgs.zoxide;
+      cd = lib.getBin pkgs.zoxide;
     };
 
     #xdg.configFile."fish/config.fish".force = true;
@@ -78,6 +78,7 @@
       flameshot
       slurp
       hyprland
+
     ];
     sessionVariables = {
       EDITOR = "nvim";

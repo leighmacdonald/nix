@@ -1,9 +1,21 @@
-{ hyprland, hy3, ... }:
+{
+  hyprland,
+  hy3,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
     hyprland.homeManagerModules.default
   ];
-
+  xdg = {
+    configFile."uwsm/env".source =
+      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    portal = {
+      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+    };
+  };
   wayland = {
     windowManager.hyprland = {
       enable = true;
@@ -11,8 +23,10 @@
         enable = false; # conflicts with UWSM.
         variables = [ "--all" ];
       };
-      #package = null;
-      #portalPackage = null;
+      # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      package = null;
+      portalPackage = null;
       plugins = [ hy3.packages.x86_64-linux.hy3 ];
       settings = {
         #$terminal = runapp kitty

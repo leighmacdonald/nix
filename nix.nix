@@ -1,4 +1,4 @@
-{ username, lib, ... }:
+{ username, ... }:
 {
   nixpkgs.config.allowUnsupportedSystem = true;
   nix = {
