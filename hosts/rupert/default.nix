@@ -24,7 +24,10 @@
     ../../services/binary-cache-client.nix
   ];
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  };
 
   hardware = {
     bluetooth.enable = false;

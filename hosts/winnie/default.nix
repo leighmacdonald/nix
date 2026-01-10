@@ -27,5 +27,7 @@
     ../../services/binary-cache-client.nix
   ];
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+  };
 }

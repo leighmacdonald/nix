@@ -8,10 +8,13 @@
 
     ../../platform/rpi4
     ../../modules/secrets.nix
+    ../../modules/stylix.nix
     ../../services/binary-cache-client.nix
   ];
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
+  };
 
   networking.interfaces.end0 = {
     ipv4 = {
