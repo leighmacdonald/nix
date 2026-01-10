@@ -27,5 +27,5 @@
     ../../services/binary-cache-client.nix
   ];
 
-  base16Scheme = "${pkgs.base16-schemes}/share/themes/builtin-solarized-dark.yaml";
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
 }
