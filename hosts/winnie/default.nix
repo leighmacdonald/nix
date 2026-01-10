@@ -14,8 +14,6 @@
     ../../users/leigh.nix
     ../../users/root.nix
 
-    ../../fs/nfs.nix
-
     ../../modules/secrets.nix
     ../../modules/nodocumentation.nix
     ../../modules/stylix.nix

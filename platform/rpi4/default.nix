@@ -16,8 +16,10 @@
 
     ../../users/root.nix
     ../../users/leigh.nix
+
     ../../modules/wifi.nix
-    ../../fs/nfs.nix
+
+    ../../fs/nfs-mounts.nix
 
     ../../services/openssh.nix
     ../../services/tailscale.nix
