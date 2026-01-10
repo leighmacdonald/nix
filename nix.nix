@@ -3,7 +3,7 @@
   nixpkgs.config.allowUnsupportedSystem = true;
   nix = {
     settings = {
-      #post-build-hook = "/etc/nix/upload-to-cache.sh";
+      post-build-hook = "/etc/nix/upload-to-cache.sh";
       auto-optimise-store = true;
       trusted-users = [ username ];
       extra-platforms = [

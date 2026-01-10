@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./programs.nix
@@ -9,6 +10,9 @@
     ../../modules/secrets.nix
     ../../services/binary-cache-client.nix
   ];
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
+
   networking.interfaces.end0 = {
     ipv4 = {
       #useDHCP = lib.mkForce false;

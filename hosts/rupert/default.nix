@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -23,6 +23,8 @@
     ../../services/binary-cache.nix
     ../../services/binary-cache-client.nix
   ];
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
 
   hardware = {
     bluetooth.enable = false;
