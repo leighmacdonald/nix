@@ -21,6 +21,12 @@
     };
 
     secrets = {
+      local_cache = {
+        path = "/var/secrets/cache-private-key.pem";
+      };
+      local_cache_pub = {
+        path = "/var/secrets/cache-private-key.pub";
+      };
       keepass_main = {
         path = "/home/${username}/.keepass.key";
         format = "binary";

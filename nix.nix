@@ -5,13 +5,14 @@
     settings = {
       #post-build-hook = "/etc/nix/upload-to-cache.sh";
       auto-optimise-store = true;
+      secret-key-files = "/var/secrets/cache-private-key.pem";
       trusted-users = [ username ];
       extra-platforms = [
         "aarch64-linux"
         "x86_64-linux"
       ];
       substituters = [
-        "https://cache.roto.lol"
+        "ssh://cache.roto.lol"
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
         "https://hyprland.cachix.org"
