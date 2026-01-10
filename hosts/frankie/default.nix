@@ -38,6 +38,7 @@
     ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
+    ../../services/binary-cache-client.nix
   ];
 
   hardware = {

@@ -7,6 +7,7 @@
 
     ../../platform/rpi4
     ../../modules/secrets.nix
+    ../../services/binary-cache-client.nix
   ];
   networking.interfaces.end0 = {
     ipv4 = {
