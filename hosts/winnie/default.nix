@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./programs.nix
@@ -25,4 +26,6 @@
     ../../services/tailscale.nix
     ../../services/binary-cache-client.nix
   ];
+
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/builtin-solarized-dark.yaml";
 }
