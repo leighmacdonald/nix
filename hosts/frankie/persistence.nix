@@ -20,6 +20,12 @@
     hideMounts = false;
     directories = [
       "/var/log"
+      {
+        directory = "/home/${username}/.ssh";
+        user = username;
+        group = "lusers";
+        mode = "0700";
+      }
     ];
     files = [
       "/etc/machine-id"
@@ -32,6 +38,7 @@
       directories = [
         ".mozilla"
         ".config/vesktop"
+        ".config/mpd"
         ".cache/keepassxc"
         ".cache/mozilla"
         # Select exteral DAC by default
@@ -46,11 +53,7 @@
           directory = ".gnupg";
           mode = "0700";
         }
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
-        # ".local/share/direnv"
+        ".local/share/direnv"
       ];
       # files = [
       #   ".screenrc"

@@ -3,8 +3,7 @@
   inputs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -50,8 +49,12 @@
   #   force = true;
   # };
 
+  systemd.targets."mnt-storage.mount" = {
+    wants = ["network-online.target"];
+  };
+
   systemd.user.services."mpd" = {
-    after = [ "mnt-storage-music.mount" ];
+    after = ["mnt-storage-music.mount"];
   };
   nixpkgs.config.allowUnfree = true;
 
@@ -59,19 +62,6 @@
     autologinUser = username;
     autologinOnce = true;
   };
-
-  #  systemd.services."mnt-storage.automount" = {
-  #    wantedBy = lib.mkForce [ ];
-  #    stopIfChanged = lib.mkForce true;
-  #  };
-  #  systemd.services."mnt-storage-music.automount" = {
-  #    wantedBy = lib.mkForce [ ];
-  #    stopIfChanged = lib.mkForce true;
-  #  };
-  # systemd.services."mnt-backup.automount" = {
-  #   wantedBy = lib.mkForce [ ];
-  #   stopIfChanged = lib.mkForce true;
-  # };
 
   programs = {
     hyprland = {
@@ -97,9 +87,6 @@
       #protontricks.enable = true;
       #remotePlay.openFirewall= true;
     };
-    #fish = {
-    #  enable = true;
-    #};
     uwsm = {
       enable = true;
     };
