@@ -3,7 +3,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    writebackDevice = "/dev/disk/by-partuuid/1955f56c-be09-114a-bcbe-ca5a5a04e9af";
+    writebackDevice = "/swap";
     memoryPercent = 20;
   };
 

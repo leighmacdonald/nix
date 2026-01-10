@@ -4,8 +4,7 @@
   hyprland,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ../../programs/bat.nix
     ../../programs/btop.nix
@@ -48,6 +47,7 @@
     shell = {
       enableShellIntegration = true;
     };
+    backupFileExtension = "backup";
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.

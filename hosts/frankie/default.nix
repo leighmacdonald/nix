@@ -3,7 +3,8 @@
   inputs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -31,7 +32,7 @@
     ../../modules/nvidia.nix
     ../../modules/stylix.nix
     ../../modules/secrets.nix
-    ../../modules/zram.nix
+    # ../../modules/zram.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
@@ -50,12 +51,13 @@
   # };
 
   systemd.targets."mnt-storage.mount" = {
-    wants = ["network-online.target"];
+    wants = [ "network-online.target" ];
   };
 
-  systemd.user.services."mpd" = {
-    after = ["mnt-storage-music.mount"];
-  };
+  #  systemd.user.services."mpd" = {
+  #    wants = ["network-online.target"];
+  #    after = ["mnt-storage-music.mount"];
+  #  };
   nixpkgs.config.allowUnfree = true;
 
   services.getty = {
