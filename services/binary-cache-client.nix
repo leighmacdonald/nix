@@ -9,7 +9,7 @@
               echo "Uploading paths" $OUT_PATHS
               exec nix copy --to "https://cache.roto.lol" $OUT_PATHS"
       '';
-      mode = "0770";
+      mode = "0777";
     };
   };
 }
