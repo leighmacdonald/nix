@@ -40,6 +40,8 @@
     ../../services/tailscale.nix
   ];
 
+  home-manager.backupFileExtension = "backup";
+
   hardware = {
     bluetooth.enable = false;
     enableAllFirmware = true;

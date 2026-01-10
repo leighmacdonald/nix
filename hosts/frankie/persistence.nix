@@ -41,11 +41,6 @@
         ".config/mpd"
         ".cache/keepassxc"
         ".cache/mozilla"
-        # Select exteral DAC by default
-        ".local/state/wireplumber/default-nodes"
-        # Configure / Disable io
-        ".local/state/wireplumber/default-profile"
-        ".local/share/fish/fish_history"
         # Projects and stuff?
         ".local/share/zed"
         "Downloads"
@@ -55,9 +50,13 @@
         }
         ".local/share/direnv"
       ];
-      # files = [
-      #   ".screenrc"
-      # ];
+      files = [
+        # Select exteral DAC by default
+        ".local/state/wireplumber/default-nodes"
+        # Configure / Disable io
+        ".local/state/wireplumber/default-profile"
+        ".local/share/fish/fish_history"
+      ];
     };
   };
 }
