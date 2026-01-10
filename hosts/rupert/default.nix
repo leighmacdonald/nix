@@ -83,21 +83,24 @@
     };
   };
 
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-      /export 192.168.0.0/24(rw,fsid=0,no_subtree_check)
-      /export/backup 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-      /export/storage 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-      /export/storage/music 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-    '';
-    extraNfsdConfig = ''
-      vers3 = off
-      vers4 = true
-      vers4.0 = false
-      vers4.1 = false
-      vers4.2 = true
-    '';
+  services.nfs = {
+    settings = {
+      "vers3" = false;
+      "vers4" = true;
+      "vers4.0" = false;
+      "vers4.1" = false;
+      "vers4.2" = true;
+    };
+    server = {
+      enable = true;
+      exports = ''
+        /export 192.168.0.0/24(rw,fsid=0,no_subtree_check)
+        /export/backup 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
+        /export/storage 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
+        /export/storage/music 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
+      '';
+
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 2049 ];
