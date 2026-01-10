@@ -1,7 +1,15 @@
 {
   programs.ghostty = {
     enable = true;
+    enableFishIntegration = true;
+    installBatSyntax = true;
+    installVimSyntax = true;
+    systemd = {
+      enable = true;
+    };
     settings = {
+      shell-integration = "fish";
+      quit-after-last-window-closed = false;
       window-theme = "dark";
       window-decoration = false;
       window-padding-x = 5;

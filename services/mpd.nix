@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-    ../accounts/email.nix
+    ../env/email.nix
   ];
   services = {
     mpd-discord-rpc.enable = true;

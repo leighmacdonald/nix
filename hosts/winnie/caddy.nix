@@ -41,6 +41,15 @@
           import rotolol
         '';
       };
+      "cache.roto.lol" = {
+        extraConfig = ''
+          reverse_proxy /* 192.168.0.201:5000 {
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+          }
+          import rotolol
+        '';
+      };
       "lidarr.roto.lol" = {
         extraConfig = ''
           reverse_proxy /* 192.168.0.201:8686 {

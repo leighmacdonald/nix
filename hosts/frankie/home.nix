@@ -3,7 +3,8 @@
   hyprland,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ../../programs/bat.nix
     ../../programs/btop.nix
@@ -45,6 +46,9 @@
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
+    shellAliases = {
+      "cd" = "z";
+    };
     packages = with pkgs; [
       babelfish
       nixd

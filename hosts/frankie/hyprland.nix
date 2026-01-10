@@ -240,7 +240,7 @@
         workspace = [
           "1, monitor:HDMI-A-1, persistent:true, defaultName:left, on-created-empty:firefox"
           "2, monitor:DP-2, persistent:true, defaultName:main, default:true, on-created-empty:zeditor"
-          "3, monitor:DP-1, persistent:true, defaultName:right, on-created-empty:discord"
+          "3, monitor:DP-1, persistent:true, defaultName:right, on-created-empty:vesktop"
           "4, monitor:DP-3, persistent:true, defaultName:top, on-created-empty:keepassxc"
         ];
       };

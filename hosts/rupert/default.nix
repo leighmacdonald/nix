@@ -20,11 +20,21 @@
     ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
+    ../../services/binary-cache.nix
   ];
 
   hardware = {
     bluetooth.enable = false;
     enableAllFirmware = false;
+  };
+
+  sops.secrets = {
+    local_cache = {
+      path = "/var/secrets/cache-private-key.pem";
+    };
+    local_cache_pub = {
+      path = "/var/secrets/cache-private-key.pub";
+    };
   };
 
   fileSystems = {

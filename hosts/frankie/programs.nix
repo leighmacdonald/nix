@@ -29,6 +29,8 @@
       enable = true;
       binfmt = true;
     };
-    fish.enable = true;
+    fish = {
+      enable = true;
+    };
   };
 }

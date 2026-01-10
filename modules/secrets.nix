@@ -3,7 +3,8 @@
   username,
   hostName,
   ...
-}: {
+}:
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -16,6 +17,7 @@
       #sshKeyPaths = ["/home/${username}/.ssh/id_ed25519"];
       keyFile = "/etc/sops/age/keys.txt";
       generateKey = false;
+
     };
 
     secrets = {
@@ -35,7 +37,7 @@
         owner = username;
       };
 
-      tskey = {};
+      tskey = { };
       "hostkey_${hostName}_ed25519" = {
         path = "/etc/ssh/ssh_host_ed25519_key";
         mode = "0600";

@@ -1,4 +1,4 @@
-{username, ...}: {
+{
   disko.devices = {
     disk = {
       main = {
@@ -15,7 +15,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks = {
@@ -61,15 +61,6 @@
                         "noatime"
                       ];
                     };
-
-                    #                      "/home/${username}" = {
-                    #                        mountpoint = "/home/${username}";
-                    #                        mountOptions = [
-                    #                          "subvol=home"
-                    #                          "compress=zstd"
-                    #                          "noatime"
-                    #                        ];
-                    #                      };
                     "/persist" = {
                       mountpoint = "/persist";
                       mountOptions = [
@@ -78,14 +69,6 @@
                         "noatime"
                       ];
                     };
-                    #              "/log" = {
-                    #                 mountpoint = "/var/log";
-                    #                  mountOptions = [
-                    #                     "subvol=log"
-                    #                      "compress=zstd"
-                    #                       "noatime"
-                    #                      ];
-                    #                     };
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [

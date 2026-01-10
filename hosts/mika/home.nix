@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../../accounts/email.nix
+    ../../env/email.nix
   ];
   home = {
     username = username;

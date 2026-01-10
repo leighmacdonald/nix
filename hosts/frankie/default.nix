@@ -1,10 +1,10 @@
 {
   pkgs,
-  lib,
   inputs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -25,7 +25,7 @@
 
     ../../users/leigh.nix
 
-    ../../fs/nfs.nix
+    ../../fs/nfs-mounts.nix
 
     ../../modules/documentation.nix
     ../../modules/fonts.nix

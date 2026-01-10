@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../accounts/email.nix
+    ../../env/email.nix
     ../../programs/btop.nix
     ../../programs/direnv.nix
     ../../programs/git.nix
@@ -28,6 +28,7 @@
       MANPAGER = "nvim +Man!";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
+      SOPS_AGE_KEY_FILE = "/etc/sops/age/keys.txt";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"

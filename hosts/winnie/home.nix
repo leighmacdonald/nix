@@ -7,7 +7,7 @@
 
 {
   imports = [
-    ../../accounts/email.nix
+    ../../env/email.nix
   ];
   # link all files in `./scripts` to `~/.config/i3/scripts`
   home = {
