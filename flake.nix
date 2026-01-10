@@ -108,7 +108,7 @@
       nixpkgs,
       home-manager,
       stylix,
-	impermanence,
+      impermanence,
       ...
     }@inputs:
     let
@@ -213,7 +213,7 @@
               ./hosts/${hostName}
               #sops-nix.nixosModules.sops
               stylix.nixosModules.stylix
-		impermanence.nixosModules.impermanence
+              impermanence.nixosModules.impermanence
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -240,15 +240,16 @@
             system = "x86_64-linux";
             modules = [
               ./hosts/${hostName}
-               home-manager.nixosModules.home-manager
-               {
-                 home-manager = {
-                   useGlobalPkgs = true;
-                   useUserPackages = true;
-                   extraSpecialArgs = inputs // specialArgs;
-                   users.${username} = import ./hosts/${hostName}/home.nix;
-                 };
-               }
+              stylix.nixosModules.stylix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = inputs // specialArgs;
+                  users.${username} = import ./hosts/${hostName}/home.nix;
+                };
+              }
             ];
           };
       };
