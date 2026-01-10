@@ -3,7 +3,8 @@
   config,
   username,
   ...
-}: {
+}:
+{
   users = {
     mutableUsers = false;
     groups = {

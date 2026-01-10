@@ -1,4 +1,5 @@
-{username, ...}: {
+{ username, ... }:
+{
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
@@ -33,9 +34,20 @@
         ".config/vesktop"
         ".cache/keepassxc"
         ".cache/mozilla"
+        # Select exteral DAC by default
+        ".local/state/wireplumber/default-nodes"
+        # Configure / Disable io
+        ".local/state/wireplumber/default-profile"
+        ".local/share/fish/fish_history"
+        # Projects and stuff?
+        ".local/share/zed"
         "Downloads"
         {
           directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".ssh";
           mode = "0700";
         }
         # ".local/share/direnv"
