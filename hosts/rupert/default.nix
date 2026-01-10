@@ -85,11 +85,13 @@
 
   services.nfs = {
     settings = {
-      "vers3" = false;
-      "vers4" = true;
-      "vers4.0" = false;
-      "vers4.1" = false;
-      "vers4.2" = true;
+      nfsd = {
+        "vers3" = false;
+        "vers4" = true;
+        "vers4.0" = false;
+        "vers4.1" = false;
+        "vers4.2" = true;
+      };
     };
     server = {
       enable = true;
