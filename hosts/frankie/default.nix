@@ -38,7 +38,6 @@
     ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
-    ../../services/binary-cache-client.nix
   ];
 
   hardware = {
@@ -47,6 +46,13 @@
     nvidia-container-toolkit.enable = true;
   };
 
+  # xdg.configFile."fish/config.fish" = {
+  #   force = true;
+  # };
+
+  systemd.user.services."mpd" = {
+    after = [ "mnt-storage-music.mount" ];
+  };
   nixpkgs.config.allowUnfree = true;
 
   services.getty = {
@@ -91,10 +97,9 @@
       #protontricks.enable = true;
       #remotePlay.openFirewall= true;
     };
-    fish = {
-      enable = true;
-      useBabelfish = true;
-    };
+    #fish = {
+    #  enable = true;
+    #};
     uwsm = {
       enable = true;
     };

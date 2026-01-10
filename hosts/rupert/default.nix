@@ -21,7 +21,6 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
     ../../services/binary-cache.nix
-    ../../services/binary-cache-client.nix
   ];
 
   stylix = {

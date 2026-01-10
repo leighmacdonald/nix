@@ -9,7 +9,6 @@
     ../../platform/rpi4
     ../../modules/secrets.nix
     ../../modules/stylix.nix
-    ../../services/binary-cache-client.nix
   ];
 
   stylix = {

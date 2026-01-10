@@ -13,6 +13,7 @@
     "/mnt/storage/music" = {
       device = "192.168.0.201:/storage/music";
       fsType = "nfs";
+      depends = [ "/mnt/storage" ];
       options = [
         "async"
         "nfsvers=4.2"

@@ -9,6 +9,7 @@ in
   imports = [
     ../env/email.nix
   ];
+
   services = {
     mpd-discord-rpc.enable = true;
     mpdris2 = {

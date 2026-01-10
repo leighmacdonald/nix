@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   hyprland,
   username,
   ...
@@ -42,13 +43,20 @@
     ../../services/mpd.nix
     ../../services/gpg-agent.nix
   ];
+  #xdg.configFile."fish/config.fish".force = true;
   home = {
+    shell = {
+      enableShellIntegration = true;
+    };
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     shellAliases = {
-      "cd" = "z";
+      "cd" = lib.getBin pkgs.zoxide;
     };
+
+    #xdg.configFile."fish/config.fish".force = true;
+
     packages = with pkgs; [
       babelfish
       nixd
