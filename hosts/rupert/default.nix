@@ -35,12 +35,7 @@
   };
 
   sops.secrets = {
-    local_cache = {
-      path = "/var/secrets/cache-private-key.pem";
-    };
-    local_cache_pub = {
-      path = "/var/secrets/cache-private-key.pub";
-    };
+
   };
 
   fileSystems = {
@@ -113,4 +108,6 @@
   networking.firewall.allowedTCPPorts = [ 2049 ];
 
   nixpkgs.config.allowUnfree = false;
+
+  nix.settings.post-build-hook = null;
 }

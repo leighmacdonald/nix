@@ -1,9 +1,9 @@
-{ username, ... }:
+{ username, lib, ... }:
 {
   nixpkgs.config.allowUnsupportedSystem = true;
   nix = {
     settings = {
-      #post-build-hook = "/etc/nix/upload-to-cache.sh";
+      post-build-hook = lib.mkDefault "/etc/nix/upload-to-cache.sh";
       auto-optimise-store = true;
       secret-key-files = "/var/secrets/cache-private-key.pem";
       trusted-users = [ username ];
