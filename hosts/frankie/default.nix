@@ -56,10 +56,9 @@
     wants = [ "network-online.target" ];
   };
 
-  #  systemd.user.services."mpd" = {
-  #    wants = ["network-online.target"];
-  #    after = ["mnt-storage-music.mount"];
-  #  };
+  systemd.user.services."mpd" = {
+    wants = [ "mnt-storage-music.mount" ];
+  };
   nixpkgs.config.allowUnfree = true;
 
   services.getty = {
