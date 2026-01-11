@@ -1,9 +1,9 @@
 {
-  boot.supportedFilesystems = [ "nfs" ];
+  boot.supportedFilesystems = ["nfs"];
 
   fileSystems = {
     "/mnt/storage" = {
-      device = "rupert.roto.lol:/storage";
+      device = "192.168.0.201:/storage";
       fsType = "nfs";
       options = [
         "async"
@@ -11,7 +11,7 @@
       ];
     };
     "/mnt/storage/music" = {
-      device = "rupert.roto.lol:/storage/music";
+      device = "192.168.0.201:/storage/music";
       fsType = "nfs";
       options = [
         "async"
@@ -20,9 +20,9 @@
     };
 
     "/mnt/backup" = {
-      device = "rupert.roto.lol:/backup";
+      device = "192.168.0.201:/backup";
       fsType = "nfs";
-      options = [ "nfsvers=4.2" ];
+      options = ["nfsvers=4.2"];
     };
   };
 }

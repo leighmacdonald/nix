@@ -50,9 +50,9 @@
       ];
       files = [
         # Select exteral DAC by default
-        #".local/state/wireplumber/default-nodes"
+        ".config/e/wireplumber/default-nodes"
         # Configure / Disable io
-        # ".local/state/wireplumber/default-profile"
+        ".local/share/fish/alt_history"
       ];
     };
   };

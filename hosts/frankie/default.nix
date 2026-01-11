@@ -3,8 +3,7 @@
   inputs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -52,12 +51,13 @@
   #   force = true;
   # };
 
-  systemd.targets."mnt-storage.mount" = {
-    wants = [ "network-online.target" ];
-  };
+  #  systemd.targets."mnt-storage.mount" = {
+  #    wants = [ "network.target" ];
+  #  };
 
   systemd.user.services."mpd" = {
-    wants = [ "mnt-storage-music.mount" ];
+    wants = ["mnt-storage.mount.target"];
+    bindsTo = ["mnt-storage.mount.target"];
   };
   nixpkgs.config.allowUnfree = true;
 

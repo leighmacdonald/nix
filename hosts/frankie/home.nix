@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   hyprland,
   username,
   ...
@@ -51,9 +50,9 @@
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
-    shellAliases = {
-      cd = lib.getBin pkgs.zoxide;
-    };
+    # shellAliases = {
+    #   "cd" = "zoxide";
+    # };
 
     #xdg.configFile."fish/config.fish".force = true;
 
@@ -78,7 +77,7 @@
       flameshot
       slurp
       hyprland
-
+      postgresql_18
     ];
     sessionVariables = {
       EDITOR = "nvim";

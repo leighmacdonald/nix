@@ -1,20 +1,29 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    inputs.disko.nixosModules.disko
 
     ./hardware-configuration.nix
 
+    ./postgres.nix
+    ./jellyfin.nix
+    ./jellyseer.nix
+    ./lidarr.nix
+    ./prowlarr.nix
+    ./qbittorrent.nix
+    ./radarr.nix
+    ./sonarr.nix
+
     ../../nix.nix
+
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
+
     ../../users/root.nix
     ../../users/leigh.nix
+
     ../../modules/nodocumentation.nix
     ../../modules/secrets.nix
-
-    ./media.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
@@ -34,7 +43,18 @@
   };
 
   sops.secrets = {
-
+    prowlarr_env = {
+      mode = "666";
+    };
+    sonarr_env = {
+      mode = "666";
+    };
+    radarr_env = {
+      mode = "666";
+    };
+    lidarr_env = {
+      mode = "666";
+    };
   };
 
   fileSystems = {

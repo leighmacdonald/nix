@@ -1,9 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.fish = {
-    enable = false;
+    enable = true;
 
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+      set fish_history saved
       starship init fish | source
     '';
     plugins = [
