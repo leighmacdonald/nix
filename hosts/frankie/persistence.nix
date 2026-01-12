@@ -12,7 +12,6 @@
 
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/nix".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
   fileSystems."/etc/sops".neededForBoot = true;
 
   environment.persistence."/persist" = {
