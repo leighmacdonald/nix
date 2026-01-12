@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  username,
   ...
 }:
 {
@@ -55,6 +56,11 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
   };
 
+  sops.secrets = {
+    listenbrainz_token = {
+      owner = username;
+    };
+  };
   # xdg.configFile."fish/config.fish" = {
   #   force = true;
   # };
@@ -67,6 +73,9 @@
     wants = [ "mnt-storage.mount.target" ];
     bindsTo = [ "mnt-storage.mount.target" ];
   };
+
+  # systemd.user.services.vicinae.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   programs = {

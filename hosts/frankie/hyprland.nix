@@ -35,7 +35,7 @@
         #"$menu" = "rofi -show drun -show-icons";
         "$menu" = "vicinae toggle";
         #exec-once = "runapp hyprpm reload -n";
-        exec-once = "vicinae server";
+        exec-once = "vicinae server --replace";
 
         monitor = [
           "HDMI-A-1,2560x1440@59.95,1120x680,1.0"

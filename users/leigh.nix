@@ -15,6 +15,7 @@
       extraGroups = [
         "wheel"
         "docker"
+        "audio"
         "rtkit"
       ];
       hashedPasswordFile = config.sops.secrets.password.path;

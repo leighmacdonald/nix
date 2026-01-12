@@ -2,15 +2,14 @@
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-      daemon.settings.features.cdi = true;
-
-      # daemon.settings = {
-      #      dns = [ "1.1.1.1" "8.8.8.8" ];
-      #      registry-mirrors = [ "https://mirror.gcr.io" ];
-      #    };
+    # rootless = {
+    #   enable = false;
+    #   setSocketVariable = true;
+    #   daemon.settings.features.cdi = true;
+    daemon.settings = {
+      userland-proxy = false;
+      experimental = true;
+      ipv6 = false;
     };
   };
 }

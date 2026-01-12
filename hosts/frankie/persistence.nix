@@ -19,6 +19,7 @@
     enable = true;
     hideMounts = false;
     directories = [
+      "/var/lib/docker"
       "/var/log"
       {
         directory = "/home/${username}/.ssh";
@@ -42,21 +43,21 @@
         ".local/share/zed"
         ".local/share/Steam"
         ".local/share/mpd"
+        ".local/share/fish"
         "Downloads"
         {
           directory = ".gnupg";
           mode = "0700";
         }
         ".local/share/direnv"
-        ".local/share/fish"
         ".local/state/wireplumber"
       ];
       files = [
-        .local/share/listenbrainz-mpd/submission-cache.sqlite3
+        #.local/share/listenbrainz-mpd/submission-cache.sqlite3
         # Select exteral DAC by default
         ".config/e/wireplumber/default-nodes"
         # Configure / Disable io
-        ".local/share/fish/alt_history"
+        #".local/share/fish/alt_history"
       ];
     };
   };
