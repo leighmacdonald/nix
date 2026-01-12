@@ -17,7 +17,7 @@
         position = "bottom";
         #height = 32; # Waybar height (to be removed for auto height)
         #width = 1280; # Waybar width
-        spacing = 4; # Gaps between modules (4px)
+        spacing = 12; # Gaps between modules (4px)
         # Choose the order of the modules
         modules-left = [ "mpd" ];
         #modules-center = [ "clock" ];

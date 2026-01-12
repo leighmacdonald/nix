@@ -11,6 +11,7 @@
       open = true;
       #package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
+    # nvidia-container-toolkit.enable = true;
   };
 
   services = {

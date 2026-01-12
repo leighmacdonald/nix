@@ -1,5 +1,5 @@
 {
-  hyprland,
+  inputs,
   hy3,
   pkgs,
   config,
@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    hyprland.homeManagerModules.default
+    inputs.hyprland.homeManagerModules.default
   ];
   xdg = {
     configFile."uwsm/env".source =

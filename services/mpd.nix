@@ -3,7 +3,7 @@
 let
   # local socket allows `rmpc addyt` to function.
   listenAddress = "/tmp/mpd_socket";
-  musicDirectory = "/mnt/storage/music";
+  musicDirectory = "/storage/music";
 in
 {
   imports = [

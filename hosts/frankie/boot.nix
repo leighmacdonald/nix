@@ -43,27 +43,16 @@
         memtest86 = {
           enable = true;
         };
-        #   netbootxyz = {
-        #     enable = true;
-        #   };
-        #   edk2-uefi-shell = {
-        #     enable = true;
-        #   };
-        #   #windows = {
-        #   #  "Windows" = {
-        #   #    title = "Windows";
-        #   #    efiDeviceHandle = "FS1";
-        #   #    sortKey = "b";
-        #   #  };
-        #   #};
+        netbootxyz = {
+          enable = true;
+        };
+        edk2-uefi-shell = {
+          enable = true;
+        };
       };
       efi = {
         efiSysMountPoint = "/boot/efi";
         canTouchEfiVariables = true;
-      };
-
-      grub = {
-        enable = false;
       };
     };
     kernelParams = [

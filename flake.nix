@@ -211,16 +211,9 @@
             system = "x86_64-linux";
             modules = [
               ./hosts/${hostName}
-              #sops-nix.nixosModules.sops
-              stylix.nixosModules.stylix
-              impermanence.nixosModules.impermanence
-              home-manager.nixosModules.home-manager
               {
                 home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
                   extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/${hostName}/home.nix;
                 };
               }
             ];

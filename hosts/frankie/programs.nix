@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment = {
     pathsToLink = [
@@ -16,7 +16,6 @@
       aspellDicts.en-computers
       aspellDicts.en-science
       clang
-      #aspellDicts
       nfs-utils
       p7zip
       jellyfin-tui
@@ -29,6 +28,32 @@
     appimage = {
       enable = true;
       binfmt = true;
+    };
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
+    steam = {
+      enable = true;
+      # extraCompatPckages = with pkgs; [
+      #   proton-ge-bin
+      # ];
+      extraPackages = with pkgs; [
+        gamescope
+      ];
+      extest.enable = true;
+      gamescopeSession = {
+        enable = true;
+      };
+      protontricks.enable = true;
+      #remotePlay.openFirewall= true;
+    };
+    uwsm = {
+      enable = true;
     };
     #  fish = {
     #    enable = true;
