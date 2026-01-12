@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  mode = "666";
+in
 {
   imports = [
 
@@ -44,16 +47,16 @@
 
   sops.secrets = {
     prowlarr_env = {
-      mode = "666";
+      mode = mode;
     };
     sonarr_env = {
-      mode = "666";
+      mode = mode;
     };
     radarr_env = {
-      mode = "666";
+      mode = mode;
     };
     lidarr_env = {
-      mode = "666";
+      mode = mode;
     };
   };
 

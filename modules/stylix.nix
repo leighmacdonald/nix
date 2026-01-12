@@ -9,6 +9,7 @@
     base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/nord.yaml";
     overlays.enable = true;
     opacity.popups = 0.8;
+    homeManagerIntegration.followSystem = true;
     # override = {
     #   base00 = "11111b";
     # };
@@ -38,10 +39,10 @@
       };
     };
     targets = {
-      #qt.standardDialogs = "xdgdesktopportal";
       font-packages = {
         enable = true;
       };
+
       nvf.enable = true;
       fontconfig.fonts = {
         enable = true;

@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
 {
-  stylix.targets.firefox.profileNames = [ "frankie" ];
+  stylix.targets.firefox.profileNames = [
+    "frankie"
+  ];
   programs.firefox = {
     enable = true;
     nativeMessagingHosts = [ pkgs.keepassxc ];
@@ -9,7 +11,7 @@
     profiles = {
       frankie = {
         isDefault = true;
-        name = "bedroom";
+        name = "frankie";
         settings = {
           "webgl.disabled" = false;
           "privacy.resistFingerprinting" = false;
@@ -20,9 +22,9 @@
           #"browser.cache.memory.capacity" = -1;
           #"browser.cache.memory.enable" = true;
         };
-        # extensions = {
-
-        # };
+        extensions = {
+          force = true;
+        };
       };
     };
 

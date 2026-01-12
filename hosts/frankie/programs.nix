@@ -20,6 +20,7 @@
       nfs-utils
       p7zip
       jellyfin-tui
+      wttrbar
     ];
   };
 

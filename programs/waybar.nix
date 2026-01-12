@@ -5,6 +5,7 @@
     enableLeftBackColors = true;
     enableCenterBackColors = true;
     enableRightBackColors = true;
+    fonts.enable = false;
   };
   programs.waybar = {
     enable = true;
@@ -14,9 +15,9 @@
         output = "DP-3";
         #  "layer" = "Optional", // Waybar at top layer
         position = "bottom";
-        height = 32; # Waybar height (to be removed for auto height)
+        #height = 32; # Waybar height (to be removed for auto height)
         #width = 1280; # Waybar width
-        spacing = 2; # Gaps between modules (4px)
+        spacing = 4; # Gaps between modules (4px)
         # Choose the order of the modules
         modules-left = [ "mpd" ];
         #modules-center = [ "clock" ];
@@ -25,17 +26,17 @@
           "custom/weather"
           "cpu"
           "memory"
-          "disk#root"
-          "disk#storage"
-          "disk#music"
+          #"disk#root"
+          #"disk#storage"
+          #"disk#music"
           "temperature#cpu"
           "custom/gpu-usage"
           "pulseaudio"
-          "clock"
           "tray"
+          "clock"
         ];
         systemd-failed-units = {
-          "hide-on-ok" = false; # // Do not hide if there is zero failed units.
+          "hide-on-ok" = true; # // Do not hide if there is zero failed units.
           "format" = "<span color=\"#f38ba8\">✗ {nr_failed}</span>";
           "format-ok" = "<span color=\"#a6e3a1\">✓</span>";
           "system" = true; # // Monitor failed systemwide units.

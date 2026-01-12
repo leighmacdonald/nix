@@ -29,11 +29,13 @@
       portalPackage = null;
       plugins = [ hy3.packages.x86_64-linux.hy3 ];
       settings = {
-        #$terminal = runapp kitty
-        "$terminal" = "ghostty +new-window";
+        "$terminal" = "kitty";
+        #"$terminal" = "ghostty +new-window";
         "$fileManager" = "thunar";
-        "$menu" = "rofi -show drun -show-icons";
+        #"$menu" = "rofi -show drun -show-icons";
+        "$menu" = "vicinae toggle";
         #exec-once = "runapp hyprpm reload -n";
+        exec-once = "vicinae server";
 
         monitor = [
           "HDMI-A-1,2560x1440@59.95,1120x680,1.0"

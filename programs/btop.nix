@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       # color_theme = "catppuccin_mocha";
-      heme_background = true;
+      theme_background = true;
       truecolor = true;
       rounded_corners = false;
       update_ms = 1000;

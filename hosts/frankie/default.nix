@@ -1,9 +1,9 @@
 {
   pkgs,
   inputs,
-  username,
   ...
-}: {
+}:
+{
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
@@ -21,6 +21,7 @@
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
+    ../../env/no-sudo-pass.nix
 
     ../../users/leigh.nix
 
@@ -33,6 +34,7 @@
     ../../modules/secrets.nix
     # ../../modules/zram.nix
 
+    ../../services/kmscon.nix
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix
@@ -47,6 +49,12 @@
     nvidia-container-toolkit.enable = true;
   };
 
+  stylix = {
+    enable = true;
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  };
+
   # xdg.configFile."fish/config.fish" = {
   #   force = true;
   # };
@@ -56,15 +64,10 @@
   #  };
 
   systemd.user.services."mpd" = {
-    wants = ["mnt-storage.mount.target"];
-    bindsTo = ["mnt-storage.mount.target"];
+    wants = [ "mnt-storage.mount.target" ];
+    bindsTo = [ "mnt-storage.mount.target" ];
   };
   nixpkgs.config.allowUnfree = true;
-
-  services.getty = {
-    autologinUser = username;
-    autologinOnce = true;
-  };
 
   programs = {
     hyprland = {

@@ -22,6 +22,7 @@
     ./hyprland.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
+    ../../programs/kitty.nix
     ../../programs/manpages.nix
     ../../programs/neovim
     ../../programs/nixcord.nix
@@ -72,11 +73,17 @@
       pamixer
       pinentry-all
 
+      wttrbar
+      vicinae
+
       grim
       wl-clipboard
       flameshot
       slurp
+
       hyprland
+      hyprpaper
+      hyprlock
       postgresql_18
     ];
     sessionVariables = {
@@ -90,5 +97,13 @@
       "$HOME/.nix-profile/bin"
       "/nix/var/nix/profiles/default/bin"
     ];
+  };
+
+  stylix.targets.firefox = {
+    enable = true;
+    colorTheme.enable = true;
+    colors = {
+      enable = true;
+    };
   };
 }

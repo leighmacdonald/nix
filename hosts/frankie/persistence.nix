@@ -37,8 +37,10 @@
         ".config/mpd"
         ".cache/keepassxc"
         ".cache/mozilla"
+        ".steam"
         # Projects and stuff?
         ".local/share/zed"
+        ".local/share/Steam"
         "Downloads"
         {
           directory = ".gnupg";
