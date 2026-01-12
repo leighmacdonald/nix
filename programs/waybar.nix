@@ -86,7 +86,8 @@
         };
         mpd = {
           server = "/tmp/mpd_socket";
-          format = "<span color=\"#b4befe\">{artist}</span> <span color=\"#89b4fa\">{album}</span> <span color=\"#89dceb\">{title}</span> <span color=\"#eba0ac\">{elapsedTime:%M:%S}</span>/<span color=\"#f38ba8\">{totalTime:%M:%S}</span>";
+          #  <span color=\"#eba0ac\">{elapsedTime:%M:%S}</span>/<span color=\"#f38ba8\">{totalTime:%M:%S}</span>
+          format = "<span color=\"#b4befe\">{artist}</span> <span color=\"#89b4fa\">{album}</span> <span color=\"#89dceb\">{title}</span>";
           format-disconnected = "Disconnected";
           format-stopped = "Stopped";
           unknown-tag = "N/A";

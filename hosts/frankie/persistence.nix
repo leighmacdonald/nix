@@ -41,6 +41,7 @@
         # Projects and stuff?
         ".local/share/zed"
         ".local/share/Steam"
+        ".local/share/mpd"
         "Downloads"
         {
           directory = ".gnupg";
@@ -51,6 +52,7 @@
         ".local/state/wireplumber"
       ];
       files = [
+        .local/share/listenbrainz-mpd/submission-cache.sqlite3
         # Select exteral DAC by default
         ".config/e/wireplumber/default-nodes"
         # Configure / Disable io

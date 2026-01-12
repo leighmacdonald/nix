@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, username, ... }:
 
 let
   # local socket allows `rmpc addyt` to function.
@@ -9,7 +9,11 @@ in
   imports = [
     ../env/email.nix
   ];
-
+  sops.secrets = {
+    listenbrainz_token = {
+      owner = username;
+    };
+  };
   services = {
     mpd-discord-rpc.enable = true;
     mpdris2 = {
@@ -19,7 +23,17 @@ in
         musicDirectory = musicDirectory;
       };
     };
-
+    services.listenbrainz-mpd = {
+      enable = true;
+      settings = {
+        submission = {
+          token_file = "/run/secrets/listenbrainz_token";
+        };
+        mpd = {
+          address = listenAddress;
+        };
+      };
+    };
     mpd = {
       enable = true;
       network.startWhenNeeded = false;

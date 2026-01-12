@@ -1,12 +1,13 @@
-{username, ...}: {
+{ username, ... }:
+{
   services.ssh-agent = {
     enable = true;
     enableFishIntegration = true;
   };
   programs.ssh = {
+    extraConfig = ''AddKeysToAgent yes'';
     enableDefaultConfig = false;
     enable = true;
-    #startAgent = true;
     matchBlocks = {
       "*" = {
         addKeysToAgent = "yes";
