@@ -7,11 +7,9 @@
 {
   imports = [
     #    inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.disko
-
-    ./hardware-configuration.nix
     ./boot.nix
     ./audio.nix
+    ./disko.nix
     ./network.nix
     ./cpu.nix
     ./programs.nix
@@ -35,7 +33,6 @@
     ../../modules/secrets.nix
     # ../../modules/zram.nix
 
-    ../../services/kmscon.nix
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix

@@ -1,54 +1,71 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.availableKernelModules = [
-      "uas"
-      "sdhci_pci"
-      "xhci_pci"
-      "usbhid"
-      "nvme"
-      "usb_storage"
-      "kvm-intel"
-      "coretemp"
-    ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    initrd = {
+      kernelModules = [ ];
+      availableKernelModules = [
+        "vmd"
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "uas"
+        "sdhci_pci"
+        "xhci_pci"
+        "usbhid"
+        "nvme"
+        "usb_storage"
+        "kvm-intel"
+        "coretemp"
+      ];
+    };
     binfmt.emulatedSystems = [
       "aarch64-linux"
       "armv7l-linux"
     ];
     loader = {
-      # systemd-boot = {
-      #   enable = true;
-      #   configurationLimit = 5;
-      #   memtest86 = {
-      #     enable = true;
-      #   };
-      #   netbootxyz = {
-      #     enable = true;
-      #   };
-      #   edk2-uefi-shell = {
-      #     enable = true;
-      #   };
-      #   #windows = {
-      #   #  "Windows" = {
-      #   #    title = "Windows";
-      #   #    efiDeviceHandle = "FS1";
-      #   #    sortKey = "b";
-      #   #  };
-      #   #};
-      # };
+      systemd-boot = {
+        enable = true;
+        #  configurationLimit = 5;
+        memtest86 = {
+          enable = true;
+        };
+        #   netbootxyz = {
+        #     enable = true;
+        #   };
+        #   edk2-uefi-shell = {
+        #     enable = true;
+        #   };
+        #   #windows = {
+        #   #  "Windows" = {
+        #   #    title = "Windows";
+        #   #    efiDeviceHandle = "FS1";
+        #   #    sortKey = "b";
+        #   #  };
+        #   #};
+      };
       efi = {
         efiSysMountPoint = "/boot/efi";
         canTouchEfiVariables = true;
       };
 
       grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
+        enable = false;
       };
     };
-    # Enable audio devices
     kernelParams = [
       "module_blacklist=i915"
     ];
