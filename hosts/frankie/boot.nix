@@ -1,12 +1,5 @@
 { pkgs, ... }:
 {
-  stylix.targets.grub = {
-    #useWallpaper = true;
-    enable = true;
-  };
-
-  hardware.keyboard.qmk.enable = true;
-
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.availableKernelModules = [
@@ -24,31 +17,36 @@
       "armv7l-linux"
     ];
     loader = {
-      systemd-boot = {
-        enable = true;
-        sortKey = "a";
-        memtest86 = {
-          sortKey = "c";
-          enable = true;
-        };
-        netbootxyz = {
-          sortKey = "d";
-          enable = true;
-        };
-        edk2-uefi-shell = {
-          sortKey = "e";
-          enable = true;
-        };
-        windows = {
-          "Windows" = {
-            title = "Windows";
-            efiDeviceHandle = "FS1";
-            sortKey = "b";
-          };
-        };
+      # systemd-boot = {
+      #   enable = true;
+      #   configurationLimit = 5;
+      #   memtest86 = {
+      #     enable = true;
+      #   };
+      #   netbootxyz = {
+      #     enable = true;
+      #   };
+      #   edk2-uefi-shell = {
+      #     enable = true;
+      #   };
+      #   #windows = {
+      #   #  "Windows" = {
+      #   #    title = "Windows";
+      #   #    efiDeviceHandle = "FS1";
+      #   #    sortKey = "b";
+      #   #  };
+      #   #};
+      # };
+      efi = {
+        efiSysMountPoint = "/boot/efi";
+        canTouchEfiVariables = true;
       };
-      efi.canTouchEfiVariables = true;
-      grub.enable = false;
+
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
     };
     # Enable audio devices
     kernelParams = [
