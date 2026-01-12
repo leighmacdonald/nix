@@ -1,28 +1,54 @@
+let
+  nfsServer = "rupert.roto.lol";
+in
 {
-  boot.supportedFilesystems = ["nfs"];
+  boot.supportedFilesystems = [ "nfs" ];
+  services.rpcbind.enable = true;
+  systemd.mounts =
+    let
+      common = {
+        type = "nfs";
+        mountConfig = {
+          Options = "async,nfsvers=4.2";
+        };
+      };
+    in
+    [
+      (
+        common
+        // {
+          what = "${nfsServer}:/storage";
+          where = "/storage/";
+        }
+      )
+      (
+        common
+        // {
+          what = "${nfsServer}:/storage/music";
+          where = "/storage/music";
+        }
+      )
+      (
+        common
+        // {
+          what = "${nfsServer}:/backup";
+          where = "/backup/";
+        }
+      )
+    ];
 
-  fileSystems = {
-    "/mnt/storage" = {
-      device = "192.168.0.201:/storage";
-      fsType = "nfs";
-      options = [
-        "async"
-        "nfsvers=4.2"
-      ];
-    };
-    "/mnt/storage/music" = {
-      device = "192.168.0.201:/storage/music";
-      fsType = "nfs";
-      options = [
-        "async"
-        "nfsvers=4.2"
-      ];
-    };
-
-    "/mnt/backup" = {
-      device = "192.168.0.201:/backup";
-      fsType = "nfs";
-      options = ["nfsvers=4.2"];
-    };
-  };
+  systemd.automounts =
+    let
+      commonMount = {
+        wantedBy = [ "multi-user.target" ];
+        automountConfig = {
+          TimeoutIdleSec = "600";
+        };
+      };
+    in
+    [
+      (commonMount // { where = "/storage"; })
+      (commonMount // { where = "/storage/music"; })
+      (commonMount // { where = "/backup"; })
+    ];
 }
