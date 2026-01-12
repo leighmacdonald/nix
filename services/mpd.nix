@@ -23,7 +23,7 @@ in
         musicDirectory = musicDirectory;
       };
     };
-    services.listenbrainz-mpd = {
+    listenbrainz-mpd = {
       enable = true;
       settings = {
         submission = {
