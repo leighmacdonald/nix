@@ -1,11 +1,11 @@
 {
   documentation = {
-    enable = false;
-    dev.enable = false;
-    doc.enable = false;
-    info.enable = false;
+    enable = true;
+    dev.enable = true;
+    doc.enable = true;
+    info.enable = true;
     # Needed for fancy fish man page integration i assume?
     man.enable = true;
-    nixos.enable = false;
+    nixos.enable = true;
   };
 }

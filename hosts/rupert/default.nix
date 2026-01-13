@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./autobrr.nix
     ./disk-config.nix
     ./boot.nix
     ./network.nix

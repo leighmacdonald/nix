@@ -22,16 +22,16 @@
         variables = [ "--all" ];
       };
       # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
       #package = null;
       #portalPackage = null;
       #plugins = [ pkgs.hyprlandPlugins.hy3 ];
       settings = {
-        "$terminal" = "kitty";
-        #"$terminal" = "ghostty +new-window";
+        #"$terminal" = "kitty";
+        "$terminal" = "ghostty +new-window";
         "$fileManager" = "thunar";
-        #"$menu" = "rofi -show drun -show-icons";
-        "$menu" = "vicinae toggle";
+        "$menu" = "rofi -show drun -show-icons";
+        #"$menu" = "vicinae toggle";
         #exec-once = "runapp hyprpm reload -n";
         exec-once = "vicinae server --replace";
 

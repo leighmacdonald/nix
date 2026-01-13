@@ -2,14 +2,23 @@
   stylix.targets.waybar = {
     enable = true;
     addCss = false;
-    enableLeftBackColors = true;
-    enableCenterBackColors = true;
-    enableRightBackColors = true;
+    enableLeftBackColors = false;
+    enableCenterBackColors = false;
+    enableRightBackColors = false;
     fonts.enable = false;
+
   };
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      enableInspect = false;
+    };
+    # style = ''
+    #   .modules-right #cpu {
+    #     color: @base0E;
+    #   };
+    # '';
     settings = {
       mainBar = {
         output = "DP-3";
@@ -37,13 +46,13 @@
         ];
         systemd-failed-units = {
           "hide-on-ok" = true; # // Do not hide if there is zero failed units.
-          "format" = "<span color=\"#f38ba8\">✗ {nr_failed}</span>";
+          "format" = "<span>✗ {nr_failed}</span>";
           "format-ok" = "<span color=\"#a6e3a1\">✓</span>";
           "system" = true; # // Monitor failed systemwide units.
           "user" = true; # // Ignore failed user units.
         };
         "custom/weather" = {
-          "format" = "{}°";
+          "format" = "<span color=\"#717885\">{}°</span>";
           "tooltip" = true;
           "interval" = 3600;
           "exec" = "wttrbar --hide-conditions --nerd";
@@ -87,7 +96,7 @@
         mpd = {
           server = "/tmp/mpd_socket";
           #  <span color=\"#eba0ac\">{elapsedTime:%M:%S}</span>/<span color=\"#f38ba8\">{totalTime:%M:%S}</span>
-          format = "<span color=\"#b4befe\">{artist}</span> <span color=\"#89b4fa\">{album}</span> <span color=\"#89dceb\">{title}</span>";
+          format = "<span color=\"#72b9bf\">{artist}</span> <span color=\"#5299bf\">{album}</span> <span color=\"#9989cc\">{title}</span>";
           format-disconnected = "Disconnected";
           format-stopped = "Stopped";
           unknown-tag = "N/A";
@@ -99,7 +108,7 @@
             on = " ";
           };
           random-icons = {
-            off = "<span color=\"#f53c3c\"></span> ";
+            off = "<span color=\"#061229\"></span> ";
             on = " ";
           };
           repeat-icons = {
