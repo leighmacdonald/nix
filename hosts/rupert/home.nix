@@ -21,6 +21,7 @@
       sops
       ssh-to-age
       age
+      zellij
     ];
     sessionVariables = {
       EDITOR = "nvim";
