@@ -15,6 +15,8 @@
     initrd = {
       kernelModules = [ ];
       availableKernelModules = [
+        "aesni_intel"
+        "cryptd"
         "vmd"
         "xhci_pci"
         "ahci"

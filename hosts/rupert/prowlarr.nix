@@ -9,8 +9,9 @@
         instanceName = "prowlarr";
       };
       auth = {
-        enabled = true;
-        required = true;
+        enabled = false;
+        method = "None";
+        required = false;
       };
       server.port = 9696;
       log = {

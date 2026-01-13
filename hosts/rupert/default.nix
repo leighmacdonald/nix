@@ -1,20 +1,20 @@
 { pkgs, ... }:
-let
-  mode = "666";
-in
 {
   imports = [
 
     ./hardware-configuration.nix
 
+    ./bazarr.nix
     ./postgres.nix
     ./jellyfin.nix
     ./jellyseer.nix
     ./lidarr.nix
+    ./nfs.nix
     ./prowlarr.nix
     ./qbittorrent.nix
     ./radarr.nix
     ./sonarr.nix
+    ./secrets.nix
 
     ../../nix.nix
 
@@ -45,33 +45,15 @@ in
     enableAllFirmware = false;
   };
 
-  sops.secrets = {
-    prowlarr_env = {
-      mode = mode;
-    };
-    sonarr_env = {
-      mode = mode;
-    };
-    radarr_env = {
-      mode = mode;
-    };
-    lidarr_env = {
-      mode = mode;
-    };
-  };
-
   fileSystems = {
     "/storage" = {
       device = "media";
       fsType = "zfs";
     };
 
-    "/storage/music" = {
+    "/music" = {
       device = "music";
       fsType = "zfs";
-      depends = [
-        "/storage"
-      ];
     };
 
     "/external" = {
@@ -79,55 +61,7 @@ in
       fsType = "ext4";
       options = [ "noauto" ];
     };
-
-    "/export/storage" = {
-      device = "/storage";
-      options = [ "bind" ];
-      depends = [
-        "/storage/music"
-      ];
-    };
-
-    "/export/storage/music" = {
-      device = "/storage/music";
-      options = [ "bind" ];
-      depends = [
-        "/export/storage"
-      ];
-    };
-
-    "/export/backup" = {
-      device = "/backup";
-      options = [ "bind" ];
-      depends = [
-        "/backup"
-      ];
-    };
   };
-
-  services.nfs = {
-    settings = {
-      nfsd = {
-        "vers3" = false;
-        "vers4" = true;
-        "vers4.0" = false;
-        "vers4.1" = false;
-        "vers4.2" = true;
-      };
-    };
-    server = {
-      enable = true;
-      exports = ''
-        /export 192.168.0.0/24(rw,fsid=0,no_subtree_check)
-        /export/backup 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-        /export/storage 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-        /export/storage/music 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-      '';
-
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [ 2049 ];
 
   nixpkgs.config.allowUnfree = false;
 

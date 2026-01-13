@@ -8,6 +8,11 @@
     user = username;
     group = "lusers";
     settings = {
+      auth = {
+        enabled = false;
+        method = "None";
+        required = false;
+      };
       log.analyticsEnabled = false;
       server.port = 8686;
       postgres = {

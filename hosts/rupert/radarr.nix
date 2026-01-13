@@ -10,6 +10,11 @@
     settings = {
       log.analyticsEnabled = false;
       server.port = 7878;
+      auth = {
+        enabled = false;
+        method = "None";
+        required = false;
+      };
       postgres = {
         host = "rupert.roto.lol";
         port = 5432;

@@ -25,7 +25,7 @@
     virtualHosts = {
       "bt.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:8080 {
+          reverse_proxy /* rupert.roto.lol:8080 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -34,7 +34,7 @@
       };
       "radarr.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:7878 {
+          reverse_proxy /* rupert.roto.lol:7878 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -43,7 +43,7 @@
       };
       "cache.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:5000 {
+          reverse_proxy /* rupert.roto.lol:5000 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -52,7 +52,7 @@
       };
       "lidarr.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:8686 {
+          reverse_proxy /* rupert.roto.lol:8686 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -61,7 +61,16 @@
       };
       "sonarr.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:8989 {
+          reverse_proxy /* rupert.roto.lol:8989 {
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+          }
+          import rotolol
+        '';
+      };
+      "bazarr.roto.lol" = {
+        extraConfig = ''
+          reverse_proxy /* rupert.roto.lol:6767 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -70,7 +79,7 @@
       };
       "prowlarr.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:9696 {
+          reverse_proxy /* rupert.roto.lol:9696 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -79,7 +88,7 @@
       };
       "overseerr.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:5055 {
+          reverse_proxy /* rupert.roto.lol:5055 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
@@ -88,11 +97,11 @@
       };
       "jellyfin.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* 192.168.0.201:8096 {
+          reverse_proxy /* rupert.roto.lol:8096 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          reverse_proxy /socket/* 192.168.0.201:8096 {
+          reverse_proxy /socket/* rupert.roto.lol:8096 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
               header_up Connection {>Connection}
