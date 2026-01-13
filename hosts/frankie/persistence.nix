@@ -13,7 +13,6 @@
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/nix".neededForBoot = true;
   fileSystems."/etc/sops".neededForBoot = true;
-  fileSystems."/var/lib/nixos".neededForBoot = true;
 
   environment.persistence."/persist" = {
     enable = true;
