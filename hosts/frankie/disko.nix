@@ -1,6 +1,5 @@
-{ inputs, ... }:
-{
-  imports = [ inputs.disko.nixosModules.disko ];
+{inputs, ...}: {
+  imports = [inputs.disko.nixosModules.disko];
   disko.devices = {
     disk = {
       main = {
@@ -17,7 +16,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot/efi";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             luks = {
@@ -79,14 +78,14 @@
                         "noatime"
                       ];
                     };
-                    # "/projects" = {
-                    #   mountpoint = "/projects";
-                    #   mountOptions = [
-                    #     "subvol=projects"
-                    #     "compress=zstd"
-                    #     "noatime"
-                    #   ];
-                    # };
+                    "/projects" = {
+                      mountpoint = "/projects";
+                      mountOptions = [
+                        "subvol=projects"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
                     "/swap" = {
                       mountpoint = "/swap";
                       swap.swapfile.size = "32G";
@@ -99,48 +98,6 @@
           };
         };
       };
-
-      # projects = {
-      #   type = "disk";
-      #   device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5P2NG0R404138D";
-      #   content = {
-      #     type = "gpt";
-      #     partitions = {
-      #       luks = {
-      #         size = "100%";
-      #         content = {
-      #           type = "luks";
-      #           name = "cryptproj";
-
-      #           extraOpenArgs = [
-      #             "--allow-discards"
-      #             "--perf-no_read_workqueue"
-      #             "--perf-no_write_workqueue"
-      #           ];
-
-      #           content = {
-      #             type = "btrfs";
-      #             extraArgs = [
-      #               "-L"
-      #               "projects"
-      #               "-f"
-      #             ];
-      #             subvolumes = {
-      #               "/projects" = {
-      #                 mountpoint = "/projects";
-      #                 mountOptions = [
-      #                   "subvol=projects"
-      #                   "compress=zstd"
-      #                   "noatime"
-      #                 ];
-      #               };
-      #             };
-      #           };
-      #         };
-      #       };
-      #     };
-      #   };
-      # };
     };
   };
 }

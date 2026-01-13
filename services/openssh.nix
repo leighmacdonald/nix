@@ -1,5 +1,4 @@
-{ username, ... }:
-{
+{username, ...}: {
   services = {
     openssh = {
       enable = true;
@@ -18,23 +17,23 @@
         PasswordAuthentication = false;
         PermitRootLogin = "no";
         PrintMotd = true;
-        AllowUsers = [ username ];
+        AllowUsers = [username];
       };
     };
   };
   programs.ssh = {
     knownHosts = {
       github = {
-        hostNames = [ "github.com" ];
+        hostNames = ["github.com"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
       };
-      frankie = {
-        hostNames = [
-          "192.168.0.200"
-          "frankie.roto.lol"
-        ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPOROI6UBd3pC0BVQox3q/XFboITZS6hrsrZwcTbXUD2";
-      };
+      #      frankie = {
+      #        hostNames = [
+      #          "192.168.0.200"
+      #          "frankie.roto.lol"
+      #        ];
+      #        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPOROI6UBd3pC0BVQox3q/XFboITZS6hrsrZwcTbXUD2";
+      #      };
       rupert = {
         hostNames = [
           "192.168.0.201"
