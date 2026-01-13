@@ -1,26 +1,38 @@
-{ lib, ... }:
 {
+  config,
+  lib,
+  ...
+}:
+{
+  nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs = {
       forceImportRoot = false;
-      enabled = lib.mkForce true;
       extraPools = [
-        "storage"
+        "media"
         "music"
       ];
     };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
     #kernelPackages = pkgs.linuxPackages_;
-    initrd.availableKernelModules = [
-      "uas"
-      "sdhci_pci"
-      "xhci_pci"
-      "usbhid"
-      "nvme"
-      "usb_storage"
-      "kvm-intel"
-      "coretemp"
-    ];
+    initrd = {
+      availableKernelModules = [
+        "uas"
+        "sdhci_pci"
+        "xhci_pci"
+        "usbhid"
+        "nvme"
+        "usb_storage"
+        "kvm-intel"
+        "coretemp"
+        "ahci"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+    };
     loader = {
       systemd-boot = {
         enable = true;

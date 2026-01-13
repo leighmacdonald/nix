@@ -1,19 +1,20 @@
 { pkgs, ... }:
 {
   imports = [
-
-    ./hardware-configuration.nix
-
-    #./bazarr.nix
+    ./disk-config.nix
+    ./boot.nix
+    ./network.nix
+    ./cpu.nix
+    ./bazarr.nix
     ./postgres.nix
     ./jellyfin.nix
-    #./jellyseer.nix
-    #./lidarr.nix
-    #./nfs.nix
-    #./prowlarr.nix
+    ./jellyseer.nix
+    ./lidarr.nix
+    ./nfs.nix
+    ./prowlarr.nix
     ./qbittorrent.nix
-    #./radarr.nix
-    #./sonarr.nix
+    ./radarr.nix
+    ./sonarr.nix
     ./secrets.nix
 
     ../../nix.nix
@@ -46,16 +47,6 @@
   };
 
   fileSystems = {
-    "/storage" = {
-      device = "media";
-      fsType = "zfs";
-    };
-
-    "/music" = {
-      device = "music";
-      fsType = "zfs";
-    };
-
     "/external" = {
       device = "/dev/disk/by-id/usb-Seagate_Expansion_NA8KVQ9C-0:0-part1";
       fsType = "ext4";

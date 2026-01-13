@@ -1,18 +1,15 @@
 { username, ... }:
 {
+  systemd.services.lidarr = {
+    requires = [ "postgresql.target" ];
+  };
   services.lidarr = {
     enable = true;
     openFirewall = true;
-    dataDir = "/backup/config/lidarr";
     environmentFiles = [ "/run/secrets/lidarr_env" ];
     user = username;
     group = "lusers";
     settings = {
-      auth = {
-        enabled = false;
-        method = "None";
-        required = false;
-      };
       log.analyticsEnabled = false;
       server.port = 8686;
       postgres = {
