@@ -4,16 +4,16 @@
 
     ./hardware-configuration.nix
 
-    ./bazarr.nix
+    #./bazarr.nix
     ./postgres.nix
     ./jellyfin.nix
-    ./jellyseer.nix
-    ./lidarr.nix
-    ./nfs.nix
-    ./prowlarr.nix
+    #./jellyseer.nix
+    #./lidarr.nix
+    #./nfs.nix
+    #./prowlarr.nix
     ./qbittorrent.nix
-    ./radarr.nix
-    ./sonarr.nix
+    #./radarr.nix
+    #./sonarr.nix
     ./secrets.nix
 
     ../../nix.nix
