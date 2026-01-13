@@ -1,9 +1,14 @@
+{ lib, ... }:
 {
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs = {
       forceImportRoot = false;
-      #enabled = lib.mkForce true;
+      enabled = lib.mkForce true;
+      extraPools = [
+        "storage"
+        "music"
+      ];
     };
     #kernelPackages = pkgs.linuxPackages_;
     initrd.availableKernelModules = [
