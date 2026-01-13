@@ -14,7 +14,7 @@
         UpdateBiaryPath = false;
       };
       GUI = {
-        ApplicationTheme = "dark";
+        ApplicationTheme = "classic";
         CompactMode = true;
         MinimizeOnClose = true;
         MinimizeToTray = true;
