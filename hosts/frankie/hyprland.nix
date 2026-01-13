@@ -1,14 +1,12 @@
 {
-  inputs,
-  hy3,
   pkgs,
   config,
   ...
 }:
 {
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-  ];
+  # imports = [
+  #   inputs.hyprland.homeManagerModules.default
+  # ];
   xdg = {
     configFile."uwsm/env".source =
       "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
@@ -25,9 +23,9 @@
       };
       # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      package = null;
-      portalPackage = null;
-      plugins = [ hy3.packages.x86_64-linux.hy3 ];
+      #package = null;
+      #portalPackage = null;
+      #plugins = [ pkgs.hyprlandPlugins.hy3 ];
       settings = {
         "$terminal" = "kitty";
         #"$terminal" = "ghostty +new-window";

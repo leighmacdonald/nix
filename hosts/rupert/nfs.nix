@@ -31,15 +31,6 @@
       enable = true;
     };
     nfs = {
-      settings = {
-        # nfsd = {
-        #   "vers3" = false;
-        #   "vers4" = false;
-        #   "vers4.0" = false;
-        #   "vers4.1" = false;
-        #   "vers4.2" = true;
-        # };
-      };
       server = {
         enable = true;
         exports = ''
