@@ -9,7 +9,6 @@
   imports = [
     ../../env/email.nix
   ];
-  # link all files in `./scripts` to `~/.config/i3/scripts`
   home = {
     #uid = 2000;
     username = username;

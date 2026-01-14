@@ -1,16 +1,26 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
     package = pkgs.zed-editor-fhs;
     enable = true;
     extensions = [
+      "ansible"
+      "biome"
+      "caddyfile"
+      "color-highlight"
       "dockerfile"
+      "docker-compose"
+      "env"
+      "fish"
       "git-firefly"
       "github-actions"
       "golangci-lint"
       "gosum"
       "gotmpl"
+      "haskell"
       "make"
+      "meson"
       "neocmake"
       "nix"
       "postgres-language-server"
@@ -18,6 +28,7 @@
       "sql"
       "templ"
       "vhs"
+      "zig"
     ];
 
     userSettings = {

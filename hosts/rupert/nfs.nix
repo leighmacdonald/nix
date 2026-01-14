@@ -15,10 +15,10 @@
       options = [ "bind" ];
     };
 
-    "/export/storage/music" = {
-      device = "/storage/music";
-      options = [ "bind" ];
-    };
+    # "/export/storage/music" = {
+    #   device = "/storage/music";
+    #   options = [ "bind" ];
+    # };
 
     "/export/backup" = {
       device = "/backup";

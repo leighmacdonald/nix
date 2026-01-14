@@ -1,29 +1,7 @@
-{ pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    nil
-    nixpkgs-fmt
-    nixfmt
-    statix
-    deadnix
-    package-version-server
-    csharp-ls
-    prettier
-    rustfmt
-    jsonfmt
-    clang-tools
-    clang-analyzer
-    stylua
-    lua-language-server
-    markdownlint-cli2
-    prettierd
-    sqlc
-    eslint_d
-    gci
-    gofumpt
-    gopls
-    typescript-language-server
-  ];
+  # home.packages = with pkgs; [
+
+  # ];
   programs.nvf.settings.vim = {
     languages = {
       enableDAP = true;

@@ -85,6 +85,33 @@
       hyprpaper
       hyprlock
       postgresql_18
+
+      clang
+      # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
+      #llvmPackages_21.bintools
+      rustup
+
+      nil
+      nixpkgs-fmt
+      nixfmt
+      statix
+      deadnix
+      package-version-server
+      csharp-ls
+      prettier
+      jsonfmt
+      clang-tools
+      clang-analyzer
+      stylua
+      lua-language-server
+      markdownlint-cli2
+      prettierd
+      sqlc
+      eslint_d
+      gci
+      gofumpt
+      gopls
+      typescript-language-server
     ];
     sessionVariables = {
       EDITOR = "nvim";

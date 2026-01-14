@@ -15,7 +15,6 @@
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
-      clang
       nfs-utils
       p7zip
       jellyfin-tui
