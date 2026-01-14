@@ -21,6 +21,7 @@
       "/var/lib/nixos"
       "/var/lib/docker"
       "/var/log"
+      # Permissions incorrect otherwise.
       {
         directory = "/home/${username}/.ssh";
         user = username;

@@ -1,9 +1,9 @@
-{
+{pkgs, ...}: {
   programs.zed-editor = {
+    # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
+    package = pkgs.zed-editor-fhs;
     enable = true;
     extensions = [
-      "catppuccin"
-      "catppuccin-icons"
       "dockerfile"
       "git-firefly"
       "github-actions"

@@ -19,8 +19,6 @@
 
     ../../modules/wifi.nix
 
-    ../../fs/nfs-mounts.nix
-
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];

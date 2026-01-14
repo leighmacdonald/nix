@@ -77,6 +77,15 @@
           import rotolol
         '';
       };
+      "autobrr.roto.lol" = {
+        extraConfig = ''
+          reverse_proxy /* rupert.roto.lol:7474 {
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+          }
+          import rotolol
+        '';
+      };
       "prowlarr.roto.lol" = {
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:9696 {

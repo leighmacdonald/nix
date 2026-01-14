@@ -7,10 +7,7 @@
   networking = {
     wireless = {
       enable = true;
-      userControlled = {
-        enable = true;
-        group = "wheel";
-      };
+      userControlled = true;
       scanOnLowSignal = false;
       secretsFile = "/etc/wireless.conf";
       networks = {
