@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   stylix.targets.waybar = {
     enable = true;
@@ -14,11 +15,6 @@
       enable = true;
       enableInspect = false;
     };
-    # style = ''
-    #   .modules-right #cpu {
-    #     color: @base0E;
-    #   };
-    # '';
     settings = {
       mainBar = {
         output = "DP-3";
@@ -29,7 +25,7 @@
         spacing = 12; # Gaps between modules (4px)
         # Choose the order of the modules
         modules-left = [ "mpd" ];
-        #modules-center = [ "clock" ];
+        # modules-center = [ "clock" ];
         modules-right = [
           "systemd-failed-units"
           "custom/weather"
@@ -45,14 +41,14 @@
           "clock"
         ];
         systemd-failed-units = {
-          "hide-on-ok" = true; # // Do not hide if there is zero failed units.
-          "format" = "<span>✗ {nr_failed}</span>";
-          "format-ok" = "<span color=\"#a6e3a1\">✓</span>";
+          "hide-on-ok" = false; # // Do not hide if there is zero failed units.
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base08}\">✗ {nr_failed}</span>";
+          "format-ok" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">✓</span>";
           "system" = true; # // Monitor failed systemwide units.
           "user" = true; # // Ignore failed user units.
         };
         "custom/weather" = {
-          "format" = "<span color=\"#717885\">{}°</span>";
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0C}\">{}°</span>";
           "tooltip" = true;
           "interval" = 3600;
           "exec" = "wttrbar --hide-conditions --nerd";
@@ -96,8 +92,8 @@
         mpd = {
           server = "/tmp/mpd_socket";
           #  <span color=\"#eba0ac\">{elapsedTime:%M:%S}</span>/<span color=\"#f38ba8\">{totalTime:%M:%S}</span>
-          format = "<span color=\"#72b9bf\">{artist}</span> <span color=\"#5299bf\">{album}</span> <span color=\"#9989cc\">{title}</span>";
-          format-disconnected = "Disconnected";
+          format = "<span color=\"${config.lib.stylix.colors.withHashtag.base08}\">{artist}</span> <span color=\"${config.lib.stylix.colors.withHashtag.base09}\">{album}</span> <span color=\"${config.lib.stylix.colors.withHashtag.base0A}\">{title}</span>";
+          format-disconnected = "<span color=\"${config.lib.stylix.colors.withHashtag.base08}\">MPD Disconnected</span>";
           format-stopped = "Stopped";
           unknown-tag = "N/A";
           interval = 2;
@@ -108,7 +104,7 @@
             on = " ";
           };
           random-icons = {
-            off = "<span color=\"#061229\"></span> ";
+            off = "<span color=\"${config.lib.stylix.colors.withHashtag.base0F}\"></span> ";
             on = " ";
           };
           repeat-icons = {
@@ -118,8 +114,8 @@
             on = "1 ";
           };
           state-icons = {
-            paused = "<span color=\"#1e66f5\">></span>";
-            playing = "<span color=\"#40a02b\"></span>";
+            paused = "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\">></span>";
+            playing = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\"></span>";
           };
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
@@ -137,8 +133,12 @@
         };
         clock = {
           "timezone" = "America/Edmonton";
-          "format" = "󰃭 {:%Y-%m-%d <span color=\"#f9e2af\">󰥔 %H:%M</span>}";
-          "format-alt" = "{:%A, %B %d, %Y (%R)}  ";
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">{:%H:%M}  </span>";
+          "format-alt" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">{:%A, %B %d, %Y (%R)} </span>";
+          # "format" =
+          #   "<span color=\"${config.lib.stylix.colors.withHashtag.base0C}\">󰃭 {:%Y-%m-%d}</span> <span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">󰥔 {:%H:%M}</span>";
+          # "format-alt" = "{:%A, %B %d, %Y (%R)}  ";
           "tooltip-format" = "<tt><small>{calendar}</small></tt>";
           "calendar" = {
             "mode" = "year";
@@ -146,11 +146,11 @@
             "weeks-pos" = "right";
             "on-scroll" = 1;
             "format" = {
-              "months" = "<span color='#f9e2af'><b>{}</b></span>";
-              "days" = "<span color='#74c7ec'><b>{}</b></span>";
-              "weeks" = "<span color='#cba6f7'><b>W{}</b></span>";
-              "weekdays" = "<span color='#f5c2e7'><b>{}</b></span>";
-              "today" = "<span color='#a6e3a1'><b><u>{}</u></b></span>";
+              "months" = "<span color='${config.lib.stylix.colors.withHashtag.base09}'><b>{}</b></span>";
+              "days" = "<span color='${config.lib.stylix.colors.withHashtag.base0E}'><b>{}</b></span>";
+              "weeks" = "<span color='${config.lib.stylix.colors.withHashtag.base0C}'><b>W{}</b></span>";
+              "weekdays" = "<span color='${config.lib.stylix.colors.withHashtag.base0D}'><b>{}</b></span>";
+              "today" = "<span color='${config.lib.stylix.colors.withHashtag.base0B}'><b><u>{}</u></b></span>";
             };
           };
           actions = {
@@ -162,16 +162,16 @@
         cpu = {
           "interval" = 1;
           "format" =
-            " <span color='#94e2d5'>{load}/{usage}%</span> {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
+            "<span color='${config.lib.stylix.colors.withHashtag.base0D}'>  {load}/{usage:3}%</span> {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
           "format-icons" = [
-            "<span color='#74c7ec'>▁</span>"
-            "<span color='#89dceb'>▂</span>"
-            "<span color='#94e2d5'>▃</span>"
-            "<span color='#a6e3a1'>▄</span>"
-            "<span color='#f9e2af'>▅</span>"
-            "<span color='#fab387'>▆</span>"
-            "<span color='#eba0ac'>▇</span>"
-            "<span color='#f38ba8'>█</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0F}'>▁</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0E}'>▂</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0D}'>▃</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0C}'>▄</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0B}'>▅</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base0A}'>▆</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base09}'>▇</span>"
+            "<span color='${config.lib.stylix.colors.withHashtag.base08}'>█</span>"
           ];
         };
         memory = {
@@ -180,14 +180,16 @@
             "warning" = 80;
             "critical" = 95;
           };
-          "format" = " {percentage}%";
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0F}\"> {percentage}%</span>";
         };
         "temperature#cpu" = {
           # "thermal-zone": 2;
           "hwmon-path" = "/sys/class/hwmon/hwmon6/temp1_input";
           "critical-threshold" = 80;
-          "format-critical" = "{icon} {temperatureC}°C";
-          "format" = "{icon} {temperatureC}°C";
+          "format-critical" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base08}\">{icon} {temperatureC}°C</span>";
+          "format" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0C}\">{icon} {temperatureC}°C</span>";
           "format-icons" = [
             ""
             ""
@@ -197,7 +199,7 @@
         "custom/gpu-usage" = {
           # "exec"= "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total --format=csv,noheader,nounits";
           "exec" = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
-          "format" = "󰈐 {}%";
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">󰈐 {:2}%</span>";
           "return-type" = "";
           "interval" = 1;
         };
@@ -219,8 +221,10 @@
           "icon" = false;
         };
         pulseaudio = {
-          "format" = "{icon} {volume}%";
-          "format-muted" = "󰝟 {format_source}";
+          "format" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0E}\">{icon} {volume:3}%</span>";
+          "format-muted" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base08}\">󰝟 {format_source}</span>";
           "format-source" = "{volume}%";
           "format-source-muted" = "";
           "format-icons" = {
@@ -240,156 +244,5 @@
         };
       };
     };
-    # style = ''
-    #   @define-color flamingo #f2cdcd;
-    #   @define-color pink #f5c2e7;
-    #   @define-color mauve #cba6f7;
-    #   @define-color red #f38ba8;
-    #   @define-color maroon #eba0ac;
-    #   @define-color peach #fab387;
-    #   @define-color yellow #f9e2af;
-    #   @define-color green #a6e3a1;
-    #   @define-color teal #94e2d5;
-    #   @define-color sky #89dceb;
-    #   @define-color sapphire #74c7ec;
-    #   @define-color blue #89b4fa;
-    #   @define-color lavender #b4befe;
-    #   @define-color text #cdd6f4;
-    #   @define-color subtext1 #bac2de;
-    #   @define-color subtext0 #a6adc8;
-    #   @define-color overlay2 #9399b2;
-    #   @define-color overlay1 #7f849c;
-    #   @define-color overlay0 #6c7086;
-    #   @define-color surface2 #585b70;
-    #   @define-color surface1 #45475a;
-    #   @define-color surface0 #313244;
-    #   @define-color base #1e1e2e;
-    #   @define-color mantle #181825;
-    #   @define-color crust #11111b;
-
-    #   * {
-    #     font-family: JetBrainsMono Nerd Font;
-    #     font-size: 16px;
-    #     min-height: 0;
-    #   }
-
-    #   #waybar {
-    #     /*background: transparent;*/
-    #     background-color: @mantle;
-    #     color: @sapphire;
-    #     border-bottom: 1px solid @sapphire;
-    #   }
-
-    #   #workspaces {
-    #     border-radius: 1rem;
-    #     margin: 5px;
-    #     margin-left: 1rem;
-    #   }
-
-    #   #workspaces button {
-    #     color: @lavender;
-    #     border-radius: 1rem;
-    #     padding: 0.4rem;
-    #   }
-
-    #   #workspaces button.active {
-    #     color: @sky;
-    #     border-radius: 1rem;
-    #   }
-
-    #   #workspaces button:hover {
-    #     color: @sapphire;
-    #     border-radius: 1rem;
-    #   }
-
-    #   #custom-music,
-    #   #tray,
-    #   #backlight,
-    #   #clock,
-    #   #battery,
-    #   #mpd,
-    #   #load,
-    #   #network,
-    #   #temperature,
-    #   #memory,
-    #   #cpu,
-    #   #gamemode,
-    #   #disk,
-    #   #pulseaudio,
-    #   #systemd-failed-units,
-    #   #custom-lock,
-    #   #custom-power {
-    #     background-color: @mantle;
-    #     padding: 2px 8px;
-    #     margin: 0;
-    #   }
-
-    #   #systemd-failed-units {
-    #     border-bottom: 1px solid @pink;
-    #   }
-
-    #   #custom-gpu-usage {
-    #     color: @green;
-    #     border-bottom: 1px solid @green;
-    #   }
-
-    #   #mpd {
-    #     border-bottom: 1px solid @mauve;
-    #   }
-
-    #   #custom-weather {
-    #     color: @yellow;
-    #     border-bottom: 1px solid @yellow;
-    #   }
-
-    #   #temperature.cpu,
-    #   #temperature.gpu {
-    #     color: @red;
-    #     border-bottom: 1px solid @red;
-    #   }
-
-    #   #disk {
-    #     color: @teal;
-    #     border-bottom: 1px solid @teal;
-    #   }
-    #   #cpu {
-    #     color: @maroon;
-    #     border-bottom: 1px solid @maroon;
-    #   }
-    #   #memory.good {
-    #     color: @green;
-    #     border-bottom: 1px solid @green;
-    #   }
-
-    #   #memory.warning {
-    #     color: @peach;
-    #     border-bottom: 1px solid @peach;
-    #   }
-
-    #   #memory.critical {
-    #     color: @red;
-    #     border-bottom: 1px solid @red;
-    #   }
-
-    #   #clock {
-    #     color: @pink;
-    #     border-bottom: 1px solid @pink;
-    #   }
-
-    #   #pulseaudio {
-    #     color: @mauve;
-    #     border-bottom: 1px solid @mauve;
-    #   }
-
-    #   #custom-lock {
-    #     border-radius: 1rem 0px 0px 1rem;
-    #   }
-
-    #   #tray {
-    #     /**margin-right: 1rem;
-    #     border-radius: 1rem;*/
-    #     border-bottom: 1px solid @sapphire;
-    #   }
-    # '';
   };
 }

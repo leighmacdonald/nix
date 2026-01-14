@@ -34,10 +34,10 @@ in
       network.startWhenNeeded = false;
       network.listenAddress = listenAddress;
       musicDirectory = musicDirectory;
-      playlistDirectory = "${musicDirectory}/_playlists";
+      playlistDirectory = "${musicDirectory}/playlists";
       dbFile = "~/.config/mpd/database";
       extraConfig = ''
-        sticker_file                    "~/.config/mpd/sticker.sql"
+        sticker_file                    "${musicDirectory}/.sticker.sql"
         save_absolute_paths_in_playlists        "yes"
         auto_update     "yes"
         auto_update_depth "3"
