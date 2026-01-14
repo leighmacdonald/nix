@@ -5,8 +5,6 @@
 
     ../../platform/rpi4
 
-    ../../nix.nix
-
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
@@ -19,6 +17,7 @@
     ../../modules/nodocumentation.nix
     ../../modules/stylix.nix
     ../../modules/wifi.nix
+    ../../modules/nix.nix
 
     ./caddy.nix
 

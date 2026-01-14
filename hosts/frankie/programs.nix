@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -19,6 +18,11 @@
       p7zip
       jellyfin-tui
       wttrbar
+      unzip
+      unrar
+
+      pkg-config
+      openssl
     ];
   };
 

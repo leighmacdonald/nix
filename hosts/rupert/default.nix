@@ -18,8 +18,6 @@
     ./sonarr.nix
     ./secrets.nix
 
-    ../../nix.nix
-
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
@@ -29,12 +27,14 @@
 
     ../../modules/nodocumentation.nix
     ../../modules/secrets.nix
+    ../../modules/nix.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
     ../../services/binary-cache.nix
+    ../../services/mpd.nix
   ];
 
   stylix = {

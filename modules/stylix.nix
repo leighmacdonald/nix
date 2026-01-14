@@ -44,9 +44,9 @@
       };
 
       nvf.enable = true;
-      fontconfig.fonts = {
-        enable = true;
-      };
+      # fontconfig.fonts = {
+      #   enable = true;
+      # };
     };
   };
 }

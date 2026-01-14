@@ -12,8 +12,6 @@
     ./secrets.nix
     ./stylix.nix
 
-    ../../nix.nix
-
     ../../env/locale.nix
     ../../env/console.nix
     ../../env/disable_services.nix
@@ -29,6 +27,7 @@
     ../../modules/stylix.nix
     ../../modules/secrets.nix
     ../../modules/unfree.nix
+    ../../modules/nix.nix
     # ../../modules/zram.nix
 
     ../../services/docker.nix

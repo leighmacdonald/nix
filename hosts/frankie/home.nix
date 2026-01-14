@@ -19,6 +19,7 @@
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
     ./hyprland.nix
+    #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
     ../../programs/kitty.nix
@@ -39,7 +40,7 @@
     ../../services/dunst.nix
     ../../services/flameshot.nix
     ../../services/hyprpolkitagent.nix
-    ../../services/mpd.nix
+
     ../../services/gpg-agent.nix
   ];
   #xdg.configFile."fish/config.fish".force = true;
@@ -112,6 +113,8 @@
       gofumpt
       gopls
       typescript-language-server
+
+      devenv
     ];
     sessionVariables = {
       EDITOR = "nvim";
@@ -119,6 +122,7 @@
       MANPAGER = "nvim +Man!";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"
