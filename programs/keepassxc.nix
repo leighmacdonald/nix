@@ -4,6 +4,7 @@
       enable = true;
       groups = [ "SSH" ];
     };
+    # https://github.com/keepassxreboot/keepassxc/blob/647272e9c5542297d3fcf6502e6173c96f12a9a0/src/core/Config.cpp#L49-L223
     keepassxc = {
       enable = true;
       #autostart = true;

@@ -2,11 +2,11 @@
   imports = [
     ./audio.nix
     ./boot.nix
-    ./cpu.nix
     ./disko.nix
     ./hardware.nix
     ./home-manager.nix
     ./network.nix
+    ./nixpkgs.nix
     ./programs.nix
     ./persistence.nix
     ./secrets.nix

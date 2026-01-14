@@ -25,7 +25,7 @@
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       #package = null;
       #portalPackage = null;
-      #plugins = [ pkgs.hyprlandPlugins.hy3 ];
+      # plugins = [ pkgs.hyprlandPlugins.hy3 ];
       settings = {
         #"$terminal" = "kitty";
         "$terminal" = "ghostty +new-window";

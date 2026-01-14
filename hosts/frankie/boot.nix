@@ -1,12 +1,8 @@
 {
   pkgs,
-  lib,
-  config,
   ...
 }:
 {
-  nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   boot = {
     #kernelPackages = pkgs.linuxPackages_latest;
@@ -43,15 +39,9 @@
       systemd-boot = {
         enable = true;
         #  configurationLimit = 5;
-        memtest86 = {
-          enable = true;
-        };
-        netbootxyz = {
-          enable = true;
-        };
-        edk2-uefi-shell = {
-          enable = true;
-        };
+        memtest86.enable = true;
+        netbootxyz.enable = true;
+        edk2-uefi-shell.enable = true;
       };
       efi = {
         efiSysMountPoint = "/boot/efi";
