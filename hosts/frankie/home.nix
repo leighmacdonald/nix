@@ -32,14 +32,13 @@
     ../../programs/starship.nix
     ../../programs/waybar.nix
     ../../programs/zathura.nix
-    #../../programs/zed.nix
+    ../../programs/zed.nix
     ../../programs/zellij.nix
     ../../programs/zoxide.nix
 
     ../../services/dunst.nix
     ../../services/flameshot.nix
     ../../services/hyprpolkitagent.nix
-
     ../../services/gpg-agent.nix
   ];
   #xdg.configFile."fish/config.fish".force = true;

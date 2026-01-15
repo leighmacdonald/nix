@@ -1,9 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
-    ./programs.nix
-    ./display-manager.nix
-
     ../../fs/nfs-mounts.nix
     ../../platform/rpi4
     ../../modules/secrets.nix
@@ -11,9 +8,7 @@
     ../../modules/nix.nix
   ];
 
-  stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
-  };
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
 
   networking.interfaces.end0 = {
     ipv4 = {
@@ -31,6 +26,37 @@
           via = "192.168.0.1";
         }
       ];
+    };
+  };
+
+  environment = {
+    systemPackages = with pkgs; [
+      gcc
+      wget
+      libraspberrypi
+      libcec
+      raspberrypi-eeprom
+      home-manager
+      jellyfin-mpv-shim
+    ];
+  };
+
+  services = {
+    displayManager = {
+      defaultSession = "hyprland-uwsm";
+      sddm.enable = true;
+      sddm.wayland.enable = true;
+      autoLogin.enable = true;
+      autoLogin.user = username;
+    };
+  };
+
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      xwayland.enable = false;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };
 }

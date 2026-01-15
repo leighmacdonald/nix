@@ -132,6 +132,7 @@
           CompactMode = true;
           MinimizeOnClose = true;
           MinimizeToTray = true;
+
           ShowTrayIcon = true;
           TrayIconAppearance = "monochrome-dark";
         };

@@ -1,0 +1,3 @@
+check:
+	@statix check
+	@echo ✅

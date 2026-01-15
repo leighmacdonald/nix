@@ -38,7 +38,7 @@
     loader = {
       systemd-boot = {
         enable = true;
-        #  configurationLimit = 5;
+        configurationLimit = 10;
         memtest86.enable = true;
         netbootxyz.enable = true;
         edk2-uefi-shell.enable = true;

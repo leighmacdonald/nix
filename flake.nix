@@ -115,33 +115,34 @@
     in
     {
       nixosConfigurations = {
-        mika =
-          let
-            hostName = "mika";
-            specialArgs = {
-              inherit username;
-              inherit hostName;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "armv7l-linux";
-            modules = [
-              stylix.nixosModules.stylix
-              ./hosts/${hostName}
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/${hostName}/home.nix;
-                };
-              }
-
-            ];
-          };
+        # armv7l is not that well supported
+        #
+        # mika =
+        #   let
+        #     hostName = "mika";
+        #     specialArgs = {
+        #       inherit username;
+        #       inherit hostName;
+        #       inherit inputs;
+        #     };
+        #   in
+        #   nixpkgs.lib.nixosSystem {
+        #     inherit specialArgs;
+        #     system = "armv7l-linux";
+        #     modules = [
+        #       stylix.nixosModules.stylix
+        #       ./hosts/${hostName}
+        #       home-manager.nixosModules.home-manager
+        #       {
+        #         home-manager = {
+        #           useGlobalPkgs = true;
+        #           useUserPackages = true;
+        #           extraSpecialArgs = inputs // specialArgs;
+        #           users.${username} = import ./hosts/${hostName}/home.nix;
+        #         };
+        #       }
+        #     ];
+        #   };
         phyllis =
           let
             hostName = "phyllis";
@@ -197,23 +198,24 @@
             ];
           };
 
-        frankieiso =
-          let
-            hostName = "frankie";
-            specialArgs = {
-              inherit username;
-              inherit hostName;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            modules = [
-              #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-              #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-              ./hosts/${hostName}
-            ];
-            inherit specialArgs;
-          };
+        # frankieiso =
+        #   let
+        #     hostName = "frankie";
+        #     specialArgs = {
+        #       inherit username;
+        #       inherit hostName;
+        #       inherit inputs;
+        #     };
+        #   in
+        #   nixpkgs.lib.nixosSystem {
+        #     modules = [
+        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+        #       ./hosts/${hostName}
+        #     ];
+        #     inherit specialArgs;
+        #   };
+
         frankie =
           let
             hostName = "frankie";
