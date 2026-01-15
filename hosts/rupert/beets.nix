@@ -1,17 +1,16 @@
-{ config, ... }:
 {
   # mp3val / flac tools imagemagick gstreamer
   programs.beets = {
     enable = true;
-    modIntegration = {
-      mpdStats = true;
+    mpdIntegration = {
+      enableStats = true;
       enableUpdate = true;
       host = "rupert.roto.lol";
       port = 6600;
     };
     settings = {
       plugins = [
-        "listenbrainz"
+        # "listenbrainz"
         "musicbrainz"
         "autobpm"
         "badfiles"
@@ -28,6 +27,14 @@
         "smartplaylist"
         "types"
       ];
+
+      import = {
+        write = true;
+        copy = false;
+      };
+      include = [
+        "/run/secrets/beets.yaml"
+      ];
       types = {
         rating = "int";
       };
@@ -35,18 +42,18 @@
         formats = [
           "m3u"
         ];
-        dir = "/storage/music";
-        relative_to = "/storage/music/managed";
+        dir = "/storage/music/root";
+        relative_to = "/storage/music/root";
         m3u_name = "latest.m3u";
       };
       mpd = {
         host = "rupert.roto.lol";
-        port = config.services.mpd.port;
+        port = 6600;
         #password: "";
       };
       mpdstats = {
         host = "rupert.roto.lol";
-        port = config.services.mpd.port;
+        port = 6600;
         # password = "";
         # music_directory = "";
         #strip_path = "/storage/music/managed";
@@ -57,8 +64,6 @@
         dist_thresh = 0.11;
         fallback = null;
         force = false;
-        google_API_key = null;
-        google_engine_ID = "009217259823014548361:lndtuqkycfu";
         print = false;
         sources = [
           "lrclib"

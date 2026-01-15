@@ -5,6 +5,8 @@
 }:
 {
   imports = [
+    ./beets.nix
+
     ../../env/email.nix
     ../../programs/btop.nix
     ../../programs/direnv.nix

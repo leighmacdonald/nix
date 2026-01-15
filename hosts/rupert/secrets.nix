@@ -1,3 +1,5 @@
+{ username, ... }:
+
 let
   mode = "666";
 in
@@ -14,6 +16,9 @@ in
     };
     lidarr_env = {
       inherit mode;
+    };
+    "beets.yaml" = {
+      owner = username;
     };
   };
 }

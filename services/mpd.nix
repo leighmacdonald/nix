@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 let
   # local socket allows `rmpc addyt` to function.
   listenAddress = "any";
@@ -18,13 +18,13 @@ in
       enable = true;
       openFirewall = true;
       startWhenNeeded = true;
-
+      user = username;
       settings = {
         bind_to_address = listenAddress;
         music_directory = musicDirectory;
-        sticker_file = "${musicDirectory}/sticker.sql";
+        sticker_file = "${musicDirectory}/../sticker.sql";
         save_absolute_paths_in_playlists = "yes";
-        playlist_directory = "${musicDirectory}/playlists";
+        playlist_directory = "${musicDirectory}/../playlists";
         #db_file = "${musicDirectory}/database";
         auto_update = "yes";
         auto_update_depth = "3";
