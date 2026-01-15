@@ -22,8 +22,8 @@ in
     mpdris2 = {
       enable = true;
       mpd = {
+        inherit musicDirectory;
         host = listenAddress;
-        musicDirectory = musicDirectory;
       };
     };
     listenbrainz-mpd = {

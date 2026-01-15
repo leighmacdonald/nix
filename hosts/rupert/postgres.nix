@@ -29,7 +29,7 @@ in
         ip4r
       ];
     settings = {
-      port = port;
+      inherit port;
     };
     authentication = pkgs.lib.mkOverride 10 ''
       #type database DBuser origin-address auth-method

@@ -1,18 +1,20 @@
 { username, ... }:
 {
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=25%"
-      "mode=755"
-    ];
-  };
+  fileSystems = {
 
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/nix".neededForBoot = true;
-  fileSystems."/etc/sops".neededForBoot = true;
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=15%"
+        "mode=755"
+      ];
+    };
+    "/persist".neededForBoot = true;
+    "/nix".neededForBoot = true;
+    "/etc/sops".neededForBoot = true;
+  };
 
   environment.persistence."/persist" = {
     enable = true;
@@ -40,7 +42,6 @@
         ".cache/keepassxc"
         ".cache/mozilla"
         ".steam"
-        # Projects and stuff?
         ".local/share/zed"
         ".local/share/Steam"
         ".local/share/mpd"

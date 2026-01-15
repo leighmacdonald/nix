@@ -4,16 +4,16 @@ in
 {
   sops.secrets = {
     prowlarr_env = {
-      mode = mode;
+      inherit mode;
     };
     sonarr_env = {
-      mode = mode;
+      inherit mode;
     };
     radarr_env = {
-      mode = mode;
+      inherit mode;
     };
     lidarr_env = {
-      mode = mode;
+      inherit mode;
     };
   };
 }

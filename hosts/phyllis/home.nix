@@ -40,7 +40,7 @@
   };
   home = {
     #uid = 2000;
-    username = username;
+    inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11";
 

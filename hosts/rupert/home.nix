@@ -14,7 +14,7 @@
     ../../programs/home-ssh.nix
   ];
   home = {
-    username = username;
+    inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [

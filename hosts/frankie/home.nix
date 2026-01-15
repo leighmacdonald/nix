@@ -47,7 +47,7 @@
     shell = {
       enableShellIntegration = true;
     };
-    username = username;
+    inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     # shellAliases = {
@@ -112,8 +112,6 @@
       gofumpt
       gopls
       typescript-language-server
-
-      devenv
     ];
     sessionVariables = {
       EDITOR = "nvim";

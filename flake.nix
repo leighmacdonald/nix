@@ -212,7 +212,7 @@
               #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
               ./hosts/${hostName}
             ];
-            specialArgs = specialArgs;
+            inherit specialArgs;
           };
         frankie =
           let

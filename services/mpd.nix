@@ -6,11 +6,11 @@ in
 {
   services = {
     mpd = {
+      inherit musicDirectory;
       enable = true;
       openFirewall = true;
       startWhenNeeded = true;
       network.listenAddress = listenAddress;
-      musicDirectory = musicDirectory;
       playlistDirectory = "${musicDirectory}/playlists";
       dbFile = "~/.config/mpd/database";
       settings = {
