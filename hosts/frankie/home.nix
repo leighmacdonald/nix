@@ -23,7 +23,6 @@
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
     ../../programs/kitty.nix
-    ../../programs/manpages.nix
     ../../programs/neovim
     ../../programs/nixcord.nix
     ../../programs/rmpc.nix
@@ -33,7 +32,7 @@
     ../../programs/starship.nix
     ../../programs/waybar.nix
     ../../programs/zathura.nix
-    ../../programs/zed.nix
+    #../../programs/zed.nix
     ../../programs/zellij.nix
     ../../programs/zoxide.nix
 

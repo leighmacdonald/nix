@@ -5,7 +5,6 @@
     doc.enable = false;
     info.enable = false;
     # Needed for fancy fish man page integration i assume?
-    man.enable = false;
     nixos.enable = false;
   };
 }

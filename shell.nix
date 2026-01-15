@@ -4,7 +4,7 @@
 pkgs.mkShell {
   packages = with pkgs; [
     git
-    npins
+    # npins
     nixos-anywhere
     nixos-rebuild
     ssh-to-age
