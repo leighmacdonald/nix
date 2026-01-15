@@ -1,21 +1,31 @@
+{ pkgs, ... }:
 let
   # local socket allows `rmpc addyt` to function.
   listenAddress = "any";
   musicDirectory = "/storage/music/root";
 in
 {
+  environment = {
+    systemPackages = with pkgs; [
+      mp3val
+      flac
+      imagemagick
+      gst_all_1.gst-libav
+    ];
+  };
   services = {
     mpd = {
-      inherit musicDirectory;
       enable = true;
       openFirewall = true;
       startWhenNeeded = true;
-      network.listenAddress = listenAddress;
-      playlistDirectory = "${musicDirectory}/playlists";
-      dbFile = "~/.config/mpd/database";
+
       settings = {
+        bind_to_address = listenAddress;
+        music_directory = musicDirectory;
         sticker_file = "${musicDirectory}/sticker.sql";
         save_absolute_paths_in_playlists = "yes";
+        playlist_directory = "${musicDirectory}/playlists";
+        #db_file = "${musicDirectory}/database";
         auto_update = "yes";
         auto_update_depth = "3";
         follow_outside_symlinks = "yes";

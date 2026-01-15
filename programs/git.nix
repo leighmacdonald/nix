@@ -1,4 +1,8 @@
-{config, ...}: {
+{ config, ... }:
+{
+  imports = [
+    ../env/email.nix
+  ];
   programs = {
     gh.enable = true;
     lazygit.enable = true;
