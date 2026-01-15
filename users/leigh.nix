@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  config,
   ...
 }:
 {
@@ -17,11 +18,13 @@
         "audio"
         "rtkit"
       ];
+
       uid = 2000;
       name = username;
       group = "lusers";
       createHome = true;
       # initialPassword = "changeme";
+      hashedPasswordFile = config.sops.secrets.password.path;
       # Bash is used for login shell since fish is not posix compliant for this. It immediately launches fish however.
       #shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
