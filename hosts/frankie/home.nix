@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./mpd.nix
     ../../programs/bat.nix
     ../../programs/btop.nix
     ../../programs/cava.nix

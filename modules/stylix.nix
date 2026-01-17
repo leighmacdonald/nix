@@ -15,10 +15,10 @@
     # };
     fonts = {
       sizes = {
-        applications = 16;
-        terminal = 18;
-        desktop = 22;
-        popups = 22;
+        applications = lib.mkDefault 16;
+        terminal = lib.mkDefault 18;
+        desktop = lib.mkDefault 22;
+        popups = lib.mkDefault 22;
       };
       #            serif = {
       #                package = pkgs.dejavu_fonts;
@@ -44,9 +44,9 @@
       };
 
       nvf.enable = true;
-      # fontconfig.fonts = {
-      #   enable = true;
-      # };
+      fontconfig.fonts = {
+        enable = true;
+      };
     };
   };
 }

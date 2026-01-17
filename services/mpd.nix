@@ -1,7 +1,12 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  username,
+  ...
+}:
 let
   # local socket allows `rmpc addyt` to function.
-  listenAddress = "any";
+  listenAddress = "rupert.roto.lol";
+  port = 6600;
   musicDirectory = "/storage/music/root";
 in
 {
@@ -11,39 +16,44 @@ in
       flac
       imagemagick
       gst_all_1.gst-libav
+      chromaprint
+      (python3.withPackages (python-pkgs: [ python-pkgs.pyacoustid ]))
+      atop
     ];
   };
   services = {
     mpd = {
       enable = true;
       openFirewall = true;
-      startWhenNeeded = true;
+      startWhenNeeded = false;
       user = username;
       settings = {
         bind_to_address = listenAddress;
+        port = port;
         music_directory = musicDirectory;
-        sticker_file = "${musicDirectory}/../sticker.sql";
+        sticker_file = "/storage/music/.sticker.sql";
         save_absolute_paths_in_playlists = "yes";
-        playlist_directory = "${musicDirectory}/../playlists";
+        playlist_directory = "/storage/music/root/playlists";
         #db_file = "${musicDirectory}/database";
-        auto_update = "yes";
-        auto_update_depth = "3";
+
         follow_outside_symlinks = "yes";
         follow_inside_symlinks = "yes";
-        audio_output = [
-          {
-            type = "pipewire";
-            name = "PipeWire Sound Server";
-          }
-          {
-            type = "fifo";
-            name = "Visualizer feed";
-            path = "/tmp/mpd.fifo";
-            format = "44100:24:2";
-          }
-        ];
-        replaygain = "auto";
-        filesystem_charset = "UTF-8";
+
+      };
+    };
+    mpdscribble = {
+      enable = true;
+      host = listenAddress;
+      port = port;
+      endpoints = {
+        "listenbrainz" = {
+          passwordFile = "/run/secrets/listenbrainz_token";
+          username = "rotorooter";
+        };
+        "last.fm" = {
+          passwordFile = "/run/secrets/lastfm";
+          username = "leigh.macdonald@gmail.com";
+        };
       };
     };
   };

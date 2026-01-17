@@ -1,5 +1,5 @@
 {
-  # mp3val / flac tools imagemagick gstreamer
+
   programs.beets = {
     enable = true;
     mpdIntegration = {
@@ -11,6 +11,7 @@
     settings = {
       plugins = [
         # "listenbrainz"
+        "chroma"
         "musicbrainz"
         "autobpm"
         "badfiles"
@@ -25,16 +26,35 @@
         "mpdstats"
         "mpdupdate"
         "smartplaylist"
-        "types"
       ];
-
+      directory = "/storage/music/root";
       import = {
         write = true;
         copy = false;
       };
+      chroma = {
+        auto = true;
+      };
       include = [
         "/run/secrets/beets.yaml"
       ];
+
+      smartplaylist = {
+        playlist_dir = "/storage/music/playlists";
+        relative_to = "/storage/music/root";
+        forward_slash = false;
+        playlists = [
+          {
+            name = "ReleasedIn$year.m3u";
+            query = "year";
+          }
+        ];
+      };
+
+      match = {
+        strong_rec_thresh = 0.14;
+      };
+      quiet_fallback = "asis";
       types = {
         rating = "int";
       };
@@ -63,25 +83,23 @@
         auto = true;
         dist_thresh = 0.11;
         fallback = null;
-        force = false;
+        force = true;
         print = false;
         sources = [
           "lrclib"
           "google"
-          "genius"
-          "tekstowo"
+          #"genius"
+          #"tekstowo"
         ];
         synced = true;
       };
-      listenbrainz = {
-        token = "TOKEN";
-        username = "LISTENBRAINZ_USERNAME";
-      };
+      # listenbrainz = {
+      #   token = "TOKEN";
+      #   username = "LISTENBRAINZ_USERNAME";
+      # };
       loadext = [ "libicu" ];
       musicbrainz = {
         auto = true;
-        user = "your_musicbrainz_username";
-        password = "your_musicbrainz_password";
       };
       # discogs = {
       #   user_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";

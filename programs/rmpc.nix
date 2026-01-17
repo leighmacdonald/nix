@@ -6,12 +6,12 @@
       #![enable(unwrap_newtypes)]
       #![enable(unwrap_variant_newtypes)]
       (
-          //address: "127.0.0.1:6600",
+          //address: "rupert.roto.lol:6600",
           address: "/tmp/mpd_socket",
           password: None,
           theme: Some("cat"),
           cache_dir: "~/.cache/rmpc",
-          lyrics_dir: "/mnt/storage/music",
+          lyrics_dir: "/mnt/storage/music/root",
           //on_song_change: ["/home/leigh/.config/rmpc/notify.sh", "/home/leigh/.config/rmpc/increment_play_count"],
           volume_step: 5,
           max_fps: 120,

@@ -17,8 +17,12 @@ in
     lidarr_env = {
       inherit mode;
     };
+    listenbrainz_token = {
+      owner = username;
+    };
     "beets.yaml" = {
       owner = username;
+      mode = "777"; # FIXME
     };
   };
 }
