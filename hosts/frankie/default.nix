@@ -23,6 +23,7 @@
 
     ../../modules/documentation.nix
     ../../modules/fonts.nix
+    ../../modules/nix-ld.nix
     ../../modules/nvidia.nix
     ../../modules/stylix.nix
     ../../modules/secrets.nix
