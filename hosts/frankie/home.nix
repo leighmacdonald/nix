@@ -124,6 +124,7 @@
     sessionPath = [
       "$HOME/.nix-profile/bin"
       "/nix/var/nix/profiles/default/bin"
+      "$HOME/.smpkg/sdks/current/addons/sourcemod/scripting"
     ];
   };
 
