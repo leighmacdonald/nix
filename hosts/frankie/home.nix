@@ -2,8 +2,7 @@
   pkgs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ./mpd.nix
     ../../programs/bat.nix
@@ -112,6 +111,8 @@
       gofumpt
       gopls
       typescript-language-server
+
+      python3
     ];
     sessionVariables = {
       EDITOR = "nvim";
