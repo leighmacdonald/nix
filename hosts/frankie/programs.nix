@@ -24,9 +24,10 @@
 
       pkg-config
       openssl
+
+      weechat
     ];
   };
-
   programs = {
     thunar.enable = true;
     appimage = {
