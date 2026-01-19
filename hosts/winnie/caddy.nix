@@ -7,6 +7,10 @@
     80
     443
   ];
+  networking.firewall.allowedUDPPorts = [
+    80
+    443
+  ];
   systemd.services.caddy = {
     serviceConfig.EnvironmentFile = [
       "/etc/caddy/envfile"

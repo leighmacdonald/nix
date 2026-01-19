@@ -20,7 +20,7 @@
     ../../modules/nix.nix
 
     ./caddy.nix
-
+    ../../services/ddns-updater.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
