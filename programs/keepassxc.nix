@@ -15,7 +15,7 @@
           MinimizeAfterUnlock = true;
         };
         SSHAgent = {
-          Enabled = true;
+          Enabled = false;
           # UseOpenSSH = true;
           # AuthSockOverride
           # SecurityKeyProviderOverride
@@ -46,6 +46,8 @@
 
         FdoSecrets = {
           Enabled = true;
+          ShowNotification = false;
+          ConfirmAccessItem = false;
         };
       };
     };
