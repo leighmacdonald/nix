@@ -2,16 +2,14 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   # imports = [
   #   inputs.hyprland.homeManagerModules.default
   # ];
   xdg = {
-    configFile."uwsm/env".source =
-      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     portal = {
-      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
     };
   };
   wayland = {
@@ -19,7 +17,7 @@
       enable = true;
       systemd = {
         enable = false; # conflicts with UWSM.
-        variables = [ "--all" ];
+        variables = ["--all"];
       };
       # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -58,7 +56,7 @@
         general = {
           gaps_in = 0;
           gaps_out = 0;
-          border_size = 2;
+          border_size = 1;
 
           # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
           #col.active_border = "$sapphire";

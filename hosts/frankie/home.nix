@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ./mpd.nix
     ../../programs/bat.nix
@@ -89,6 +90,9 @@
       # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
       #llvmPackages_21.bintools
       rustup
+      pkg-config
+      openssl
+      cargo-audit
 
       nil
       nixpkgs-fmt
@@ -113,6 +117,8 @@
       typescript-language-server
 
       python3
+
+      depotdownloader
     ];
     sessionVariables = {
       EDITOR = "nvim";
