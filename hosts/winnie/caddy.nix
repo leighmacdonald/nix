@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
@@ -21,16 +22,14 @@
   };
   services.caddy = {
     enable = true;
-    logFormat = ''
-      output stdout
-      format console
-      level ERROR
-      include http.log.access admin.api
-    '';
     environmentFile = "/etc/caddy/envfile";
     email = "leigh.macdonald@gmail.com";
     virtualHosts = {
       "bt.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
+
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8080 {
               header_up Host {host}
@@ -40,6 +39,9 @@
         '';
       };
       "gbans.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* frankie.roto.lol:6006 {
               header_up Host {host}
@@ -49,6 +51,9 @@
         '';
       };
       "radarr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:7878 {
               header_up Host {host}
@@ -58,6 +63,9 @@
         '';
       };
       "cache.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:5000 {
               header_up Host {host}
@@ -67,6 +75,9 @@
         '';
       };
       "lidarr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8686 {
               header_up Host {host}
@@ -76,6 +87,9 @@
         '';
       };
       "sonarr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8989 {
               header_up Host {host}
@@ -85,6 +99,9 @@
         '';
       };
       "bazarr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:6767 {
               header_up Host {host}
@@ -94,6 +111,9 @@
         '';
       };
       "autobrr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:7474 {
               header_up Host {host}
@@ -103,6 +123,9 @@
         '';
       };
       "prowlarr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:9696 {
               header_up Host {host}
@@ -112,6 +135,9 @@
         '';
       };
       "overseerr.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:5055 {
               header_up Host {host}
@@ -121,6 +147,9 @@
         '';
       };
       "jellyfin.roto.lol" = {
+        logFormat = lib.mkForce ''
+          output discard
+        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8096 {
               header_up Host {host}

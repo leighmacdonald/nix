@@ -42,7 +42,6 @@
       font-packages = {
         enable = true;
       };
-
       nvf.enable = true;
       fontconfig.fonts = {
         enable = true;

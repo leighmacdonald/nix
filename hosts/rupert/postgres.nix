@@ -1,9 +1,22 @@
-{ username, pkgs, ... }:
+{
+  username,
+  pkgs,
+  ...
+}:
 let
   port = 5432;
 in
 {
   networking.firewall.allowedTCPPorts = [ port ];
+
+  services.pgadmin = {
+    enable = true;
+    package = pkgs.pgadmin4;
+    openFirewall = true;
+    initialPasswordFile = "/run/secrets/pgadmin_password";
+    initialEmail = "leigh.macdonald@gmail.com";
+  };
+
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_18;

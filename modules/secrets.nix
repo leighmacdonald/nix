@@ -36,7 +36,10 @@
         mode = "0600";
         owner = username;
       };
-
+      pgadmin_password = {
+        mode = "0600";
+        owner = username;
+      };
       tskey = { };
       "hostkey_${hostName}_ed25519" = {
         mode = "0600";

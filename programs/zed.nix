@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
     package = pkgs.zed-editor-fhs;
@@ -32,6 +33,7 @@
     ];
 
     userSettings = {
+      icon_theme = "Catppuccin Mocha";
       telemetry = {
         diagnostics = false;
         metrics = false;
@@ -41,7 +43,6 @@
         git_status = true;
         file_icons = true;
       };
-
       project_panel = {
         hide_hidden = false;
         hide_root = true;

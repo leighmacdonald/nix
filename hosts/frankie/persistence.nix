@@ -24,13 +24,13 @@
       "/var/lib/nixos"
       "/var/lib/docker"
       "/var/log"
-      # Permissions incorrect otherwise.
-      # {
-      #   directory = "/home/${username}/.ssh";
-      #   user = username;
-      #   group = "lusers";
-      #   mode = "0700";
-      # }
+      #Permissions incorrect otherwise.
+      {
+        directory = "/home/${username}/.ssh";
+        user = username;
+        group = "lusers";
+        mode = "0700";
+      }
     ];
     files = [
       "/etc/machine-id"
@@ -68,7 +68,7 @@
       files = [
         #.local/share/listenbrainz-mpd/submission-cache.sqlite3
         # Select exteral DAC by default
-        ".config/e/wireplumber/default-nodes"
+        ".config/wireplumber/default-nodes"
         # Configure / Disable io
         #".local/share/fish/alt_history"
         ".ssh/authorized_keys"
