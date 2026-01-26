@@ -15,6 +15,9 @@ in
     openFirewall = true;
     initialPasswordFile = "/run/secrets/pgadmin_password";
     initialEmail = "leigh.macdonald@gmail.com";
+    settings = {
+      ENHANCED_COOKIE_PROTECTION = false;
+    };
   };
 
   services.postgresql = {
