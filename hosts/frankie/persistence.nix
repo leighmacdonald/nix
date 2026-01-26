@@ -53,6 +53,7 @@
         }
         ".local/share/direnv"
         ".local/state/wireplumber"
+
       ];
       files = [
         #.local/share/listenbrainz-mpd/submission-cache.sqlite3

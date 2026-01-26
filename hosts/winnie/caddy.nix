@@ -21,15 +21,21 @@
   };
   services.caddy = {
     enable = true;
-    #dataDir = "/backup/config/caddy";
-    # acme_ca = "https://acme-v02.api.letsencrypt.org/directory";
-    #acmeCA = "https://acme.zerossl.com/v2/DV90";
     environmentFile = "/etc/caddy/envfile";
     email = "leigh.macdonald@gmail.com";
     virtualHosts = {
       "bt.roto.lol" = {
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8080 {
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+          }
+          import rotolol
+        '';
+      };
+      "gbans.roto.lol" = {
+        extraConfig = ''
+          reverse_proxy /* frankie.roto.lol:6006 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }

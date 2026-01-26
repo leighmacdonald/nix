@@ -2,8 +2,7 @@
   pkgs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ./mpd.nix
     ../../programs/bat.nix
@@ -131,7 +130,7 @@
     sessionPath = [
       "$HOME/.nix-profile/bin"
       "/nix/var/nix/profiles/default/bin"
-      "$HOME/.smpkg/sdks/current/addons/sourcemod/scripting"
+      "$HOME/.sm-pkg/sdks/current/addons/sourcemod/scripting"
     ];
   };
 
