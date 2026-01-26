@@ -55,7 +55,7 @@
         user = {
           name = config.accounts.email.accounts.default.realName;
           email = config.accounts.email.accounts.default.address;
-          signingkey = "~/.ssh/id_ed25519.pub";
+          signingkey = "/run/secrets/id_ed25519.pub";
         };
       };
       ignores = [

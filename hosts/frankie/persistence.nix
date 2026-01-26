@@ -1,5 +1,6 @@
-{ username, ... }:
+{ username, inputs, ... }:
 {
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
 
     "/" = {
@@ -7,7 +8,7 @@
       fsType = "tmpfs";
       options = [
         "defaults"
-        "size=15%"
+        "size=10%"
         "mode=755"
       ];
     };
@@ -24,15 +25,16 @@
       "/var/lib/docker"
       "/var/log"
       # Permissions incorrect otherwise.
-      {
-        directory = "/home/${username}/.ssh";
-        user = username;
-        group = "lusers";
-        mode = "0700";
-      }
+      # {
+      #   directory = "/home/${username}/.ssh";
+      #   user = username;
+      #   group = "lusers";
+      #   mode = "0700";
+      # }
     ];
     files = [
       "/etc/machine-id"
+      "/var/lib/tailscale/tailscaled.state"
     ];
     users.${username} = {
       directories = [
@@ -69,6 +71,8 @@
         ".config/e/wireplumber/default-nodes"
         # Configure / Disable io
         #".local/share/fish/alt_history"
+        ".ssh/authorized_keys"
+        ".ssh/known_hosts"
       ];
     };
   };

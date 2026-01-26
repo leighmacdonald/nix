@@ -34,7 +34,7 @@
     ./projects.nix
     #./snacks.nix
     ./statusline.nix
-    ./surround.nix
+    #./surround.nix
     ./tabline.nix
     ./telescope.nix
     ./todo.nix
