@@ -7,8 +7,11 @@
     };
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 ];
-      # allowedUDPPorts = [ ... ];
+      allowedTCPPorts = [
+        22
+        6006
+      ];
+      allowedUDPPorts = [ 27715 ];
     };
   };
 

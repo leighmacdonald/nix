@@ -23,137 +23,171 @@
   services.caddy = {
     enable = true;
     environmentFile = "/etc/caddy/envfile";
+
     email = "leigh.macdonald@gmail.com";
     virtualHosts = {
       "bt.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
-
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8080 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "gbans.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* frankie.roto.lol:6006 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "radarr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:7878 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "cache.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:5000 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "lidarr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8686 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "sonarr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8989 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "bazarr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:6767 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "autobrr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:7474 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "prowlarr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:9696 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "overseerr.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:5055 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }
-          import rotolol
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
+        '';
+      };
+      "pgadmin.roto.lol" = {
+        extraConfig = ''
+          reverse_proxy /* rupert.roto.lol:5050 {
+              header_up Host {host}
+              header_up X-Real-IP {remote_host}
+          }
+          log {
+              output stdout
+          }
+          tls {
+              dns cloudflare {$API_KEY}
+          }
         '';
       };
       "jellyfin.roto.lol" = {
-        logFormat = lib.mkForce ''
-          output discard
-        '';
         extraConfig = ''
           reverse_proxy /* rupert.roto.lol:8096 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
+          }
+          log {
+              output stdout
           }
           reverse_proxy /socket/* rupert.roto.lol:8096 {
               header_up Host {host}
@@ -161,18 +195,12 @@
               header_up Connection {>Connection}
               header_up Upgrade {>Upgrade}
           }
-          import rotolol
-        '';
-      };
-    };
-
-    globalConfig = ''
-      (rotolol) {
           tls {
               dns cloudflare {$API_KEY}
           }
-      }
-    '';
+        '';
+      };
+    };
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
       hash = "sha256-dnhEjopeA0UiI+XVYHYpsjcEI6Y1Hacbi28hVKYQURg=";
