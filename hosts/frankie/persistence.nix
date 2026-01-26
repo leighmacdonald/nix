@@ -71,7 +71,7 @@
         ".config/wireplumber/default-nodes"
         # Configure / Disable io
         #".local/share/fish/alt_history"
-        ".ssh/authorized_keys"
+        # ".ssh/authorized_keys"
         ".ssh/known_hosts"
       ];
     };
