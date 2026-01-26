@@ -21,6 +21,12 @@
   };
   services.caddy = {
     enable = true;
+    logFormat = ''
+      output stdout
+      format console
+      level ERROR
+      include http.log.access admin.api
+    '';
     environmentFile = "/etc/caddy/envfile";
     email = "leigh.macdonald@gmail.com";
     virtualHosts = {
@@ -131,7 +137,7 @@
       };
     };
 
-    extraConfig = ''
+    globalConfig = ''
       (rotolol) {
           tls {
               dns cloudflare {$API_KEY}
