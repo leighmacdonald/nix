@@ -62,6 +62,9 @@
       close_on_file_delete = true;
       use_smartcase_search = true;
       when_closing_with_no_tabs = "keep_window_open";
+      file_types = {
+        "Askama" = [ "jinja2" ];
+      };
       git = {
         branch_picker = {
           show_author_name = false;
