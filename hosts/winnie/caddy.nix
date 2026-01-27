@@ -41,7 +41,7 @@
       };
       "gbans.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* frankie.roto.lol:6006 {
+          reverse_proxy /* frankie.roto.lol:6007 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }

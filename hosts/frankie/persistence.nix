@@ -24,6 +24,7 @@
       "/var/lib/nixos"
       "/var/lib/docker"
       "/var/log"
+      "/var/lib/tailscale"
       #Permissions incorrect otherwise.
       {
         directory = "/home/${username}/.ssh";
@@ -34,7 +35,6 @@
     ];
     files = [
       "/etc/machine-id"
-      "/var/lib/tailscale/tailscaled.state"
     ];
     users.${username} = {
       directories = [
