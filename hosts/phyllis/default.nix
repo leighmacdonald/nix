@@ -37,6 +37,7 @@
       libcec
       raspberrypi-eeprom
       home-manager
+      jellyfin-media-player
       jellyfin-mpv-shim
     ];
   };

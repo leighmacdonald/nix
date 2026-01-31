@@ -11,6 +11,7 @@
     ./persistence.nix
     ./secrets.nix
     ./stylix.nix
+    ./virt.nix
 
     ../../env/locale.nix
     ../../env/console.nix

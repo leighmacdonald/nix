@@ -25,6 +25,7 @@
       "/var/lib/docker"
       "/var/log"
       "/var/lib/tailscale"
+      "/var/lib/libvirt"
       #Permissions incorrect otherwise.
       {
         directory = "/home/${username}/.ssh";
