@@ -26,6 +26,7 @@
       openssl
 
       weechat
+      xrandr
     ];
   };
   programs = {
