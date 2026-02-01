@@ -70,6 +70,7 @@
         #.local/share/listenbrainz-mpd/submission-cache.sqlite3
         # Select exteral DAC by default
         ".config/wireplumber/default-nodes"
+        ".config/jellyfin-tui/config.yaml"
         # Configure / Disable io
         #".local/share/fish/alt_history"
         # ".ssh/authorized_keys"
