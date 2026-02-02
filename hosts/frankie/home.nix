@@ -63,7 +63,6 @@
       ssh-to-age
       age
       nil
-      xdg-desktop-portal-hyprland
 
       yt-dlp
       delta
@@ -81,7 +80,6 @@
       flameshot
       slurp
 
-      hyprland
       hyprpaper
       hyprlock
       postgresql_18

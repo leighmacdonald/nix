@@ -1,34 +1,37 @@
 {
-  pkgs,
   config,
+  inputs,
+  pkgs,
   ...
-}: {
+}:
+{
   # imports = [
   #   inputs.hyprland.homeManagerModules.default
   # ];
   xdg = {
-    configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-    portal = {
-      extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
-    };
+    configFile."uwsm/env".source =
+      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    # portal = {
+    #   extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+    # };
   };
   wayland = {
     windowManager.hyprland = {
       enable = true;
       systemd = {
-        enable = false; # conflicts with UWSM.
-        variables = ["--all"];
+        enable = true; # conflicts with UWSM.
+        #variables = [ "--all" ];
       };
-      # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      #package = null;
-      #portalPackage = null;
-      # plugins = [ pkgs.hyprlandPlugins.hy3 ];
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      plugins = [ inputs.hy3.packages.x86_64-linux.hy3 ];
       settings = {
         #"$terminal" = "kitty";
         "$terminal" = "ghostty +new-window";
         "$fileManager" = "thunar";
         "$menu" = "rofi -show drun -show-icons";
+        #plugin = "${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so";
         #"$menu" = "vicinae toggle";
         #exec-once = "runapp hyprpm reload -n";
         exec-once = "vicinae server --replace";
@@ -68,8 +71,8 @@
           # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
           allow_tearing = false;
 
-          layout = "dwindle";
-          #layout = "hy3";
+          #layout = "dwindle";
+          layout = "hy3";
         };
 
         # https://wiki.hypr.land/Configuring/Variables/#decoration
@@ -148,27 +151,27 @@
           "$mainMod, f, fullscreen"
 
           # Move focus with mainMod + arrow keys
-          #"$mainMod, left, hy3:movefocus, l"
-          #"$mainMod, right, hy3:movefocus, r"
-          #"$mainMod, up, hy3:movefocus, u"
-          #"$mainMod, down, hy3:movefocus, d"
+          "$mainMod, left, hy3:movefocus, l"
+          "$mainMod, right, hy3:movefocus, r"
+          "$mainMod, up, hy3:movefocus, u"
+          "$mainMod, down, hy3:movefocus, d"
 
-          "$mainMod, left, movefocus, l"
-          "$mainMod, right, movefocus, r"
-          "$mainMod, up, movefocus, u"
-          "$mainMod, down, movefocus, d"
+          # "$mainMod, left, movefocus, l"
+          # "$mainMod, right, movefocus, r"
+          # "$mainMod, up, movefocus, u"
+          # "$mainMod, down, movefocus, d"
 
           #$moveWindow = exec /home/leigh/.config/hypr/movewindow.sh
 
-          "$mainMod SHIFT, left, exec, $moveWindow"
-          "$mainMod SHIFT, rigth, exec, $moveWindow"
-          "$mainMod SHIFT, up, exec, $moveWindow"
-          "$mainMod SHIFT, down, exec, $moveWindow"
+          # "$mainMod SHIFT, left, exec, $moveWindow"
+          # "$mainMod SHIFT, rigth, exec, $moveWindow"
+          # "$mainMod SHIFT, up, exec, $moveWindow"
+          # "$mainMod SHIFT, down, exec, $moveWindow"
 
-          #"$mainMod SHIFT, left, hy3:movewindow, left"
-          #"$mainMod SHIFT, right, hy3:movewindow, right"
-          #"$mainMod SHIFT, up, hy3:movewindow, up"
-          #"$mainMod SHIFT, down, hy3:movewindow, down"
+          "$mainMod SHIFT, left, hy3:movewindow, left"
+          "$mainMod SHIFT, right, hy3:movewindow, right"
+          "$mainMod SHIFT, up, hy3:movewindow, up"
+          "$mainMod SHIFT, down, hy3:movewindow, down"
 
           "$mainMod ctrl, right, resizeactive, 50 0"
           "$mainMod ctrl, left, resizeactive, -50 0"
@@ -182,10 +185,10 @@
           "$mainMod, 4, workspace, 4"
 
           # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          #"$mainMod SHIFT, 1, hy3:movetoworkspace, 1"
-          #"$mainMod SHIFT, 2, hy3:movetoworkspace, 2"
-          #"$mainMod SHIFT, 3, hy3:movetoworkspace, 3"
-          #"$mainMod SHIFT, 4, hy3:movetoworkspace, 4"
+          "$mainMod SHIFT, 1, hy3:movetoworkspace, 1"
+          "$mainMod SHIFT, 2, hy3:movetoworkspace, 2"
+          "$mainMod SHIFT, 3, hy3:movetoworkspace, 3"
+          "$mainMod SHIFT, 4, hy3:movetoworkspace, 4"
 
           #"$mainMod, t, hy3:makegroup, tab, toggle"
 
