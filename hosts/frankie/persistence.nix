@@ -1,5 +1,15 @@
 { username, inputs, ... }:
 {
+  systemd.services.home-manager-leigh = {
+    preStart = ''
+      rm -f "$HOME/.ssh/config"
+    '';
+
+    postStart = ''
+      cp --remove-destination "$(readlink -f "$HOME/.ssh/config")" "$HOME/.ssh/config"
+    '';
+  };
+
   imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
 
