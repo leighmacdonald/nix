@@ -44,6 +44,16 @@
           "DP-2,3840x2160@144.0,2560x1080,1.0"
           "DP-3,1920x1080@119.98,3507x0,1.0"
         ];
+
+        plugin = {
+          hy3 = {
+            tab_first_window = false;
+            autotile = {
+              enable = true;
+            };
+          };
+        };
+
         ecosystem = {
           enforce_permissions = false;
         };
@@ -149,6 +159,8 @@
           "$mainMod, J, togglesplit, " # dwindle
           "$mainMod SHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy"
           "$mainMod, f, fullscreen"
+
+          "$mainMod SHIFT, T, hy3:makegroup, tab, toggle, force_ephemeral"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, hy3:movefocus, l"
