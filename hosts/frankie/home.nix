@@ -117,6 +117,8 @@
       python3
 
       depotdownloader
+
+      jellyfin-desktop
     ];
     sessionVariables = {
       EDITOR = "nvim";
