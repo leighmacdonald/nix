@@ -1,5 +1,6 @@
 { username, inputs, ... }:
 {
+  # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
   systemd.services.home-manager-leigh = {
     preStart = ''
       rm -f "$HOME/.ssh/config"
