@@ -73,7 +73,6 @@
       pinentry-all
 
       wttrbar
-      vicinae
 
       grim
       wl-clipboard
