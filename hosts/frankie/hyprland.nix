@@ -11,9 +11,6 @@
   xdg = {
     configFile."uwsm/env".source =
       "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-    # portal = {
-    #   extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
-    # };
   };
   wayland = {
     windowManager.hyprland = {
@@ -31,10 +28,7 @@
         "$terminal" = "ghostty +new-window";
         "$fileManager" = "thunar";
         "$menu" = "rofi -show drun -show-icons";
-        #plugin = "${inputs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so";
-        #"$menu" = "vicinae toggle";
-        #exec-once = "runapp hyprpm reload -n";
-        exec-once = "vicinae server --replace";
+        exec-once = "xrandr --output DP-2 --primary";
 
         monitor = [
           "HDMI-A-1,2560x1440@59.95,1120x680,1.0"
@@ -55,7 +49,7 @@
         };
 
         ecosystem = {
-          enforce_permissions = false;
+          enforce_permissions = false; # TODO with nix paths
         };
 
         permission = [
@@ -133,6 +127,7 @@
           kb_options = "caps:none";
           follow_mouse = 1;
           sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+          accel_profile = "linear";
           touchpad = {
             natural_scroll = false;
           };
