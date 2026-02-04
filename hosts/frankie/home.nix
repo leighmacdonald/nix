@@ -121,6 +121,10 @@
       jellyfin-desktop
     ];
     sessionVariables = {
+      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+      # Set env variables so we can refer to them from the vim configuration
+      CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";

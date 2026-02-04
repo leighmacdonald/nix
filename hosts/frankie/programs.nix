@@ -28,6 +28,8 @@
       git
       weechat
       xrandr
+      lldb
+      vscode-extensions.vadimcn.vscode-lldb
     ];
   };
   programs = {
