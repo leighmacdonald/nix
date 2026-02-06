@@ -45,6 +45,48 @@
             autotile = {
               enable = true;
             };
+            tabs = {
+              height = 32;
+              padding = 0;
+              radius = 0;
+              border_width = 1;
+              text_font = "JetBrainsMono Nerd Font";
+              text_height = 16;
+              text_padding = 3;
+
+              blur = true;
+              opacity = 1.0;
+
+              "col.active" = "rgb(${config.lib.stylix.colors.base00})";
+              "col.active.border" = "rgb(${config.lib.stylix.colors.base00})";
+              "col.active.text" = "rgb(${config.lib.stylix.colors.base0B})";
+              # "col.active.text" = "rgba(ffffffff)";
+
+              # active tab bar segment colors for bars on an unfocused monitor
+              "col.active_alt_monitor" = "rgba(60606040)";
+              "col.active_alt_monitor.border" = "rgba(808080ee)";
+              "col.active_alt_monitor.text" = "rgba(ffffffff)";
+
+              # focused tab bar segment colors (focused node in unfocused container)
+              "col.focused" = "rgba(60606040)";
+              "col.focused.border" = "rgba(808080ee)";
+              "col.focused.text" = "rgba(ffffffff)";
+
+              # inactive tab bar segment colors
+              "col.inactive" = "rgb(${config.lib.stylix.colors.base00})";
+              "col.inactive.border" = "rgb(${config.lib.stylix.colors.base00})";
+              "col.inactive.text" = "rgba(ffffffff)";
+
+              # urgent tab bar segment colors
+              "col.urgent" = "rgba(ff223340)";
+              "col.urgent.border" = "rgba(ff2233ee)";
+              "col.urgent.text" = "rgba(ffffffff)";
+
+              # urgent tab bar segment colors
+              "col.locked" = "rgba(90903340)";
+              "col.locked.border" = "rgba(909033ee)";
+              "col.locked.text" = "rgba(ffffffff)";
+            };
           };
         };
 
