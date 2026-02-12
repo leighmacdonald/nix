@@ -2,8 +2,7 @@
   pkgs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ./mpd.nix
     ../../programs/bat.nix
@@ -57,19 +56,16 @@
     #xdg.configFile."fish/config.fish".force = true;
 
     packages = with pkgs; [
-      babelfish
-      nixd
+      # babelfish
       sops
       ssh-to-age
       age
-      nil
 
       yt-dlp
       delta
       bat
       fastfetch
       pavucontrol
-      pamixer
       pinentry-all
 
       wttrbar
@@ -91,11 +87,6 @@
       openssl
       cargo-audit
 
-      nil
-      nixpkgs-fmt
-      nixfmt
-      statix
-      deadnix
       package-version-server
       csharp-ls
       prettier
@@ -112,12 +103,8 @@
       gofumpt
       gopls
       typescript-language-server
-
       python3
-
       depotdownloader
-
-      jellyfin-desktop
     ];
     sessionVariables = {
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
@@ -127,6 +114,7 @@
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
+      MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
       PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";

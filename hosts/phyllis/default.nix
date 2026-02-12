@@ -1,5 +1,8 @@
-{ pkgs, username, ... }:
 {
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ../../fs/nfs-mounts.nix
     ../../platform/rpi4
@@ -33,8 +36,7 @@
       libcec
       raspberrypi-eeprom
       home-manager
-      jellyfin-media-player
-      jellyfin-mpv-shim
+      vlc
     ];
   };
 

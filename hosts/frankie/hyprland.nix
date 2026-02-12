@@ -2,15 +2,14 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
-}:
-{
+}: {
   # imports = [
   #   inputs.hyprland.homeManagerModules.default
   # ];
   xdg = {
-    configFile."uwsm/env".source =
-      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
   };
   wayland = {
     windowManager.hyprland = {
@@ -22,7 +21,7 @@
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      plugins = [ inputs.hy3.packages.x86_64-linux.hy3 ];
+      plugins = [inputs.hy3.packages.x86_64-linux.hy3];
       settings = {
         #"$terminal" = "kitty";
         "$terminal" = "ghostty +new-window";
@@ -109,7 +108,7 @@
 
           # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
           #col.active_border = "$sapphire";
-          #col.inactive_border = "$base";
+          "col.inactive_border" = lib.mkForce "rgb(${config.lib.stylix.colors.base00})";
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
           resize_on_border = true;

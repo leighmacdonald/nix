@@ -4,8 +4,7 @@
   username,
   hostName,
   ...
-}:
-{
+}: {
   imports = [
     ../../env/email.nix
   ];
@@ -26,11 +25,10 @@
 
   xdg = {
     autostart.enable = true;
-    configFile."uwsm/env".source =
-      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
     };
   };
   # set cursor size and dpi for 4k monitor
@@ -47,7 +45,7 @@
     #packages = with pkgs; [ ];
   };
   wayland.windowManager.hyprland = {
-    systemd.variables = [ "--all" ];
+    systemd.variables = ["--all"];
     enable = true;
     settings = {
       "$mainMod" = "CTRL";
@@ -76,39 +74,32 @@
         " ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         " ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
-      bind = [
-        "$mainMod, return, exec, $terminal"
-        "$mainMod, m, exec, hyprshutdown -t ahhhh --post-cmd 'uwsm stop'"
-        "$mainMod, d, exec, $menu"
-        "$mainMod, f, exec, firefox"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-              "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
+      bind =
+        [
+          "$mainMod, return, exec, $terminal"
+          "$mainMod, m, exec, hyprshutdown -t ahhhh --post-cmd 'uwsm stop'"
+          "$mainMod, d, exec, $menu"
+          "$mainMod, f, exec, firefox"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (
+            builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mainMod, code:1${toString i}, workspace, ${toString ws}"
+                "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            9
+          )
+        );
     };
   };
 
   programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      #waylandSupport = true;
-    };
     foot.enable = true;
     mpv.enable = true;
     rofi.enable = true;
@@ -155,7 +146,7 @@
     #chromium.enable = true;
     firefox = {
       enable = true;
-      nativeMessagingHosts = [ pkgs.keepassxc ];
+      nativeMessagingHosts = [pkgs.keepassxc];
 
       profiles = {
         bedroom = {

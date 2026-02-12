@@ -1,6 +1,8 @@
-{ pkgs, inputs, ... }:
 {
-
+  pkgs,
+  inputs,
+  ...
+}: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -30,6 +32,8 @@
       xrandr
       lldb
       vscode-extensions.vadimcn.vscode-lldb
+      obs-studio
+      mpv
     ];
   };
   programs = {

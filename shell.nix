@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> { },
-}:
+{pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
   packages = with pkgs; [
     git
@@ -9,7 +7,12 @@ pkgs.mkShell {
     nixos-rebuild
     ssh-to-age
     age
-    pgloader
     zellij
+    nixd
+    nil
+    nixpkgs-fmt
+    nixfmt
+    statix
+    deadnix
   ];
 }
