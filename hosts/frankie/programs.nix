@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -12,28 +13,18 @@
       killall
       wget
       home-manager
-      cifs-utils
-      playerctl
       aspell
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
       nfs-utils
-      p7zip
-      jellyfin-tui
-      wttrbar
       unzip
       unrar
       glaze
       pkg-config
       openssl
       git
-      weechat
       xrandr
-      lldb
-      vscode-extensions.vadimcn.vscode-lldb
-      obs-studio
-      mpv
     ];
   };
   programs = {

@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ./mpd.nix
     ../../programs/bat.nix
@@ -105,6 +106,16 @@
       typescript-language-server
       python3
       depotdownloader
+
+      mpv
+      obs-studio
+      lldb
+      vscode-extensions.vadimcn.vscode-lldb
+      weechat
+      playerctl
+      jellyfin-tui
+      p7zip
+      wttrbar
     ];
     sessionVariables = {
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
