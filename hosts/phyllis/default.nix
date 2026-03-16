@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ../../fs/nfs-mounts.nix
     ../../platform/rpi4

@@ -26,6 +26,7 @@
       "gosum"
       "gotmpl"
       "haskell"
+      "jinja2"
       "make"
       "meson"
       "neocmake"

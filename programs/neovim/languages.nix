@@ -23,7 +23,7 @@
       go = {
         enable = true;
         format = {
-          type = ["gofumpt"];
+          type = [ "gofumpt" ];
         };
       };
       html = {
@@ -38,33 +38,33 @@
       };
       markdown = {
         enable = true;
-        lsp.servers = ["marksman"];
-        format.type = ["prettierd"];
+        lsp.servers = [ "marksman" ];
+        format.type = [ "prettierd" ];
         extensions.markview-nvim.enable = true;
       };
       nix = {
         enable = true;
-        lsp.servers = ["nixd"];
-        format.type = ["alejandra"];
+        lsp.servers = [ "nixd" ];
+        format.type = [ "alejandra" ];
       };
       python = {
         enable = true;
         dap.debugger = "debugpy";
-        format.type = ["black"];
-        lsp.servers = ["basedpyright"];
+        format.type = [ "black" ];
+        lsp.servers = [ "basedpyright" ];
       };
       sql = {
         enable = true;
         dialect = "postgres";
-        extraDiagnostics.types = ["sqlfluff"];
-        format.type = ["sqlfluff"];
+        extraDiagnostics.types = [ "sqlfluff" ];
+        format.type = [ "sqlfluff" ];
       };
       rust = {
         enable = true;
         dap = {
           adapter = "codelldb";
         };
-        format.type = ["rustfmt"];
+        format.type = [ "rustfmt" ];
         extensions.crates-nvim = {
           enable = true;
           setupOpts = {
@@ -81,7 +81,7 @@
       ts = {
         enable = true;
         format = {
-          type = ["prettierd"];
+          type = [ "prettierd" ];
         };
         extensions = {
           ts-error-translator.enable = true;
@@ -92,7 +92,7 @@
       };
       yaml = {
         enable = true;
-        lsp.servers = ["yaml-language-server"];
+        lsp.servers = [ "yaml-language-server" ];
       };
     };
   };

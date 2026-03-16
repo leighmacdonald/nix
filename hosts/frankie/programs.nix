@@ -25,6 +25,9 @@
       openssl
       git
       xrandr
+      vulkan-tools
+      atop
+      vscode
     ];
   };
   programs = {

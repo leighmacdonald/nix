@@ -20,6 +20,7 @@
         json
         markdown_inline
         printf
+        sourcepawn
         typescript
         tsx
         vim

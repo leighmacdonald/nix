@@ -7,9 +7,9 @@
     #   setSocketVariable = true;
     #   daemon.settings.features.cdi = true;
     daemon.settings = {
-      userland-proxy = false;
+      userland-proxy = true;
       experimental = true;
-      ipv6 = false;
+      ipv6 = true;
     };
   };
 }
