@@ -27,16 +27,16 @@ in
       startWhenNeeded = false;
       user = username;
       extraConfig = ''
-        bind_to_address = "${listenAddress}";
-        port = "${toString port}";
-        music_directory = "${musicDirectory}";
-        sticker_file = "/storage/music/.sticker.sql";
-        save_absolute_paths_in_playlists = "yes";
-        playlist_directory = "${musicDirectory}/playlists";
-        #db_file = "${musicDirectory}/database";
+        bind_to_address "${listenAddress}";
+        port = ${toString 6600};
+        music_directory "${musicDirectory}";
+        sticker_file "/storage/music/.sticker.sql";
+        save_absolute_paths_in_playlists "yes";
+        playlist_directory "${musicDirectory}/playlists";
+        #db_file "${musicDirectory}/database";
 
-        follow_outside_symlinks = "yes";
-        follow_inside_symlinks = "yes";
+        follow_outside_symlinks "yes";
+        follow_inside_symlinks "yes";
       '';
     };
     mpdscribble = {
