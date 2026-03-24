@@ -27,12 +27,12 @@ in
       startWhenNeeded = false;
       user = username;
       extraConfig = ''
-        bind_to_address = listenAddress;
-        port = port;
-        music_directory = musicDirectory;
+        bind_to_address = "${listenAddress}";
+        port = "${port}";
+        music_directory = "${musicDirectory}";
         sticker_file = "/storage/music/.sticker.sql";
         save_absolute_paths_in_playlists = "yes";
-        playlist_directory = "/storage/music/root/playlists";
+        playlist_directory = "${musicDirectory}/playlists";
         #db_file = "${musicDirectory}/database";
 
         follow_outside_symlinks = "yes";
