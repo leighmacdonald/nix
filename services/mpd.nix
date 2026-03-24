@@ -28,7 +28,7 @@ in
       user = username;
       extraConfig = ''
         bind_to_address = "${listenAddress}";
-        port = "${port}";
+        port = "${toString port}";
         music_directory = "${musicDirectory}";
         sticker_file = "/storage/music/.sticker.sql";
         save_absolute_paths_in_playlists = "yes";
