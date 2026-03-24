@@ -24,10 +24,9 @@ in
   services = {
     mpd = {
       enable = true;
-      openFirewall = true;
       startWhenNeeded = false;
       user = username;
-      settings = {
+      extraConfig = ''
         bind_to_address = listenAddress;
         port = port;
         music_directory = musicDirectory;
@@ -38,8 +37,7 @@ in
 
         follow_outside_symlinks = "yes";
         follow_inside_symlinks = "yes";
-
-      };
+      '';
     };
     mpdscribble = {
       enable = true;

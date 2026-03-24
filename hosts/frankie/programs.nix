@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   environment = {
     pathsToLink = [
@@ -10,6 +6,7 @@
       "/share/xdg-desktop-portal"
     ];
     systemPackages = with pkgs; [
+      uwsm
       killall
       wget
       home-manager
@@ -28,6 +25,7 @@
       vulkan-tools
       atop
       vscode
+      dbeaver-bin
     ];
   };
   programs = {
@@ -39,10 +37,10 @@
     hyprland = {
       enable = true;
       # set the flake package
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # make sure to also set the portal package, so that they are in sync
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # portalPackage =
+      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     steam = {
       enable = true;
@@ -59,9 +57,9 @@
       protontricks.enable = true;
       #remotePlay.openFirewall= true;
     };
-    uwsm = {
-      enable = true;
-    };
+    # uwsm = {
+    #   enable = true;
+    # };
     #  fish = {
     #    enable = true;
     #  };

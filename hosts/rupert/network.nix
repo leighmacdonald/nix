@@ -10,6 +10,8 @@
       allowedTCPPorts = [
         22
         6006
+        5050
+        6600
       ];
       allowedUDPPorts = [ 27715 ];
     };

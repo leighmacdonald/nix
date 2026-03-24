@@ -1,12 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 {
   stylix.targets.zed = {
     colors.enable = false;
-
   };
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
-    package = pkgs.zed-editor-fhs;
+    # package = nixpkgs-unstable.zed-editor-fhs;
     enable = true;
     extensions = [
       "ansible"
@@ -33,6 +32,7 @@
       "nix"
       "postgres-language-server"
       "postgres-context-server"
+      "proto"
       "sql"
       "templ"
       "toml"
@@ -138,6 +138,9 @@
         };
       };
       languages = {
+        Proto = {
+          "language_servers" = [ "buf" ];
+        };
         SQL = {
           formatter = {
             external = {

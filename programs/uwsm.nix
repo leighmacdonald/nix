@@ -5,8 +5,8 @@
     waylandCompositors = {
       hyprland = {
         prettyName = "Hyprland";
-        comment = "Hyprland managed by UWSM";
-        binPath = "/etc/profiles/per-user/leigh/bin/start-hyprland";
+        comment = "Hyprland compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/Hyprland";
       };
     };
   };

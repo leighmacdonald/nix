@@ -25,9 +25,9 @@
           })
         '';
       };
-      devicons = {
-        package = nvim-web-devicons;
-      };
+      # devicons = {
+      #   package = nvim-web-devicons;
+      # };
       mini-icons = {
         package = mini-icons;
       };

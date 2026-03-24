@@ -1,4 +1,9 @@
 {
+  inputs,
+  pkgs,
+  nixpkgs-unstable,
+  ...
+}: {
   hardware = {
     enableRedistributableFirmware = true;
     graphics = {
@@ -9,7 +14,7 @@
       modesetting.enable = true;
       #powerManagement.finegrained = true;
       open = true;
-      #package = config.boot.kernelPackages.nvidiaPackages.beta;
+      #package = nixpkgs-unstable.nvidia;
     };
     # nvidia-container-toolkit.enable = true;
   };
@@ -17,7 +22,7 @@
   services = {
     xserver = {
       autorun = false;
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = ["nvidia"];
     };
   };
 }

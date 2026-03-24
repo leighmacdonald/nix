@@ -1,8 +1,7 @@
 {
   config,
-  inputs,
-  pkgs,
   lib,
+  pkgs,
   ...
 }: {
   # imports = [
@@ -18,10 +17,10 @@
         enable = true; # conflicts with UWSM.
         #variables = [ "--all" ];
       };
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      plugins = [inputs.hy3.packages.x86_64-linux.hy3];
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage =
+      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      plugins = [pkgs.hyprlandPlugins.hy3];
       settings = {
         #"$terminal" = "kitty";
         "$terminal" = "ghostty +new-window";
