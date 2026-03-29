@@ -1,11 +1,11 @@
-{ ... }:
+{ pkgsUnstable, ... }:
 {
   stylix.targets.zed = {
     colors.enable = false;
   };
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
-    # package = nixpkgs-unstable.zed-editor-fhs;
+    package = pkgsUnstable.zed-editor-fhs;
     enable = true;
     extensions = [
       "ansible"

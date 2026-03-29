@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 
 {
   stylix.targets.firefox.profileNames = [
@@ -6,6 +6,7 @@
   ];
   programs.firefox = {
     enable = true;
+    package = pkgsUnstable.firefox;
     nativeMessagingHosts = [ pkgs.keepassxc ];
 
     profiles = {
