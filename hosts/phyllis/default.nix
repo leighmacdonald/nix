@@ -38,6 +38,7 @@
       raspberrypi-eeprom
       home-manager
       vlc
+      mpv
     ];
   };
 

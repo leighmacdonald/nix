@@ -1,9 +1,7 @@
 {
-  inputs,
-  pkgs,
-  nixpkgs-unstable,
   ...
-}: {
+}:
+{
   hardware = {
     enableRedistributableFirmware = true;
     graphics = {
@@ -22,7 +20,7 @@
   services = {
     xserver = {
       autorun = false;
-      videoDrivers = ["nvidia"];
+      videoDrivers = [ "nvidia" ];
     };
   };
 }

@@ -68,43 +68,22 @@
       fastfetch
       pavucontrol
       pinentry-all
-
       wttrbar
-
       grim
       wl-clipboard
       flameshot
       slurp
-
       hyprpaper
       hyprlock
       postgresql_18
-
-      clang
+      # clang
       # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
       #llvmPackages_21.bintools
-      rustup
-      pkg-config
-      openssl
-      cargo-audit
+      # rustup
+      # pkg-config
+      # openssl
+      # cargo-audit
 
-      package-version-server
-      csharp-ls
-      prettier
-      jsonfmt
-      clang-tools
-      clang-analyzer
-      stylua
-      lua-language-server
-      markdownlint-cli2
-      prettierd
-      sqlc
-      eslint_d
-      gci
-      gofumpt
-      gopls
-      typescript-language-server
-      python3
       depotdownloader
 
       mpv
@@ -118,17 +97,17 @@
       wttrbar
     ];
     sessionVariables = {
-      RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+      #RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       # Set env variables so we can refer to them from the vim configuration
-      CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-      LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
+      #CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      #LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
-      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+      #PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"

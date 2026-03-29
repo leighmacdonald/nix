@@ -21,9 +21,10 @@
 
     nvf = {
       url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
+    #nvf-nixpkgs.url = "github:NixOS/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
+    # nvf.inputs.nixpkgs.follows = "nvf-nixpkgs";
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
@@ -34,167 +35,174 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    nixpkgs-unstable,
-    stylix,
-    ...
-  } @ inputs: let
-    username = "leigh";
-  in {
-    nixosConfigurations = {
-      # armv7l is not that well supported
-      #
-      # mika =
-      #   let
-      #     hostName = "mika";
-      #     specialArgs = {
-      #       inherit username;
-      #       inherit hostName;
-      #       inherit inputs;
-      #     };
-      #   in
-      #   nixpkgs.lib.nixosSystem {
-      #     inherit specialArgs;
-      #     system = "armv7l-linux";
-      #     modules = [
-      #       stylix.nixosModules.stylix
-      #       ./hosts/${hostName}
-      #       home-manager.nixosModules.home-manager
-      #       {
-      #         home-manager = {
-      #           useGlobalPkgs = true;
-      #           useUserPackages = true;
-      #           extraSpecialArgs = inputs // specialArgs;
-      #           users.${username} = import ./hosts/${hostName}/home.nix;
-      #         };
-      #       }
-      #     ];
-      #   };
-      phyllis = let
-        hostName = "phyllis";
-        specialArgs = {
-          inherit username;
-          inherit hostName;
-          inherit inputs;
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "aarch64-linux";
-          modules = [
-            stylix.nixosModules.stylix
-            ./hosts/${hostName}
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = inputs // specialArgs;
-                users.${username} = import ./hosts/${hostName}/home.nix;
-              };
-            }
-          ];
-        };
-      winnie = let
-        hostName = "winnie";
-        specialArgs = {
-          inherit username;
-          inherit hostName;
-          inherit inputs;
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "aarch64-linux";
-          modules = [
-            inputs.disko.nixosModules.disko
-            stylix.nixosModules.stylix
-            ./hosts/${hostName}
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = inputs // specialArgs;
-                users.${username} = import ./hosts/${hostName}/home.nix;
-              };
-            }
-          ];
-        };
-
-      # frankieiso =
-      #   let
-      #     hostName = "frankie";
-      #     specialArgs = {
-      #       inherit username;
-      #       inherit hostName;
-      #       inherit inputs;
-      #     };
-      #   in
-      #   nixpkgs.lib.nixosSystem {
-      #     modules = [
-      #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-      #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      #       ./hosts/${hostName}
-      #     ];
-      #     inherit specialArgs;
-      #   };
-
-      frankie = let
-        hostName = "frankie";
-        specialArgs = {
-          inherit username;
-          inherit hostName;
-          inherit inputs;
-          pkgsUnstable = import inputs.nixpkgs-unstable {
-            system = "x86_64-linux";
-            config = {
-              allowUnfree = true;
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      nixpkgs-unstable,
+      stylix,
+      ...
+    }@inputs:
+    let
+      username = "leigh";
+    in
+    {
+      nixosConfigurations = {
+        # armv7l is not that well supported
+        #
+        # mika =
+        #   let
+        #     hostName = "mika";
+        #     specialArgs = {
+        #       inherit username;
+        #       inherit hostName;
+        #       inherit inputs;
+        #     };
+        #   in
+        #   nixpkgs.lib.nixosSystem {
+        #     inherit specialArgs;
+        #     system = "armv7l-linux";
+        #     modules = [
+        #       stylix.nixosModules.stylix
+        #       ./hosts/${hostName}
+        #       home-manager.nixosModules.home-manager
+        #       {
+        #         home-manager = {
+        #           useGlobalPkgs = true;
+        #           useUserPackages = true;
+        #           extraSpecialArgs = inputs // specialArgs;
+        #           users.${username} = import ./hosts/${hostName}/home.nix;
+        #         };
+        #       }
+        #     ];
+        #   };
+        phyllis =
+          let
+            hostName = "phyllis";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
             };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "aarch64-linux";
+            modules = [
+              stylix.nixosModules.stylix
+              ./hosts/${hostName}
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = inputs // specialArgs;
+                  users.${username} = import ./hosts/${hostName}/home.nix;
+                };
+              }
+            ];
           };
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [
-            # hyprland.homeManagerModules.default
-            ./hosts/${hostName}
-            {
-              home-manager = {
-                extraSpecialArgs = inputs // specialArgs;
-              };
-            }
-          ];
-        };
+        winnie =
+          let
+            hostName = "winnie";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "aarch64-linux";
+            modules = [
+              inputs.disko.nixosModules.disko
+              stylix.nixosModules.stylix
+              ./hosts/${hostName}
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = inputs // specialArgs;
+                  users.${username} = import ./hosts/${hostName}/home.nix;
+                };
+              }
+            ];
+          };
 
-      rupert = let
-        hostName = "rupert";
-        specialArgs = {
-          inherit username;
-          inherit hostName;
-          inherit inputs;
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/${hostName}
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = inputs // specialArgs;
-                users.${username} = import ./hosts/${hostName}/home.nix;
+        # frankieiso =
+        #   let
+        #     hostName = "frankie";
+        #     specialArgs = {
+        #       inherit username;
+        #       inherit hostName;
+        #       inherit inputs;
+        #     };
+        #   in
+        #   nixpkgs.lib.nixosSystem {
+        #     modules = [
+        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+        #       ./hosts/${hostName}
+        #     ];
+        #     inherit specialArgs;
+        #   };
+
+        frankie =
+          let
+            hostName = "frankie";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
+              pkgsUnstable = import inputs.nixpkgs-unstable {
+                system = "x86_64-linux";
+                config = {
+                  allowUnfree = true;
+                };
               };
-            }
-          ];
-        };
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "x86_64-linux";
+            modules = [
+              # hyprland.homeManagerModules.default
+              ./hosts/${hostName}
+              {
+                home-manager = {
+                  extraSpecialArgs = inputs // specialArgs;
+                };
+              }
+            ];
+          };
+
+        rupert =
+          let
+            hostName = "rupert";
+            specialArgs = {
+              inherit username;
+              inherit hostName;
+              inherit inputs;
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/${hostName}
+              stylix.nixosModules.stylix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = inputs // specialArgs;
+                  users.${username} = import ./hosts/${hostName}/home.nix;
+                };
+              }
+            ];
+          };
+      };
     };
-  };
 }

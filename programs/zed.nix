@@ -26,6 +26,7 @@
       "gotmpl"
       "haskell"
       "jinja2"
+      "justfile"
       "make"
       "meson"
       "neocmake"
@@ -41,6 +42,7 @@
     ];
 
     userSettings = {
+      theme = "Ayu Dark";
       icon_theme = "Catppuccin Mocha";
       telemetry = {
         diagnostics = false;
@@ -114,12 +116,21 @@
       };
       relative_line_numbers = "disabled";
       hover_popover_delay = 200;
-      show_signature_help_after_edits = true;
+      show_signature_help_after_edits = false;
       auto_signature_help = true;
       #icon_theme = "";
       unstable.ui_density = "compact";
       base_keymap = "JetBrains";
       lsp = {
+        buf = {
+          binary = {
+            path = "buf";
+            arguments = [
+              "lsp"
+              "serve"
+            ];
+          };
+        };
         hls = {
           initialization_options = {
             haskell = {
@@ -138,8 +149,73 @@
         };
       };
       languages = {
+        CSS = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+        };
+        HTML = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+        };
+        JSON = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+        };
+        JSONC = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+        };
+
+        JavaScript = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+          "code_actions_on_format" = {
+            "source.fixAll.biome" = true;
+            "source.organizeImports.biome" = true;
+          };
+        };
+        TypeScript = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+          "code_actions_on_format" = {
+            "source.fixAll.biome" = true;
+            "source.organizeImports.biome" = true;
+          };
+        };
+        TSX = {
+          "formatter" = {
+            "language_server" = {
+              "name" = "biome";
+            };
+          };
+          "code_actions_on_format" = {
+            "source.fixAll.biome" = true;
+            "source.organizeImports.biome" = true;
+          };
+        };
         Proto = {
-          "language_servers" = [ "buf" ];
+          "language_servers" = [
+            "buf"
+            "!protobuf-language-server"
+          ];
         };
         SQL = {
           formatter = {

@@ -1,4 +1,6 @@
-{pkgs ? import <nixpkgs> {}}:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 pkgs.mkShell {
   packages = with pkgs; [
     git
@@ -14,5 +16,7 @@ pkgs.mkShell {
     nixfmt
     statix
     deadnix
+    just
+    just-lsp
   ];
 }

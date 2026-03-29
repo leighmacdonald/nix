@@ -1,33 +1,52 @@
 { pkgs, ... }:
 {
+
   programs.nvf.settings.vim = {
-    extraPackages = [
-      pkgs.tree-sitter
-      pkgs.nodejs
-      pkgs.gcc
-    ];
+    lsp.servers = {
+      buf_ls = {
+        filetypes = [ "proto" ];
+        root_markers = [ "buf.yaml" ];
+        cmd = [
+          "buf"
+          "lsp"
+          "serve"
+        ];
+        enable = true;
+      };
+    };
     treesitter = {
       enable = true;
-      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        regex
-        kdl
-        bash
-        c
-        cpp
-        c-sharp
-        haskell
-        html
-        json
-        markdown_inline
-        printf
-        sourcepawn
-        typescript
-        tsx
-        vim
-        vimdoc
-        xml
-        yaml
-      ];
+      grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+      # grammars = with pkgs.vimPlugins.nvim-treesitter.withPlugins; [
+      #   regex
+      #   kdl
+      #   bash
+      #   c
+      #   cpp
+      #   c-sharp
+      #   haskell
+      #   html
+      #   json
+      #   markdown_inline
+      #   printf
+      #   proto
+      #   sourcepawn
+      #   typescript
+      #   tsx
+      #   vim
+      #   vimdoc
+      #   xml
+      #   yaml
+      #   gotmpl
+      #   go
+      #   gosum
+      #   sql
+      #   rust
+      #   typescript
+      #   tsx
+      #   python
+      #   fish
+      # ];
       indent.enable = true;
       #fold.enable = false;
       #incrementalSelection.enable = true;
