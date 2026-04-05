@@ -8,7 +8,10 @@
   programs.nixcord = {
     enable = true;
     discord = {
-      vencord.enable = true;
+      equicord.enable = false;
+      vencord.enable = false;
+      branch = "canary";
+
     };
     vesktop.enable = true;
   };

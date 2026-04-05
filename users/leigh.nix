@@ -17,6 +17,7 @@
         "docker"
         "audio"
         "rtkit"
+        "input"
       ];
 
       uid = 2000;

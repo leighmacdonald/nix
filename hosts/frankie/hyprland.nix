@@ -245,6 +245,9 @@
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
           "$mainMod, Escape, workspace, previous"
+
+          "ALT, Alt_L, pass, ^(discord|vesktop)$"
+          #", mouse:276, pass, ^(discord|vesktop)$"
         ];
 
         bindm = [

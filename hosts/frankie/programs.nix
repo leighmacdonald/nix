@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 {
   environment = {
     pathsToLink = [
@@ -6,7 +6,6 @@
       "/share/xdg-desktop-portal"
     ];
     systemPackages = with pkgs; [
-      uwsm
       killall
       wget
       home-manager
@@ -26,6 +25,9 @@
       atop
       vscode
       dbeaver-bin
+      jetbrains.datagrip
+
+      input-remapper
     ];
   };
   programs = {
@@ -36,11 +38,12 @@
     };
     hyprland = {
       enable = true;
+      withUWSM = true;
       # set the flake package
       #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      #package = pkgsUnstable.hyprland;
       # make sure to also set the portal package, so that they are in sync
-      # portalPackage =
-      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      #portalPackage = pkgsUnstable.xdg-desktop-portal-hyprland;
     };
     steam = {
       enable = true;
@@ -57,9 +60,16 @@
       protontricks.enable = true;
       #remotePlay.openFirewall= true;
     };
-    # uwsm = {
-    #   enable = true;
-    # };
+    uwsm = {
+      enable = true;
+      # waylandCompositors = {
+      #   hyprland = {
+      #     prettyName = "Hyprland";
+      #     comment = "Hyprland compositor managed by UWSM";
+      #     binPath = "/run/current-system/sw/bin/Hyprland";
+      #   };
+      # };
+    };
     #  fish = {
     #    enable = true;
     #  };
