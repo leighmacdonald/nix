@@ -4,7 +4,7 @@
       enable = true;
 
       formatOnSave = true;
-      lspkind.enable = true;
+      #lspkind.enable = true;
       lightbulb.enable = false;
       lspsaga.enable = true;
       trouble.enable = true;

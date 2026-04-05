@@ -12,6 +12,7 @@
     ./secrets.nix
     ./stylix.nix
     ./virt.nix
+    ./ollama.nix
 
     ../../env/locale.nix
     ../../env/console.nix

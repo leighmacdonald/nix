@@ -5,12 +5,12 @@
 {
   imports = [
     inputs.nvf.homeManagerModules.default
-    ./autocomplete.nix
-    ./autopairs.nix
+    #./autocomplete.nix
+    #./autopairs.nix
     ./bufferline.nix
     ./comments.nix
     ./cursorline.nix
-    ./dashboard.nix
+    #./dashboard.nix
     ./debugger.nix
     ./diagnostics.nix
     ./direnv.nix
@@ -31,7 +31,7 @@
     ./nvim-surround.nix
     ./options.nix
     ./plenary.nix
-    ./projects.nix
+    #./projects.nix
     #./snacks.nix
     ./statusline.nix
     #./surround.nix
@@ -40,7 +40,7 @@
     ./todo.nix
     ./treesitter.nix
     ./trouble.nix
-    ./web-devicons.nix
+    #./web-devicons.nix
     ./which-key.nix
   ];
 

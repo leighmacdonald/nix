@@ -53,6 +53,7 @@
         ".mozilla"
         ".config/vesktop"
         ".config/mpd"
+        ".config/input-remapper-2"
         ".cache"
         ".cargo"
         ".sm-pkg"

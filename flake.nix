@@ -20,11 +20,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nvf = {
-      url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:NotAShelf/nvf/main";
     };
-    #nvf-nixpkgs.url = "github:NixOS/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
-    # nvf.inputs.nixpkgs.follows = "nvf-nixpkgs";
+
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
