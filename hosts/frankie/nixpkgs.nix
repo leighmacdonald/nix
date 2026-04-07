@@ -1,6 +1,9 @@
-{lib, ...}: {
+{ ... }:
+{
   nixpkgs = {
-    hostPlatform = lib.mkForce "x86_64-linux";
     config.allowUnfree = true;
+    config.cudaSupport = true;
+    #config.cudaCapabilities = [ "8.9" ];
+    config.cudaForwardCompat = true;
   };
 }
