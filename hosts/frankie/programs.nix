@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }:
+{ pkgs, ... }:
 {
   environment = {
     pathsToLink = [
@@ -26,7 +26,7 @@
       vscode
       dbeaver-bin
       jetbrains.datagrip
-
+      cudatoolkit
       input-remapper
     ];
   };

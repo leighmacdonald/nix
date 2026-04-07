@@ -212,9 +212,10 @@
           };
         };
         Proto = {
-          "language_servers" = [
+          language_servers = [
             "buf"
             "!protobuf-language-server"
+            "!protols"
           ];
         };
         SQL = {
