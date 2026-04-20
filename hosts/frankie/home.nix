@@ -25,7 +25,6 @@
     ../../programs/keepassxc.nix
     ../../programs/kitty.nix
     ../../programs/neovim
-    ../../programs/nixcord.nix
     ../../programs/rmpc.nix
     ../../programs/rofi.nix
     ../../programs/sqls.nix
@@ -50,9 +49,9 @@
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
-    # shellAliases = {
-    #   "cd" = "zoxide";
-    # };
+    shellAliases = {
+      "cd" = "zoxide";
+    };
 
     #xdg.configFile."fish/config.fish".force = true;
 
@@ -93,9 +92,10 @@
       vscode-extensions.vadimcn.vscode-lldb
       weechat
       playerctl
-      jellyfin-tui
+
       p7zip
       wttrbar
+      discord
     ];
     sessionVariables = {
       #RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

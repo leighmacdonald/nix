@@ -23,10 +23,6 @@
       url = "github:NotAShelf/nvf/main";
     };
 
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

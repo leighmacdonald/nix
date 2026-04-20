@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -26,6 +25,7 @@
       vscode
       dbeaver-bin
       jetbrains.datagrip
+      jetbrains.goland
       cudatoolkit
       input-remapper
     ];

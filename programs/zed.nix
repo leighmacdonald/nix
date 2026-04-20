@@ -118,19 +118,8 @@
       hover_popover_delay = 200;
       show_signature_help_after_edits = false;
       auto_signature_help = true;
-      #icon_theme = "";
-      unstable.ui_density = "compact";
       base_keymap = "JetBrains";
       lsp = {
-        buf = {
-          binary = {
-            path = "buf";
-            arguments = [
-              "lsp"
-              "serve"
-            ];
-          };
-        };
         hls = {
           initialization_options = {
             haskell = {
@@ -141,7 +130,6 @@
       };
       context_servers = {
         postgres-context-server = {
-          source = "extension";
           enabled = true;
           settings = {
             database_url = "postgresql://gbans:gbans@localhost:5432/gbans";

@@ -80,7 +80,7 @@
               };
             };
           };
-          ts = {
+          typescript = {
             enable = true;
             format = {
               type = [ "prettierd" ];
@@ -89,7 +89,7 @@
               ts-error-translator.enable = true;
             };
             lsp.servers = [
-              "ts_ls"
+              "typescript-language-server"
             ];
           };
           yaml = {
