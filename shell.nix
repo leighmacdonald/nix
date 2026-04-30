@@ -9,7 +9,6 @@ pkgs.mkShell {
     nixos-rebuild
     ssh-to-age
     age
-    zellij
     nixd
     nil
     nixpkgs-fmt

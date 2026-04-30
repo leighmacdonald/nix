@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgsUnstable, ... }:
 {
   hardware.nvidia-container-toolkit.enable = false;
   services = {
     ollama = {
-      enable = false;
-      package = pkgs.ollama-cuda;
+      enable = true;
+      package = pkgsUnstable.ollama-cuda;
     };
     open-webui.enable = true;
   };

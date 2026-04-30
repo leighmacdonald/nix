@@ -12,7 +12,8 @@
     ./secrets.nix
     ./stylix.nix
     ./virt.nix
-    ./ollama.nix
+    #./ollama.nix
+    ./llama-cpp.nix
 
     ../../env/locale.nix
     ../../env/console.nix

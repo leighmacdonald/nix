@@ -33,7 +33,7 @@
     ../../programs/waybar.nix
     ../../programs/zathura.nix
     ../../programs/zed.nix
-    ../../programs/zellij.nix
+    # ../../programs/zellij.nix
     ../../programs/zoxide.nix
 
     ../../services/dunst.nix
@@ -49,9 +49,9 @@
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
-    shellAliases = {
-      "cd" = "zoxide";
-    };
+    #    shellAliases = {
+    #      "cd" = "zoxide";
+    #    };
 
     #xdg.configFile."fish/config.fish".force = true;
 

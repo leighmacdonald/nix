@@ -42,6 +42,69 @@
     ];
 
     userSettings = {
+      language_models = {
+        openai_compatible = {
+          # Using Together AI as an example
+          local-supergemma4 = {
+            api_url = "https://localhost:8080/v1";
+            available_models = [
+              {
+                name = "supergemma4-26b";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 200000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "qwen36-35B-claude-4.6";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 200000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "deepseek-r1-distoll-quen-14b";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 200000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+
+              {
+                name = "gemma-4-it-obliterated";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 200000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+            ];
+          };
+        };
+      };
       theme = "Ayu Dark";
       icon_theme = "Catppuccin Mocha";
       telemetry = {
