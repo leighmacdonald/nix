@@ -75,6 +75,32 @@
                 };
               }
               {
+                name = "qwen36-27B-Q5_k_XL";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "qwen36-27B-Q5_k_XL-thinking";
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 200000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
                 name = "deepseek-r1-distoll-quen-14b";
                 max_tokens = 200000;
                 max_output_tokens = 64000;

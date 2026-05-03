@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -22,7 +23,6 @@
       xrandr
       vulkan-tools
       atop
-      vscode
       dbeaver-bin
       jetbrains.datagrip
       jetbrains.goland

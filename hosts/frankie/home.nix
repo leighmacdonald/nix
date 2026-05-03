@@ -35,6 +35,7 @@
     ../../programs/zed.nix
     # ../../programs/zellij.nix
     ../../programs/zoxide.nix
+    ../../programs/vscode.nix
 
     ../../services/dunst.nix
     ../../services/flameshot.nix
