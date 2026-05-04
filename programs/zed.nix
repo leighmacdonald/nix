@@ -46,8 +46,21 @@
         openai_compatible = {
           # Using Together AI as an example
           local-supergemma4 = {
-            api_url = "https://localhost:8080/v1";
+            api_url = "http://localhost:8080/v1";
             available_models = [
+              {
+                name = "qwen3-coder";
+                max_tokens = 64000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
               {
                 name = "supergemma4-26b";
                 max_tokens = 200000;

@@ -2,7 +2,8 @@
   username,
   inputs,
   ...
-}: {
+}:
+{
   # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
   systemd.services.home-manager-leigh = {
     preStart = ''
@@ -14,7 +15,7 @@
     '';
   };
 
-  imports = [inputs.impermanence.nixosModules.impermanence];
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
     "/" = {
       device = "none";
@@ -66,6 +67,7 @@
         ".local/share/mpd"
         ".local/share/fish"
         ".config/Code"
+        ".continue"
         "go"
         "Downloads"
         {
