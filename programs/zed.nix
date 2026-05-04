@@ -50,7 +50,20 @@
             available_models = [
               {
                 name = "qwen3-coder";
-                max_tokens = 64000;
+                max_tokens = 256000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "qwen3-coder-1M";
+                max_tokens = 1000000;
                 max_output_tokens = 64000;
                 max_completion_tokens = 64000;
                 capabilities = {
