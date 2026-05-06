@@ -12,7 +12,7 @@
       "askama"
       "biome"
       "caddyfile"
-      "cargotom"
+      "cargotoml"
       "color-highlight"
       "csharp"
       "dockerfile"
@@ -75,32 +75,6 @@
                 };
               }
               {
-                name = "supergemma4-26b";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 200000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen36-35B-claude-4.6";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 200000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
                 name = "qwen36-27B-Q5_k_XL";
                 max_tokens = 200000;
                 max_output_tokens = 64000;
@@ -115,33 +89,6 @@
               }
               {
                 name = "qwen36-27B-Q5_k_XL-thinking";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 200000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "deepseek-r1-distoll-quen-14b";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 200000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-
-              {
-                name = "gemma-4-it-obliterated";
                 max_tokens = 200000;
                 max_output_tokens = 64000;
                 max_completion_tokens = 200000;
@@ -189,6 +136,10 @@
       when_closing_with_no_tabs = "keep_window_open";
       file_types = {
         "Askama" = [ "jinja2" ];
+        "Sourcepawn" = [
+          "sp"
+          "inc"
+        ];
       };
       git = {
         branch_picker = {
@@ -205,7 +156,6 @@
         show_sign_in = false;
         show_user_picture = false;
         show_menus = false;
-        show_branch_icon = true;
       };
       search = {
         button = true;
@@ -235,6 +185,23 @@
       auto_signature_help = true;
       base_keymap = "JetBrains";
       lsp = {
+        sourcepawn-studio = {
+          initialization_options = {
+            hover_actions_debug_enable = true;
+            hover_actions_enable = true;
+            hover_actions_gotoTypeDef_enable = true;
+            hover_actions_implementations_enable = true;
+            hover_actions_references_enable = true;
+            hover_actions_run_enable = true;
+            eventsGameName = "Team Fortress 2";
+            includeDirectories = [
+              "/home/leigh/.sm-pkg/sdks/current/addons/sourcemod/scripting/include"
+            ];
+            compiler = {
+              path = "/home/leigh/.sm-pkg/sdks/current/addons/sourcemod/scripting/spcomp64";
+            };
+          };
+        };
         hls = {
           initialization_options = {
             haskell = {

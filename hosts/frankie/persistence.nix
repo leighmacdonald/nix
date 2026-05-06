@@ -66,10 +66,11 @@
         ".local/share/Steam"
         ".local/share/mpd"
         ".local/share/fish"
-        ".config/Code"
+        ".vscode"
         ".continue"
         "go"
         "Downloads"
+        ".config/Code/User"
         {
           directory = ".gnupg";
           mode = "0700";
@@ -82,6 +83,7 @@
         # Select exteral DAC by default
         ".config/wireplumber/default-nodes"
         ".config/jellyfin-tui/config.yaml"
+        #".config/Code/User/settings.json"
         # Configure / Disable io
         #".local/share/fish/alt_history"
         # ".ssh/authorized_keys"

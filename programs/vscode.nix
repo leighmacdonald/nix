@@ -3,7 +3,11 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
+    mutableExtensionsDir = false;
+
     profiles.default = {
+      enableExtensionUpdateCheck = false;
+      enableUpdateCheck = false;
       extensions =
         with pkgs.vscode-extensions;
         [
@@ -65,12 +69,12 @@
             version = "0.5.7";
             sha256 = "sha256-fbQsKnkBz11ZTZ2v7Y9bQ9GHPjactUoB98LeNRKeOkY=";
           }
-          {
-            name = "tooltitude";
-            publisher = "tooltitudeteam";
-            version = "1.50.5";
-            sha256 = "sha256-PwdlLP2hqPD6E2wCAAvgmgBSg0XFOpB+DL/PfkmoZn4=";
-          }
+          # {
+          #   name = "tooltitude";
+          #   publisher = "tooltitudeteam";
+          #   version = "1.50.5";
+          #   sha256 = "sha256-PwdlLP2hqPD6E2wCAAvgmgBSg0XFOpB+DL/PfkmoZn4=";
+          # }
           {
             name = "vscode-versionlens";
             publisher = "pflannery";
@@ -103,14 +107,30 @@
           # }
         ];
       userSettings = {
+         yaml.schemas = {
+            "file:///home/leigh/.vscode/extensions/Continue.continue/config-yaml-schema.json" = [
+              ".continue/**/*.yaml"
+            ];
+          };
         goExp.testExplorer.enable = true;
         github.copilot.enable = {
           "*" = false;
         };
+        
+        biome = {
+          suggestInstallingGlobally = false;
+        };
         editor.formatOnPaste = true;
         editor.formatOnSave = true;
         files.autoSave = "afterDelay";
-        editor.minimap.enabled = false;
+        editor = {
+          minimap.enabled = false;
+          codeActionsOnSave = {
+            source.fixAll.biome = "explicit";
+            source.organizeImports.biome = "explicit";
+            biome.lsp.bin = "/projects/gbans/frontend/node_modules/.bin/biome";
+          };
+        };
         sourcepawn.AuthorName = "Leigh MacDonald";
         sourcepawn.enableLinter = true;
         sourcepawn.GithubName = "leighmacdonald";
@@ -145,8 +165,8 @@
           }
         ];
 
-        # workbench.colorTheme = "Stylix";
-        workbench.colorTheme = "Abyss";
+        workbench.colorTheme = "Stylix";
+        # workbench.colorTheme = "Abyss";
         editor.autoIndentOnPaste = true;
         editor.bracketPairColorization.independentColorPoolPerBracketType = true;
         # editor.experimentalGpuAcceleration = "";
