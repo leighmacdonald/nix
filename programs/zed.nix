@@ -42,17 +42,77 @@
     ];
 
     userSettings = {
+      edit_predictions = {
+        open_ai_compatible_api = {
+          max_output_tokens = 120;
+          prompt_format = "glm";
+          model = "GLM-4.7-Flash-Q4_K_M-tool";
+          api_url = "http://localhost:8080/v1";
+        };
+      };
+      agent = {
+        sidebar_side = "right";
+        enable_feedback = false;
+        show_turn_stats = true;
+        default_profile = "ask";
+        default_model = {
+          provider = "local-llama";
+          model = "GLM-4.7-Flash-Q4_K_M-tool";
+          enable_thinking = false;
+        };
+        favorite_models = [ ];
+        model_parameters = [ ];
+      };
       language_models = {
         openai_compatible = {
           # Using Together AI as an example
-          local-supergemma4 = {
+          local-llama = {
             api_url = "http://localhost:8080/v1";
             available_models = [
               {
-                name = "qwen3-coder";
-                max_tokens = 256000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 64000;
+                name = "GLM-4.7-Flash-Q4_K_M-general";
+                max_tokens = 202752;
+                max_output_tokens = 32000;
+                max_completion_tokens = 202752;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "GLM-4.7-Flash-Q4_K_M-tool";
+                max_tokens = 202752;
+                max_output_tokens = 32000;
+                # max_completion_tokens = 1024;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "qwen3-coder-Q3";
+                max_tokens = 64000;
+                max_output_tokens = 32000;
+                max_completion_tokens = 1024;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "qwen3-coder-Q4";
+                max_tokens = 64000;
+                max_output_tokens = 32000;
+                max_completion_tokens = 1024;
                 capabilities = {
                   tools = true;
                   images = false;
@@ -116,6 +176,7 @@
         file_icons = true;
       };
       project_panel = {
+        dock = "left";
         hide_hidden = false;
         hide_root = true;
         auto_reveal_entries = false;
@@ -136,10 +197,6 @@
       when_closing_with_no_tabs = "keep_window_open";
       file_types = {
         "Askama" = [ "jinja2" ];
-        "Sourcepawn" = [
-          "sp"
-          "inc"
-        ];
       };
       git = {
         branch_picker = {
