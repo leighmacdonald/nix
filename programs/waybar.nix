@@ -198,8 +198,11 @@
         };
         "custom/gpu-usage" = {
           # "exec"= "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total --format=csv,noheader,nounits";
-          "exec" = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
-          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">󰈐 {:2}%</span>";
+          "exec" = ''
+            nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader | awk -F',' 'BEGIN{gpu=0;used=0;total=0} {gpu+=$1; used+=$2; total+=$3} END{printf "GPU: %d%% | VRAM: %.1f%% (%d/%d MiB)\n", gpu, used*100/total, used, total}'
+          '';
+
+          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">󰈐 {}</span>";
           "return-type" = "";
           "interval" = 1;
         };
