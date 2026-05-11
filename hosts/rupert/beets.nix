@@ -1,6 +1,8 @@
 {
 
   programs.beets = {
+    # (re) import files
+    # beet import /storage/music/root/managed -a -wp -q
     enable = true;
     mpdIntegration = {
       enableStats = true;
@@ -11,6 +13,7 @@
     settings = {
       plugins = [
         # "listenbrainz"
+        "badfiles"
         "chroma"
         "musicbrainz"
         "autobpm"
@@ -18,6 +21,7 @@
         "discogs"
         "embedart"
         "fetchart"
+        "ftintitle"
         "thumbnails"
         "fish"
         "fromfilename"
@@ -26,11 +30,17 @@
         "mpdstats"
         "mpdupdate"
         "smartplaylist"
+        "web"
+        "unimported"
+        "lastimport"
       ];
       directory = "/storage/music/root";
       import = {
         write = true;
         copy = false;
+      };
+      lastfm = {
+        user = "roto69";
       };
       chroma = {
         auto = true;
@@ -38,7 +48,10 @@
       include = [
         "/run/secrets/beets.yaml"
       ];
+      ftintitle = {
+        auto = true;
 
+      };
       smartplaylist = {
         playlist_dir = "/storage/music/playlists";
         relative_to = "/storage/music/root";
@@ -66,6 +79,12 @@
         relative_to = "/storage/music/root";
         m3u_name = "latest.m3u";
       };
+      web = {
+        host = "rupert.roto.lol";
+        port = 8337;
+        include_paths = true;
+        readonly = false;
+      };
       mpd = {
         host = "rupert.roto.lol";
         port = 6600;
@@ -87,8 +106,8 @@
         print = false;
         sources = [
           "lrclib"
-          "google"
-          #"genius"
+          #"google"
+          "genius"
           #"tekstowo"
         ];
         synced = true;

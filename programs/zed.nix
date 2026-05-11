@@ -42,14 +42,14 @@
     ];
 
     userSettings = {
-      edit_predictions = {
-        open_ai_compatible_api = {
-          max_output_tokens = 120;
-          prompt_format = "glm";
-          model = "GLM-4.7-Flash-Q4_K_M-tool";
-          api_url = "http://localhost:8080/v1";
-        };
-      };
+      # edit_predictions = {
+      #   open_ai_compatible_api = {
+      #     max_output_tokens = 64;
+      #     prompt_format = "glm";
+      #     model = "GLM-4.7-Flash-Q4_K_M-tool";
+      #     api_url = "http://localhost:8080/v1";
+      #   };
+      # };
       agent = {
         sidebar_side = "right";
         enable_feedback = false;
@@ -57,11 +57,41 @@
         default_profile = "ask";
         default_model = {
           provider = "local-llama";
-          model = "GLM-4.7-Flash-Q4_K_M-tool";
+          model = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
           enable_thinking = false;
         };
+        inline_alternatives = [
+          {
+            provider = "local-llama";
+            model = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
+            enable_thinking = true;
+          }
+        ];
         favorite_models = [ ];
         model_parameters = [ ];
+        tool_permissions = {
+          default = "allow";
+          tools = {
+            fetch = {
+              default = "allow";
+            };
+            terminal = {
+              default = "allow";
+              # always_allow = [
+              #   { pattern = "^cargo\\s+(build|test|check)"; }
+              #   { pattern = "^npm\\s+(install|test|run)"; }
+              # ];
+              always_confirm = [ { pattern = "sudo\\s+/"; } ];
+              always_deny = [
+                { pattern = "^/storage"; }
+                { pattern = "^/etc"; }
+                { pattern = "\\.env"; }
+                { pattern = "secrets?/"; }
+                { pattern = "\\.(pem|key)$"; }
+              ];
+            };
+          };
+        };
       };
       language_models = {
         openai_compatible = {
@@ -69,6 +99,48 @@
           local-llama = {
             api_url = "http://localhost:8080/v1";
             available_models = [
+              {
+                name = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
+                max_tokens = 64000;
+                max_output_tokens = 32000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+
+              {
+                name = "GLM-4.7-Flash-REAP-23B-A3B-Q4_K_M";
+                max_tokens = 202752;
+                max_output_tokens = 32000;
+                max_completion_tokens = 202752;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+
+              {
+                name = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q4_K_XL";
+                max_tokens = 202752;
+                max_output_tokens = 32000;
+                max_completion_tokens = 202752;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+
               {
                 name = "GLM-4.7-Flash-Q4_K_M-general";
                 max_tokens = 202752;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 {
   environment = {
     pathsToLink = [
@@ -28,6 +28,7 @@
       jetbrains.goland
       cudatoolkit
       input-remapper
+      pkgsUnstable.ladybird
     ];
   };
   programs = {
