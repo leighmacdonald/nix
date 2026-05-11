@@ -102,20 +102,20 @@
         #strip_path = "/storage/music/managed";
         rating = true;
       };
-      lyrics = {
-        auto = true;
-        dist_thresh = 0.11;
-        fallback = null;
-        force = true;
-        print = false;
-        sources = [
-          "lrclib"
-          #"google"
-          "genius"
-          #"tekstowo"
-        ];
-        synced = true;
-      };
+      # lyrics = {
+      #   auto = true;
+      #   dist_thresh = 0.11;
+      #   fallback = null;
+      #   force = true;
+      #   print = false;
+      #   sources = [
+      #     "lrclib"
+      #     #"google"
+      #     "genius"
+      #     #"tekstowo"
+      #   ];
+      #   synced = true;
+      # };
       # listenbrainz = {
       #   token = "TOKEN";
       #   username = "LISTENBRAINZ_USERNAME";
