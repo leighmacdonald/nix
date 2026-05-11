@@ -11,6 +11,9 @@
       port = 6600;
     };
     settings = {
+      threaded = true;
+      languages = [ "en" ];
+      detail = true;
       plugins = [
         # "listenbrainz"
         "badfiles"
@@ -26,7 +29,7 @@
         "fish"
         "fromfilename"
         "importfeeds"
-        "lyrics"
+        #"lyrics"
         "mpdstats"
         "mpdupdate"
         "smartplaylist"
@@ -38,6 +41,7 @@
       import = {
         write = true;
         copy = false;
+        resume = true;
       };
       lastfm = {
         user = "roto69";
