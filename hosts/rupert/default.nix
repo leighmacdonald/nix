@@ -58,4 +58,8 @@
   nixpkgs.config.allowUnfree = false;
 
   nix.settings.post-build-hook = null;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python3.13-beets-2.5.1"
+  ];
 }

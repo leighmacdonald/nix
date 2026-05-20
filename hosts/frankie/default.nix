@@ -41,5 +41,4 @@
   ];
 
   virtualisation.docker.enableNvidia = true;
-
 }
