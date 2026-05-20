@@ -39,4 +39,7 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
+
+  virtualisation.docker.enableNvidia = true;
+
 }

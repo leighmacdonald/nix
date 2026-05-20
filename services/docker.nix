@@ -2,7 +2,7 @@
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
-    enableNvidia = true;
+    # enableNvidia = true;
     # rootless = {
     #   enable = false;
     #   setSocketVariable = true;
