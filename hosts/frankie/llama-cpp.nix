@@ -1,5 +1,6 @@
-{ pkgsUnstable, ... }:
+{ pkgsUnstable, lib, ... }:
 {
+  hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {
     systemPackages = [
       pkgsUnstable.llama-swap
@@ -25,6 +26,34 @@
         models_dir = "/projects/llm/models";
         binary = "${pkgsUnstable.llama-cpp}/bin/llama-server";
       };
+
+      # podman run --device nvidia.com/gpu=all -d -v llama_qwen3.6mpt:/root/.cache -p 8080:8080 local/llama.cpp:full-cuda --server \
+      # -hf unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL \
+      # -ngl 99 \
+      # --ctx-size 128000 \
+      # --no-mmproj-offload \
+      # --no-context-shift \
+      # --kv-unified \
+      # --spec-type draft-mtp \
+      # --spec-draft-n-max 2 \
+      # --spec-draft-p-min 0.75 \
+      # -fa on --jinja --no-mmap \
+      # --cache-ram -1 \
+      # --no-warmup -np 1\
+      # -n 32768 \
+      # --cache-type-k q8_0 \
+      # --cache-type-v q8_0 \
+      # --temp 0.6 \
+      # --min-p 0.00 \
+      # --top-k 20 \
+      # --top-p 0.95 \
+      # --presence-penalty 0.0 \
+      # --repeat-penalty 1.05 \
+      # --fit off \
+      # --reasoning on \
+      # --chat-template-kwargs '{"preserve_thinking":true}' \
+      # --port 8080 \
+      # --host 0.0.0.0
       models = {
         "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL" = {
           name = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
@@ -66,28 +95,28 @@
 
         "GLM-4.7-Flash-Q4_K_M-general" = {
           name = "GLM-4.7-Flash-Q4_K_M-general";
-          cmd = "\${binary} --no-mmap --temperature 1.0 --top-k 20 --top-p 0.95 --min-p 0.01 --fit on --presence-penalty 0.0 --repeat-penalty 1.0 --port \${PORT} --ctx-size 32768  --embeddings --model \${models_dir}/GLM-4.7-Flash-Q4_K_M.gguf";
+          cmd = "\${binary} --fit on --temperature 1.0 --top-p 0.95 --min-p 0.01 --repeat-penalty 1.0 --port \${PORT} --ctx-size 32768  --embeddings --model \${models_dir}/GLM-4.7-Flash-Q4_K_M.gguf";
         };
 
         "GLM-4.7-Flash-Q4_K_M-tool" = {
           name = "GLM-4.7-Flash-Q4_K_M-tool";
-          cmd = "\${binary} --no-mmap --temperature 0.7 --top-k 20 --top-p 1.0 --min-p 0.01 --fit on --presence-penalty 0.0 --repeat-penalty 1.0 --port \${PORT} --ctx-size 32768 --embeddings --model \${models_dir}/GLM-4.7-Flash-Q4_K_M.gguf";
+          cmd = "\${binary} --fit on --temperature 0.7 --top-p 1.0 --min-p 0.01  --repeat-penalty 1.0 --port \${PORT} --ctx-size 32768 --embeddings --model \${models_dir}/GLM-4.7-Flash-Q4_K_M.gguf";
         };
 
-        qwen3-coder-Q3 = {
-          name = "qwen3-coder-Q3";
-          cmd = "\${binary} --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 262144 --embeddings --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf";
-        };
+        # qwen3-coder-Q3 = {
+        #   name = "qwen3-coder-Q3";
+        #   cmd = "\${binary} --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 262144 --embeddings --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf";
+        # };
 
-        qwen3-coder-Q4 = {
-          name = "qwen3-coder-Q4";
-          cmd = "\${binary} --no-mmap --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 262144 --batch-size 4096 --ubatch-size 4096 --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf";
-        };
+        # qwen3-coder-Q4 = {
+        #   name = "qwen3-coder-Q4";
+        #   cmd = "\${binary} --no-mmap --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 262144 --batch-size 4096 --ubatch-size 4096 --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf";
+        # };
 
-        qwen3-coder-1M = {
-          name = "qwen3-coder-1M";
-          cmd = "\${binary} -ngl 10 --cache-type-k q8_0 --cache-type-v q8_0 --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 1048576 --batch-size 4096 --ubatch-size 4096 --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-1M-UD-Q4_K_XL.gguf";
-        };
+        # qwen3-coder-1M = {
+        #   name = "qwen3-coder-1M";
+        #   cmd = "\${binary} -ngl 10 --cache-type-k q8_0 --cache-type-v q8_0 --temperature 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --presence-penalty 0.0 --repeat-penalty 1.05 --port \${PORT} --ctx-size 1048576 --batch-size 4096 --ubatch-size 4096 --model \${models_dir}/Qwen3-Coder-30B-A3B-Instruct-1M-UD-Q4_K_XL.gguf";
+        # };
 
         "qwen36-35B-claude-4.6" = {
           name = "qwen36-35B-claude-4.6";

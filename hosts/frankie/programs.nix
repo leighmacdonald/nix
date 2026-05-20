@@ -48,9 +48,10 @@
     };
     steam = {
       enable = true;
-      # extraCompatPckages = with pkgs; [
-      #   proton-ge-bin
-      # ];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+
       extraPackages = with pkgs; [
         gamescope
       ];

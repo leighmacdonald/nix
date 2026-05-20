@@ -56,14 +56,14 @@
         show_turn_stats = true;
         default_profile = "ask";
         default_model = {
-          provider = "local-llama";
-          model = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
+          provider = "mtp-llama";
+          model = "Qwen3.6-27B-Q4_K_M-MTP";
           enable_thinking = false;
         };
         inline_alternatives = [
           {
-            provider = "local-llama";
-            model = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
+            provider = "mtp-llama";
+            model = "Qwen3.6-27B-Q4_K_M-MTP";
             enable_thinking = true;
           }
         ];
@@ -95,6 +95,24 @@
       };
       language_models = {
         openai_compatible = {
+          mtp-llama = {
+            api_url = "http://localhost:8081/v1";
+            available_models = [
+              {
+                name = "Qwen3.6-27B-Q4_K_M-MTP";
+                max_tokens = 64000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+            ];
+          };
           # Using Together AI as an example
           local-llama = {
             api_url = "http://localhost:8080/v1";
@@ -143,9 +161,9 @@
 
               {
                 name = "GLM-4.7-Flash-Q4_K_M-general";
-                max_tokens = 202752;
-                max_output_tokens = 32000;
-                max_completion_tokens = 202752;
+                max_tokens = 32768;
+                max_output_tokens = 32768;
+                max_completion_tokens = 32768;
                 capabilities = {
                   tools = true;
                   images = false;
@@ -156,8 +174,8 @@
               }
               {
                 name = "GLM-4.7-Flash-Q4_K_M-tool";
-                max_tokens = 202752;
-                max_output_tokens = 32000;
+                max_tokens = 32768;
+                max_output_tokens = 32768;
                 # max_completion_tokens = 1024;
                 capabilities = {
                   tools = true;
@@ -311,7 +329,7 @@
       relative_line_numbers = "disabled";
       hover_popover_delay = 200;
       show_signature_help_after_edits = false;
-      auto_signature_help = true;
+      auto_signature_help = false;
       base_keymap = "JetBrains";
       lsp = {
         sourcepawn-studio = {
