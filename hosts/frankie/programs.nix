@@ -28,7 +28,7 @@
       jetbrains.goland
       cudatoolkit
       input-remapper
-      pkgsUnstable.ladybird
+      #pkgsUnstable.ladybird
     ];
   };
   programs = {
