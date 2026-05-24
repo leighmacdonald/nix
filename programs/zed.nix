@@ -331,6 +331,8 @@
       show_signature_help_after_edits = false;
       auto_signature_help = false;
       base_keymap = "JetBrains";
+      buffer_font_family = "TX-02";
+      ui_font_family = "TX-02";
       lsp = {
         sourcepawn-studio = {
           initialization_options = {
