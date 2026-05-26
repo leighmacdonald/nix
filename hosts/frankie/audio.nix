@@ -22,6 +22,23 @@
         };
       };
       configPackages = [
+        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/11-disable-bluez-midi.conf" ''
+          monitor.bluez.properties = {
+            bluez5.dummy-audio = true
+          }
+          wireplumber.settings = {
+            "monitor.bluez.rules" = [
+              {
+                matches = [ { "node.name" = "~bluez_input.*" } ];
+                actions = {
+                  update-props = {
+                    "node.disabled" = true
+                  };
+                };
+              }
+            ];
+          }
+        '')
         (pkgs.writeTextDir "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
           	          alsa_monitor.rules = {
             	        {
@@ -53,14 +70,14 @@
             96000
             192000
           ];
-          "default.clock.rate" = 192000;
-          "default.clock.quantum" = 300;
-          "default.clock.min-quantum" = 200;
-          "default.clock.max-quantum" = 1024;
+          #"default.clock.rate" = 192000;
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 512;
+          "default.clock.max-quantum" = 2048;
         };
-        "stream.properties" = {
-          "resample.quality" = 14;
-        };
+        # "stream.properties" = {
+        #   "resample.quality" = 10;
+        # };
       };
       # pipewire."92-low-latency" = ""
       #   "context.properties" = {
