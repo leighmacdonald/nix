@@ -40,5 +40,5 @@
     ../../services/tailscale.nix
   ];
 
-  virtualisation.docker.enableNvidia = true;
+  users.users.leigh.extraGroups = [ "libvirtd" ];
 }

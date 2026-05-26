@@ -25,7 +25,7 @@
       adjust-cell-width = "-7%";
       working-directory = "home";
       background-blur = true;
-      #font-family = "\"JetBrainsMono Nerd Font\"";
+      font-family = "TX-02";
     };
   };
 }

@@ -1,6 +1,20 @@
 {
   networking = {
     hostName = "frankie";
+    bridges = {
+      br0 = {
+        interfaces = [ "enp7s0" ];
+      };
+    };
+    interfaces = {
+      enp7s0 = {
+        useDHCP = true;
+      };
+      br0 = {
+        useDHCP = true;
+        # macAddress = "00:11:11:22:11:22";
+      };
+    };
     wireless = {
       enable = false;
     };

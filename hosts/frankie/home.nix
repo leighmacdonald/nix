@@ -42,6 +42,12 @@
     ../../services/hyprpolkitagent.nix
     ../../services/gpg-agent.nix
   ];
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
+  };
   #xdg.configFile."fish/config.fish".force = true;
   home = {
     shell = {
