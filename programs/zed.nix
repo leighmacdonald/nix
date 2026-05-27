@@ -100,8 +100,8 @@
             available_models = [
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
-                max_tokens = 64000;
-                max_output_tokens = 64000;
+                max_tokens = 200000;
+                max_output_tokens = 200000;
                 max_completion_tokens = 64000;
                 capabilities = {
                   tools = true;
@@ -334,6 +334,18 @@
       buffer_font_family = lib.mkForce "TX-02";
       ui_font_family = lib.mkForce "TX-02";
       lsp = {
+        golangci-lint = {
+          initialization_options = {
+            command = [
+              "golangci-lint"
+              "run"
+              "--output.json.path"
+              "stdout"
+              "--show-stats=false"
+              "--output.text.path="
+            ];
+          };
+        };
         sourcepawn-studio = {
           initialization_options = {
             hover_actions_debug_enable = true;
@@ -435,6 +447,12 @@
             "buf"
             "!protobuf-language-server"
             "!protols"
+          ];
+        };
+        Go = {
+          language_servers = [
+            "gopls"
+            "golangci-lint"
           ];
         };
         SQL = {

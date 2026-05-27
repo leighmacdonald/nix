@@ -8,13 +8,24 @@
     };
     interfaces = {
       enp7s0 = {
-        useDHCP = true;
+        useDHCP = false;
       };
       br0 = {
-        useDHCP = true;
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            "address" = "192.168.0.200";
+            "prefixLength" = 24;
+          }
+        ];
         # macAddress = "00:11:11:22:11:22";
       };
     };
+    defaultGateway = "192.168.0.1";
+    nameservers = [
+      "8.8.8.8"
+      "9.9.9.9"
+    ];
     wireless = {
       enable = false;
     };
