@@ -68,6 +68,7 @@
         ".local/share/mpd"
         ".local/share/fish"
         ".local/share/fonts"
+        ".local/share/net.lrclib.lrcget"
         ".vscode"
         ".continue"
         "go"
