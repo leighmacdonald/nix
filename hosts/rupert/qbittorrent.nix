@@ -6,17 +6,15 @@
       # runtimeInputs = [ pkgs.cowsay ];
       text = ''
         DEST_ROOT="/storage/music/managed/"
-        SOURCE_ROOT="/storage/music/downloads/"
         TORRENT_PATH="$1"
         NAME="$2"
         CATEGORY="$3"
         SAVE_PATH="$4"
 
         if [[ "$CATEGORY" == "lidarr" || "$SAVE_PATH" == "/storage/music/downloads" ]]; then
+            echo "Copying $NAME"
             cp -rv "$TORRENT_PATH" "$DEST_ROOT"
         fi
-
-        exit 0
       '';
     })
   ];
