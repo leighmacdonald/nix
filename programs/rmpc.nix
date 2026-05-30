@@ -11,7 +11,7 @@
           password: None,
           theme: Some("cat"),
           cache_dir: "~/.cache/rmpc",
-          lyrics_dir: "/mnt/storage/music/root",
+          lyrics_dir: "/storage/music/root",
           //on_song_change: ["/home/leigh/.config/rmpc/notify.sh", "/home/leigh/.config/rmpc/increment_play_count"],
           volume_step: 5,
           max_fps: 120,
