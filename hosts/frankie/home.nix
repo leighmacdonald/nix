@@ -103,6 +103,7 @@
       p7zip
       wttrbar
       discord
+      lrcget
     ];
     sessionVariables = {
       #RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
