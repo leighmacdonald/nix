@@ -24,6 +24,7 @@
       ssh-to-age
       age
       zellij
+      lrcget
     ];
     sessionVariables = {
       EDITOR = "nvim";

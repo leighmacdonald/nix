@@ -24,10 +24,7 @@
       vulkan-tools
       atop
       dbeaver-bin
-      jetbrains.datagrip
-      jetbrains.goland
       cudatoolkit
-      input-remapper
       #pkgsUnstable.ladybird
     ];
   };

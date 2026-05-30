@@ -30,7 +30,10 @@
       "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
     };
   };
   # set cursor size and dpi for 4k monitor
