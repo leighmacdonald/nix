@@ -3,23 +3,10 @@
   environment = {
     systemPackages = with pkgs; [
       gitMinimal
-      #neovim
+      nano
       wget
-      #libraspberrypi
-      #raspberrypi-eeprom
       home-manager
-      cifs-utils
       sops
     ];
-  };
-
-  programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
-    fish.enable = true;
   };
 }

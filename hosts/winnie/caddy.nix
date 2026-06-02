@@ -59,7 +59,7 @@
             }
           }
           handle {
-              respond "Access Denied" 403
+              respond "?" 403
           }
         '';
       };
@@ -211,7 +211,7 @@
       };
     };
     package = pkgs.caddy.withPlugins {
-      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
       hash = "sha256-dnhEjopeA0UiI+XVYHYpsjcEI6Y1Hacbi28hVKYQURg=";
     };
   };

@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   imports = [
     ./programs.nix
@@ -15,7 +14,6 @@
 
     ../../modules/secrets.nix
     ../../modules/nodocumentation.nix
-    ../../modules/stylix.nix
     ../../modules/wifi.nix
     ../../modules/nix.nix
 
@@ -24,8 +22,4 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
-
-  stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
-  };
 }
