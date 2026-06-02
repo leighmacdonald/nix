@@ -25,6 +25,7 @@
       atop
       dbeaver-bin
       cudatoolkit
+      #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];
   };

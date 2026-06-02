@@ -1,4 +1,9 @@
-{ pkgs, pkgsUnstable, ... }:
+{
+  pkgs,
+  pkgsUnstable,
+  config,
+  ...
+}:
 
 {
   stylix.targets.firefox.profileNames = [
@@ -8,7 +13,7 @@
     enable = true;
     package = pkgsUnstable.firefox;
     nativeMessagingHosts = [ pkgs.keepassxc ];
-
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles = {
       frankie = {
         isDefault = true;

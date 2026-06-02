@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./audio.nix
@@ -41,4 +42,6 @@
   ];
 
   users.users.leigh.extraGroups = [ "libvirtd" ];
+
+  services.udev.packages = [ pkgs.system76-keyboard-configurator ];
 }
