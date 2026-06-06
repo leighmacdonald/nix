@@ -36,7 +36,7 @@
     {
       nixpkgs,
       home-manager,
-      nixpkgs-unstable,
+      nixos-hardware,
       stylix,
       ...
     }@inputs:
@@ -112,6 +112,7 @@
             inherit specialArgs;
             system = "aarch64-linux";
             modules = [
+              nixos-hardware.nixosModules.raspberry-pi-4
               inputs.disko.nixosModules.disko
               stylix.nixosModules.stylix
               ./hosts/${hostName}

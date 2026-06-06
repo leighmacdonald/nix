@@ -17,5 +17,6 @@ pkgs.mkShell {
     deadnix
     just
     just-lsp
+    lua-language-server
   ];
 }

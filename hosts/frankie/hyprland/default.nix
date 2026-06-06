@@ -2,19 +2,24 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
-  # imports = [
-  #   inputs.hyprland.homeManagerModules.default
-  # ];
+  home.file.".local/share/hypr/stubs".source = "${
+    inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+  }/share/hypr/stubs";
+
   xdg = {
     configFile."uwsm/env".source =
       "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    configFile."hypr/hyprland.lua".source =
+      config.lib.file.mkOutOfStoreSymlink "/projects/nix/hosts/frankie/hyprland/lua/hyprland.lua";
   };
   wayland = {
     windowManager.hyprland = {
-      enable = true;
+      enable = false;
+      configType = "lua";
       systemd = {
         enable = true; # conflicts with UWSM.
         #variables = [ "--all" ];

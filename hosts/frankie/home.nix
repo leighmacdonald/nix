@@ -111,7 +111,7 @@
       hyprpaper
       hyprlock
       postgresql_18
-
+      chromium
       # clang
       # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
       #llvmPackages_21.bintools
