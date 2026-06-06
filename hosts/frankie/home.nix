@@ -1,7 +1,6 @@
 {
   pkgs,
   username,
-  inputs,
   config,
   ...
 }:
@@ -21,7 +20,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
-    ./hyprland.nix
+    ./hyprland
     #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
@@ -49,9 +48,7 @@
   # package's share/hypr/stubs dir changes hash on each upgrade, so we link
   # it into ~/.local/share/hypr/stubs and reference *that* from .luarc.json.
   # Updates automatically on rebuild.
-  home.file.".local/share/hypr/stubs".source = "${
-    inputs.nixpkgs.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-  }/share/hypr/stubs";
+  home.file.".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
   # Hyprland user config is driven by the symlinked Lua tree below
   # (lua/hyprland.lua and friends). The home-manager Hyprland module is left
   # disabled here so it doesn't write the legacy hyprland.conf — Hyprland 0.55+
@@ -62,7 +59,7 @@
   # per-host overrides under ~/code/infra) take effect immediately via
   # Hyprland's autoreload. No nixos-rebuild needed for keybinds or rules.
   xdg.configFile."hypr/hyprland.lua".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/hyprland/lua/hyprland.lua";
+    config.lib.file.mkOutOfStoreSymlink "/projects/nix/hosts/frankie/hyprland/lua/hyprland.lua";
   # UWSM env injection — sources home-manager's session vars (including
   # home.sessionPath additions like ~/.local/bin) into the Hyprland session
   # via UWSM. Without this, Hyprland-spawned processes can't find
