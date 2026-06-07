@@ -162,8 +162,8 @@
         };
         cpu = {
           "interval" = 1;
-          "format" =
-            "<span color='#00C7FD'>  {load}/{usage:3}%</span> {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
+
+          "format" = "<span color='#00C7FD'>  {load}/{usage:3}%</span>"; # {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}
           "format-icons" = [
             "<span color='${config.lib.stylix.colors.withHashtag.base0F}'>▁</span>"
             "<span color='${config.lib.stylix.colors.withHashtag.base0E}'>▂</span>"
@@ -200,9 +200,8 @@
         "custom/gpu-usage" = {
           # "exec"= "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total --format=csv,noheader,nounits";
           "exec" = ''
-            nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader | awk -F',' 'BEGIN{gpu=0;used=0;total=0} {gpu+=$1; used+=$2; total+=$3} END{printf "GPU: %d%% | VRAM: %.1f%%\n", gpu, used*100/total}'
+            nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader | awk -F',' 'BEGIN{gpu=0;used=0;total=0} {gpu+=$1; used+=$2; total+=$3} END{printf "G %d%%/R %.1f%%\n", gpu, used*100/total}'
           '';
-
           "format" = "<span color=\"#76B900\">󰈐 {}</span>";
           "return-type" = "";
           "interval" = 1;
