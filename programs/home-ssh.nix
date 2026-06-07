@@ -7,7 +7,7 @@
     extraConfig = "AddKeysToAgent yes";
     enableDefaultConfig = false;
     enable = true;
-    matchBlocks = {
+    settings = {
       "*" = {
         addKeysToAgent = "yes";
         controlMaster = "yes";
@@ -36,6 +36,7 @@
         host = "100.69.69.*";
         user = "tf2server";
       };
+
     };
   };
 }

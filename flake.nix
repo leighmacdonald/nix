@@ -16,8 +16,8 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
 
     stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/stylix/release-26.05";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";

@@ -1,7 +1,8 @@
 {
   programs.zellij = {
     enable = true;
-    attachExistingSessipn = true;
+    attachExistingSession = true;
+    enableFishIntegration = true;
     settings = {
       show_startup_tips = false;
     };

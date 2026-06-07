@@ -34,7 +34,7 @@
     ../../programs/waybar.nix
     ../../programs/zathura.nix
     ../../programs/zed.nix
-    # ../../programs/zellij.nix
+    ../../programs/zellij.nix
     ../../programs/zoxide.nix
     #../../programs/vscode.nix
 
@@ -81,7 +81,7 @@
     };
     inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "25.11"; # Please read the comment before changing.
+    stateVersion = "26.05"; # Please read the comment before changing.
     #    shellAliases = {
     #      "cd" = "zoxide";
     #    };

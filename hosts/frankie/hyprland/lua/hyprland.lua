@@ -15,7 +15,7 @@ hl.config({
 --local exec = hl.exec_once or hl.dispatch.exec_once -- dependent on your helper mappings
 
 -- -- If using Option B (Via NixOS System Session Variables):
-hl.exec_cmd("hyprctl plugin load $HYPR_PLUGIN_DIR/libhy3.so")
+--hl.exec_cmd("hyprctl plugin load $HYPR_PLUGIN_DIR/libhy3.so")
 
 -- 2hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
@@ -284,12 +284,13 @@ hl.bind(mainMod .. " + d", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot))
-hl.bind(mainMod .. " + f", hl.dsp.layout("fullscreen"))
+hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("fullscreen"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("killactive"))
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
+hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("exit"))
 
 -- Move focus with mainMod + arrow keys
 -- hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

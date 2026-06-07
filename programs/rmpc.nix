@@ -1,6 +1,8 @@
+{ pkgsUnstable, ... }:
 {
   programs.rmpc = {
     enable = true;
+    package = pkgsUnstable.rmpc;
     config = ''
       #![enable(implicit_some)]
       #![enable(unwrap_newtypes)]
@@ -9,7 +11,7 @@
           //address: "rupert.roto.lol:6600",
           address: "/tmp/mpd_socket",
           password: None,
-          theme: Some("cat"),
+          //theme: Some("cat"),
           cache_dir: "~/.cache/rmpc",
           lyrics_dir: "/storage/music/root",
           //on_song_change: ["/home/leigh/.config/rmpc/notify.sh", "/home/leigh/.config/rmpc/increment_play_count"],
