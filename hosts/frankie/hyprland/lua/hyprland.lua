@@ -318,7 +318,7 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.bind(mainMod .. " + left", hl.dsp.exec_cmd("hy3:movefocus l"))
+hl.bind(mainMod .. " + left", hl.dsp.exec_cmd("hy3:movefocus, l"))
 hl.bind(mainMod .. " + right", hl.dsp.exec_cmd("hy3:movefocus, r"))
 hl.bind(mainMod .. " + up", hl.dsp.exec_cmd("hy3:movefocus, u"))
 hl.bind(mainMod .. " + down", hl.dsp.exec_cmd("hy3:movefocus, d"))
@@ -363,6 +363,10 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+hl.bind("mouse:276",
+    hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle & pw-play /projects/nix/discord-notification.mp3"),
+    { locked = true, repeating = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

@@ -27,6 +27,7 @@
         modules-left = [ "mpd" ];
         # modules-center = [ "clock" ];
         modules-right = [
+          "pulseaudio#microphone"
           "systemd-failed-units"
           "custom/weather"
           "cpu"
@@ -162,7 +163,7 @@
         cpu = {
           "interval" = 1;
           "format" =
-            "<span color='${config.lib.stylix.colors.withHashtag.base0D}'>  {load}/{usage:3}%</span> {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
+            "<span color='#00C7FD'>  {load}/{usage:3}%</span> {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
           "format-icons" = [
             "<span color='${config.lib.stylix.colors.withHashtag.base0F}'>▁</span>"
             "<span color='${config.lib.stylix.colors.withHashtag.base0E}'>▂</span>"
@@ -199,10 +200,10 @@
         "custom/gpu-usage" = {
           # "exec"= "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total --format=csv,noheader,nounits";
           "exec" = ''
-            nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader | awk -F',' 'BEGIN{gpu=0;used=0;total=0} {gpu+=$1; used+=$2; total+=$3} END{printf "GPU: %d%% | VRAM: %.1f%% (%d/%d MiB)\n", gpu, used*100/total, used, total}'
+            nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader | awk -F',' 'BEGIN{gpu=0;used=0;total=0} {gpu+=$1; used+=$2; total+=$3} END{printf "GPU: %d%% | VRAM: %.1f%%\n", gpu, used*100/total}'
           '';
 
-          "format" = "<span color=\"${config.lib.stylix.colors.withHashtag.base0B}\">󰈐 {}</span>";
+          "format" = "<span color=\"#76B900\">󰈐 {}</span>";
           "return-type" = "";
           "interval" = 1;
         };
@@ -222,6 +223,16 @@
         user = {
           "format" = "up {work_d} days ↑";
           "icon" = false;
+        };
+        "pulseaudio#microphone" = {
+          "format" = "{format_source}";
+          "format-source" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\"> {volume}%</span>";
+          "format-source-muted" = "<span color=\"#ff0000\">  Muted </span>";
+          "on-click" = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +1%";
+          "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";
+          "scroll-step" = 5;
         };
         pulseaudio = {
           "format" =
