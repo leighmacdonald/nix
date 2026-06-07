@@ -14,7 +14,7 @@
           //theme: Some("cat"),
           cache_dir: "~/.cache/rmpc",
           lyrics_dir: "/storage/music/root",
-          //on_song_change: ["/home/leigh/.config/rmpc/notify.sh", "/home/leigh/.config/rmpc/increment_play_count"],
+          on_song_change: ["/projects/nix/discord-mpd.sh"],
           volume_step: 5,
           max_fps: 120,
           scrolloff: 0,

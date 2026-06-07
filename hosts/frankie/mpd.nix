@@ -49,7 +49,7 @@ in
       enable = true;
       mpd = {
         inherit musicDirectory;
-        host = listenAddress;
+        host = "/tmp/mpd_socket";
       };
     };
   };

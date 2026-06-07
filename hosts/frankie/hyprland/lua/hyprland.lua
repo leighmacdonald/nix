@@ -284,7 +284,7 @@ hl.bind(mainMod .. " + d", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot))
-hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("fullscreen"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("killactive"))
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -307,8 +307,8 @@ hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("exit"))
 -- end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+-- hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+-- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

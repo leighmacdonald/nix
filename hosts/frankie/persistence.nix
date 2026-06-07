@@ -58,6 +58,7 @@
         ".config/mpd"
         ".config/input-remapper-2"
         ".config/mozilla"
+        ".config/obs-studio/"
         ".cache"
         ".cargo"
         ".sm-pkg"

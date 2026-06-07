@@ -32,6 +32,8 @@ in
       atop
       dbeaver-bin
       cudatoolkit
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];
@@ -55,7 +57,6 @@ in
       # make sure to also set the portal package, so that they are in sync
       #portalPackage = pkgsUnstable.xdg-desktop-portal-hyprland;
     };
-
     steam = {
       enable = true;
       extraCompatPackages = with pkgs; [

@@ -2,6 +2,7 @@
   pkgs,
   username,
   config,
+  pkgsUnstable,
   ...
 }:
 {
@@ -109,6 +110,8 @@
       hyprlock
       postgresql_18
       chromium
+      ffmpeg
+      mutagen
       # clang
       # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
       #llvmPackages_21.bintools
@@ -120,7 +123,6 @@
       depotdownloader
 
       mpv
-      obs-studio
       lldb
       vscode-extensions.vadimcn.vscode-lldb
       weechat
@@ -150,7 +152,16 @@
       "$HOME/.sm-pkg/sdks/current/addons/sourcemod/scripting"
     ];
   };
-
+  programs.obs-studio = {
+    enable = true;
+    package = pkgsUnstable.obs-studio;
+    plugins = with pkgsUnstable.obs-studio-plugins; [
+      obs-pipewire-audio-capture
+      obs-tuna
+      obs-vkcapture
+      wlrobs
+    ];
+  };
   stylix.targets.firefox = {
     enable = true;
     colorTheme.enable = true;
