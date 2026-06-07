@@ -1,5 +1,5 @@
 {
 	"workspace": {
-		"library": ["/home/leigh/.local/share/hypr/stubs"]
+		"library": ["~/.local/share/hypr/stubs"]
 	}
 }

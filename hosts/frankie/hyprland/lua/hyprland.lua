@@ -12,6 +12,10 @@ hl.config({
     },
 })
 
+--local exec = hl.exec_once or hl.dispatch.exec_once -- dependent on your helper mappings
+
+-- -- If using Option B (Via NixOS System Session Variables):
+hl.exec_cmd("hyprctl plugin load $HYPR_PLUGIN_DIR/libhy3.so")
 
 -- 2hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
@@ -98,6 +102,9 @@ hl.config({
 
 hl.config({
     env = {
+        "XDG_CURRENT_DESKTOP,Hyprland",
+        "XDG_SESSION_TYPE,wayland",
+        "XDG_SESSION_DESKTOP,Hyprland",
         -- Hyprcursor (primary for Wayland / server-side cursor apps)
         "HYPRCURSOR_THEME,rose-pine-hyprcursor",
         "HYPRCURSOR_SIZE,24",
@@ -105,6 +112,9 @@ hl.config({
         -- XCursor fallback (GTK and other legacy cursor apps)
         "XCURSOR_THEME,BreezeX-RosePine-Linux",
         "XCURSOR_SIZE,24",
+        "GDK_BACKEND,wayland,x11",
+        "MOZ_ENABLE_WAYLAND,1",
+        "OZONE_PLATFORM,wayland"
     },
 })
 
@@ -139,7 +149,7 @@ hl.config({
         gaps_in          = 0,
         gaps_out         = 0,
 
-        border_size      = 1,
+        border_size      = 2,
 
         col              = {
             active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
@@ -156,7 +166,7 @@ hl.config({
     },
 
     decoration = {
-        rounding         = 10,
+        rounding         = 0,
         rounding_power   = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -179,7 +189,7 @@ hl.config({
     },
 
     animations = {
-        enabled = true,
+        enabled = false,
     },
 })
 
@@ -189,8 +199,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
@@ -261,7 +271,7 @@ local terminal    = "ghostty +new-window"
 local fileManager = "thunar"
 local menu        = "rofi -show drun -show-icons"
 local screenshot  = "grim -g \"$(slurp -d)\" - | wl-copy"
-local mainMod     = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod     = "SUPER"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))

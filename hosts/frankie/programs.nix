@@ -1,4 +1,11 @@
 { pkgs, ... }:
+let
+  # hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system};
+  hypr-plugin-dir = pkgs.symlinkJoin {
+    name = "hyprland-plugins";
+    paths = [ pkgs.hyprlandPlugins.hy3 ];
+  };
+in
 {
   environment = {
     pathsToLink = [
@@ -29,6 +36,9 @@
       #pkgsUnstable.ladybird
     ];
   };
+  environment.sessionVariables = {
+    HYPR_PLUGIN_DIR = "${hypr-plugin-dir}/lib";
+  };
   programs = {
     thunar.enable = true;
     appimage = {
@@ -45,6 +55,7 @@
       # make sure to also set the portal package, so that they are in sync
       #portalPackage = pkgsUnstable.xdg-desktop-portal-hyprland;
     };
+
     steam = {
       enable = true;
       extraCompatPackages = with pkgs; [
