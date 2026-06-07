@@ -227,8 +227,8 @@
         "pulseaudio#microphone" = {
           "format" = "{format_source}";
           "format-source" =
-            "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\"> {volume}%</span>";
-          "format-source-muted" = "<span color=\"#ff0000\">  Muted </span>";
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\">    {volume}%    </span>";
+          "format-source-muted" = "<span color=\"#ff0000\">▆▇█ Muted █▇▆</span>";
           "on-click" = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +1%";
           "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";
