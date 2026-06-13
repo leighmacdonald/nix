@@ -12,6 +12,7 @@
 
     "/export/storage" = {
       device = "/storage";
+      fsType = "none";
       options = [ "bind" ];
     };
 
@@ -22,6 +23,7 @@
 
     "/export/backup" = {
       device = "/backup";
+      fsType = "none";
       options = [ "bind" ];
     };
   };
