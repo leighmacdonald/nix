@@ -57,7 +57,6 @@
           };
           sql = {
             enable = true;
-            dialect = "postgres";
             extraDiagnostics.types = [ "sqlfluff" ];
             format.type = [ "sqlfluff" ];
           };

@@ -1,11 +1,4 @@
 { pkgs, ... }:
-let
-  # hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system};
-  hypr-plugin-dir = pkgs.symlinkJoin {
-    name = "hyprland-plugins";
-    paths = [ pkgs.hyprlandPlugins.hy3 ];
-  };
-in
 {
   environment = {
     pathsToLink = [
@@ -37,9 +30,6 @@ in
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];
-  };
-  environment.sessionVariables = {
-    HYPR_PLUGIN_DIR = "${hypr-plugin-dir}/lib";
   };
   programs = {
     thunar.enable = true;

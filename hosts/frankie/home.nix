@@ -134,17 +134,22 @@
       lrcget
     ];
     sessionVariables = {
-      #RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-      # Set env variables so we can refer to them from the vim configuration
-      #CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-      #LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
-      #PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+      NVD_BACKEN = "direct";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      HYPR_PLUGINS_DIR = "${
+        pkgs.symlinkJoin {
+          name = "hyprland-plugins";
+          paths = [ "${pkgs.hyprlandPlugins.hy3}" ];
+        }
+      }/lib";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"
