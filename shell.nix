@@ -11,6 +11,7 @@ pkgs.mkShell {
     age
     nixd
     nil
+    nvd
     nixpkgs-fmt
     nixfmt
     statix
