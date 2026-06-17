@@ -1,3 +1,4 @@
+local hy3 = hl.plugin.hy3
 local HOME = os.getenv("HOME")
 local PUBLIC = "/projects/nix/hosts/frankie/hyprland/lua"
 local XDG = os.getenv("XDG_CONFIG_HOME") or (HOME .. "/.config")
@@ -159,29 +160,20 @@ hl.config({
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing    = false,
 
-        layout           = "dwindle",
+        layout           = "hy3",
     },
 
     decoration = {
         rounding         = 0,
-        rounding_power   = 2,
-
-        -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
 
         shadow           = {
-            enabled      = true,
-            range        = 4,
-            render_power = 3,
-            color        = 0xee1a1a1a,
+            enabled = false,
         },
 
         blur             = {
-            enabled  = true,
-            size     = 3,
-            passes   = 1,
-            vibrancy = 0.1696,
+            enabled = false,
         },
     },
 
@@ -189,10 +181,6 @@ hl.config({
         enabled = false,
     },
 })
-
-----------------
-----  MISC  ----
-----------------
 
 hl.config({
     misc = {
@@ -289,12 +277,6 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("exit"))
 
--- Move focus with mainMod + arrow keys
--- hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
--- hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
--- hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
--- hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 -- for i = 1, 10 do
@@ -315,28 +297,32 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.bind(mainMod .. " + left", hl.dsp.exec_cmd("hy3:movefocus, l"))
-hl.bind(mainMod .. " + right", hl.dsp.exec_cmd("hy3:movefocus, r"))
-hl.bind(mainMod .. " + up", hl.dsp.exec_cmd("hy3:movefocus, u"))
-hl.bind(mainMod .. " + down", hl.dsp.exec_cmd("hy3:movefocus, d"))
+hl.bind(mainMod .. " + left", hy3.move_focus("l"))
+hl.bind(mainMod .. " + right", hy3.move_focus("r"))
+hl.bind(mainMod .. " + up", hy3.move_focus("u"))
+hl.bind(mainMod .. " + down", hy3.move_focus("d"))
 
 
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.exec_cmd("hy3:movewindow, left"))
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.exec_cmd("hy3:movewindow, right"))
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.exec_cmd("hy3:movewindow, up"))
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.exec_cmd("hy3:movewindow, down"))
+hl.bind(mainMod .. " + SHIFT + left", hy3.move_window("l"))
+hl.bind(mainMod .. " + SHIFT + right", hy3.move_window("r"))
+hl.bind(mainMod .. " + SHIFT + up", hy3.move_window("u"))
+hl.bind(mainMod .. " + SHIFT + down", hy3.move_window("d"))
+
+local resizeUnit = 50
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.resize({ x = resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.resize({ x = 0, y = resizeUnit, relative = true }))
 
 
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.exec_cmd("resizeactive, 50 0"))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.exec_cmd("resizeactive, -50 0"))
-hl.bind(mainMod .. " + CTRL + up", hl.dsp.exec_cmd("resizeactive, 0 -50"))
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.exec_cmd("resizeactive, 0 50"))
+hl.bind(mainMod .. " + SHIFT + T", hy3.make_group("tab"))
 
 hl.config({
     binds = {
         drag_threshold = 10 -- Fire a drag event only after dragging for more than 10px
     }
 })
+
 hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true, drag = true })   -- ALT + LMB (drag): Move a window by dragging more than 10px.
 hl.bind("ALT + mouse:272", hl.dsp.window.float(), { mouse = true, click = true }) -- ALT + LMB (click): Floats a window by clicking
 
@@ -406,7 +392,6 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
--- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
@@ -436,15 +421,6 @@ hl.config({
     },
 })
 
--------------------
----- AUTOSTART ----
--------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Autostart/
-
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
---
 hl.on("hyprland.start", function()
     hl.dispatch(hl.dsp.focus({ workspace = 1 }))
     -- hl.exec_cmd("uwsm app -- pypr")
