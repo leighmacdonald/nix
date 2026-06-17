@@ -17,6 +17,7 @@
         "repo": "base16.nix",
         "type": "github"
       }
+
     },
     "base16-fish": {
       "flake": false,
