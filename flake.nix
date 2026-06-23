@@ -26,6 +26,8 @@
       url = "github:NotAShelf/nvf/main";
     };
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +38,7 @@
     {
       nixpkgs,
       home-manager,
+      llm-agents,
       nixos-hardware,
       stylix,
       ...
@@ -153,6 +156,7 @@
               inherit username;
               inherit hostName;
               inherit inputs;
+              inherit llm-agents;
               pkgsUnstable = import inputs.nixpkgs-unstable {
                 system = "x86_64-linux";
                 config = {
@@ -165,6 +169,7 @@
             inherit specialArgs;
             system = "x86_64-linux";
             modules = [
+              { nixpkgs.overlays = [ llm-agents.overlays.default ]; }
               # hyprland.homeManagerModules.default
               ./hosts/${hostName}
               {

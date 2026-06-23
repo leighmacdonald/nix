@@ -27,6 +27,7 @@
       cudatoolkit
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
+      llm-agents.pi
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];

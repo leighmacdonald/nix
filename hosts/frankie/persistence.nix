@@ -2,7 +2,8 @@
   username,
   inputs,
   ...
-}: {
+}:
+{
   # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
   systemd.services.home-manager-leigh = {
     preStart = ''
@@ -14,7 +15,7 @@
     '';
   };
 
-  imports = [inputs.impermanence.nixosModules.impermanence];
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
     "/" = {
       device = "none";
@@ -58,11 +59,13 @@
         ".config/input-remapper-2"
         ".config/mozilla"
         ".config/obs-studio/"
+        ".config/comfy-ui/"
         ".cache"
         ".cargo"
         ".sm-pkg"
         ".steam"
         ".rustup"
+        ".pi"
         ".local/share/zed"
         ".local/share/zoxide"
         ".local/share/Steam"
