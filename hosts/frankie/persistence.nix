@@ -54,12 +54,14 @@
     users.${username} = {
       directories = [
         ".mozilla"
+        ".config/mozilla"
         ".config/vesktop"
         ".config/mpd"
         ".config/input-remapper-2"
         ".config/mozilla"
         ".config/obs-studio/"
         ".config/comfy-ui/"
+        ".config/mcp/"
         ".cache"
         ".cargo"
         ".sm-pkg"
