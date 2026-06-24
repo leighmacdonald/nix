@@ -26,6 +26,7 @@ in
       enable = true;
       startWhenNeeded = false;
       user = username;
+      openFirewall = true;
       settings = {
         bind_to_address = "${listenAddress}";
         port = 6600;
