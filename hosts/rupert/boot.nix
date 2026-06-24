@@ -37,6 +37,7 @@
       systemd-boot = {
         enable = true;
         sortKey = "a";
+        configurationLimit = 5;
         memtest86 = {
           sortKey = "c";
           enable = true;
