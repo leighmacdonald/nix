@@ -2,12 +2,11 @@
 {
   stylix.targets.waybar = {
     enable = true;
-    addCss = false;
-    enableLeftBackColors = false;
-    enableCenterBackColors = false;
-    enableRightBackColors = false;
-    fonts.enable = false;
-
+    # addCss = false;
+    # enableLeftBackColors = false;
+    # enableCenterBackColors = false;
+    # enableRightBackColors = false;
+    # fonts.enable = false;
   };
   programs.waybar = {
     enable = true;
@@ -15,16 +14,20 @@
       enable = true;
       enableInspect = false;
     };
+
     settings = {
       mainBar = {
         output = "DP-3";
-        #  "layer" = "Optional", // Waybar at top layer
+        # "layer" = "Optional", // Waybar at top layer
         position = "bottom";
-        #height = 32; # Waybar height (to be removed for auto height)
-        #width = 1280; # Waybar width
+        # height = 32; # Waybar height (to be removed for auto height)
+        # width = 1280; # Waybar width
         spacing = 12; # Gaps between modules (4px)
         # Choose the order of the modules
-        modules-left = [ "mpd" ];
+        modules-left = [
+          "custom/llmbar"
+          # "mpd"
+        ];
         # modules-center = [ "clock" ];
         modules-right = [
           "pulseaudio#microphone"
@@ -69,6 +72,15 @@
           "interval" = 30;
           "format" = " {percentage_free}%";
           "path" = "/mnt/storage/music";
+        };
+        "custom/llmbar" = {
+          "exec" = "/projects/llmbar/src/llmbar.sh";
+          "format" = "{text}";
+          "interval" = 10;
+          "return-type" = "json";
+          "max-length" = 40;
+          "on-click" = "/projects/llmbar/src/llmbar.sh --action unload";
+          "tooltip" = true;
         };
         "hyprland/workspaces" = {
           "persistent-workspaces" = {
@@ -225,9 +237,9 @@
         };
         "pulseaudio#microphone" = {
           "format" = "{format_source}";
-          "format-source" =
-            "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\">    {volume}%    </span>";
-          "format-source-muted" = "<span color=\"#ff0000\">▆▇█ Muted █▇▆</span>";
+          "format-source-muted" =
+            "<span color=\"${config.lib.stylix.colors.withHashtag.base0A}\"> {volume}% </span>";
+          "format-source" = "<span bgcolor=\"#ff0000\" color=\"#000000\"> Open Mic {volume}% </span>";
           "on-click" = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           "on-scroll-up" = "pactl set-source-volume @DEFAULT_SOURCE@ +1%";
           "on-scroll-down" = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";

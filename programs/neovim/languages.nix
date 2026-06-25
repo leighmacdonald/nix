@@ -51,7 +51,7 @@
           };
           python = {
             enable = true;
-            dap.debugger = "debugpy";
+            dap.debugger = [ "debugpy" ];
             format.type = [ "black" ];
             lsp.servers = [ "basedpyright" ];
           };

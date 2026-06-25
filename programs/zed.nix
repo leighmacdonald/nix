@@ -96,7 +96,7 @@
       language_models = {
         openai_compatible = {
           mtp-llama = {
-            api_url = "http://localhost:8081/v1";
+            api_url = "http://localhost:8080/v1";
             available_models = [
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
@@ -113,148 +113,9 @@
               }
             ];
           };
-          # Using Together AI as an example
-          local-llama = {
-            api_url = "http://localhost:8080/v1";
-            available_models = [
-              {
-                name = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q3_K_XL";
-                max_tokens = 64000;
-                max_output_tokens = 32000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-
-              {
-                name = "GLM-4.7-Flash-REAP-23B-A3B-Q4_K_M";
-                max_tokens = 202752;
-                max_output_tokens = 32000;
-                max_completion_tokens = 202752;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-
-              {
-                name = "GLM-4.7-Flash-REAP-23B-A3B-UD-Q4_K_XL";
-                max_tokens = 202752;
-                max_output_tokens = 32000;
-                max_completion_tokens = 202752;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-
-              {
-                name = "GLM-4.7-Flash-Q4_K_M-general";
-                max_tokens = 32768;
-                max_output_tokens = 32768;
-                max_completion_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "GLM-4.7-Flash-Q4_K_M-tool";
-                max_tokens = 32768;
-                max_output_tokens = 32768;
-                # max_completion_tokens = 1024;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen3-coder-Q3";
-                max_tokens = 64000;
-                max_output_tokens = 32000;
-                max_completion_tokens = 1024;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen3-coder-Q4";
-                max_tokens = 64000;
-                max_output_tokens = 32000;
-                max_completion_tokens = 1024;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen3-coder-1M";
-                max_tokens = 1000000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen36-27B-Q5_k_XL";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "qwen36-27B-Q5_k_XL-thinking";
-                max_tokens = 200000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 200000;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-            ];
-          };
         };
       };
-      theme = "Ayu Dark";
+      theme = "Catppuccin Mocha";
       icon_theme = "Catppuccin Mocha";
       telemetry = {
         diagnostics = false;
