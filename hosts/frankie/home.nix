@@ -132,6 +132,8 @@
       wttrbar
       discord
       lrcget
+
+      uv
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

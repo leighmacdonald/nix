@@ -400,6 +400,13 @@ hl.window_rule({
     float = true,
 })
 
+hl.window_rule({
+    match = {
+        class = "(tf_linux64)",
+    },
+    confine_pointer = true
+})
+
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
     dwindle = {
