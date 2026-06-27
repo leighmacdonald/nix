@@ -1,4 +1,8 @@
-{ pkgsUnstable, lib, ... }:
+{
+  pkgsUnstable,
+  lib,
+  ...
+}:
 {
   hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {

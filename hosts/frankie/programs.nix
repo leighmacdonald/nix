@@ -28,6 +28,7 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
       llm-agents.pi
+      llm-agents.hermes-agent
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];
