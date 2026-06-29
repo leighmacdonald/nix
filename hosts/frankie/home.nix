@@ -45,11 +45,6 @@
     ../../services/gpg-agent.nix
   ];
 
-  # LSP stubs for Hyprland's Lua API at a stable user path. The hyprland
-  # package's share/hypr/stubs dir changes hash on each upgrade, so we link
-  # it into ~/.local/share/hypr/stubs and reference *that* from .luarc.json.
-  # Updates automatically on rebuild.
-  home.file.".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
   # Hyprland user config is driven by the symlinked Lua tree below
   # (lua/hyprland.lua and friends). The home-manager Hyprland module is left
   # disabled here so it doesn't write the legacy hyprland.conf — Hyprland 0.55+
@@ -77,6 +72,13 @@
   };
   #xdg.configFile."fish/config.fish".force = true;
   home = {
+    file = {
+      # LSP stubs for Hyprland's Lua API at a stable user path. The hyprland
+      # package's share/hypr/stubs dir changes hash on each upgrade, so we link
+      # it into ~/.local/share/hypr/stubs and reference *that* from .luarc.json.
+      # Updates automatically on rebuild.
+      ".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
+    };
     shell = {
       enableShellIntegration = true;
     };
@@ -169,11 +171,23 @@
       wlrobs
     ];
   };
-  stylix.targets.firefox = {
-    enable = true;
-    colorTheme.enable = true;
-    colors = {
+  stylix.targets = {
+    zed = {
       enable = true;
+    };
+    # qt = {
+    #   colors.enable = false;
+    # };
+    zellij = {
+      enable = true;
+      colors.enable = false;
+    };
+    firefox = {
+      enable = true;
+      colorTheme.enable = true;
+      colors = {
+        enable = true;
+      };
     };
   };
 }

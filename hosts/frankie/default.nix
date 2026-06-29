@@ -40,7 +40,10 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
-
+  # TODO remove
+  nixpkgs.config.permittedInsecurePackages = [
+    "python3.14-vllm-0.16.0"
+  ];
   users.users.leigh.extraGroups = [ "libvirtd" ];
 
   services.udev.packages = [ pkgs.system76-keyboard-configurator ];

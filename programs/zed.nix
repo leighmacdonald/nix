@@ -66,6 +66,21 @@
             model = "Qwen3.6-27B-Q4_K_M-MTP";
             enable_thinking = true;
           }
+          {
+            provider = "mtp-llama";
+            model = "Nemotron-3-Nano-Omni-30B";
+            enable_thinking = false;
+          }
+          {
+            provider = "mtp-llama";
+            model = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
+            enable_thinking = false;
+          }
+          {
+            provider = "mtp-llama";
+            model = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+            enable_thinking = true;
+          }
         ];
         favorite_models = [ ];
         model_parameters = [ ];
@@ -111,11 +126,63 @@
                   chat_completions = true;
                 };
               }
+              {
+                name = "Nemotron-3-Nano-Omni-30B";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "gemma-4-31B-it-UD-Q5_K_XL-thinking";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
             ];
           };
         };
       };
-      theme = "Catppuccin Mocha";
+      #theme = "Catppuccin Mocha";
       icon_theme = "Catppuccin Mocha";
       telemetry = {
         diagnostics = false;

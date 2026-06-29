@@ -1,4 +1,5 @@
 {
-  sops.secrets = {
+  sops.secrets.hf_token = {
+
   };
 }

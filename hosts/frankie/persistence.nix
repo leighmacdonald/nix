@@ -79,6 +79,7 @@
         "Downloads"
         ".config/Code/User"
         ".agents/"
+        ".hermes"
         {
           directory = ".gnupg";
           mode = "0700";
