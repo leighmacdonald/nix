@@ -48,16 +48,47 @@
 
     };
 
-    maps.normal = {
-      "<leader>r".action = "<cmd>Telescope find_files<CR>"; # Find files
-      "<leader>tl".action = "<cmd>Telescope live_grep<CR>"; # Live grep
-      #"<leader>tb".action = "<cmd>Telescope buffers<CR>"; # Buffers
-      "<leader>th".action = "<cmd>Telescope help_tags<CR>"; # Help tags
-      "<leader>tq".action = "<cmd>Telescope frecency<CR>"; # Frequent files
-      "<leader>tu".action = "<cmd>Telescope undo<CR>"; # Undo history
-      "<leader>tgc".action = "<cmd>Telescope git_commits<CR>"; # Git commits
-      "<leader>tgs".action = "<cmd>Telescope git_status<CR>"; # Git status
-    };
-
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>r";
+        action = "<cmd>Telescope find_files<CR>"; # Find files
+      }
+      {
+        mode = "n";
+        key = "<leader>tl";
+        action = "<cmd>Telescope live_grep<CR>"; # Live grep
+      }
+      {
+        mode = "n";
+        key = "<leader>tb";
+        action = "<cmd>Telescope buffers<CR>"; # Buffers
+      }
+      {
+        mode = "n";
+        key = "<leader>th";
+        action = "<cmd>Telescope help_tags<CR>"; # Help tags
+      }
+      {
+        mode = "n";
+        key = "<leader>tq";
+        action = "<cmd>Telescope frecency<CR>"; # Frequent files
+      }
+      {
+        mode = "n";
+        key = "<leader>tu";
+        action = "<cmd>Telescope undo<CR>"; # Undo history
+      }
+      {
+        mode = "n";
+        key = "<leader>tgc";
+        action = "<cmd>Telescope git_commits<CR>"; # Git commits
+      }
+      {
+        mode = "n";
+        key = "<leader>tgs";
+        action = "<cmd>Telescope git_status<CR>"; # Git status
+      }
+    ];
   };
 }

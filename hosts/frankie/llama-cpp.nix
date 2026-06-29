@@ -10,10 +10,11 @@
   environment = {
     etc."llm/vllm.Dockerfile" = {
       text = ''
-        FROM vllm/vllm-openai:cu129-nightly
+        FROM vllm/latest-cu129-ubuntu2404
         RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends git
-        RUN uv pip install --system vllm[audio]==0.11.0
-        RUN uv pip install --system git+https://github.com/huggingface/transformers.git
+        RUN uv pip install --system causal-conv1d mamba-ssm --no-build-isolation
+        RUN uv pip install --system vllm[audio]==0.23.0
+        # RUN uv pip install --system git+https://github.com/huggingface/transformers.git
       '';
     };
     systemPackages = [
@@ -68,7 +69,7 @@
               -p \${PORT}:8000 \
               --ipc=host \
               vllm-local \
-              --model mistralai/Mistral-7B-v0.1";
+              --trust-remote-code mistralai/Mistral-7B-v0.1";
         };
         "Nemotron-3-Nano-Omni-30B" = {
           name = "Nemotron-3-Nano-Omni-30B";
@@ -77,7 +78,17 @@
               -p \${PORT}:8000 \
               --ipc=host \
               vllm-local \
-              --model nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8";
+              --trust-remote-code nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8";
+        };
+
+        "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL" = {
+          name = "gemma-4-31B-it-UD-Q5_K_XL";
+          cmd = "\${binary}
+             -m \${models_dir}/Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL.gguf
+             --temp 1.0 \
+             --top-p 0.95 \
+             --top-k 64  \
+             --port \${PORT}";
         };
 
         # gemma-4-31B = 60 layers
@@ -143,14 +154,15 @@
              --chat-template-kwargs '{\"preserve_thinking\":true}' \
              --port \${PORT}";
         };
+
         # https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF
         # 40 layer
-        "Qwen3.6-35B-A3B-UD-Q4_K_XL" = {
-          name = "Qwen3.6-35B-A3B-UD-Q4_K_XL";
+        "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP" = {
+          name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
           cmd = "\${binary} \
-            -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf \
+            -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP.gguf \
             --chat-template-kwargs '{\"enable_thinking\":false}' \
-            -ngl 30 \
+            -ngl 35 \
             --ctx-size 128000 \
             --no-mmproj-offload \
             --no-context-shift \
@@ -173,11 +185,12 @@
             --fit off \
             --reasoning on";
         };
-        "Qwen3.6-35B-A3B-UD-Q4_K_XL-thinking" = {
-          name = "Qwen3.6-35B-A3B-UD-Q4_K_XL";
+
+        "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking" = {
+          name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
           cmd = "\${binary} \
-            -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf \
-             -ngl 30 \
+            -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP.gguf \
+             -ngl 35 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \

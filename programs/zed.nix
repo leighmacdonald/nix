@@ -68,6 +68,16 @@
           }
           {
             provider = "mtp-llama";
+            model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
+            enable_thinking = false;
+          }
+          {
+            provider = "mtp-llama";
+            model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
+            enable_thinking = true;
+          }
+          {
+            provider = "mtp-llama";
             model = "Nemotron-3-Nano-Omni-30B";
             enable_thinking = false;
           }
@@ -115,6 +125,32 @@
             available_models = [
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
                 max_tokens = 200000;
                 max_output_tokens = 200000;
                 max_completion_tokens = 64000;

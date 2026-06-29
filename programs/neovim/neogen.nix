@@ -8,11 +8,13 @@
       };
     };
 
-    maps.normal = {
-      "<Leader>nf" = {
+    keymaps = [
+      {
+        mode = "n";
+        key = "<Leader>nf";
         action = ":lua require('neogen').generate()<CR>";
         desc = "Add annotation";
-      };
-    };
+      }
+    ];
   };
 }

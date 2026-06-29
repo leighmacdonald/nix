@@ -13,10 +13,22 @@
       };
     };
 
-    maps.normal = {
-      "<leader>nn".action = "<cmd>lua require('neotest').run.run()<CR>"; # Run nearest test
-      "<leader>nf".action = "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>"; # Tests in current file
-      "<leader>ns".action = "<cmd>lua require('neotest').summary.toggle()<CR>"; # Toggle test summary
-    };
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>nn";
+        action = "<cmd>lua require('neotest').run.run()<CR>"; # Run nearest test
+      }
+      {
+        mode = "n";
+        key = "<leader>nf";
+        action = "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>"; # Tests in current file
+      }
+      {
+        mode = "n";
+        key = "<leader>ns";
+        action = "<cmd>lua require('neotest').summary.toggle()<CR>"; # Toggle test summary
+      }
+    ];
   };
 }

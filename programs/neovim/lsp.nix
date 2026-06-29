@@ -17,13 +17,27 @@
         setupOpts.handle_leading_whitespace = true;
       };
     };
-    maps = {
-      normal = {
-        "<leader>pd".action = "<cmd>lua vim.lsp.buf.definition()<CR>";
-        "<leader>pr".action = "<cmd>lua vim.lsp.buf.references()<CR>";
-        "<leader>ph".action = "<cmd>lua vim.lsp.buf.hover()<CR>";
-        "<leader>pf".action = "<cmd>lua vim.lsp.buf.formatting()<CR>";
-      };
-    };
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>pd";
+        action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>pr";
+        action = "<cmd>lua vim.lsp.buf.references()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>ph";
+        action = "<cmd>lua vim.lsp.buf.hover()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>pf";
+        action = "<cmd>lua vim.lsp.buf.formatting()<CR>";
+      }
+    ];
   };
 }

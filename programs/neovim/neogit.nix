@@ -8,14 +8,42 @@
       };
     };
 
-    maps.normal = {
-      "<leader>v".action = "<cmd>Neogit<CR>";
-      "<leader>c".action = "<cmd>Neogit close<CR>";
-      "<leader>gs".action = "<cmd>Neogit kind=split<CR>"; # Open Neogit in a split
-      "<leader>gy".action = "<cmd>Neogit commit<CR>"; # Shortcut to commit
-      "<leader>gd".action = "<cmd>Neogit diff<CR>"; # View diffs
-      "<leader>gp".action = "<cmd>Neogit push<CR>"; # Push changes
-      "<leader>gl".action = "<cmd>Neogit log<CR>"; # View commit log
-    };
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>v";
+        action = "<cmd>Neogit<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>c";
+        action = "<cmd>Neogit close<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>gs";
+        action = "<cmd>Neogit kind=split<CR>"; # Open Neogit in a split
+      }
+      {
+        mode = "n";
+        key = "<leader>gy";
+        action = "<cmd>Neogit commit<CR>"; # Shortcut to commit
+      }
+      {
+        mode = "n";
+        key = "<leader>gd";
+        action = "<cmd>Neogit diff<CR>"; # View diffs
+      }
+      {
+        mode = "n";
+        key = "<leader>gp";
+        action = "<cmd>Neogit push<CR>"; # Push changes
+      }
+      {
+        mode = "n";
+        key = "<leader>gl";
+        action = "<cmd>Neogit log<CR>"; # View commit log
+      }
+    ];
   };
 }

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.nvf.settings.vim = {
     extraPlugins = with pkgs.vimPlugins; {
       neotree = {
@@ -13,9 +13,17 @@
       };
     };
 
-    maps.normal = {
-      "<leader>z".action = "<cmd>Neotree<CR>";
-      "<leader>x".action = "<cmd>Neotree close<CR>";
-    };
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>z";
+        action = "<cmd>Neotree<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>x";
+        action = "<cmd>Neotree close<CR>";
+      }
+    ];
   };
 }
