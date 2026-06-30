@@ -13,6 +13,7 @@
     ./secrets.nix
     ./stylix.nix
     ./virt.nix
+    ./services.nix
     #./ollama.nix
     ./llama-cpp.nix
 
@@ -46,5 +47,4 @@
   ];
   users.users.leigh.extraGroups = [ "libvirtd" ];
 
-  services.udev.packages = [ pkgs.system76-keyboard-configurator ];
 }

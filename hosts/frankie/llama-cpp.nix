@@ -10,7 +10,7 @@
   environment = {
     etc."llm/vllm.Dockerfile" = {
       text = ''
-        FROM vllm/latest-cu129-ubuntu2404
+        FROM vllm/vllm-openai:latest-cu129
         RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends git
         RUN uv pip install --system causal-conv1d mamba-ssm --no-build-isolation
         RUN uv pip install --system vllm[audio]==0.23.0
