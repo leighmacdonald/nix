@@ -68,6 +68,11 @@
           }
           {
             provider = "mtp-llama";
+            model = "Qwen3.6-27B-UD-Q5_K_XL";
+            enable_thinking = true;
+          }
+          {
+            provider = "mtp-llama";
             model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
             enable_thinking = false;
           }
@@ -128,6 +133,19 @@
                 max_tokens = 200000;
                 max_output_tokens = 200000;
                 max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen3.6-27B-UD-Q5_K_XL";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 128000;
                 capabilities = {
                   tools = true;
                   images = false;

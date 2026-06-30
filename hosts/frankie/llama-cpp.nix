@@ -146,6 +146,35 @@
              --port \${PORT}";
         };
 
+        # 64 layers total for qwen36-27b
+        "Qwen3.6-27B-UD-Q5_K_XL" = {
+          name = "Qwen3.6-27B-UD-Q5_K_XL";
+          cmd = "\${binary} \
+             -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
+             -ngl 40 \
+             --ctx-size 128000 \
+             --no-mmproj-offload \
+             --no-context-shift \
+             --kv-unified \
+             --spec-type draft-mtp \
+             --spec-draft-n-max 2 \
+             --spec-draft-p-min 0.75 \
+             -fa on --jinja --no-mmap \
+             --cache-ram -1 \
+             --no-warmup -np 1 -n 32768 \
+             --cache-type-k q4_0 \
+             --cache-type-v q4_0 \
+             --temp 0.6 \
+             --min-p 0.00 \
+             --top-k 20 \
+             --top-p 0.8 \
+             --presence-penalty 0.0 \
+             --repeat-penalty 1.05 \
+             --fit off \
+             --reasoning on \
+             --chat-template-kwargs '{\"preserve_thinking\":true}' \
+             --port \${PORT}";
+        };
         # https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF
         # 40 layer
         "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP" = {
