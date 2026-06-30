@@ -22,6 +22,7 @@
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
     ./hyprland
+    ./hyprpaper.nix
     #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
@@ -175,12 +176,15 @@
     zed = {
       enable = true;
     };
+    hyprpaper = {
+      enable = true;
+    };
     # qt = {
     #   colors.enable = false;
     # };
     zellij = {
       enable = true;
-      colors.enable = false;
+      colors.enable = true;
     };
     firefox = {
       enable = true;
