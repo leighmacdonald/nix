@@ -62,15 +62,6 @@
       };
 
       models = {
-        "Mistral-7B-v0.1" = {
-          name = "Mistral-7B-v0.1";
-          cmd = "\${docker_bin} run  --device nvidia.com/gpu=all \
-              -v /dump/llm/huggingface:/root/.cache/huggingface \
-              -p \${PORT}:8000 \
-              --ipc=host \
-              vllm-local \
-              --trust-remote-code mistralai/Mistral-7B-v0.1";
-        };
         "Nemotron-3-Nano-Omni-30B" = {
           name = "Nemotron-3-Nano-Omni-30B";
           cmd = "\${docker_bin} run  --device nvidia.com/gpu=all \

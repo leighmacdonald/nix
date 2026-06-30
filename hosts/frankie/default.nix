@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   imports = [
     ./audio.nix
@@ -34,7 +33,6 @@
     ../../modules/secrets.nix
     ../../modules/unfree.nix
     ../../modules/nix.nix
-    # ../../modules/zram.nix
 
     ../../services/docker.nix
     ../../services/node_exporter.nix
@@ -45,6 +43,4 @@
   nixpkgs.config.permittedInsecurePackages = [
     "python3.14-vllm-0.16.0"
   ];
-  users.users.leigh.extraGroups = [ "libvirtd" ];
-
 }

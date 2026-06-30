@@ -3,6 +3,7 @@
   username,
   config,
   pkgsUnstable,
+  inputs,
   ...
 }:
 {
@@ -79,6 +80,10 @@
       # it into ~/.local/share/hypr/stubs and reference *that* from .luarc.json.
       # Updates automatically on rebuild.
       ".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
+      ".wallpaper" = {
+        source = "${inputs.self}/wallpaper";
+        recursive = true;
+      };
     };
     shell = {
       enableShellIntegration = true;
