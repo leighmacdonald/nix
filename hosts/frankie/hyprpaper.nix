@@ -13,7 +13,7 @@ in
         }
         {
           monitor = "DP-3";
-          path = wallpaperPath + "RosettaNebula-1080.png";
+          path = wallpaperPath + "RosetteNebula-1080.png";
         }
         {
           monitor = "HDMI-A-1";
