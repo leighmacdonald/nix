@@ -137,6 +137,8 @@
       lrcget
 
       uv
+
+      lact
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
