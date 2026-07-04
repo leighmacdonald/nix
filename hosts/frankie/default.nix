@@ -15,7 +15,6 @@
     ./services.nix
     #./ollama.nix
     ./llama-cpp.nix
-    ./opencode.nix
 
     ../../env/locale.nix
     ../../env/console.nix

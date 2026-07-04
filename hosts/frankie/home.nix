@@ -25,6 +25,8 @@
     ./steam.nix
     ./hyprland
     ./hyprpaper.nix
+    ./mcp.nix
+    ./opencode.nix
     #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix

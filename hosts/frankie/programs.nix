@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }: {
+{ pkgs, ... }: {
   environment = {
     pathsToLink = [
       "/share/applications"
