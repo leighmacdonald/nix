@@ -53,7 +53,7 @@
       globalTTL = 1800;
       macros = {
         docker_bin = "${pkgs.docker}/bin/docker";
-        models_dir = "/dump/models";
+        models_dir = "/projects/models";
         binary = "${
           (pkgsUnstable.llama-cpp.override {
             cudaSupport = true;
@@ -121,8 +121,8 @@
           name = "Qwen3.6-27B-Q4_K_M-MTP";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 99 \
-             --ctx-size 128000 \
+             -ngl 64 \
+             --ctx-size 64000 \
              --no-mmproj-offload \
              --no-context-shift \
              --kv-unified \
@@ -131,7 +131,7 @@
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
-             -np 1 -n 32768 \
+             --no-warmup -np 1 -n 32768 \
              --cache-type-k q4_0 \
              --cache-type-v q4_0 \
              --temp 0.6 \
@@ -142,7 +142,6 @@
              --repeat-penalty 1.05 \
              --fit off \
              --reasoning on \
-             --reasoning-preserve \
              --chat-template-kwargs '{\"preserve_thinking\":true}' \
              --port \${PORT}";
         };
