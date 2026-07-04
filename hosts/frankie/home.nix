@@ -22,6 +22,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
+    ./steam.nix
     ./hyprland
     ./hyprpaper.nix
     #./mpd.nix
@@ -144,6 +145,9 @@
       uv
 
       lact
+      pg_top
+
+      gh
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

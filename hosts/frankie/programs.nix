@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, pkgsUnstable, ... }: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -28,6 +28,7 @@
       xdg-desktop-portal-gtk
       llm-agents.pi
       e2fsprogs
+      pkgsUnstable.opencode
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
     ];

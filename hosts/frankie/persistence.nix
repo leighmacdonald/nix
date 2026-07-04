@@ -2,8 +2,7 @@
   username,
   inputs,
   ...
-}:
-{
+}: {
   # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
   systemd.services.home-manager-leigh = {
     preStart = ''
@@ -15,7 +14,7 @@
     '';
   };
 
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
+  imports = [inputs.impermanence.nixosModules.impermanence];
   fileSystems = {
     "/" = {
       device = "none";
@@ -60,6 +59,7 @@
         ".config/obs-studio/"
         ".config/comfy-ui/"
         ".config/mcp/"
+        ".config/gh"
         ".cache"
         ".cargo"
         ".sm-pkg"

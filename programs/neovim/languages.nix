@@ -41,7 +41,7 @@
           markdown = {
             enable = true;
             lsp.servers = [ "marksman" ];
-            format.type = [ "prettierd" ];
+            format.type = [ "prettier" ];
             extensions.markview-nvim.enable = true;
           };
           nix = {
@@ -82,7 +82,7 @@
           typescript = {
             enable = true;
             format = {
-              type = [ "prettierd" ];
+              type = [ "prettier" ];
             };
             extensions = {
               ts-error-translator.enable = true;

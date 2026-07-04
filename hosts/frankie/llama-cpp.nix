@@ -121,7 +121,7 @@
           name = "Qwen3.6-27B-Q4_K_M-MTP";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 55 \
+             -ngl 99 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -131,9 +131,9 @@
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
-             --no-warmup -np 1 -n 32768 \
-             --cache-type-k q8_0 \
-             --cache-type-v q8_0 \
+             -np 1 -n 32768 \
+             --cache-type-k q4_0 \
+             --cache-type-v q4_0 \
              --temp 0.6 \
              --min-p 0.00 \
              --top-k 20 \
@@ -142,6 +142,7 @@
              --repeat-penalty 1.05 \
              --fit off \
              --reasoning on \
+             --reasoning-preserve \
              --chat-template-kwargs '{\"preserve_thinking\":true}' \
              --port \${PORT}";
         };
@@ -152,7 +153,7 @@
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
              -ngl 40 \
-             --ctx-size 128000 \
+             --ctx-size 256000 \
              --no-mmproj-offload \
              --no-context-shift \
              --kv-unified \
@@ -161,7 +162,7 @@
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
-             --no-warmup -np 1 -n 32768 \
+             -np 1 -n 32768 \
              --cache-type-k q4_0 \
              --cache-type-v q4_0 \
              --temp 0.6 \
