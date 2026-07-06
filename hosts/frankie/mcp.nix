@@ -3,18 +3,18 @@
     enable = true;
     servers = {
       postgres = {
-        command = "docker";
+        enabled = true;
+        command = "uvx";
         args = [
-          "run"
-          "-i"
-          "--rm"
-          "-e"
-          "DATABASE_URI"
-          "crystaldba/postgres-mcp"
+          "postgres-mcp"
           "--access-mode=unrestricted"
         ];
+        env = {
+          DATABASE_URI = "postgresql://gbans:gbans@localhost:5432/gbans";
+        };
       };
       chrome = {
+        enabled = true;
         command = "npx";
         args = [
           "-y"

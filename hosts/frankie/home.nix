@@ -24,6 +24,7 @@
     ../../programs/home-manager.nix
     ./steam.nix
     ./hyprland
+    ./hypridle.nix
     ./hyprpaper.nix
     ./mcp.nix
     ./opencode.nix
@@ -150,6 +151,7 @@
       pg_top
 
       gh
+      libnotify
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

@@ -1,12 +1,31 @@
 { pkgsUnstable, ... }: {
   programs.opencode = {
+    tui = {
+      # theme = "ayu";
+    };
     enable = true;
     enableMcpIntegration = true;
+    extraPackages = with pkgsUnstable; [
+      uv
+      shfmt
+      ripgrep
+      biome
+      rustfmt
+      clang-tools
+      nixfmt
+
+    ];
     package = pkgsUnstable.opencode;
     web = {
       enable = true;
     };
     settings = {
+      formatter = true;
+      permission = {
+        "*" = "allow";
+        # edit = "allow";
+        # bash = "allow";
+      };
       provider = {
         custom-local = {
           npm = "@ai-sdk/openai-compatible";
@@ -45,37 +64,6 @@
               };
             };
           };
-        };
-      };
-      mcp = {
-        postgres = {
-          type = "local";
-          enabled = true;
-          command = [
-            "docker"
-            "run"
-            "-i"
-            "--rm"
-            "-e"
-            "DATABASE_URI"
-            "crystaldba/postgres-mcp"
-            "--access-mode=unrestricted"
-          ];
-          env = {
-            "DATABASE_URI" = "postgresql://gbans:gbans@localhost:5432/gbans";
-          };
-        };
-
-        chrome = {
-          enabled = true;
-          type = "local";
-          command = [
-            "npx"
-            "-y"
-            "chrome-devtools-mcp@latest"
-            "--auto-connect"
-            "--browser-url=http://127.0.0.1:9222"
-          ];
         };
       };
     };
