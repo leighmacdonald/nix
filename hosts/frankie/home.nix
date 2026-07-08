@@ -22,6 +22,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
+    ./discord.nix
     ./steam.nix
     ./hyprland
     ./hypridle.nix
@@ -130,17 +131,14 @@
       depotdownloader
       mpv
       lldb
-      vscode-extensions.vadimcn.vscode-lldb
       weechat
       playerctl
       p7zip
       wttrbar
-      discord
       lrcget
       uv
       lact
       pg_top
-      gh
       libnotify
     ];
     sessionVariables = {
@@ -166,6 +164,15 @@
       "/nix/var/nix/profiles/default/bin"
       "$HOME/.sm-pkg/sdks/current/addons/sourcemod/scripting"
     ];
+  };
+  programs.gh = {
+    enable = true;
+    settings = {
+      aliases = { };
+      editor = "nvim";
+      git_protocol = "ssh";
+      version = 1;
+    };
   };
   programs.obs-studio = {
     enable = true;

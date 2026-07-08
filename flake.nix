@@ -3,7 +3,7 @@
 
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
-
+    nixcord.url = "github:4evy/nixcord";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
