@@ -62,6 +62,7 @@
   # Hyprland's autoreload. No nixos-rebuild needed for keybinds or rules.
   xdg.configFile."hypr/hyprland.lua".source =
     config.lib.file.mkOutOfStoreSymlink "/projects/nix/hosts/frankie/hyprland/lua/hyprland.lua";
+
   # UWSM env injection — sources home-manager's session vars (including
   # home.sessionPath additions like ~/.local/bin) into the Hyprland session
   # via UWSM. Without this, Hyprland-spawned processes can't find
@@ -74,6 +75,10 @@
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];
+    };
+    "org/gtk/settings/file-chooser" = {
+      show-hidden = true;
+      sort-directories-first = true;
     };
   };
   #xdg.configFile."fish/config.fish".force = true;
@@ -102,11 +107,9 @@
     #xdg.configFile."fish/config.fish".force = true;
 
     packages = with pkgs; [
-      # babelfish
       sops
       ssh-to-age
       age
-
       yt-dlp
       delta
       bat
@@ -124,32 +127,19 @@
       chromium
       ffmpeg
       mutagen
-      # clang
-      # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
-      #llvmPackages_21.bintools
-      # rustup
-      # pkg-config
-      # openssl
-      # cargo-audit
-
       depotdownloader
-
       mpv
       lldb
       vscode-extensions.vadimcn.vscode-lldb
       weechat
       playerctl
-
       p7zip
       wttrbar
       discord
       lrcget
-
       uv
-
       lact
       pg_top
-
       gh
       libnotify
     ];
