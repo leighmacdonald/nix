@@ -19,6 +19,10 @@
         isDefault = true;
         name = "frankie";
         settings = {
+          # Disable screen/wake locks
+          "media.video-wakelock" = false;
+          "dom.screenwakelock.enabled" = false;
+          "permissions.default.screen-wake-lock" = 0;
           "webgl.disabled" = false;
           "privacy.resistFingerprinting" = false;
           "privacy.clearOnShutdown.history" = false;

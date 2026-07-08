@@ -93,6 +93,7 @@
         # Select exteral DAC by default
         ".config/wireplumber/default-nodes"
         ".config/jellyfin-tui/config.yaml"
+        ".config/gtk-3.0/bookmarks"
         #".config/Code/User/settings.json"
         # Configure / Disable io
         #".local/share/fish/alt_history"

@@ -1,7 +1,20 @@
-{ pkgsUnstable, ... }: {
+{
+  pkgsUnstable,
+  config,
+  ...
+}: {
+  stylix.targets.opencode.enable = false;
+
+  xdg.configFile = {
+    "opencode/plugins/opencode-review.ts".source =
+      config.lib.file.mkOutOfStoreSymlink "/projects/opencode-review/src/index.ts";
+    "opencode/themes/ayu-dark.json".source =
+      config.lib.file.mkOutOfStoreSymlink "/projects/opencode-ayu-theme/.opencode/themes/ayu-dark.json";
+  };
+
   programs.opencode = {
     tui = {
-      # theme = "ayu";
+      theme = "ayu-dark";
     };
     enable = true;
     enableMcpIntegration = true;
@@ -13,13 +26,15 @@
       rustfmt
       clang-tools
       nixfmt
-
+      direnv
     ];
     package = pkgsUnstable.opencode;
     web = {
       enable = true;
     };
     settings = {
+      plugin = ["opencode-review" "@simonwjackson/opencode-direnv"];
+
       formatter = true;
       permission = {
         "*" = "allow";

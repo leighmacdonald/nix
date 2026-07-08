@@ -42,14 +42,15 @@
     ];
 
     userSettings = {
-      # edit_predictions = {
-      #   open_ai_compatible_api = {
-      #     max_output_tokens = 64;
-      #     prompt_format = "glm";
-      #     model = "GLM-4.7-Flash-Q4_K_M-tool";
-      #     api_url = "http://localhost:8080/v1";
-      #   };
-      # };
+      edit_predictions = {
+        provider = "open_ai_compatible_api";
+        "open_ai_compatible_api" = {
+          prompt_format = "infer";
+          max_output_tokens = 512;
+          model = "sweep-next-edit-1.5b.q8_0.v2";
+          api_url = "http://localhost:8081/v1/completions";
+        };
+      };
       agent = {
         sidebar_side = "right";
         enable_feedback = false;
@@ -57,7 +58,7 @@
         default_profile = "ask";
         default_model = {
           provider = "mtp-llama";
-          model = "Qwen3.6-27B-Q4_K_M-MTP";
+          model = "Qwen3.6-27B-UD-Q5_K_XL";
           enable_thinking = false;
         };
         inline_alternatives = [
@@ -128,6 +129,20 @@
           mtp-llama = {
             api_url = "http://localhost:8080/v1";
             available_models = [
+              {
+                name = "Qwen3.6-27B-Q4_K_M-MTP";
+                max_tokens = 200000;
+                max_output_tokens = 200000;
+                max_completion_tokens = 8192;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
                 max_tokens = 200000;

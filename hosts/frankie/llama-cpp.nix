@@ -6,6 +6,23 @@
   ...
 }:
 {
+  systemd.services.autocomplete = {
+    description = "llama-server for autocomplete";
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      User = username;
+      Restart = "always";
+      ExecStart = "${
+        (pkgsUnstable.llama-cpp.override {
+          cudaSupport = true;
+        })
+      }/bin/llama-server -m /projects/models/fitm/sweep-next-edit-1.5b.q8_0.v2.gguf -ngl 99 -c 8192 --port 8081";
+    };
+  };
+
   hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {
     etc."llm/vllm.Dockerfile" = {
@@ -73,7 +90,7 @@
         };
 
         "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL" = {
-          name = "gemma-4-31B-it-UD-Q5_K_XL";
+          name = "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL";
           cmd = "\${binary}
              -m \${models_dir}/Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL.gguf
              --temp 1.0 \
@@ -91,6 +108,53 @@
              --temp 1.0 \
              --top-p 0.95 \
              --top-k 64  \
+             --port \${PORT}";
+        };
+        # codegemma-1.1-2b-f16.gguf
+        # codegemma-7b-f16.gguf
+        # https://huggingface.co/google/gemma-7b-it/discussions/38#65d7b14adb51f7c160769fa1
+        "codegemma-1.1-2b-f16" = {
+          name = "codegemma-1.1-2b-f16";
+          cmd = "\${binary}
+             -m \${models_dir}/fitm/codegemma-1.1-2b-f16.gguf
+             -ngl 99 \
+             -e --temp 0 --repeat-penalty 1.0 \
+             --port \${PORT}";
+        };
+        "codegemma-7b-f16" = {
+          name = "codegemma-7b-f16";
+          cmd = "\${binary}
+             -m \${models_dir}/fitm/codegemma-7b-f16.gguf
+             -ngl 99 \
+             -e --temp 0 --repeat-penalty 1.0  \
+             --port \${PORT}";
+        };
+
+        # omnicoder-9b-q8_0.gguf
+        "omnicoder-9b-q8_0" = {
+          name = "omnicoder-9b-q8_0";
+          cmd = "\${binary}
+             -m \${models_dir}/fitm/omnicoder-9b-q8_0.gguf
+             -ngl 99 \
+             -c 8192 \
+             --port \${PORT}";
+        };
+        # sweep-next-edit-v2-7b-q8_0.gguf https://huggingface.co/Cyanophyte/sweep-next-edit-v2-7B-Q8_0-GGUF
+        "sweep-next-edit-v2-7b-q8_0" = {
+          name = "sweep-next-edit-v2-7b-q8_0";
+          cmd = "\${binary}
+             -m \${models_dir}/fitm/sweep-next-edit-v2-7b-q8_0.gguf
+             -ngl 99 \
+             -c 8192 \
+             --port \${PORT}";
+        };
+        # sweep-next-edit-1.5b.q8_0.v2.gguf https://huggingface.co/sweepai/sweep-next-edit-1.5B
+        "sweep-next-edit-1.5b.q8_0.v2" = {
+          name = "sweep-next-edit-1.5b.q8_0.v2";
+          cmd = "\${binary}
+             -m \${models_dir}/fitm/sweep-next-edit-1.5b.q8_0.v2.gguf
+             -ngl 99 \
+             -c 8192 \
              --port \${PORT}";
         };
 
@@ -132,8 +196,8 @@
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
              --no-warmup -np 1 -n 32768 \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
+             --cache-type-k q8_0 \
+             --cache-type-v q8_0 \
              --temp 0.6 \
              --min-p 0.00 \
              --top-k 20 \
@@ -161,7 +225,7 @@
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
-             -np 1 -n 32768 \
+             --no-warmup -np 1 -n 32768 \
              --cache-type-k q4_0 \
              --cache-type-v q4_0 \
              --temp 0.6 \
