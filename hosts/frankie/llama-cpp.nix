@@ -5,6 +5,14 @@
   username,
   ...
 }:
+let
+  models_dir = "/projects/models";
+  binary = "${
+    (pkgsUnstable.llama-cpp.override {
+      cudaSupport = true;
+    })
+  }/bin/llama-server";
+in
 {
   systemd.services.autocomplete = {
     description = "llama-server for autocomplete";
@@ -15,25 +23,21 @@
       Type = "simple";
       User = username;
       Restart = "always";
-      ExecStart = "${
-        (pkgsUnstable.llama-cpp.override {
-          cudaSupport = true;
-        })
-      }/bin/llama-server -m /projects/models/fitm/sweep-next-edit-1.5b.q8_0.v2.gguf -ngl 99 -c 8192 --port 8081";
+      ExecStart = "${binary} -m ${models_dir}/fitm/sweep-next-edit-1.5b.q8_0.v2.gguf -ngl 99 -c 8192 --port 8081";
     };
   };
 
   hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {
-    etc."llm/vllm.Dockerfile" = {
-      text = ''
-        FROM vllm/vllm-openai:latest-cu129
-        RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends git
-        RUN uv pip install --system causal-conv1d mamba-ssm --no-build-isolation
-        RUN uv pip install --system vllm[audio]==0.23.0
-        # RUN uv pip install --system git+https://github.com/huggingface/transformers.git
-      '';
-    };
+    # etc."llm/vllm.Dockerfile" = {
+    #   text = ''
+    #     FROM vllm/vllm-openai:latest-cu129
+    #     RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends git
+    #     RUN uv pip install --system causal-conv1d mamba-ssm --no-build-isolation
+    #     RUN uv pip install --system vllm[audio]==0.23.0
+    #     # RUN uv pip install --system git+https://github.com/huggingface/transformers.git
+    #   '';
+    # };
     systemPackages = [
       pkgs.python314Packages.huggingface-hub
       pkgs.python314Packages.hf-transfer
@@ -53,12 +57,12 @@
     group = "llama-swap";
     extraGroups = [ "docker" ];
   };
-  system.activationScripts.buildVllm = ''
-    ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
-  '';
+  # system.activationScripts.buildVllm = ''
+  #   ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
+  # '';
   system.activationScripts.downloadModels = ''
-    mkdir -p /dump/models
-    chown -R ${username}:lusers /dump/models
+    mkdir -p /projects/models
+    chown -R ${username}:lusers /projects/models
     # Add commands or derivations to populate your models here
   '';
   services.llama-swap = {
@@ -69,25 +73,21 @@
     settings = {
       globalTTL = 1800;
       macros = {
+        inherit models_dir;
+        inherit binary;
         docker_bin = "${pkgs.docker}/bin/docker";
-        models_dir = "/projects/models";
-        binary = "${
-          (pkgsUnstable.llama-cpp.override {
-            cudaSupport = true;
-          })
-        }/bin/llama-server";
       };
 
       models = {
-        "Nemotron-3-Nano-Omni-30B" = {
-          name = "Nemotron-3-Nano-Omni-30B";
-          cmd = "\${docker_bin} run  --device nvidia.com/gpu=all \
-              -v /dump/llm/huggingface:/root/.cache/huggingface \
-              -p \${PORT}:8000 \
-              --ipc=host \
-              vllm-local \
-              --trust-remote-code nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8";
-        };
+        # "Nemotron-3-Nano-Omni-30B" = {
+        #   name = "Nemotron-3-Nano-Omni-30B";
+        #   cmd = "\${docker_bin} run  --device nvidia.com/gpu=all \
+        #       -v /dump/llm/huggingface:/root/.cache/huggingface \
+        #       -p \${PORT}:8000 \
+        #       --ipc=host \
+        #       vllm-local \
+        #       --trust-remote-code nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8";
+        # };
 
         "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL" = {
           name = "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL";
