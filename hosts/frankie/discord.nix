@@ -1,5 +1,4 @@
-{ inputs, username, ... }: {
-  imports = [ inputs.nixcord.nixosModules.nixcord ];
+{ username, ... }: {
 
   programs.nixcord = {
     enable = true;
@@ -8,6 +7,10 @@
     vesktop.enable = true;
     config = {
       frameless = true;
+      transparent = true;
+      useQuickCss = false;
+      uiElements = { };
+
       plugins = {
         hideMedia.enable = true;
         ignoreActivities = {

@@ -2,7 +2,8 @@
   pkgsUnstable,
   config,
   ...
-}: {
+}:
+{
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
@@ -33,7 +34,10 @@
       enable = true;
     };
     settings = {
-      plugin = ["opencode-review" "@simonwjackson/opencode-direnv"];
+      plugin = [
+        "opencode-review"
+        "@simonwjackson/opencode-direnv"
+      ];
 
       formatter = true;
       permission = {

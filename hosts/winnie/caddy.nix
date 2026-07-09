@@ -77,9 +77,9 @@
           }
         '';
       };
-      "cache.roto.lol" = {
+      "oc.roto.lol" = {
         extraConfig = ''
-          reverse_proxy /* rupert.roto.lol:5000 {
+          reverse_proxy /* 192.168.0.200:8090 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
           }

@@ -8,6 +8,8 @@
 }:
 {
   imports = [
+    inputs.nixcord.homeModules.nixcord
+
     ./mpd.nix
     ../../programs/bat.nix
     ../../programs/btop.nix
