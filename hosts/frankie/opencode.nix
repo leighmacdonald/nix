@@ -106,7 +106,7 @@
         "@simonwjackson/opencode-direnv"
       ];
       default_agent = "plan";
-      share = "dissabled";
+      share = "disabled";
       formatter = true;
       autoupdate = false;
       lsp = true;

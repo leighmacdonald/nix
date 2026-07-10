@@ -62,6 +62,7 @@
         ".config/opencode"
         ".config/mcp/"
         ".config/gh"
+        ".logseq"
         ".cache"
         ".cargo"
         ".sm-pkg"

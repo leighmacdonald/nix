@@ -215,7 +215,7 @@ in
           name = "Qwen3.6-27B-UD-Q5_K_XL";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
-             -ngl 40 \
+             -ngl 32 \
              --ctx-size 256000 \
              --no-mmproj-offload \
              --no-context-shift \
