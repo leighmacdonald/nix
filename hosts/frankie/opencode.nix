@@ -145,6 +145,26 @@
             apiKey = "xxx";
           };
           models = {
+            "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking" = {
+              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+              limit = {
+                context = 256000;
+                output = 65536;
+              };
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "high";
+              };
+            };
+
+            "gemma-4-26B-A4B-it-UD-Q4_K_XL" = {
+              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
+              limit = {
+                context = 256000;
+                output = 65536;
+              };
+            };
+
             "Qwen3.6-27B-Q4_K_M-MTP" = {
               name = "Qwen3.6-27B-Q4_K_M-MTP";
               limit = {
