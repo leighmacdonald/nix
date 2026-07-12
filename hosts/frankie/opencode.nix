@@ -241,7 +241,43 @@
                 context = 128000;
                 output = 65536;
               };
-              "reasoning" = false;
+              reasoning = false;
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+
+            "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think" = {
+              name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              reasoning = true;
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+              options = {
+                reasoningEffort = "high";
+              };
+            };
+            "Qwopus3.6-27B-Coder-MTP-Q5_K_M" = {
+              name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              reasoning = false;
               modalities = {
                 input = [
                   "text"
@@ -257,9 +293,9 @@
                 context = 128000;
                 output = 65536;
               };
-              "reasoning" = true;
-              "options" = {
-                "reasoningEffort" = "high";
+              reasoning = true;
+              options = {
+                reasoningEffort = "high";
               };
               modalities = {
                 input = [

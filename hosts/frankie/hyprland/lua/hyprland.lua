@@ -46,8 +46,8 @@ hl.config({
                 padding = 0,
                 radius = 0,
                 border_width = 1,
-                text_font = "JetBrainsMono Nerd Font",
-                text_height = 16,
+                text_font = "TX-02",
+                text_height = 20,
                 text_padding = 3,
 
                 blur = true,

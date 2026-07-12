@@ -44,7 +44,7 @@
     #uid = 2000;
     inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
 
     #packages = with pkgs; [ ];
   };
@@ -152,7 +152,7 @@
     firefox = {
       enable = true;
       nativeMessagingHosts = [ pkgs.keepassxc ];
-
+      configPath = ".mozilla/firefox";
       profiles = {
         bedroom = {
           isDefault = true;

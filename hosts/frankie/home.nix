@@ -5,8 +5,7 @@
   pkgsUnstable,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
 
@@ -72,13 +71,12 @@
   # via UWSM. Without this, Hyprland-spawned processes can't find
   # home.file-installed scripts in ~/.local/bin (rofi menus, pypr-toggle-smart,
   # etc.). Per https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#nixos-uwsm.
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
     };
     "org/gtk/settings/file-chooser" = {
       show-hidden = true;
@@ -158,7 +156,7 @@
       HYPR_PLUGINS_DIR = "${
         pkgs.symlinkJoin {
           name = "hyprland-plugins";
-          paths = [ "${pkgs.hyprlandPlugins.hy3}" ];
+          paths = ["${pkgs.hyprlandPlugins.hy3}"];
         }
       }/lib";
     };
@@ -171,7 +169,7 @@
   programs.gh = {
     enable = true;
     settings = {
-      aliases = { };
+      aliases = {};
       editor = "nvim";
       git_protocol = "ssh";
       version = 1;
@@ -188,9 +186,6 @@
     ];
   };
   stylix.targets = {
-    zed = {
-      enable = false;
-    };
     hyprpaper = {
       enable = true;
     };

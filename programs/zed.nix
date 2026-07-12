@@ -1,12 +1,11 @@
 {
   pkgsUnstable,
-  lib,
   ...
 }:
 {
   # ZED_OPEN_AI_COMPATIBLE_EDIT_PREDICTION_API_KEY
   # OPENAI_API_KEY
-  stylix.targets.zed.enable = false;
+  stylix.targets.zed.enable = true;
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
     package = pkgsUnstable.zed-editor-fhs;
@@ -184,7 +183,7 @@
                 capabilities = {
                   tools = true;
                   images = true;
-                  parallel_tool_calls = true;
+                  parallel_tool_calls = false;
                   prompt_cache_key = true;
                   chat_completions = true;
                 };
@@ -197,12 +196,37 @@
                 capabilities = {
                   tools = true;
                   images = true;
-                  parallel_tool_calls = true;
+                  parallel_tool_calls = false;
                   prompt_cache_key = true;
                   chat_completions = false;
                 };
               }
-
+              {
+                name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = true;
+                  chat_completions = false;
+                };
+              }
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
                 max_tokens = 128000;
@@ -349,7 +373,6 @@
       show_signature_help_after_edits = false;
       auto_signature_help = false;
       base_keymap = "JetBrains";
-      ui_font_size = 22;
 
       lsp = {
         golangci-lint = {
