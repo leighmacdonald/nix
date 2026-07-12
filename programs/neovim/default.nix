@@ -11,7 +11,7 @@
     ./comments.nix
     ./cursorline.nix
     #./dashboard.nix
-    ./debugger.nix
+    # ./debugger.nix
     ./diagnostics.nix
     ./direnv.nix
     ./formatter.nix

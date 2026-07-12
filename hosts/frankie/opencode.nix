@@ -2,7 +2,8 @@
   pkgsUnstable,
   config,
   ...
-}: {
+}:
+{
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
@@ -215,6 +216,43 @@
 
             "Qwen3.6-27B-Q4_K_M-MTP" = {
               name = "Qwen3.6-27B-Q4_K_M-MTP";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "high";
+              };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+
+            "Qwopus3.6-27B-Coder-MTP-Q4_K_M" = {
+              name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              "reasoning" = false;
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+            "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think" = {
+              name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
               limit = {
                 context = 128000;
                 output = 65536;

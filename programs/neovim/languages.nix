@@ -6,7 +6,7 @@
     settings = {
       vim = {
         languages = {
-          enableDAP = true;
+          enableDAP = false;
           enableExtraDiagnostics = true;
           enableFormat = true;
           enableTreesitter = true;
@@ -62,9 +62,6 @@
           };
           rust = {
             enable = true;
-            dap = {
-              adapter = "codelldb";
-            };
             format.type = [ "rustfmt" ];
             extensions.crates-nvim = {
               enable = true;

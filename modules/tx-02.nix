@@ -23,7 +23,6 @@ in
   # Enable fontconfig to discover the fonts
   fonts.fontconfig.enable = true;
 
-  # Add the custom TX-02 package to system fonts
   home.packages = [
     tx-02
   ];

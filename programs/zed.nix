@@ -46,16 +46,16 @@
     ];
 
     userSettings = {
-      edit_predictions = {
-        mode = "eager";
-        provider = "open_ai_compatible_api";
-        "open_ai_compatible_api" = {
-          prompt_format = "infer";
-          max_output_tokens = 512;
-          model = "sweep-next-edit-1.5b.q8_0.v2";
-          api_url = "https://autocomplete.roto.lol/v1/completions";
-        };
-      };
+      # edit_predictions = {
+      #   mode = "eager";
+      #   provider = "open_ai_compatible_api";
+      #   "open_ai_compatible_api" = {
+      #     prompt_format = "infer";
+      #     max_output_tokens = 512;
+      #     model = "sweep-next-edit-1.5b.q8_0.v2";
+      #     api_url = "https://autocomplete.roto.lol/v1/completions";
+      #   };
+      # };
       agent = {
         sidebar_side = "right";
         enable_feedback = false;
@@ -175,6 +175,34 @@
                   chat_completions = false;
                 };
               }
+
+              {
+                name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 64000;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = false;
+                };
+              }
+
               {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
                 max_tokens = 128000;
@@ -234,7 +262,9 @@
                 max_completion_tokens = 64000;
                 capabilities = {
                   tools = true;
+                  parallel_tool_calls = true;
                   images = true;
+                  prompt_cache_key = true;
                   chat_completions = false;
                 };
               }
@@ -319,10 +349,7 @@
       show_signature_help_after_edits = false;
       auto_signature_help = false;
       base_keymap = "JetBrains";
-      buffer_font_family = lib.mkForce "TX-02";
-      buffer_font_size = lib.mkForce 21;
       ui_font_size = 22;
-      ui_font_family = lib.mkForce "TX-02";
 
       lsp = {
         golangci-lint = {

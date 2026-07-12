@@ -24,7 +24,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
-    ../../modules/tx02.nix
+    ../../modules/tx-02.nix
     ./discord.nix
     ./steam.nix
     ./hyprland

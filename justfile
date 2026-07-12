@@ -20,6 +20,6 @@ rupert:
     nixos-rebuild switch --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo
 
 phyllis:
-    nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host phyllis.roto.lol --sudo
+    nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host 192.168.0.100 --sudo
 
 all: frankie winnie rupert phyllis

@@ -4,19 +4,21 @@
   lib,
   username,
   ...
-}: let
+}:
+let
   models_dir = "/projects/models";
   binary = "${
     (pkgsUnstable.llama-cpp.override {
       cudaSupport = true;
     })
   }/bin/llama-server";
-in {
+in
+{
   systemd.services.autocomplete = {
     description = "llama-server for autocomplete";
     enable = true;
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
       User = username;
@@ -49,11 +51,11 @@ in {
       })
     ];
   };
-  users.groups.llama-swap = {};
+  users.groups.llama-swap = { };
   users.users.llama-swap = {
     isSystemUser = true;
     group = "llama-swap";
-    extraGroups = ["docker"];
+    extraGroups = [ "docker" ];
   };
   # system.activationScripts.buildVllm = ''
   #   ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
@@ -230,6 +232,60 @@ in {
              --port \${PORT}";
         };
 
+        "Qwopus3.6-27B-Coder-MTP-Q4_K_M" = {
+          name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
+          cmd = "\${binary} \
+             -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf \
+             --ctx-size 128000 \
+             --no-mmproj-offload \
+             --no-context-shift \
+             --kv-unified \
+             --spec-type draft-mtp \
+             --spec-draft-n-max 2 \
+             --spec-draft-p-min 0.75 \
+             -fa on --jinja --no-mmap \
+             --cache-ram -1 \
+             --no-warmup -np 1 -n 32768 \
+             --cache-type-k q4_0 \
+             --cache-type-v q4_0 \
+             --temp 0.6 \
+             --min-p 0.00 \
+             --top-k 20 \
+             --top-p 0.8 \
+             -np -1 \
+             --presence-penalty 0.0 \
+             --repeat-penalty 1.05 \
+             --reasoning off \
+             --chat-template-kwargs '{\"preserve_thinking\":false}' \
+             --port \${PORT}";
+        };
+        "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think" = {
+          name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
+          cmd = "\${binary} \
+                  -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q5_K_M.gguf \
+                  --ctx-size 128000 \
+                  --no-mmproj-offload \
+                  --no-context-shift \
+                  --kv-unified \
+                  --spec-type draft-mtp \
+                  --spec-draft-n-max 2 \
+                  --spec-draft-p-min 0.75 \
+                  -fa on --jinja --no-mmap \
+                  --cache-ram -1 \
+                  --no-warmup -np 1 -n 32768 \
+                  --cache-type-k q4_0 \
+                  --cache-type-v q4_0 \
+                  --temp 0.6 \
+                  --min-p 0.00 \
+                  --top-k 20 \
+                  --top-p 0.8 \
+                  -np -1 \
+                  --presence-penalty 0.0 \
+                  --repeat-penalty 1.05 \
+                  --reasoning on \
+                  --chat-template-kwargs '{\"preserve_thinking\":true}' \
+                  --port \${PORT}";
+        };
         # 64 layers total for qwen36-27b
         "Qwen3.6-27B-UD-Q5_K_XL" = {
           name = "Qwen3.6-27B-UD-Q5_K_XL";

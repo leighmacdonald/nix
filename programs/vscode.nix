@@ -23,7 +23,6 @@
           nefrob.vscode-just-syntax
           redhat.vscode-yaml
           redhat.ansible
-          vadimcn.vscode-lldb
           rust-lang.rust-analyzer
           christian-kohler.npm-intellisense
           usernamehw.errorlens
@@ -107,16 +106,16 @@
           # }
         ];
       userSettings = {
-         yaml.schemas = {
-            "file:///home/leigh/.vscode/extensions/Continue.continue/config-yaml-schema.json" = [
-              ".continue/**/*.yaml"
-            ];
-          };
+        yaml.schemas = {
+          "file:///home/leigh/.vscode/extensions/Continue.continue/config-yaml-schema.json" = [
+            ".continue/**/*.yaml"
+          ];
+        };
         goExp.testExplorer.enable = true;
         github.copilot.enable = {
           "*" = false;
         };
-        
+
         biome = {
           suggestInstallingGlobally = false;
         };
