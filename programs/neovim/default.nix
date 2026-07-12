@@ -1,16 +1,16 @@
 {
   inputs,
+  pkgs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.nvf.homeManagerModules.default
-    #./autocomplete.nix
+    ./autocomplete.nix
     #./autopairs.nix
     ./bufferline.nix
     ./comments.nix
     ./cursorline.nix
-    #./dashboard.nix
+    ./dashboard.nix
     # ./debugger.nix
     ./diagnostics.nix
     ./direnv.nix
@@ -18,17 +18,17 @@
     ./gitsigns.nix
     ./icon-picker.nix
     ./images.nix
-    #./keys.nix
     ./languages.nix
     ./lsp.nix
     ./mini.nix
     ./neogen.nix
     ./neogit.nix
-    ./neotest.nix
+    #./neotest.nix
     #./neotree.nix
     ./noice.nix
     ./notify.nix
     ./nvim-surround.nix
+    ./opencode.nix
     ./options.nix
     ./plenary.nix
     #./projects.nix
@@ -47,5 +47,14 @@
   programs.nvf = {
     enable = true;
     enableManpages = true;
+  };
+  stylix.targets.nvf.enable = true;
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      tree-sitter
+      nodejs
+      gcc
+    ];
   };
 }

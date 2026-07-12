@@ -11,7 +11,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>v";
+        key = "<leader>g";
         action = "<cmd>Neogit<CR>";
       }
       {

@@ -18,9 +18,9 @@
       tabstop = 4;
       shiftwidth = 4;
       splitright = true;
-      #autoindent = true;
-      #smartindent = true;
-      expandtab = true;
+      autoindent = true;
+      smartindent = true;
+      expandtab = false;
     };
 
     clipboard = {

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nvf.settings.vim = {
     extraPackages = [
       pkgs.fzf
@@ -8,10 +7,11 @@
     ];
     telescope = {
       enable = true;
+
       extensions = [
         {
           name = "fzf";
-          packages = [ pkgs.vimPlugins.telescope-fzf-native-nvim ];
+          packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
           setup = {
             fzf = {
               fuzzy = true;
@@ -45,7 +45,6 @@
       telescope-live-grep = {
         package = telescope-live-grep-args-nvim;
       };
-
     };
 
     keymaps = [

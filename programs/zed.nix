@@ -1,8 +1,4 @@
-{
-  pkgsUnstable,
-  ...
-}:
-{
+{pkgsUnstable, ...}: {
   # ZED_OPEN_AI_COMPATIBLE_EDIT_PREDICTION_API_KEY
   # OPENAI_API_KEY
   stylix.targets.zed.enable = true;
@@ -45,16 +41,18 @@
     ];
 
     userSettings = {
-      # edit_predictions = {
-      #   mode = "eager";
-      #   provider = "open_ai_compatible_api";
-      #   "open_ai_compatible_api" = {
-      #     prompt_format = "infer";
-      #     max_output_tokens = 512;
-      #     model = "sweep-next-edit-1.5b.q8_0.v2";
-      #     api_url = "https://autocomplete.roto.lol/v1/completions";
-      #   };
-      # };
+      edit_predictions = {
+        mode = "subtle";
+        # provider = "zed";
+        provider = "open_ai_compatible_api";
+        "open_ai_compatible_api" = {
+          prompt_format = "infer";
+          max_output_tokens = 512;
+          #   model = "sweep-next-edit-1.5b.q8_0.v2";
+          model = "Qwen3.6-27B-Q4_K_M-MTP";
+          api_url = "https://llm.roto.lol/v1/completions";
+        };
+      };
       agent = {
         sidebar_side = "right";
         enable_feedback = false;
@@ -62,8 +60,8 @@
         default_profile = "ask";
         default_model = {
           provider = "mtp-llama";
-          model = "Qwen3.6-27B-UD-Q5_K_XL";
-          enable_thinking = false;
+          model = "Qwen3.6-27B-Q4_K_M-MTP";
+          enable_thinking = true;
         };
         inline_alternatives = [
           {
@@ -102,8 +100,8 @@
             enable_thinking = true;
           }
         ];
-        favorite_models = [ ];
-        model_parameters = [ ];
+        favorite_models = [];
+        model_parameters = [];
         tool_permissions = {
           default = "allow";
           tools = {
@@ -116,16 +114,21 @@
               #   { pattern = "^cargo\\s+(build|test|check)"; }
               #   { pattern = "^npm\\s+(install|test|run)"; }
               # ];
-              always_confirm = [ { pattern = "sudo\\s+/"; } ];
+              always_confirm = [{pattern = "sudo\\s+/";}];
               always_deny = [
-                { pattern = "^/storage"; }
-                { pattern = "^/etc"; }
-                { pattern = "\\.env"; }
-                { pattern = "secrets?/"; }
-                { pattern = "\\.(pem|key)$"; }
+                {pattern = "^/storage";}
+                {pattern = "^/etc";}
+                {pattern = "\\.env";}
+                {pattern = "secrets?/";}
+                {pattern = "\\.(pem|key)$";}
               ];
             };
           };
+        };
+      };
+      agent_servers = {
+        opencode = {
+          type = "registry";
         };
       };
       language_models = {
@@ -328,7 +331,7 @@
       use_smartcase_search = true;
       when_closing_with_no_tabs = "keep_window_open";
       file_types = {
-        "Askama" = [ "jinja2" ];
+        "Askama" = ["jinja2"];
       };
       git = {
         branch_picker = {

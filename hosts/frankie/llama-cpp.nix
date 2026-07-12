@@ -4,21 +4,19 @@
   lib,
   username,
   ...
-}:
-let
+}: let
   models_dir = "/projects/models";
   binary = "${
     (pkgsUnstable.llama-cpp.override {
       cudaSupport = true;
     })
   }/bin/llama-server";
-in
-{
+in {
   systemd.services.autocomplete = {
     description = "llama-server for autocomplete";
-    enable = true;
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    enable = false;
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
       User = username;
@@ -51,11 +49,11 @@ in
       })
     ];
   };
-  users.groups.llama-swap = { };
+  users.groups.llama-swap = {};
   users.users.llama-swap = {
     isSystemUser = true;
     group = "llama-swap";
-    extraGroups = [ "docker" ];
+    extraGroups = ["docker"];
   };
   # system.activationScripts.buildVllm = ''
   #   ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
@@ -80,7 +78,7 @@ in
         inherit models_dir;
         inherit binary;
         docker_bin = "${pkgs.docker}/bin/docker";
-        common_args = "--fit on -fitt 2048 --no-webui";
+        common_args = "--fit on -fitt 1024 --no-webui";
       };
       # apiKeys = [
       #   "$(env.API_KEY_1)"
@@ -204,22 +202,23 @@ in
         };
 
         # 64 layers total for qwen36-27b
+        # https://github.com/rapatel0/rq-models
         "Qwen3.6-27B-Q4_K_M-MTP" = {
           name = "Qwen3.6-27B-Q4_K_M-MTP";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             --fit on -fitt 1500 \
+             -ngl 54 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
              --kv-unified \
              --spec-type draft-mtp \
-             --spec-draft-n-max 4 \
+             --spec-draft-n-max 6 \
              --spec-draft-p-min 0.75 \
              -fa on --jinja \
              --cache-ram -1 \
              --no-warmup \
-                --mlock \
+             --mlock \
              --cache-type-k q4_0 \
              --cache-type-v q4_0 \
              --temp 0.6 \
@@ -228,9 +227,39 @@ in
              --top-p 0.95 \
              --presence-penalty 0.0 \
              --repeat-penalty 1.05 \
+             --reasoning off \
+             --reasoning-preserve \
              --port \${PORT}";
         };
 
+        "Qwen3.6-27B-Q4_K_M-MTP-think" = {
+          name = "Qwen3.6-27B-Q4_K_M-MTP-think";
+          cmd = "\${binary} \
+             -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
+             -ngl 54 \
+             --ctx-size 128000 \
+             --no-mmproj-offload \
+             --no-context-shift \
+             --kv-unified \
+             --spec-type draft-mtp \
+             --spec-draft-n-max 6 \
+             --spec-draft-p-min 0.75 \
+             -fa on --jinja \
+             --cache-ram -1 \
+             --no-warmup \
+             --mlock \
+             --cache-type-k q4_0 \
+             --cache-type-v q4_0 \
+             --temp 0.6 \
+             --min-p 0.00 \
+             --top-k 20 \
+             --top-p 0.95 \
+             --presence-penalty 0.0 \
+             --repeat-penalty 1.05 \
+             --reasoning on \
+             --reasoning-preserve \
+             --port \${PORT}";
+        };
         "Qwopus3.6-27B-Coder-MTP-Q4_K_M" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
           cmd = "\${binary} \
@@ -240,7 +269,7 @@ in
              --no-context-shift \
              --kv-unified \
              --spec-type draft-mtp \
-             --spec-draft-n-max 4 \
+             --spec-draft-n-max 6 \
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
@@ -265,7 +294,7 @@ in
              --no-context-shift \
              --kv-unified \
              --spec-type draft-mtp \
-             --spec-draft-n-max 4 \
+             --spec-draft-n-max 6 \
              --spec-draft-p-min 0.75 \
              -fa on --jinja --no-mmap \
              --cache-ram -1 \
@@ -290,7 +319,7 @@ in
                   --no-context-shift \
                   --kv-unified \
                   --spec-type draft-mtp \
-                  --spec-draft-n-max 4 \
+                  --spec-draft-n-max 2 \
                   --spec-draft-p-min 0.75 \
                   -fa on --jinja --no-mmap \
                   --cache-ram -1 \

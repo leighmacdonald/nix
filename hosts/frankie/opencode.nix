@@ -2,8 +2,7 @@
   pkgsUnstable,
   config,
   ...
-}:
-{
+}: {
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
@@ -105,6 +104,7 @@
         "opencode-review"
         "@simonwjackson/opencode-direnv"
         "@plannotator/opencode@latest"
+        "@dietrichgebert/ponytail"
       ];
       default_agent = "plan";
       share = "disabled";

@@ -247,7 +247,8 @@ hl.workspace_rule({
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
-local terminal = "ghostty +new-window"
+-- local terminal = "ghostty +new-window"
+local terminal = "foot"
 local fileManager = "thunar"
 local menu = "rofi -show drun -show-icons"
 local screenshot = 'grim -g "$(slurp -d)" - | wl-copy'

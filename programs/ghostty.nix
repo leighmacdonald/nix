@@ -6,7 +6,7 @@
     installVimSyntax = true;
 
     systemd = {
-      enable = true;
+      enable = false;
     };
     settings = {
       shell-integration = "fish";
