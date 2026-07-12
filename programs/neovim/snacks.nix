@@ -8,318 +8,407 @@
         package = snacks-nvim;
       };
     };
-    maps.normal = {
+    keymaps = [
       #-- Top Pickers & Explorer
-      "<leader><space>" = {
+      {
+        mode = "n";
+        key = "<leader><space>";
         action = "function() Snacks.picker.smart() end";
         desc = "Smart Find Files";
-      };
-      "<leader>," = {
+      }
+      {
+        mode = "n";
+        key = "<leader>,";
         action = "function() Snacks.picker.buffers() end";
         desc = "Buffers";
-      };
-      "<leader>/" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>/";
         action = "function() Snacks.picker.grep() end";
         desc = "Grep";
-      };
-      "<leader>:" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>:";
         action = "function() Snacks.picker.command_history() end";
         desc = "Command History";
-      };
-      "<leader>n" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>n";
         action = "function() Snacks.picker.notifications() end";
         desc = "Notification History";
-      };
-      "<leader>e" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>e";
         action = "function() Snacks.explorer() end";
         desc = "File Explorer";
-      };
+      }
       #-- find
-      "<leader>fb" = {
+      {
+        mode = "n";
+        key = "<leader>fb";
         action = "function() Snacks.picker.buffers() end";
         desc = "Buffers";
-      };
-      "<leader>fc" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>fc";
         action = ''function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end'';
         desc = "Find Config File";
-      };
-      "<leader>ff" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>ff";
         action = "function() Snacks.picker.files() end";
         desc = "Find Files";
-      };
-      "<leader>fg" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>fg";
         action = "function() Snacks.picker.git_files() end";
         desc = "Find Git Files";
-      };
-      "<leader>fp" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>fp";
         action = "function() Snacks.picker.projects() end";
         desc = "Projects";
-      };
-      "<leader>fr" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>fr";
         action = "function() Snacks.picker.recent() end";
         desc = "Recent";
-      };
+      }
       #-- git
-      "<leader>gb" = {
+      {
+        mode = "n";
+        key = "<leader>gb";
         action = "function() Snacks.picker.git_branches() end";
         desc = "Git Branches";
-      };
-      "<leader>gl" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gl";
         action = "function() Snacks.picker.git_log() end";
         desc = "Git Log";
-      };
-      "<leader>gL" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gL";
         action = "function() Snacks.picker.git_log_line() end";
         desc = "Git Log Line";
-      };
-      "<leader>gs" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gs";
         action = "function() Snacks.picker.git_status() end";
         desc = "Git Status";
-      };
-      "<leader>gS" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gS";
         action = "function() Snacks.picker.git_stash() end";
         desc = "Git Stash";
-      };
-      "<leader>gd" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gd";
         action = "function() Snacks.picker.git_diff() end";
         desc = "Git Diff (Hunks)";
-      };
-      "<leader>gf" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gf";
         action = "function() Snacks.picker.git_log_file() end";
         desc = "Git Log File";
-      };
+      }
       #-- gh
-      "<leader>gi" = {
+      {
+        mode = "n";
+        key = "<leader>gi";
         action = "function() Snacks.picker.gh_issue() end";
         desc = "GitHub Issues (open)";
-      };
-      "<leader>gI" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gI";
         action = ''function() Snacks.picker.gh_issue({ state = "all" }) end'';
         desc = "GitHub Issues (all)";
-      };
-      "<leader>gp" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gp";
         action = "function() Snacks.picker.gh_pr() end";
         desc = "GitHub Pull Requests (open)";
-      };
-      "<leader>gP" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gP";
         action = ''function() Snacks.picker.gh_pr({ state = "all" }) end'';
         desc = "GitHub Pull Requests (all)";
-      };
+      }
       #-- Grep
-      "<leader>sB" = {
+      {
+        mode = "n";
+        key = "<leader>sB";
         action = "function() Snacks.picker.grep_buffers() end";
         desc = "Grep Open Buffers";
-      };
-      "<leader>sg" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sg";
         action = "function() Snacks.picker.grep() end";
         desc = "Grep";
-      };
-      # {
-      #   key = "<leader>sw";
-      #   action = "function() Snacks.picker.grep_word() end";
-      #   desc = "Visual selection or word";
-      #   mode = [
-      #     "n"
-      #     "x"
-      #   ];
-      # }
+      }
       #-- search
-      "<leader>s\"" = {
+      {
+        mode = "n";
+        key = "<leader>s\"";
         action = "function() Snacks.picker.registers() end";
         desc = "Registers";
-      };
-      "<leader>s/'" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>s/'";
         action = "function() Snacks.picker.search_history() end";
         desc = "Search History";
-      };
-      "<leader>sa" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sa";
         action = "function() Snacks.picker.autocmds() end";
         desc = "Autocmds";
-      };
-      "<leader>sb" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sb";
         action = "function() Snacks.picker.lines() end";
         desc = "Buffer Lines";
-      };
-      "<leader>sc" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sc";
         action = "function() Snacks.picker.command_history() end";
         desc = "Command History";
-      };
-      "<leader>sC" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sC";
         action = "function() Snacks.picker.commands() end";
         desc = "Commands";
-      };
-      "<leader>sd" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sd";
         action = "function() Snacks.picker.diagnostics() end";
         desc = "Diagnostics";
-      };
-      "<leader>sD" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sD";
         action = "function() Snacks.picker.diagnostics_buffer() end";
         desc = "Buffer Diagnostics";
-      };
-      "<leader>sh" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sh";
         action = "function() Snacks.picker.help() end";
         desc = "Help Pages";
-      };
-      "<leader>sH" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sH";
         action = "function() Snacks.picker.highlights() end";
         desc = "Highlights";
-      };
-      "<leader>si" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>si";
         action = "function() Snacks.picker.icons() end";
         desc = "Icons";
-      };
-      "<leader>sj" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sj";
         action = "function() Snacks.picker.jumps() end";
         desc = "Jumps";
-      };
-      "<leader>sk" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sk";
         action = "function() Snacks.picker.keymaps() end";
         desc = "Keymaps";
-      };
-      "<leader>sl" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sl";
         action = "function() Snacks.picker.loclist() end";
         desc = "Location List";
-      };
-      "<leader>sm" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sm";
         action = "function() Snacks.picker.marks() end";
         desc = "Marks";
-      };
-      "<leader>sM" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sM";
         action = "function() Snacks.picker.man() end";
         desc = "Man Pages";
-      };
-      "<leader>sp" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sp";
         action = "function() Snacks.picker.lazy() end";
         desc = "Search for Plugin Spec";
-      };
-      "<leader>sq" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sq";
         action = "function() Snacks.picker.qflist() end";
         desc = "Quickfix List";
-      };
-      "<leader>sR" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sR";
         action = "function() Snacks.picker.resume() end";
         desc = "Resume";
-      };
-      "<leader>su" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>su";
         action = "function() Snacks.picker.undo() end";
         desc = "Undo History";
-      };
-      "<leader>uC" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>uC";
         action = "function() Snacks.picker.colorschemes() end";
         desc = "Colorschemes";
-      };
+      }
       #-- LSP
-      "gd" = {
+      {
+        mode = "n";
+        key = "gd";
         action = "function() Snacks.picker.lsp_definitions() end";
         desc = "Goto Definition";
-      };
-      "gD" = {
+      }
+      {
+        mode = "n";
+        key = "gD";
         action = "function() Snacks.picker.lsp_declarations() end";
         desc = "Goto Declaration";
-      };
-      "gr" = {
+      }
+      {
+        mode = "n";
+        key = "gr";
         action = "function() Snacks.picker.lsp_references() end";
         nowait = true;
         desc = "References";
-      };
-      "gI" = {
+      }
+      {
+        mode = "n";
+        key = "gI";
         action = "function() Snacks.picker.lsp_implementations() end";
         desc = "Goto Implementation";
-      };
-      "gy" = {
+      }
+      {
+        mode = "n";
+        key = "gy";
         action = "function() Snacks.picker.lsp_type_definitions() end";
         desc = "Goto T[y]pe Definition";
-      };
-      "gai" = {
+      }
+      {
+        mode = "n";
+        key = "gai";
         action = "function() Snacks.picker.lsp_incoming_calls() end";
         desc = "C[a]lls Incoming";
-      };
-      "gao" = {
+      }
+      {
+        mode = "n";
+        key = "gao";
         action = "function() Snacks.picker.lsp_outgoing_calls() end";
         desc = "C[a]lls Outgoing";
-      };
-      "<leader>ss" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>ss";
         action = "function() Snacks.picker.lsp_symbols() end";
         desc = "LSP Symbols";
-      };
-      "<leader>sS" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>sS";
         action = "function() Snacks.picker.lsp_workspace_symbols() end";
         desc = "LSP Workspace Symbols";
-      };
-      #-- Othe
-      "<leader>z" = {
+      }
+      #-- Other
+      {
+        mode = "n";
+        key = "<leader>z";
         action = "function() Snacks.zen() end";
         desc = "Toggle Zen Mode";
-      };
-      "<leader>Z" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>Z";
         action = "function() Snacks.zen.zoom() end";
         desc = "Toggle Zoom";
-      };
-      "<leader>." = {
+      }
+      {
+        mode = "n";
+        key = "<leader>.";
         action = "function() Snacks.scratch() end";
         desc = "Toggle Scratch Buffer";
-      };
-      "<leader>S" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>S";
         action = "function() Snacks.scratch.select() end";
         desc = "Select Scratch Buffer";
-      };
-      # "<leader>n" = {
-      #   action = "function() Snacks.notifier.show_history() end";
-      #   desc = "Notification History";
-      # };
-      "<leader>bd" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>bd";
         action = "function() Snacks.bufdelete() end";
         desc = "Delete Buffer";
-      };
-      "<leader>cR" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>cR";
         action = "function() Snacks.rename.rename_file() end";
         desc = "Rename File";
-      };
-      # {
-      #   key = "<leader>gB";
-      #   action = "function() Snacks.gitbrowse() end";
-      #   desc = "Git Browse";
-      #   mode = [
-      #     "n"
-      #     "v"
-      #   ];
-      # }
-      "<leader>gg" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>gg";
         action = "function() Snacks.lazygit() end";
         desc = "Lazygit";
-      };
-      "<leader>un" = {
+      }
+      {
+        mode = "n";
+        key = "<leader>un";
         action = "function() Snacks.notifier.hide() end";
         desc = "Dismiss All Notifications";
-      };
-      "<c-/>" = {
+      }
+      {
+        mode = "n";
+        key = "<c-/>";
         action = "function() Snacks.terminal() end";
         desc = "Toggle Terminal";
-      };
-      "<c-_>" = {
+      }
+      {
+        mode = "n";
+        key = "<c-_>";
         action = "function() Snacks.terminal() end";
         desc = "which_key_ignore";
-      };
-      # {
-      #   key = "]]";
-      #   action = "function() Snacks.words.jump(vim.v.count1) end";
-      #   desc = "Next Reference";
-      #   mode = [
-      #     "n"
-      #     "t"
-      #   ];
-      # }
-      #   {
-      #     key = "[[";
-      #     action = "function() Snacks.words.jump(-vim.v.count1) end";
-      #     desc = "Prev Reference";
-      #     mode = [
-      #       "n"
-      #       "t"
-      #     ];
-      #   }
-      # ];
-    };
+      }
+    ];
     utility.snacks-nvim = {
       enable = true;
       setupOpts = {

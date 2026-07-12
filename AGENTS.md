@@ -2,15 +2,17 @@
 
 Personal NixOS config managing 4 hosts across x86_64 and aarch64. Flake-based, sops-nix secrets, home-manager integrated per host.
 
+Use the mcp_nix server.
+
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `just <hostname>` | Deploy to host (remote build via `frankie.roto.lol`) |
-| `just update` | `nix flake update`, commit lockfile changes |
-| `just diff` | Compare built result vs running system |
-| `./build_sdimage.sh <hostname>` | Build SD card image for RPi4 hosts |
-| `just build_host=... <target>` | Override remote build host |
+| Command                         | Description                                          |
+| ------------------------------- | ---------------------------------------------------- |
+| `just <hostname>`               | Deploy to host (remote build via `frankie.roto.lol`) |
+| `just update`                   | `nix flake update`, commit lockfile changes          |
+| `just diff`                     | Compare built result vs running system               |
+| `./build_sdimage.sh <hostname>` | Build SD card image for RPi4 hosts                   |
+| `just build_host=... <target>`  | Override remote build host                           |
 
 ## Architecture
 
@@ -27,12 +29,12 @@ Personal NixOS config managing 4 hosts across x86_64 and aarch64. Flake-based, s
 
 ## Hosts
 
-| Host | Arch | Notes |
-|------|------|-------|
-| frankie | x86_64 | Main desktop, NVIDIA, Hyprland, LLM tools, llm-agents overlay, unstable pkgs |
-| winnie | aarch64 | RPi4, disko for disk layout |
-| rupert | x86_64 | Secondary host |
-| phyllis | aarch64 | RPi4 |
+| Host    | Arch    | Notes                                                                        |
+| ------- | ------- | ---------------------------------------------------------------------------- |
+| frankie | x86_64  | Main desktop, NVIDIA, Hyprland, LLM tools, llm-agents overlay, unstable pkgs |
+| winnie  | aarch64 | RPi4, disko for disk layout, reverse proxy, ddns-updater                     |
+| rupert  | x86_64  | Media Server                                                                 |
+| phyllis | aarch64 | RPi4, bedroom htpc                                                           |
 
 ## Flake inputs
 

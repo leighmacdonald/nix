@@ -195,7 +195,7 @@ in {
               -fa on --temp 1.0 --top-p 0.95 --top-k 64 \
               --ctx-size 128000 \
               --cache-type-k q4_0 \
-              --cache-type-v q4_0 \
+              --cache-type-v q4_0 \so usually its opus 4.8 actually getting used
               -ngl 20 \
               \${common_args} \
              --port \${PORT}";
@@ -207,7 +207,7 @@ in {
           name = "Qwen3.6-27B-Q4_K_M-MTP";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 54 \
+             -ngl 60 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -236,7 +236,7 @@ in {
           name = "Qwen3.6-27B-Q4_K_M-MTP-think";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 54 \
+             -ngl 56 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -264,6 +264,7 @@ in {
           name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
           cmd = "\${binary} \
              -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf \
+						-ngl 56 \
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -283,12 +284,14 @@ in {
              --presence-penalty 0.0 \
              --repeat-penalty 1.05 \
              --reasoning off \
-             --port \${PORT}";
+			 --chat-template-file /projects/models/qwen36-chat_template.jinja \
+			 --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
           cmd = "\${binary} \
              -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf \
+					-ngl 56 \	
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -308,12 +311,14 @@ in {
              --presence-penalty 0.0 \
              --repeat-penalty 1.05 \
              --reasoning on \
+			 --chat-template-file /projects/models/qwen36-chat_template.jinja \
              --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q5_K_M" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
           cmd = "\${binary} \
                   -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q5_K_M.gguf \
+					-ngl 56 \	
                   --ctx-size 128000 \
                   --no-mmproj-offload \
                   --no-context-shift \
@@ -333,12 +338,14 @@ in {
                   --presence-penalty 0.0 \
                   --repeat-penalty 1.05 \
                   --reasoning off \
+				  --chat-template-file /projects/models/qwen36-chat_template.jinja \		
                   --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
           cmd = "\${binary} \
                   -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q5_K_M.gguf \
+					-ngl 56 \	
                   --ctx-size 128000 \
                   --no-mmproj-offload \
                   --no-context-shift \
@@ -358,6 +365,7 @@ in {
                   --presence-penalty 0.0 \
                   --repeat-penalty 1.05 \
                   --reasoning on \
+				  --chat-template-file /projects/models/qwen36-chat_template.jinja \	
                   --port \${PORT}";
         };
         # 64 layers total for qwen36-27b
@@ -365,6 +373,7 @@ in {
           name = "Qwen3.6-27B-UD-Q5_K_XL";
           cmd = "\${binary} \
              -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
+			-ngl 56 \			
              --ctx-size 128000 \
              --no-mmproj-offload \
              --no-context-shift \
@@ -395,6 +404,7 @@ in {
           name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
           cmd = "\${binary} \
             -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP.gguf \
+				-ngl 56 \		
             --ctx-size 128000 \
             --no-context-shift \
             --kv-unified \

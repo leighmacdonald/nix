@@ -31,7 +31,6 @@
     ./hyprland
     ./hypridle.nix
     ./hyprpaper.nix
-    ./mcp.nix
     ./opencode.nix
     #./mpd.nix
     ../../programs/jq.nix
@@ -144,6 +143,13 @@
       lact
       pg_top
       libnotify
+      tree-sitter
+      nodejs
+      gcc
+      lsof
+      imagemagick
+      ghostscript_headless
+      sqlite
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

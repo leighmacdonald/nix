@@ -1,8 +1,8 @@
 {
   inputs,
-  pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nvf.homeManagerModules.default
     ./autocomplete.nix
@@ -32,7 +32,7 @@
     ./options.nix
     ./plenary.nix
     #./projects.nix
-    #./snacks.nix
+    ./snacks.nix
     ./statusline.nix
     #./surround.nix
     ./tabline.nix
@@ -51,10 +51,6 @@
   stylix.targets.nvf.enable = true;
   programs.neovim = {
     enable = true;
-    extraPackages = with pkgs; [
-      tree-sitter
-      nodejs
-      gcc
-    ];
+    extraPackages = [ ];
   };
 }

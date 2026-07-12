@@ -1,6 +1,6 @@
 {
   programs.nvf.settings.vim.dashboard.alpha = {
-    enable = true;
+    enable = false;
     theme = "theta";
   };
 }

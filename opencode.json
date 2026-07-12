@@ -1,13 +1,14 @@
 {
 	"$schema": "https://opencode.ai/config.json",
 	"mcp": {
-		"mcp_ansible": {
+		"mcp_nix": {
 			"type": "local",
 			"command": ["uvx", "mcp-nixos"],
 			"enabled": true,
 			"environment": {
 				"WORKSPACE_ROOT": "."
-			}
+			},
+			"timeout": 30000
 		}
 	}
 }
