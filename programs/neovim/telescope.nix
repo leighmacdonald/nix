@@ -51,7 +51,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>r";
+        key = "<leader>f";
         action = "<cmd>Telescope find_files<CR>"; # Find files
       }
       {
@@ -61,12 +61,12 @@
       }
       {
         mode = "n";
-        key = "<leader>tb";
+        key = "<leader>b";
         action = "<cmd>Telescope buffers<CR>"; # Buffers
       }
       {
         mode = "n";
-        key = "<leader>th";
+        key = "<leader>h";
         action = "<cmd>Telescope help_tags<CR>"; # Help tags
       }
       {

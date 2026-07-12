@@ -1,8 +1,12 @@
-{ pkgsUnstable, lib, ... }:
 {
-  stylix.targets.zed = {
-    colors.enable = false;
-  };
+  pkgsUnstable,
+  lib,
+  ...
+}:
+{
+  # ZED_OPEN_AI_COMPATIBLE_EDIT_PREDICTION_API_KEY
+  # OPENAI_API_KEY
+  stylix.targets.zed.enable = false;
   programs.zed-editor = {
     # Use FHS wrapper variant so we can compile extensions/grammars/etc properly.
     package = pkgsUnstable.zed-editor-fhs;
@@ -43,12 +47,13 @@
 
     userSettings = {
       edit_predictions = {
+        mode = "eager";
         provider = "open_ai_compatible_api";
         "open_ai_compatible_api" = {
           prompt_format = "infer";
           max_output_tokens = 512;
           model = "sweep-next-edit-1.5b.q8_0.v2";
-          api_url = "http://localhost:8081/v1/completions";
+          api_url = "https://autocomplete.roto.lol/v1/completions";
         };
       };
       agent = {
@@ -127,124 +132,110 @@
       language_models = {
         openai_compatible = {
           mtp-llama = {
-            api_url = "http://localhost:8080/v1";
+            api_url = "https://llm.roto.lol/v1";
             available_models = [
               {
-                name = "Qwen3.6-27B-Q4_K_M-MTP";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
+                name = "North-Mini-Code-1.0-UD-Q4_K_M";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
                 max_completion_tokens = 8192;
                 capabilities = {
                   tools = true;
                   images = false;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
 
               {
+                name = "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 8192;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = false;
+                };
+              }
+
+              {
+                name = "gemma-4-31B-it-qat-UD-Q4_K_XL";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 8192;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = false;
+                };
+              }
+              {
                 name = "Qwen3.6-27B-Q4_K_M-MTP";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
+                max_tokens = 128000;
+                max_output_tokens = 128000;
                 max_completion_tokens = 64000;
                 capabilities = {
                   tools = true;
-                  images = false;
+                  images = true;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
               {
                 name = "Qwen3.6-27B-UD-Q5_K_XL";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 128000;
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 8192;
                 capabilities = {
                   tools = true;
-                  images = false;
+                  images = true;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
               {
                 name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 64000;
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 8192;
                 capabilities = {
                   tools = true;
-                  images = false;
+                  images = true;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
               {
                 name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 64000;
+                max_tokens = 128000;
+                max_output_tokens = 128000;
+                max_completion_tokens = 8192;
                 capabilities = {
                   tools = true;
-                  images = false;
+                  images = true;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
               {
                 name = "Nemotron-3-Nano-Omni-30B";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
+                max_tokens = 128000;
+                max_output_tokens = 128000;
                 max_completion_tokens = 64000;
                 capabilities = {
                   tools = true;
                   images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "gemma-4-31B-it-UD-Q5_K_XL-thinking";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
-                max_tokens = 200000;
-                max_output_tokens = 200000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
+                  chat_completions = false;
                 };
               }
             ];
@@ -329,7 +320,10 @@
       auto_signature_help = false;
       base_keymap = "JetBrains";
       buffer_font_family = lib.mkForce "TX-02";
+      buffer_font_size = lib.mkForce 21;
+      ui_font_size = 22;
       ui_font_family = lib.mkForce "TX-02";
+
       lsp = {
         golangci-lint = {
           initialization_options = {
@@ -368,15 +362,10 @@
           };
         };
       };
-      context_servers = {
-        postgres-context-server = {
-          enabled = true;
-          settings = {
-            database_url = "postgresql://gbans:gbans@localhost:5432/gbans";
-          };
-        };
-      };
       languages = {
+        "Git Commit" = {
+          "buffer_font_size" = 24;
+        };
         CSS = {
           "formatter" = {
             "language_server" = {

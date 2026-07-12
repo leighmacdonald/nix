@@ -24,6 +24,7 @@
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
+    ../../modules/tx02.nix
     ./discord.nix
     ./steam.nix
     ./hyprland
@@ -188,7 +189,7 @@
   };
   stylix.targets = {
     zed = {
-      enable = true;
+      enable = false;
     };
     hyprpaper = {
       enable = true;

@@ -25,7 +25,7 @@
     ./neogen.nix
     ./neogit.nix
     ./neotest.nix
-    ./neotree.nix
+    #./neotree.nix
     ./noice.nix
     ./notify.nix
     ./nvim-surround.nix

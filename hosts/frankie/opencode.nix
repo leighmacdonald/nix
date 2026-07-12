@@ -2,8 +2,7 @@
   pkgsUnstable,
   config,
   ...
-}:
-{
+}: {
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
@@ -36,7 +35,7 @@
         "8090"
         "--mdns"
       ];
-      environmentFile = "/etc/opencode/envfile";
+      #environmentFile = "/etc/opencode/envfile";
     };
     enable = true;
     enableMcpIntegration = false; # prefer per project configs
@@ -104,6 +103,7 @@
       plugin = [
         "opencode-review"
         "@simonwjackson/opencode-direnv"
+        "@plannotator/opencode@latest"
       ];
       default_agent = "plan";
       share = "disabled";
@@ -141,12 +141,12 @@
           npm = "@ai-sdk/openai-compatible";
           name = "local";
           options = {
-            baseURL = "http://localhost:8080/v1";
+            baseURL = "https://llm.roto.lol/v1";
             apiKey = "xxx";
           };
           models = {
-            "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking" = {
-              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+            "North-Mini-Code-1.0-UD-Q4_K_M" = {
+              name = "North-Mini-Code-1.0-UD-Q4_K_M";
               limit = {
                 context = 256000;
                 output = 65536;
@@ -157,11 +157,59 @@
               };
             };
 
-            "gemma-4-26B-A4B-it-UD-Q4_K_XL" = {
-              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
+            "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking" = {
+              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
               limit = {
                 context = 256000;
                 output = 65536;
+              };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "high";
+              };
+            };
+
+            "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL" = {
+              name = "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL";
+              limit = {
+                context = 256000;
+                output = 65536;
+              };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+
+            "gemma-4-31B-it-qat-UD-Q4_K_XL" = {
+              name = "gemma-4-31B-it-qat-UD-Q4_K_XL";
+              limit = {
+                context = 256000;
+                output = 65536;
+              };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
               };
             };
 
@@ -175,6 +223,15 @@
               "options" = {
                 "reasoningEffort" = "high";
               };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
+              };
             };
             "Qwen3.6-27B-UD-Q5_K_XL" = {
               name = "Qwen3.6-27B-UD-Q5_K_XL";
@@ -186,6 +243,15 @@
               "options" = {
                 "reasoningEffort" = "high";
               };
+              modalities = {
+                input = [
+                  "text"
+                  "image"
+                ];
+                output = [
+                  "text"
+                ];
+              };
             };
             "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking" = {
               name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
@@ -196,6 +262,15 @@
               "reasoning" = true;
               "options" = {
                 "reasoningEffort" = "high";
+                modalities = {
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  output = [
+                    "text"
+                  ];
+                };
               };
             };
             "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP" = {
@@ -203,6 +278,15 @@
               limit = {
                 context = 128000;
                 output = 65536;
+                modalities = {
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  output = [
+                    "text"
+                  ];
+                };
               };
             };
           };
