@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   ...
 }:
@@ -7,10 +8,9 @@
     inputs.nvf.homeManagerModules.default
     ./autocomplete.nix
     #./autopairs.nix
-    ./bufferline.nix
     ./comments.nix
     ./cursorline.nix
-    ./dashboard.nix
+    #./dashboard.nix
     # ./debugger.nix
     ./diagnostics.nix
     ./direnv.nix
@@ -21,8 +21,8 @@
     ./languages.nix
     ./lsp.nix
     ./mini.nix
-    ./neogen.nix
-    ./neogit.nix
+    #./neogen.nix
+    #./neogit.nix
     #./neotest.nix
     #./neotree.nix
     ./noice.nix
@@ -36,8 +36,8 @@
     ./statusline.nix
     #./surround.nix
     ./tabline.nix
-    ./telescope.nix
-    ./todo.nix
+    #./telescope.nix
+    #./todo.nix
     ./treesitter.nix
     ./trouble.nix
     #./web-devicons.nix
@@ -51,6 +51,10 @@
   stylix.targets.nvf.enable = true;
   programs.neovim = {
     enable = true;
-    extraPackages = [ ];
+    extraPackages = [
+      pkgs.fzf
+      pkgs.ripgrep
+      pkgs.fd
+    ];
   };
 }

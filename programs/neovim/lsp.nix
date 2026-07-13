@@ -2,7 +2,6 @@
   programs.nvf.settings.vim = {
     lsp = {
       enable = true;
-
       formatOnSave = true;
       #lspkind.enable = true;
       lightbulb.enable = false;
@@ -14,7 +13,7 @@
       null-ls.enable = true;
       otter-nvim = {
         enable = true;
-        setupOpts.handle_leading_whitespace = true;
+        setupOpts.handle_leading_whitespace = false;
       };
     };
     keymaps = [

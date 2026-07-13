@@ -4,19 +4,21 @@
   lib,
   username,
   ...
-}: let
+}:
+let
   models_dir = "/projects/models";
   binary = "${
     (pkgsUnstable.llama-cpp.override {
       cudaSupport = true;
     })
   }/bin/llama-server";
-in {
+in
+{
   systemd.services.autocomplete = {
     description = "llama-server for autocomplete";
     enable = false;
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
       User = username;
@@ -49,11 +51,11 @@ in {
       })
     ];
   };
-  users.groups.llama-swap = {};
+  users.groups.llama-swap = { };
   users.users.llama-swap = {
     isSystemUser = true;
     group = "llama-swap";
-    extraGroups = ["docker"];
+    extraGroups = [ "docker" ];
   };
   # system.activationScripts.buildVllm = ''
   #   ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
@@ -173,32 +175,32 @@ in {
         "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL" = {
           name = "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL";
           cmd = "\${binary}
-             -m \${models_dir}/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf \
-             --mmproj \${models_dir}/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL-mmproj-F16.gguf \
-             --model-draft \${models_dir}/mtp-gemma-4-26B-A4B-it-Q8_0.gguf \
-             --spec-type draft-mtp --spec-draft-n-max 4 \
+              -m \${models_dir}/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf \
+              --mmproj \${models_dir}/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL-mmproj-F16.gguf \
+              --model-draft \${models_dir}/mtp-gemma-4-26B-A4B-it-Q8_0.gguf \
+              --spec-type draft-mtp --spec-draft-n-max 4 \
               -fa on --temp 1.0 --top-p 0.95 --top-k 64 \
               --ctx-size 128000 \
               --cache-type-k q4_0 \
               --cache-type-v q4_0 \
               \${common_args} \
-             --port \${PORT}";
+              --port \${PORT}";
         };
         # https://huggingface.co/unsloth/gemma-4-26B-A4B-it-qat-GGUF 30layer moe 256k
         "gemma-4-31B-it-qat-UD-Q4_K_XL" = {
           name = "gemma-4-31B-it-qat-UD-Q4_K_XL";
           cmd = "\${binary}
-             -m \${models_dir}/gemma-4-31B-it-qat-UD-Q4_K_XL.gguf \
-             --mmproj \${models_dir}/gemma-4-31B-it-qat-UD-Q4_K_XL-mmproj-F16.gguf \
-             --model-draft \${models_dir}/mtp-gemma-4-31B-it-Q8_0.gguf \
-             --spec-type draft-mtp --spec-draft-n-max 4 \
+              -m \${models_dir}/gemma-4-31B-it-qat-UD-Q4_K_XL.gguf \
+              --mmproj \${models_dir}/gemma-4-31B-it-qat-UD-Q4_K_XL-mmproj-F16.gguf \
+              --model-draft \${models_dir}/mtp-gemma-4-31B-it-Q8_0.gguf \
+              --spec-type draft-mtp --spec-draft-n-max 4 \
               -fa on --temp 1.0 --top-p 0.95 --top-k 64 \
               --ctx-size 128000 \
               --cache-type-k q4_0 \
-              --cache-type-v q4_0 \so usually its opus 4.8 actually getting used
+              --cache-type-v q4_0 \
               -ngl 20 \
               \${common_args} \
-             --port \${PORT}";
+              --port \${PORT}";
         };
 
         # 64 layers total for qwen36-27b
@@ -206,234 +208,260 @@ in {
         "Qwen3.6-27B-Q4_K_M-MTP" = {
           name = "Qwen3.6-27B-Q4_K_M-MTP";
           cmd = "\${binary} \
-             -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 60 \
-             --ctx-size 128000 \
-             --no-mmproj-offload \
-             --no-context-shift \
-             --kv-unified \
-             --spec-type draft-mtp \
-             --spec-draft-n-max 6 \
-             --spec-draft-p-min 0.75 \
-             -fa on --jinja \
-             --cache-ram -1 \
-             --no-warmup \
-             --mlock \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
-             --temp 0.6 \
-             --min-p 0.00 \
-             --top-k 20 \
-             --top-p 0.95 \
-             --presence-penalty 0.0 \
-             --repeat-penalty 1.05 \
-             --reasoning off \
-             --reasoning-preserve \
-             --port \${PORT}";
+              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 6 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja \
+              --cache-ram -1 \
+              --no-warmup \
+              --mlock \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.95 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning off \
+              --reasoning-preserve \
+              --port \${PORT}";
         };
 
         "Qwen3.6-27B-Q4_K_M-MTP-think" = {
           name = "Qwen3.6-27B-Q4_K_M-MTP-think";
           cmd = "\${binary} \
-             -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
-             -ngl 56 \
-             --ctx-size 128000 \
-             --no-mmproj-offload \
-             --no-context-shift \
-             --kv-unified \
-             --spec-type draft-mtp \
-             --spec-draft-n-max 6 \
-             --spec-draft-p-min 0.75 \
-             -fa on --jinja \
-             --cache-ram -1 \
-             --no-warmup \
-             --mlock \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
-             --temp 0.6 \
-             --min-p 0.00 \
-             --top-k 20 \
-             --top-p 0.95 \
-             --presence-penalty 0.0 \
-             --repeat-penalty 1.05 \
-             --reasoning on \
-             --reasoning-preserve \
-             --port \${PORT}";
+              -m \${models_dir}/Qwen3.6-27B-Q4_K_M-MTP.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 6 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja \
+              --cache-ram -1 \
+              --no-warmup \
+              --mlock \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.95 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on \
+              --reasoning-preserve \
+              --port \${PORT}";
         };
+        # https://huggingface.co/Jackrong/Qwopus3.6-27B-Coder-Compat-MTP-GGUF
+        #               --chat-template-file /projects/models/qwen36-chat_template.jinja \
         "Qwopus3.6-27B-Coder-MTP-Q4_K_M" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
           cmd = "\${binary} \
-             -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf \
-						-ngl 56 \
-             --ctx-size 128000 \
-             --no-mmproj-offload \
-             --no-context-shift \
-             --kv-unified \
-             --spec-type draft-mtp \
-             --spec-draft-n-max 6 \
-             --spec-draft-p-min 0.75 \
-             -fa on --jinja --no-mmap \
-             --cache-ram -1 \
-             --no-warmup -np 1 -n 32768 \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
-             --temp 0.6 \
-             --min-p 0.00 \
-             --top-k 20 \
-             --top-p 0.8 \
-             --presence-penalty 0.0 \
-             --repeat-penalty 1.05 \
-             --reasoning off \
-			 --chat-template-file /projects/models/qwen36-chat_template.jinja \
-			 --port \${PORT}";
+              -m \${models_dir}/Qwopus3.6-27B-Coder-Compat-MTP-Q4_K_M.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 6 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning off \
+        		  --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
           cmd = "\${binary} \
-             -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf \
-					-ngl 56 \	
-             --ctx-size 128000 \
-             --no-mmproj-offload \
-             --no-context-shift \
-             --kv-unified \
-             --spec-type draft-mtp \
-             --spec-draft-n-max 6 \
-             --spec-draft-p-min 0.75 \
-             -fa on --jinja --no-mmap \
-             --cache-ram -1 \
-             --no-warmup -np 1 -n 32768 \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
-             --temp 0.6 \
-             --min-p 0.00 \
-             --top-k 20 \
-             --top-p 0.8 \
-             --presence-penalty 0.0 \
-             --repeat-penalty 1.05 \
-             --reasoning on \
-			 --chat-template-file /projects/models/qwen36-chat_template.jinja \
-             --port \${PORT}";
+              -m \${models_dir}/Qwopus3.6-27B-Coder-Compat-MTP-Q4_K_M.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 6 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on \
+              --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q5_K_M" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
           cmd = "\${binary} \
-                  -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q5_K_M.gguf \
-					-ngl 56 \	
-                  --ctx-size 128000 \
-                  --no-mmproj-offload \
-                  --no-context-shift \
-                  --kv-unified \
-                  --spec-type draft-mtp \
-                  --spec-draft-n-max 2 \
-                  --spec-draft-p-min 0.75 \
-                  -fa on --jinja --no-mmap \
-                  --cache-ram -1 \
-                  --no-warmup -np 1 -n 32768 \
-                  --cache-type-k q4_0 \
-                  --cache-type-v q4_0 \
-                  --temp 0.6 \
-                  --min-p 0.00 \
-                  --top-k 20 \
-                  --top-p 0.8 \
-                  --presence-penalty 0.0 \
-                  --repeat-penalty 1.05 \
-                  --reasoning off \
-				  --chat-template-file /projects/models/qwen36-chat_template.jinja \		
-                  --port \${PORT}";
+              -m \${models_dir}/Qwopus3.6-27B-Coder-Compat-MTP-Q5_K_M.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning off \
+              --port \${PORT}";
         };
         "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think" = {
           name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
           cmd = "\${binary} \
-                  -m \${models_dir}/Qwopus3.6-27B-Coder-MTP-Q5_K_M.gguf \
-					-ngl 56 \	
-                  --ctx-size 128000 \
-                  --no-mmproj-offload \
-                  --no-context-shift \
-                  --kv-unified \
-                  --spec-type draft-mtp \
-                  --spec-draft-n-max 2 \
-                  --spec-draft-p-min 0.75 \
-                  -fa on --jinja --no-mmap \
-                  --cache-ram -1 \
-                  --no-warmup -np 1 -n 32768 \
-                  --cache-type-k q4_0 \
-                  --cache-type-v q4_0 \
-                  --temp 0.6 \
-                  --min-p 0.00 \
-                  --top-k 20 \
-                  --top-p 0.8 \
-                  --presence-penalty 0.0 \
-                  --repeat-penalty 1.05 \
-                  --reasoning on \
-				  --chat-template-file /projects/models/qwen36-chat_template.jinja \	
-                  --port \${PORT}";
+              -m \${models_dir}/Qwopus3.6-27B-Coder-Compat-MTP-Q5_K_M.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on \
+              --port \${PORT}";
         };
+
+        "Qwopus3.6-27B-Coder-MTP-Q6-K-think" = {
+          name = "Qwopus3.6-27B-Coder-MTP-Q6_K-think";
+          cmd = "\${binary} \
+              -m \${models_dir}/Qwopus3.6-27B-Coder-Compat-MTP-Q6_K.gguf \
+              -ngl 64 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on \
+              --port \${PORT}";
+        };
+
         # 64 layers total for qwen36-27b
         "Qwen3.6-27B-UD-Q5_K_XL" = {
           name = "Qwen3.6-27B-UD-Q5_K_XL";
           cmd = "\${binary} \
-             -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
-			-ngl 56 \			
-             --ctx-size 128000 \
-             --no-mmproj-offload \
-             --no-context-shift \
-             --kv-unified \
-             --spec-type draft-mtp \
-             --spec-draft-n-max 2 \
-             --spec-draft-p-min 0.75 \
-             -fa on --jinja --no-mmap \
-             --cache-ram -1 \
-             --no-warmup -np 1 -n 32768 \
-             --cache-type-k q4_0 \
-             --cache-type-v q4_0 \
-             --temp 0.6 \
-             --min-p 0.00 \
-             --top-k 20 \
-             --top-p 0.8 \
-             -np -1 \
-             --presence-penalty 0.0 \
-             --repeat-penalty 1.05 \
-             --reasoning on \
-             \${common_args} \
-             --chat-template-kwargs '{\"preserve_thinking\":true}' \
-             --port \${PORT}";
+              -m \${models_dir}/Qwen3.6-27B-UD-Q5_K_XL.gguf \
+              -ngl 56 \
+              --ctx-size 128000 \
+              --no-mmproj-offload \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              -np -1 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on \
+              \${common_args} \
+              --chat-template-kwargs '{\"preserve_thinking\":true}' \
+              --port \${PORT}";
         };
         # https://huggingface.co/unsloth/Qwen3.6-35B-A3B-MTP-GGUF
         # 40 layer
         "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP" = {
           name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
           cmd = "\${binary} \
-            -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP.gguf \
-				-ngl 56 \		
-            --ctx-size 128000 \
-            --no-context-shift \
-            --kv-unified \
-            --spec-type draft-mtp \
-            --spec-draft-n-max 2 \
-            --spec-draft-p-min 0.75 \
-            -fa on --jinja --no-mmap \
-            --cache-ram -1 \
-            --no-warmup -np 1 -n 32768 \
-            --cache-type-k q4_0 \
-            --cache-type-v q4_0 \
-            --temp 0.6 \
-            --min-p 0.00 \
-            --top-k 20 \
-            --top-p 0.8 \
-            -np -1 \
-            --port \${PORT} \
-            \${common_args} \
-            --presence-penalty 0.0 \
-            --repeat-penalty 1.05 \
-            --reasoning on";
+              -m \${models_dir}/Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP.gguf \
+              -ngl 56 \
+              --ctx-size 128000 \
+              --no-context-shift \
+              --kv-unified \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              --spec-draft-p-min 0.75 \
+              -fa on --jinja --no-mmap \
+              --cache-ram -1 \
+              --no-warmup -np 1 -n 32768 \
+              --cache-type-k q4_0 \
+              --cache-type-v q4_0 \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.8 \
+              -np -1 \
+              --port \${PORT} \
+              \${common_args} \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --reasoning on";
         };
         "z-image-turbo-F16" = {
           name = "z-image-turbo-F16";
           cmd = "\${binary} \
-                -m \${models_dir}/z-image-turbo-F16.gguf \
-            --mmproj \${models_dir}/z-image-turbo-F16.gguf \
-            --port \${PORT} \
-            \${common_args} ";
+              -m \${models_dir}/z-image-turbo-F16.gguf \
+              --mmproj \${models_dir}/z-image-turbo-F16.gguf \
+              --port \${PORT} \
+              \${common_args} ";
         };
       };
     };

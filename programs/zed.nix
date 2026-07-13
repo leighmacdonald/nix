@@ -56,6 +56,7 @@
       agent = {
         sidebar_side = "right";
         enable_feedback = false;
+        limit_content_width = false;
         show_turn_stats = true;
         default_profile = "ask";
         default_model = {

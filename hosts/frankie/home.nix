@@ -5,8 +5,7 @@
   pkgsUnstable,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
 
@@ -28,9 +27,8 @@
     ../../modules/tx-02.nix
     ./discord.nix
     ./steam.nix
-    ./hyprland
-    ./hypridle.nix
-    ./hyprpaper.nix
+    ../../programs/sway.nix
+    #./hyprland
     ./opencode.nix
     #./mpd.nix
     ../../programs/jq.nix
@@ -72,13 +70,12 @@
   # via UWSM. Without this, Hyprland-spawned processes can't find
   # home.file-installed scripts in ~/.local/bin (rofi menus, pypr-toggle-smart,
   # etc.). Per https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#nixos-uwsm.
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
     };
     "org/gtk/settings/file-chooser" = {
       show-hidden = true;
@@ -150,11 +147,15 @@
       imagemagick
       ghostscript_headless
       sqlite
+      discordo
+      libappindicator-gtk3
+      pulseaudio-ctl
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       EDITOR = "nvim";
+      SWAY_UNSUPPORTED_GPU = "true";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MOZ_ENABLE_WAYLAND = "1";
@@ -165,7 +166,7 @@
       HYPR_PLUGINS_DIR = "${
         pkgs.symlinkJoin {
           name = "hyprland-plugins";
-          paths = [ "${pkgs.hyprlandPlugins.hy3}" ];
+          paths = ["${pkgs.hyprlandPlugins.hy3}"];
         }
       }/lib";
     };
@@ -178,7 +179,7 @@
   programs.gh = {
     enable = true;
     settings = {
-      aliases = { };
+      aliases = {};
       editor = "nvim";
       git_protocol = "ssh";
       version = 1;
@@ -196,7 +197,7 @@
   };
   stylix.targets = {
     hyprpaper = {
-      enable = true;
+      enable = false;
     };
     # qt = {
     #   colors.enable = false;

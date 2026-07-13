@@ -1,3 +1,4 @@
+{ username, ... }:
 {
   imports = [
     ./audio.nix
@@ -39,8 +40,15 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
+  security.polkit.enable = true;
   # TODO remove
   nixpkgs.config.permittedInsecurePackages = [
     "python3.14-vllm-0.16.0"
   ];
+
+  # Skip initial login since we enter key for FDE anyways.
+  services.getty = {
+    autologinUser = username;
+    autologinOnce = true;
+  };
 }

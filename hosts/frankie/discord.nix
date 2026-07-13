@@ -1,5 +1,4 @@
-{ username, ... }: {
-
+{username, ...}: {
   programs.nixcord = {
     enable = true;
     user = username;
@@ -9,7 +8,7 @@
       frameless = true;
       transparent = true;
       useQuickCss = false;
-      uiElements = { };
+      uiElements = {};
 
       plugins = {
         hideMedia.enable = true;

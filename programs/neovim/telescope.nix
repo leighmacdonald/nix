@@ -1,17 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.nvf.settings.vim = {
-    extraPackages = [
-      pkgs.fzf
-      pkgs.ripgrep
-      pkgs.fd
-    ];
     telescope = {
       enable = true;
 
       extensions = [
         {
           name = "fzf";
-          packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
+          packages = [ pkgs.vimPlugins.telescope-fzf-native-nvim ];
           setup = {
             fzf = {
               fuzzy = true;
@@ -50,7 +45,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>f";
+        key = "<leader>ff";
         action = "<cmd>Telescope find_files<CR>"; # Find files
       }
       {

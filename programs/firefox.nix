@@ -3,16 +3,14 @@
   pkgsUnstable,
   config,
   ...
-}:
-
-{
+}: {
   stylix.targets.firefox.profileNames = [
     "frankie"
   ];
   programs.firefox = {
     enable = true;
     package = pkgsUnstable.firefox;
-    nativeMessagingHosts = [ pkgs.keepassxc ];
+    nativeMessagingHosts = [pkgs.keepassxc];
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles = {
       frankie = {
@@ -42,6 +40,10 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       ExtensionSettings = {
+        "styl-us@clamationary.com" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/stylus/latest.xpi";
+        };
         "dev@ajay.app" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/sponsorblock/latest.xpi";
           installation_mode = "force_installed";

@@ -1,5 +1,9 @@
 {
-  programs.nvf.settings.vim.tabline = {
-    nvimBufferline.enable = true;
+  programs.nvf.settings.vim = {
+    mini.tabline.enable = true;
+
+    tabline = {
+      nvimBufferline.enable = true;
+    };
   };
 }

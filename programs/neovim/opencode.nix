@@ -23,23 +23,22 @@
     };
     keymaps = [
       {
-        key = "<leader>oa";
-        mode = "nx";
-        action = ''function() require("opencode").ask("@this: ") end'';
+        key = "<leader>qa";
+        mode = "n";
+        action = '':lua function() require("opencode").ask("@this: ") end<CR>'';
         desc = "Ask OpenCode";
       }
       {
-        key = "<leader>os";
-        mode = "nx";
-        action = ''function() require("opencode").select() end'';
+        key = "<leader>qs";
+        mode = "n";
+        action = ''lua: function() require("opencode").select() end<CR>'';
         desc = "Select OpenCode";
       }
       {
         mode = "n";
-        key = "<S-C-o>";
-        action = ''function() return require("opencode").operator("@this ") end'';
+        key = "<leader>qc";
+        action = ''lua: function() return require("opencode").operator("@this ") end<CR>'';
         desc = "Send range to OpenCode";
-        expr = true;
       }
     ];
   };
