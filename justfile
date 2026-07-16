@@ -15,6 +15,7 @@ frankie:
 
 winnie:
     nixos-rebuild boot --flake .#winnie --build-host {{ build_host }} --target-host winnie.roto.lol --sudo
+    ssh winnie.roto.lol sudo reboot
 
 rupert:
     nixos-rebuild switch --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo

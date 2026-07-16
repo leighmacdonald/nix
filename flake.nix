@@ -169,7 +169,7 @@
             inherit specialArgs;
             system = "x86_64-linux";
             modules = [
-              { nixpkgs.overlays = [ llm-agents.overlays.default ]; }
+              { nixpkgs.overlays = [ llm-agents.overlays.shared-nixpkgs ]; }
               # hyprland.homeManagerModules.default
               ./hosts/${hostName}
               {

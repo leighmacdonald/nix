@@ -25,19 +25,19 @@
       {
         key = "<leader>qa";
         mode = "n";
-        action = '':lua function() require("opencode").ask("@this: ") end<CR>'';
+        action = ''<cmd>lua require("opencode").ask("@this: ")<CR>'';
         desc = "Ask OpenCode";
       }
       {
         key = "<leader>qs";
         mode = "n";
-        action = ''lua: function() require("opencode").select() end<CR>'';
+        action = ''<cmd>lua require("opencode").select()<CR>'';
         desc = "Select OpenCode";
       }
       {
         mode = "n";
         key = "<leader>qc";
-        action = ''lua: function() return require("opencode").operator("@this ") end<CR>'';
+        action = ''<cmd>lua require("opencode").operator("@this ")<CR>'';
         desc = "Send range to OpenCode";
       }
     ];

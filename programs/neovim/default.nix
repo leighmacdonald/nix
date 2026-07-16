@@ -2,8 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.nvf.homeManagerModules.default
     ./autocomplete.nix
@@ -11,11 +10,12 @@
     ./comments.nix
     ./cursorline.nix
     #./dashboard.nix
-    # ./debugger.nix
+    ./debugger.nix
     ./diagnostics.nix
     ./direnv.nix
     ./formatter.nix
     ./gitsigns.nix
+    ./gh.nix
     ./icon-picker.nix
     ./images.nix
     ./languages.nix

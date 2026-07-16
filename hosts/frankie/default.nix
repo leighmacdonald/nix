@@ -44,6 +44,7 @@
   # TODO remove
   nixpkgs.config.permittedInsecurePackages = [
     "python3.14-vllm-0.16.0"
+    "pnpm-9.15.9"
   ];
 
   # Skip initial login since we enter key for FDE anyways.

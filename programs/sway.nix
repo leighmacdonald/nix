@@ -5,10 +5,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   osd_display = "DP-3";
   osd_player = "mpd";
-in {
+in
+{
   services.swayosd = {
     enable = true;
     # OSD Margin from the top edge, 0.5 would be the screen center. May be from 0.0 - 1.0.
@@ -35,7 +37,7 @@ in {
     systemd = {
       enable = true;
       xdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     enable = true;
     checkConfig = false;
@@ -44,7 +46,7 @@ in {
     #   no_focus [class="^tf_linux*"]
     # '';
     config = {
-      bars = [];
+      bars = [ ];
       modifier = "Mod4";
       menu = "rofi -show drun -show-icons";
       terminal = "foot";
@@ -62,20 +64,26 @@ in {
         # ];
       };
       keycodebindings = lib.mkOptionDefault {
-        "275" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle & pw-play ${inputs.self}/discord-notification.mp3";
+        "275" =
+          "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle & pw-play ${inputs.self}/discord-notification.mp3";
       };
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+        in
         lib.mkOptionDefault {
-          "${modifier}+Shift+S" = "grim -g \"$(slurp -d)\" - | wl-copy";
+          "${modifier}+Shift+e" = "exec uwsm stop";
+          "${modifier}+Shift+s" = "grim -g \"$(slurp -d)\" - | wl-copy";
           "XF86AudioRaiseVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume raise";
           "XF86AudioLowerVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume lower";
           "XF86AudioMute" = "exec swayosd-client --monitor ${osd_display} --output-volume mute-toggle";
           "XF86AudioMicMute" = "exec swayosd-client --monitor ${osd_display} --input-volume mute-toggle";
-          "XF86AudioPlay" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
-          "XF86AudioNext" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
-          "XF86AudioPrev" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
+          "XF86AudioPlay" =
+            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
+          "XF86AudioNext" =
+            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
+          "XF86AudioPrev" =
+            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
         };
       input = {
         "type:pointer" = {

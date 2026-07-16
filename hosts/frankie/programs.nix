@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, pkgsUnstable, ... }: {
   environment = {
     pathsToLink = [
       "/share/applications"
@@ -24,9 +24,9 @@
       atop
       dbeaver-bin
       cudatoolkit
-      xdg-desktop-portal-hyprland
+      #xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
-      llm-agents.pi
+      #llm-agents.pi
       e2fsprogs
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
@@ -39,7 +39,7 @@
       binfmt = true;
     };
     hyprland = {
-      enable = true;
+      enable = false;
       withUWSM = true;
       xwayland.enable = true;
       # set the flake package
@@ -67,11 +67,16 @@
     uwsm = {
       enable = true;
       waylandCompositors = {
-        hyprland = {
-          prettyName = "Hyprland";
-          comment = "Hyprland compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/Hyprland";
+        sway = {
+          prettyName = "Sway";
+          comment = "Sway compositor managed by UWSM";
+          binPath = "${pkgsUnstable.sway}/bin/sway";
         };
+        # hyprland = {
+        #   prettyName = "Hyprland";
+        #   comment = "Hyprland compositor managed by UWSM";
+        #   binPath = "/run/current-system/sw/bin/Hyprland";
+        # };
       };
     };
     #  fish = {

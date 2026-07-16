@@ -1,5 +1,6 @@
 {
   pkgs,
+  username,
   ...
 }:
 {
@@ -108,6 +109,9 @@
       };
       "oc.roto.lol" = {
         extraConfig = ''
+          basic_auth {
+            ${username} {$BASIC_AUTH_PASSWORD}
+          }
           log  {
               output discard
           }

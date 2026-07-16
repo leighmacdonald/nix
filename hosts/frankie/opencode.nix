@@ -35,7 +35,7 @@
         "8090"
         "--mdns"
       ];
-      #environmentFile = "/etc/opencode/envfile";
+      environmentFile = "/etc/llama-swap/envfile";
     };
     enable = true;
     enableMcpIntegration = false; # prefer per project configs
@@ -101,10 +101,8 @@
     };
     settings = {
       plugin = [
-        "opencode-review"
         "@simonwjackson/opencode-direnv"
         "@plannotator/opencode@latest"
-        "@dietrichgebert/ponytail"
       ];
       default_agent = "plan";
       share = "disabled";
@@ -143,21 +141,37 @@
           name = "local";
           options = {
             baseURL = "https://llm.roto.lol/v1";
-            apiKey = "xxx";
+            apiKey = "{file:~/.config/opencode/apikey}";
           };
           models = {
             "North-Mini-Code-1.0-UD-Q4_K_M" = {
               name = "North-Mini-Code-1.0-UD-Q4_K_M";
               limit = {
                 context = 256000;
-                output = 65536;
+                output = 64000;
               };
-              "reasoning" = true;
-              "options" = {
-                "reasoningEffort" = "high";
+              interleaved = {
+                field = "reasoning";
+              };
+              reasoning = true;
+              options = {
+                reasoningEffort = "high";
               };
             };
-
+            "North-Mini-Code-1.0-UD-Q5_K_M" = {
+              name = "North-Mini-Code-1.0-UD-Q5_K_M";
+              limit = {
+                context = 256000;
+                output = 64000;
+              };
+              interleaved = {
+                field = "reasoning";
+              };
+              reasoning = true;
+              options = {
+                reasoningEffort = "high";
+              };
+            };
             "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking" = {
               name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
               limit = {
@@ -227,7 +241,6 @@
               modalities = {
                 input = [
                   "text"
-                  "image"
                 ];
                 output = [
                   "text"
@@ -300,7 +313,6 @@
               modalities = {
                 input = [
                   "text"
-                  "image"
                 ];
                 output = [
                   "text"
@@ -313,14 +325,13 @@
                 context = 128000;
                 output = 65536;
               };
-              "reasoning" = true;
-              "options" = {
+              reasoning = true;
+              options = {
                 "reasoningEffort" = "high";
               };
               modalities = {
                 input = [
                   "text"
-                  "image"
                 ];
                 output = [
                   "text"
@@ -333,13 +344,12 @@
                 context = 128000;
                 output = 65536;
               };
-              "reasoning" = true;
-              "options" = {
-                "reasoningEffort" = "high";
+              reasoning = true;
+              options = {
+                reasoningEffort = "high";
                 modalities = {
                   input = [
                     "text"
-                    "image"
                   ];
                   output = [
                     "text"
@@ -355,7 +365,6 @@
                 modalities = {
                   input = [
                     "text"
-                    "image"
                   ];
                   output = [
                     "text"

@@ -8,6 +8,10 @@
       path = "/etc/opencode/envfile";
       owner = username;
     };
+    opencode_key = {
+      path = "/home/${username}/.config/opencode/apikey";
+      owner = username;
+    };
     llama_env = {
       path = "/etc/llama-swap/envfile";
       owner = username;
