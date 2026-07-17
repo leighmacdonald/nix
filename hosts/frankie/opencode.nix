@@ -101,6 +101,7 @@
     };
     settings = {
       plugin = [
+        "opencode-skills"
         "@simonwjackson/opencode-direnv"
         "@plannotator/opencode@latest"
       ];
@@ -144,6 +145,14 @@
             apiKey = "{file:~/.config/opencode/apikey}";
           };
           models = {
+            "Ternary-Bonsai-27B-Q2_g64" = {
+              name = "Ternary-Bonsai-27B-Q2_g64";
+              limit = {
+                context = 256000;
+                output = 64000;
+              };
+            };
+
             "North-Mini-Code-1.0-UD-Q4_K_M" = {
               name = "North-Mini-Code-1.0-UD-Q4_K_M";
               limit = {

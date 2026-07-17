@@ -117,7 +117,14 @@ in {
              \${common_args} \
              --port \${PORT}";
         };
-
+        "Ternary-Bonsai-27B-Q2_g64" = {
+          name = "Ternary-Bonsai-27B-Q2_g64";
+          cmd = "\${binary}
+             -m \${models_dir}/Ternary-Bonsai-27B-Q2_g64.gguf \
+             --temp 0.7 --top-p 0.95 --top-k 20 \
+             \${common_args} \
+             --port \${PORT}";
+        };
         "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL" = {
           name = "Nemotron-3-Nano-30B-A3B-UD-Q4_K_XL";
           cmd = "\${binary}

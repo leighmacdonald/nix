@@ -17,7 +17,7 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
     fonts = {
       sizes = {
-        applications = 18;
+        applications = 14;
         terminal = 14;
         desktop = 18;
         popups = 18;

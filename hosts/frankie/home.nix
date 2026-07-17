@@ -34,7 +34,7 @@
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
     ../../programs/kitty.nix
-    ../../programs/neovim
+    ../../programs/qutebrowser.nix
     ../../programs/rmpc.nix
     ../../programs/rofi.nix
     ../../programs/sqls.nix
@@ -150,6 +150,13 @@
       discordo
       libappindicator-gtk3
       pulseaudio-ctl
+      ripgrep
+      fd
+      sqlite
+      texlive.combined.scheme-full
+      mermaid-cli
+      sqlfluff
+      xdg-utils
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

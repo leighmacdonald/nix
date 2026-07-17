@@ -1,6 +1,10 @@
-{ username, ... }:
 {
+  username,
+  inputs,
+  ...
+}: {
   imports = [
+    inputs.nvim.nixosModules.default
     ./audio.nix
     ./boot.nix
     ./disko.nix
@@ -40,13 +44,15 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
+  # fix password not working
+  security.pam.services.swaylock = {};
   security.polkit.enable = true;
   # TODO remove
   nixpkgs.config.permittedInsecurePackages = [
     "python3.14-vllm-0.16.0"
     "pnpm-9.15.9"
   ];
-
+programs.neovim.enable = true;
   # Skip initial login since we enter key for FDE anyways.
   services.getty = {
     autologinUser = username;

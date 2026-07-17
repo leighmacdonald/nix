@@ -78,6 +78,7 @@
         ".local/share/net.lrclib.lrcget"
         ".vscode"
         ".continue"
+        "screenshots"
         "go"
         "Downloads"
         ".config/Code/User"

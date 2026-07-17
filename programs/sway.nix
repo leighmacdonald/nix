@@ -5,12 +5,31 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   osd_display = "DP-3";
   osd_player = "mpd";
-in
-{
+in {
+  services.swayidle = {
+    enable = true;
+    systemdTargets = ["graphical-session.target"];
+    timeouts = [
+      #{
+      #        timeout = 300;
+      #        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+      #      }
+      {
+        timeout = 330;
+        command = "${pkgs.playerctl}/bin/playerctl pause; ${pkgsUnstable.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgsUnstable.sway}/bin/swaymsg 'output * dpms on'";
+      }
+    ];
+    #    events = [
+    #      {
+    #        event = "before-sleep";
+    #        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+    #      }
+    #    ];
+  };
   services.swayosd = {
     enable = true;
     # OSD Margin from the top edge, 0.5 would be the screen center. May be from 0.0 - 1.0.
@@ -37,7 +56,7 @@ in
     systemd = {
       enable = true;
       xdgAutostart = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
     };
     enable = true;
     checkConfig = false;
@@ -46,7 +65,7 @@ in
     #   no_focus [class="^tf_linux*"]
     # '';
     config = {
-      bars = [ ];
+      bars = []; # Disables default bar
       modifier = "Mod4";
       menu = "rofi -show drun -show-icons";
       terminal = "foot";
@@ -64,26 +83,23 @@ in
         # ];
       };
       keycodebindings = lib.mkOptionDefault {
-        "275" =
-          "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle & pw-play ${inputs.self}/discord-notification.mp3";
+        "mouse:276" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle & pw-play ${inputs.self}/discord-notification.mp3";
       };
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-        in
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
         lib.mkOptionDefault {
           "${modifier}+Shift+e" = "exec uwsm stop";
-          "${modifier}+Shift+s" = "grim -g \"$(slurp -d)\" - | wl-copy";
+          "${modifier}+Shift+s" = "exec selection=$(slurp -d) && grim -g \"$selection\" - | tee ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
+          "${modifier}+f11" = "exec lact power-limit set 150";
+          "${modifier}+f12" = "exec lact power-limit set 479";
           "XF86AudioRaiseVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume raise";
           "XF86AudioLowerVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume lower";
           "XF86AudioMute" = "exec swayosd-client --monitor ${osd_display} --output-volume mute-toggle";
           "XF86AudioMicMute" = "exec swayosd-client --monitor ${osd_display} --input-volume mute-toggle";
-          "XF86AudioPlay" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
-          "XF86AudioNext" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
-          "XF86AudioPrev" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
+          "XF86AudioPlay" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
+          "XF86AudioNext" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
+          "XF86AudioPrev" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
         };
       input = {
         "type:pointer" = {
@@ -110,6 +126,8 @@ in
         "DP-2" = {
           mode = "3840x2160@144.0Hz";
           position = "2560 1080";
+          allow_tearing = "yes";
+          max_render_time = "off";
           scale = "1.0";
           bg = "${inputs.self}/wallpaper/wp8280844-nasa-4k-wallpapers.jpg fill";
         };
