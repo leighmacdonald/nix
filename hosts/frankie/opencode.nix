@@ -103,7 +103,7 @@
       plugin = [
         "opencode-skills"
         "@simonwjackson/opencode-direnv"
-        "@plannotator/opencode@latest"
+        # "@plannotator/opencode@latest"
       ];
       default_agent = "plan";
       share = "disabled";

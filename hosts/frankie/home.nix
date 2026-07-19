@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   username,
   config,
@@ -192,6 +193,13 @@
       version = 1;
     };
   };
+  programs.kitty = {
+    enable = true;
+    settings = {
+      background_opacity = lib.mkForce "0.95";
+      dynamic_background_opacity = lib.mkForce "yes";
+    };
+  };
   programs.obs-studio = {
     enable = true;
     package = pkgsUnstable.obs-studio;
@@ -203,6 +211,9 @@
     ];
   };
   stylix.targets = {
+    kitty = {
+      enable = true;
+    };
     hyprpaper = {
       enable = false;
     };

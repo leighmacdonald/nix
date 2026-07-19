@@ -2,8 +2,7 @@
   pkgs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ./beets.nix
 
@@ -12,7 +11,6 @@
     ../../programs/direnv.nix
     ../../programs/git.nix
     ../../programs/home-manager.nix
-    ../../programs/neovim
     ../../programs/home-ssh.nix
   ];
   home = {
@@ -24,6 +22,7 @@
       ssh-to-age
       age
       zellij
+      intel-gpu-tools
     ];
     sessionVariables = {
       EDITOR = "nvim";

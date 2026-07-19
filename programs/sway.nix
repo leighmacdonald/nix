@@ -68,6 +68,7 @@ in {
       bars = []; # Disables default bar
       modifier = "Mod4";
       menu = "rofi -show drun -show-icons";
+      #terminal = "kitty";
       terminal = "foot";
       window = {
         border = 1;

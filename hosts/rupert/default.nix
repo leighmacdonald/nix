@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./autobrr.nix
     ./disk-config.nix
@@ -51,7 +50,7 @@
     "/external" = {
       device = "/dev/disk/by-id/usb-Seagate_Expansion_NA8KVQ9C-0:0-part1";
       fsType = "ext4";
-      options = [ "noauto" ];
+      options = ["noauto"];
     };
   };
 
@@ -61,5 +60,6 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "python3.13-beets-2.5.1"
+    "intel-media-sdk-23.2.2"
   ];
 }
