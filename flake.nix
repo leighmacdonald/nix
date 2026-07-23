@@ -22,10 +22,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nvf = {
-      url = "github:NotAShelf/nvf/main";
-    };
-
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     sops-nix = {

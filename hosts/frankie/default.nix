@@ -44,6 +44,14 @@
     ../../services/openssh.nix
     ../../services/tailscale.nix
   ];
+  programs.ydotool = {
+    enable = true;
+    group = "lusers";
+  };
+  hardware.uinput.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+  '';
   # fix password not working
   security.pam.services.swaylock = {};
   security.polkit.enable = true;
@@ -52,7 +60,7 @@
     "python3.14-vllm-0.16.0"
     "pnpm-9.15.9"
   ];
-programs.neovim.enable = true;
+  programs.neovim.enable = true;
   # Skip initial login since we enter key for FDE anyways.
   services.getty = {
     autologinUser = username;

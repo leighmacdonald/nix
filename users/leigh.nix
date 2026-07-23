@@ -3,7 +3,8 @@
   username,
   config,
   ...
-}: {
+}:
+{
   users = {
     mutableUsers = false;
     groups = {
@@ -19,6 +20,7 @@
         "input"
         "video"
         "render"
+        "ydotool"
       ];
 
       uid = 2000;

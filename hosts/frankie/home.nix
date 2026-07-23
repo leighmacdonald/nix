@@ -171,6 +171,7 @@
       NIXOS_OZONE_WL = "1";
       NVD_BACKEN = "direct";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      YDOTOOL_SOCKET = "/var/run/ydotoold/socket";
       HYPR_PLUGINS_DIR = "${
         pkgs.symlinkJoin {
           name = "hyprland-plugins";
