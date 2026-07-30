@@ -1,6 +1,7 @@
-{
+{pkgsUnstable, ...}: {
   programs.ghostty = {
     enable = true;
+    package = pkgsUnstable.ghostty;
     enableFishIntegration = true;
     installBatSyntax = true;
     installVimSyntax = true;
@@ -26,9 +27,9 @@
       working-directory = "home";
       background-blur = true;
       font-family = "TX-02";
-
       background-opacity = 0.9;
       background-opacity-cells = true;
+      font-size = 20;
     };
   };
 }

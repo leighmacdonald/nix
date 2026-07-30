@@ -138,22 +138,17 @@ in {
         # codegemma-1.1-2b-f16.gguf
         # codegemma-7b-f16.gguf
         # https://huggingface.co/google/gemma-7b-it/discussions/38#65d7b14adb51f7c160769fa1
-        "codegemma-1.1-2b-f16" = {
-          name = "codegemma-1.1-2b-f16";
+        "codegemma-2b-f16" = {
+          name = "codegemma-2b-f16";
           cmd = "\${binary}
-             -m \${models_dir}/fitm/codegemma-1.1-2b-f16.gguf \
-             -ngl 99 \
-             -e --temp 0 --repeat-penalty 1.0 \
-             --port \${PORT}";
+             -m \${models_dir}/fitm/codegemma-2b-f16.gguf \
+             -ngl 99 -c 32768 --temp 0.0 --repeat-penalty 1.0 \${common_args} --port \${PORT}";
         };
         "codegemma-7b-f16" = {
           name = "codegemma-7b-f16";
           cmd = "\${binary}
              -m \${models_dir}/fitm/codegemma-7b-f16.gguf \
-             -ngl 99 \
-             -e --temp 0 --repeat-penalty 1.0  \
-             \${common_args} \
-             --port \${PORT}";
+             -ngl 99 -c 32768 --temp 0.0 --repeat-penalty 1.0 \${common_args} --port \${PORT}";
         };
 
         # omnicoder-9b-q8_0.gguf
@@ -219,6 +214,27 @@ in {
               --port \${PORT}";
         };
 
+        "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL" = {
+          name = "Qwen3.6-27B-Q4_K_M-MTP";
+          cmd = "\${binary} \
+              -m \${models_dir}/Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL.gguf \
+              --fit \
+              --ctx-size 128000 \
+              --batch-size 4096 \
+              --ubatch-size 1024 \
+              --flash-attn --jinja \
+              --chat-template-kwargs '{\"preserve_thinking\": true}' \
+              --temp 0.6 \
+              --min-p 0.00 \
+              --top-k 20 \
+              --top-p 0.95 \
+              --grp-attn-n 1 \
+              --grp-attn-width 1 \
+              --presence-penalty 0.0 \
+              --repeat-penalty 1.05 \
+              --port \${PORT}";
+        };
+
         # 64 layers total for qwen36-27b
         # https://github.com/rapatel0/rq-models
         "Qwen3.6-27B-Q4_K_M-MTP" = {
@@ -240,7 +256,7 @@ in {
               --cache-type-k q4_0 \
               --cache-type-v q4_0 \
               --temp 0.6 \
-              --min-p 0.00 \
+              --min-p 0.05 \
               --top-k 20 \
               --top-p 0.95 \
               --presence-penalty 0.0 \

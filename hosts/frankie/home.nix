@@ -2,7 +2,7 @@
   lib,
   pkgs,
   username,
-  config,
+  nvim,
   pkgsUnstable,
   inputs,
   ...
@@ -19,8 +19,7 @@
     ../../programs/firefox.nix
     ../../programs/fish.nix
     ../../programs/fzf.nix
-    #../../programs/ghostty.nix
-    ../../programs/foot.nix
+    ../../programs/ghostty.nix
     ../../programs/git.nix
     ../../programs/go.nix
     ../../programs/gpg.nix
@@ -34,8 +33,8 @@
     #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
-    ../../programs/kitty.nix
-    ../../programs/qutebrowser.nix
+    #../../programs/kitty.nix
+    #../../programs/qutebrowser.nix
     ../../programs/rmpc.nix
     ../../programs/rofi.nix
     ../../programs/sqls.nix
@@ -50,29 +49,23 @@
 
     ../../services/dunst.nix
     ../../services/flameshot.nix
-    ../../services/hyprpolkitagent.nix
+    #../../services/hyprpolkitagent.nix
     ../../services/gpg-agent.nix
   ];
 
-  # Hyprland user config is driven by the symlinked Lua tree below
-  # (lua/hyprland.lua and friends). The home-manager Hyprland module is left
-  # disabled here so it doesn't write the legacy hyprland.conf — Hyprland 0.55+
-  # reads hyprland.lua natively. The system-level NixOS Hyprland module still
-  # handles the session/UWSM/portal bits.
-  wayland.windowManager.hyprland.enable = false;
-  # Live-edit symlink: edits to lua/*.lua under ~/code/nixos-config (and the
-  # per-host overrides under ~/code/infra) take effect immediately via
-  # Hyprland's autoreload. No nixos-rebuild needed for keybinds or rules.
-  xdg.configFile."hypr/hyprland.lua".source =
-    config.lib.file.mkOutOfStoreSymlink "/projects/nix/hosts/frankie/hyprland/lua/hyprland.lua";
-
-  # UWSM env injection — sources home-manager's session vars (including
-  # home.sessionPath additions like ~/.local/bin) into the Hyprland session
-  # via UWSM. Without this, Hyprland-spawned processes can't find
-  # home.file-installed scripts in ~/.local/bin (rofi menus, pypr-toggle-smart,
-  # etc.). Per https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#nixos-uwsm.
-  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "zathura";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+    };
+  };
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = ["qemu:///system"];
@@ -83,14 +76,9 @@
       sort-directories-first = true;
     };
   };
-  #xdg.configFile."fish/config.fish".force = true;
+
   home = {
     file = {
-      # LSP stubs for Hyprland's Lua API at a stable user path. The hyprland
-      # package's share/hypr/stubs dir changes hash on each upgrade, so we link
-      # it into ~/.local/share/hypr/stubs and reference *that* from .luarc.json.
-      # Updates automatically on rebuild.
-      ".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
       ".wallpaper" = {
         source = "${inputs.self}/wallpaper";
         recursive = true;
@@ -102,12 +90,6 @@
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "26.05"; # Please read the comment before changing.
-    #    shellAliases = {
-    #      "cd" = "zoxide";
-    #    };
-
-    #xdg.configFile."fish/config.fish".force = true;
-
     packages = with pkgs; [
       sops
       ssh-to-age
@@ -162,22 +144,16 @@
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      EDITOR = "nvim";
+      EDITOR = "${nvim}/bin/nvim";
       SWAY_UNSUPPORTED_GPU = "true";
-      SUDO_EDITOR = "nvim";
-      MANPAGER = "nvim +Man!";
+      SUDO_EDITOR = "${nvim}/bin/nvim";
+      MANPAGER = "${nvim}/bin/nvim +Man!";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
       NVD_BACKEN = "direct";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      YDOTOOL_SOCKET = "/var/run/ydotoold/socket";
-      HYPR_PLUGINS_DIR = "${
-        pkgs.symlinkJoin {
-          name = "hyprland-plugins";
-          paths = ["${pkgs.hyprlandPlugins.hy3}"];
-        }
-      }/lib";
+      DEFAULT_BROWSER = "${pkgsUnstable.firefox}/bin/firefox";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"
@@ -195,7 +171,7 @@
     };
   };
   programs.kitty = {
-    enable = true;
+    enable = false;
     settings = {
       background_opacity = lib.mkForce "0.95";
       dynamic_background_opacity = lib.mkForce "yes";
@@ -212,6 +188,7 @@
     ];
   };
   stylix.targets = {
+    ghostty.enable = false;
     kitty = {
       enable = true;
     };

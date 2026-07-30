@@ -1,5 +1,4 @@
-{ hostName, ... }:
-{
+{hostName, ...}: {
   networking = {
     inherit hostName;
     dhcpcd = {
@@ -16,6 +15,9 @@
     };
     firewall = {
       enable = true;
+      allowedTCPPorts = [
+        22
+      ];
     };
   };
 }

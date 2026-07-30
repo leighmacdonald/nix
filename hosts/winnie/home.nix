@@ -21,17 +21,6 @@
   };
 
   programs = {
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      #waylandSupport = true;
-    };
     git = {
       enable = true;
       package = pkgs.gitMinimal;

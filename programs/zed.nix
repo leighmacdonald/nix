@@ -42,14 +42,14 @@
 
     userSettings = {
       edit_predictions = {
-        mode = "subtle";
+        mode = "eager";
         # provider = "zed";
         provider = "open_ai_compatible_api";
         "open_ai_compatible_api" = {
           prompt_format = "infer";
           max_output_tokens = 512;
           #   model = "sweep-next-edit-1.5b.q8_0.v2";
-          model = "Qwen3.6-27B-Q4_K_M-MTP";
+          model = "codegemma-7b-f16";
           api_url = "https://llm.roto.lol/v1/completions";
         };
       };
@@ -61,45 +61,55 @@
         default_profile = "ask";
         default_model = {
           provider = "mtp-llama";
-          model = "Qwen3.6-27B-Q4_K_M-MTP";
+          model = "codegemma-7b-f16";
           enable_thinking = true;
         };
         inline_alternatives = [
           {
             provider = "mtp-llama";
-            model = "Qwen3.6-27B-Q4_K_M-MTP";
-            enable_thinking = true;
-          }
-          {
-            provider = "mtp-llama";
-            model = "Qwen3.6-27B-UD-Q5_K_XL";
-            enable_thinking = true;
-          }
-          {
-            provider = "mtp-llama";
-            model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
+            model = "codegemma-2b-f16";
             enable_thinking = false;
           }
           {
             provider = "mtp-llama";
-            model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
-            enable_thinking = true;
-          }
-          {
-            provider = "mtp-llama";
-            model = "Nemotron-3-Nano-Omni-30B";
+            model = "codegemma-7b-f16";
             enable_thinking = false;
           }
           {
             provider = "mtp-llama";
-            model = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
-            enable_thinking = false;
-          }
-          {
-            provider = "mtp-llama";
-            model = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+            model = "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL";
             enable_thinking = true;
           }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "Qwen3.6-27B-UD-Q5_K_XL";
+          #   enable_thinking = true;
+          # }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
+          #   enable_thinking = false;
+          # }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
+          #   enable_thinking = true;
+          # }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "Nemotron-3-Nano-Omni-30B";
+          #   enable_thinking = false;
+          # }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "gemma-4-26B-A4B-it-UD-Q4_K_XL";
+          #   enable_thinking = false;
+          # }
+          # {
+          #   provider = "mtp-llama";
+          #   model = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
+          #   enable_thinking = true;
+          # }
         ];
         favorite_models = [];
         model_parameters = [];
@@ -137,6 +147,32 @@
           mtp-llama = {
             api_url = "https://llm.roto.lol/v1";
             available_models = [
+              {
+                name = "codegemma-2b-f16";
+                max_tokens = 8192;
+                max_output_tokens = 8192;
+                max_completion_tokens = 512;
+                capabilities = {
+                  tools = false;
+                  parallel_tool_calls = false;
+                  images = false;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 512;
+                capabilities = {
+                  tools = true;
+                  parallel_tool_calls = true;
+                  images = false;
+                  prompt_cache_key = true;
+                  chat_completions = false;
+                };
+              }
               {
                 name = "North-Mini-Code-1.0-UD-Q4_K_M";
                 max_tokens = 128000;

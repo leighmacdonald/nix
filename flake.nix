@@ -111,7 +111,6 @@
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             inputs.disko.nixosModules.disko
-            stylix.nixosModules.stylix
             ./hosts/${hostName}
             home-manager.nixosModules.home-manager
             {

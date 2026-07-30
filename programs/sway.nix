@@ -5,15 +5,13 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   osd_display = "DP-3";
   osd_player = "mpd";
-in
-{
+in {
   services.swayidle = {
     enable = true;
-    systemdTargets = [ "graphical-session.target" ];
+    systemdTargets = ["graphical-session.target"];
     timeouts = [
       #{
       #        timeout = 300;
@@ -58,7 +56,7 @@ in
     systemd = {
       enable = true;
       xdgAutostart = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
     };
     enable = true;
     checkConfig = false;
@@ -67,11 +65,12 @@ in
       bindsym --release BTN_EXTRA exec ydotool key F13:0
     '';
     config = {
-      bars = [ ]; # Disables default bar
+      bars = []; # Disables default bar
       modifier = "Mod4";
       menu = "rofi -show drun -show-icons";
       #terminal = "kitty";
-      terminal = "foot";
+      #terminal = "foot";
+      terminal = "${pkgsUnstable.ghostty}/bin/ghostty +new-window";
       window = {
         border = 1;
         titlebar = false;
@@ -85,27 +84,21 @@ in
         #   }
         # ];
       };
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-        in
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
         lib.mkOptionDefault {
           "${modifier}+Shift+e" = "exec uwsm stop";
-          "${modifier}+Shift+s" =
-            "exec selection=$(slurp -d) && grim -g \"$selection\" - | tee ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
+          "${modifier}+Shift+s" = "exec selection=$(slurp -d) && grim -g \"$selection\" - | tee ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
           "${modifier}+f11" = "exec lact power-limit set 150";
           "${modifier}+f12" = "exec lact power-limit set 479";
           "XF86AudioRaiseVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume raise";
           "XF86AudioLowerVolume" = "exec swayosd-client --monitor ${osd_display} --output-volume lower";
           "XF86AudioMute" = "exec swayosd-client --monitor ${osd_display} --output-volume mute-toggle";
           "XF86AudioMicMute" = "exec swayosd-client --monitor ${osd_display} --input-volume mute-toggle";
-          "XF86AudioPlay" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
-          "XF86AudioNext" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
-          "XF86AudioPrev" =
-            "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
-          "BTN_EXTRA" = "exec ydotool key F13:1";
+          "XF86AudioPlay" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl play-pause";
+          "XF86AudioNext" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl next";
+          "XF86AudioPrev" = "exec swayosd-client --monitor ${osd_display} --player=${osd_player} --playerctl prev";
         };
       input = {
         "type:pointer" = {

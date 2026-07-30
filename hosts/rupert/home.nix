@@ -16,7 +16,7 @@
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "25.11"; # Please read the comment before changing.
+    stateVersion = "26.05"; # Please read the comment before changing.
     packages = with pkgs; [
       sops
       ssh-to-age
@@ -25,11 +25,8 @@
       intel-gpu-tools
     ];
     sessionVariables = {
-      EDITOR = "nvim";
-      SUDO_EDITOR = "nvim";
-      MANPAGER = "nvim +Man!";
-      MOZ_USE_XINPUT2 = "1"; # smooth scroll
-      NIXOS_OZONE_WL = "1";
+      EDITOR = "nano";
+      SUDO_EDITOR = "nano";
       SOPS_AGE_KEY_FILE = "/etc/sops/age/keys.txt";
     };
     sessionPath = [

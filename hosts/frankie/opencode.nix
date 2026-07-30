@@ -236,7 +236,25 @@
                 ];
               };
             };
-
+          "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL" = {
+            name = "Qwen3.6-27B-Q4_K_M-MTP";
+            limit = {
+              context = 128000;
+              output = 65536;
+            };
+            "reasoning" = true;
+            "options" = {
+              "reasoningEffort" = "high";
+            };
+            modalities = {
+              input = [
+                "text"
+              ];
+              output = [
+                "text"
+              ];
+            };
+          };
             "Qwen3.6-27B-Q4_K_M-MTP" = {
               name = "Qwen3.6-27B-Q4_K_M-MTP";
               limit = {
