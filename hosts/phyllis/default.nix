@@ -1,9 +1,8 @@
-{
+{lib,
   pkgs,
   username,
   ...
-}:
-{
+}: {
   imports = [
     ../../fs/nfs-mounts.nix
     ../../platform/rpi4
@@ -29,7 +28,8 @@
       ];
     };
   };
-
+  programs.sway.enable = true;
+  security.polkit.enable = true;
   environment = {
     systemPackages = with pkgs; [
       wget
@@ -39,25 +39,26 @@
       home-manager
       vlc
       mpv
+      mako
+      pavucontrol
     ];
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+    pathsToLink = ["share/applications" "/share/xdg-desktop-portal"];
   };
-
   services = {
     displayManager = {
-      defaultSession = "hyprland-uwsm";
+      defaultSession = "sway";
       sddm.enable = true;
       sddm.wayland.enable = true;
       autoLogin.enable = true;
       autoLogin.user = username;
     };
   };
-
-  programs = {
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = false;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    };
-  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "chromium"
+    "chromium-unwrapped"
+    "widevine-cdm"
+  ];
 }

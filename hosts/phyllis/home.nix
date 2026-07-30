@@ -4,103 +4,132 @@
   username,
   hostName,
   ...
-}:
-{
+}: {
   imports = [
     ../../env/email.nix
   ];
-  # link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
-  # link all files in `./scripts` to `~/.config/i3/scripts`
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;   # link recursively
-  #   executable = true;  # make all files executable
-  # };
-
-  # encode the file content in nix configuration file directly
-  # home.file.".xxx".text = ''
-  #     xxx
-  # '';
-
   xdg = {
     autostart.enable = true;
-    configFile."uwsm/env".source =
-      "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     portal = {
       enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-wlr
       ];
+      config.common.default = "*";
     };
   };
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
-    "Xcursor.size" = 16;
+    "Xcursor.size" = 24;
     "Xft.dpi" = 96;
   };
   home = {
-    #uid = 2000;
+    uid = 2000;
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "26.05";
-
-    #packages = with pkgs; [ ];
+    packages = with pkgs; [playerctl jellyfin-desktop jellyfin-mpv-shim  (chromium.override {
+       enableWideVine = true;
+       commandLineArgs = [
+         "--ozone-platform=wayland"
+         "--use-gl=egl"
+         "--enable-features=V4L2VideoDecoder,WaylandWindowDecorations"
+         "--ignore-gpu-blocklist"
+         "--enable-gpu-rasterization"
+       ];
+     })];
   };
-  wayland.windowManager.hyprland = {
-    #systemd.variables = [ "--all" ];
-
+  services.jellyfin-mpv-shim = {
     enable = true;
     settings = {
-      "$mainMod" = "CTRL";
-      "$terminal" = "foot";
-      "$fileManager" = "thunar";
-      "$menu" = "rofi -show drun -show-icons"; # -run-command 'runapp {cmd}'";
-      animations = {
-        enabled = false;
+      allow_transcode_to_h265 = false;
+      always_transcode = false;
+      #audio_output = "hdmi";
+      close_to_tray = true;
+      allow_background = true;
+      auto_play = true;
+      fullscreen = false;
+      player_name = "mpv-shim";
+      direct_paths = true;
+      remote_direct_paths = true;
+    };
+  };
+  services.swayidle = {
+    enable = false;
+    systemdTargets = ["graphical-session.target"];
+    timeouts = [
+      {
+        timeout = 330;
+        command = "${pkgs.playerctl}/bin/playerctl pause; ${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+      }
+    ];
+  };
+  services.swayosd = {
+    enable = true;
+    topMargin = 0.9;
+  };
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+
+    sway.enable = true;
+  };
+  wayland.windowManager.sway = {
+    systemd = {
+      enable = true;
+      xdgAutostart = true;
+      variables = ["--all"];
+    };
+    enable = true;
+    checkConfig = false;
+    wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
+    config = {
+      bars = []; # Disables default bar
+      modifier = "Alt";
+      menu = "rofi -show drun -show-icons";
+      terminal = "foot";
+      window = {
+        border = 1;
+        titlebar = false;
+        hideEdgeBorders = "smart_no_gaps";
+        # commands = [
+        #   {
+        #     command = "floating enable";
+        #     criteria = {
+        #       class = "tf_linux64";
+        #     };
+        #   }
+        # ];
       };
-      decoration = {
-        blur = {
-          enabled = false;
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
+        {
+          "${modifier}+Shift+e" = "exec uwsm stop";
+          "${modifier}+q" = "kill";
+          "${modifier}+d" = "exec rofi -show drun -show-icons";
+          "${modifier}+f" = "fullscreen toggle";
+          "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
+          "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
+          "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+          "XF86AudioMicMute" = "exec swayosd-client  --input-volume mute-toggle";
+          "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";
+          "XF86AudioNext" = "exec swayosd-client --playerctl next";
+          "XF86AudioPrev" = "exec swayosd-client --playerctl prev";
+        };
+      input = {
+        "type:pointer" = {
+          accel_profile = "flat";
+          pointer_accel = "0";
         };
       };
-      misc = {
-        disable_hyprland_logo = true;
-      };
-      general = {
-        gaps_in = 0;
-        gaps_out = 0;
-      };
-      ecosystem = {
-        enforce_permissions = false;
-      };
-      bindel = [
-        " ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        " ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ];
-      bind = [
-        "$mainMod, return, exec, $terminal"
-        "$mainMod, m, exec, hyprshutdown -t ahhhh --post-cmd 'uwsm stop'"
-        "$mainMod, d, exec, $menu"
-        "$mainMod, f, exec, firefox"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-              "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
     };
   };
 
@@ -128,7 +157,6 @@
           CompactMode = true;
           MinimizeOnClose = true;
           MinimizeToTray = true;
-
           ShowTrayIcon = true;
           TrayIconAppearance = "monochrome-dark";
         };
@@ -151,7 +179,7 @@
     #chromium.enable = true;
     firefox = {
       enable = true;
-      nativeMessagingHosts = [ pkgs.keepassxc ];
+      nativeMessagingHosts = [pkgs.keepassxc];
       configPath = ".mozilla/firefox";
       profiles = {
         bedroom = {
