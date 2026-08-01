@@ -1,6 +1,10 @@
 {
+  lib,
+  ...
+}:
+{
   documentation = {
-    enable = true;
+    enable = lib.mkDefault true;
     dev.enable = true;
     doc.enable = true;
     info.enable = true;

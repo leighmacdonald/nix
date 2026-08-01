@@ -110,14 +110,14 @@ in {
       output = {
         "DP-1" = {
           mode = "2560x1440@59.95Hz";
-          pos = "6400 680";
+          position = "6400 680";
           scale = "1.0";
           transform = "270";
           bg = "${inputs.self}/wallpaper/pillars-vertical-4k.jpg fill";
         };
         "HDMI-A-1" = {
           mode = "2560x1440@59.95Hz";
-          pos = "1120 680";
+          position = "1120 680";
           scale = "1.0";
           transform = "90";
           bg = "${inputs.self}/wallpaper/pillars-vertical-4k.jpg fill";

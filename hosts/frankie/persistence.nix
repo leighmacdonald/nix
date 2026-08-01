@@ -2,9 +2,10 @@
   username,
   inputs,
   ...
-}: {
+}:
+{
   # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
-  systemd.services.home-manager-leigh = {
+  systemd.services."home-manager-${username}" = {
     preStart = ''
       rm -f "$HOME/.ssh/config"
     '';
@@ -14,7 +15,7 @@
     '';
   };
 
-  imports = [inputs.impermanence.nixosModules.impermanence];
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
     "/" = {
       device = "none";

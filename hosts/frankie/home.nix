@@ -96,14 +96,12 @@
       age
       yt-dlp
       delta
-      bat
       fastfetch
       pavucontrol
       pinentry-all
       wttrbar
       grim
       wl-clipboard
-      flameshot
       slurp
       hyprpaper
       hyprlock
@@ -117,7 +115,6 @@
       weechat
       playerctl
       p7zip
-      wttrbar
       lrcget
       uv
       lact
@@ -135,7 +132,6 @@
       pulseaudio-ctl
       ripgrep
       fd
-      sqlite
       texlive.combined.scheme-full
       mermaid-cli
       sqlfluff
@@ -151,7 +147,7 @@
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1"; # smooth scroll
       NIXOS_OZONE_WL = "1";
-      NVD_BACKEN = "direct";
+      NVD_BACKEND = "direct";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
       DEFAULT_BROWSER = "${pkgsUnstable.firefox}/bin/firefox";
     };

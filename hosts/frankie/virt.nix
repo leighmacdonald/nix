@@ -4,7 +4,7 @@
   services.spice-webdavd.enable = true;
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = [ username ]; # doesnt work? Maybe only on creation?
-  users.users.leigh.extraGroups = [ "libvirtd" ];
+  users.users.${username}.extraGroups = [ "libvirtd" ];
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;

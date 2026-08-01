@@ -1,5 +1,5 @@
 {
-  systemd.services.sonarr = {
+  systemd.services.prowlarr = {
     requires = [ "postgresql.target" ];
   };
   services.prowlarr = {

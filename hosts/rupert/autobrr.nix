@@ -2,7 +2,7 @@
   sops = {
     secrets = {
       "autobrr_session_key" = {
-        mode = "666";
+        mode = "660";
       };
     };
   };

@@ -46,7 +46,6 @@ Age keys in `.sops.yaml` for admin + 5 servers. Per-host encrypted secrets at `h
 
 ## Gotchas
 
-- **frankie's home-manager** is structured differently — no `useGlobalPkgs`/`useUserPackages`, uses llm-agents overlay and unstable pkgs
 - **RPi4 hosts** require `--no-reexec` on `nixos-rebuild`
 - **Initial deploy** uses `nixos-anywhere` with `fakeroot/` extra files; fix permissions after first boot: `sudo chown $USER:lusers /home/$USER /home/$USER/.ssh`
 - **direnv** — run `direnv allow` on first use (`.envrc` loads nix)

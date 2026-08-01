@@ -63,7 +63,7 @@
                   "/nix" = {
                     mountpoint = "/nix";
                     mountOptions = [
-                      "subvol=home"
+                      "subvol=nix"
                       "compress=zstd"
                       "noatime"
                     ];

@@ -1,4 +1,8 @@
-{pkgsUnstable, ...}: {
+{ pkgsUnstable, config, ... }:
+let
+  homeDir = config.home.homeDirectory;
+in
+{
   # ZED_OPEN_AI_COMPATIBLE_EDIT_PREDICTION_API_KEY
   # OPENAI_API_KEY
   stylix.targets.zed.enable = true;
@@ -111,8 +115,8 @@
           #   enable_thinking = true;
           # }
         ];
-        favorite_models = [];
-        model_parameters = [];
+        favorite_models = [ ];
+        model_parameters = [ ];
         tool_permissions = {
           default = "allow";
           tools = {
@@ -125,13 +129,13 @@
               #   { pattern = "^cargo\\s+(build|test|check)"; }
               #   { pattern = "^npm\\s+(install|test|run)"; }
               # ];
-              always_confirm = [{pattern = "sudo\\s+/";}];
+              always_confirm = [ { pattern = "sudo\\s+/"; } ];
               always_deny = [
-                {pattern = "^/storage";}
-                {pattern = "^/etc";}
-                {pattern = "\\.env";}
-                {pattern = "secrets?/";}
-                {pattern = "\\.(pem|key)$";}
+                { pattern = "^/storage"; }
+                { pattern = "^/etc"; }
+                { pattern = "\\.env"; }
+                { pattern = "secrets?/"; }
+                { pattern = "\\.(pem|key)$"; }
               ];
             };
           };
@@ -368,7 +372,7 @@
       use_smartcase_search = true;
       when_closing_with_no_tabs = "keep_window_open";
       file_types = {
-        "Askama" = ["jinja2"];
+        "Askama" = [ "jinja2" ];
       };
       git = {
         branch_picker = {
@@ -437,10 +441,10 @@
             hover_actions_run_enable = true;
             eventsGameName = "Team Fortress 2";
             includeDirectories = [
-              "/home/leigh/.sm-pkg/sdks/current/addons/sourcemod/scripting/include"
+              "${homeDir}/.sm-pkg/sdks/current/addons/sourcemod/scripting/include"
             ];
             compiler = {
-              path = "/home/leigh/.sm-pkg/sdks/current/addons/sourcemod/scripting/spcomp64";
+              path = "${homeDir}/.sm-pkg/sdks/current/addons/sourcemod/scripting/spcomp64";
             };
           };
         };

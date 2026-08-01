@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
+let
+  homeDir = config.home.homeDirectory;
+in
 {
   programs.vscode = {
     enable = true;
@@ -107,7 +114,7 @@
         ];
       userSettings = {
         yaml.schemas = {
-          "file:///home/leigh/.vscode/extensions/Continue.continue/config-yaml-schema.json" = [
+          "file://${homeDir}/.vscode/extensions/Continue.continue/config-yaml-schema.json" = [
             ".continue/**/*.yaml"
           ];
         };
@@ -140,9 +147,9 @@
               "-v2"
               "-w203"
             ];
-            compilerPath = "/home/leigh/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/spcomp64";
+            compilerPath = "${homeDir}/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/spcomp64";
             includeDirectories = [
-              "/home/leigh/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/include"
+              "${homeDir}/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/include"
               "/projects/gbans/sourcemod/scripting/include"
             ];
             name = "1.13";
@@ -154,9 +161,9 @@
               "-v2"
               "-w203"
             ];
-            compilerPath = "/home/leigh/.sm-pkg/sdks/sourcemod-1.12/addons/sourcemod/scripting/spcomp64";
+            compilerPath = "${homeDir}/.sm-pkg/sdks/sourcemod-1.12/addons/sourcemod/scripting/spcomp64";
             includeDirectories = [
-              "/home/leigh/.sm-pkg/sdks/sourcemod-1.12/addons/sourcemod/scripting/include"
+              "${homeDir}/.sm-pkg/sdks/sourcemod-1.12/addons/sourcemod/scripting/include"
               "/projects/gbans/sourcemod/scripting/include"
             ];
             name = "1.12";
@@ -174,7 +181,7 @@
         SourcePawnLanguageServer.hover.actions.references.enable = true;
         SourcePawnLanguageServer.eventsGameName = "Team Fortress 2";
         SourcePawnLanguageServer.compiler = {
-          path = "/home/leigh/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/spcomp64";
+          path = "${homeDir}/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/spcomp64";
           arguments = [
             #           "-E"
             "-v2"
@@ -182,7 +189,7 @@
           ];
         };
         SourcePawnLanguageServer.includeDirectories = [
-          "/home/leigh/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/include"
+          "${homeDir}/.sm-pkg/sdks/sourcemod-1.13/addons/sourcemod/scripting/include"
           "/projects/gbans/sourcemod/scripting/include"
         ];
         SourcePawnLanguageServer.cachePriming.projectsThreshold = 0;

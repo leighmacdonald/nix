@@ -13,7 +13,7 @@
     ../../users/root.nix
 
     ../../modules/secrets.nix
-    ../../modules/nodocumentation.nix
+    ../../modules/documentation.nix
     ../../modules/wifi.nix
     ../../modules/nix.nix
 
@@ -24,13 +24,15 @@
   ];
 
   networking.firewall = {
-    allowedTCPPorts= [
-    80
-    443
-  ];
-   allowedUDPPorts = [
-    80
-    443
-  ];
+    allowedTCPPorts = [
+      80
+      443
+    ];
+    allowedUDPPorts = [
+      80
+      443
+    ];
   };
+
+  documentation.enable = false;
 }

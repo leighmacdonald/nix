@@ -40,7 +40,6 @@ in
       enable = true;
       settings = {
         hosts = [
-          listenAddress
           "/tmp/mpd_socket"
         ];
       };

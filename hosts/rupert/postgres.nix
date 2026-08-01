@@ -49,6 +49,10 @@ in
     };
     authentication = pkgs.lib.mkOverride 10 ''
       #type database DBuser origin-address auth-method
+      host  all      all     127.0.0.1/32 scram-sha-256
+      host  all      all     ::1/128 scram-sha-256
+      host  all      all     192.168.0.0/24 scram-sha-256
+
       local all      all     trust
 
       # ipv4
@@ -56,9 +60,7 @@ in
       # ipv6
       host  all      all     ::1/128        trust
 
-      host  all      all     127.0.0.1/32 scram-sha-256
-      host  all      all     ::1/128 scram-sha-256
-      host  all      all     192.168.0.0/24 scram-sha-256
+
     '';
     initialScript = pkgs.writeText "init-sql-script" ''
       ALTER USER leigh with password 'SCRAM-SHA-256$4096:zm14gDYpIUtKLhhH3UYl2w==$jwUgiaoHmQH/U9qzGqTuFSCIEdFEpUR55N1HcAiq1Cg=:XPWj4dmi4TFhZsWaANMv2O10TkcicjyZ9mMo5ZDctks=';

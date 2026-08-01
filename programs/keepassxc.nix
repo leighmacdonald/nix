@@ -22,7 +22,7 @@
         };
         Browser = {
           Enabled = true;
-          UpdateBiaryPath = false;
+          UpdateBinaryPath = false;
         };
         GUI = {
           ApplicationTheme = "classic";

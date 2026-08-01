@@ -55,7 +55,6 @@
       nixd
       nvd
       nixpkgs-fmt
-      nixfmt
       statix
       deadnix
       just
@@ -70,7 +69,6 @@
       delve
       markdownlint-cli2
       sourcepawn-studio
-      buf
       protoc-gen-go
       protoc-gen-connect-go
       oapi-codegen
@@ -78,10 +76,8 @@
       protoc-gen-es
       protobuf-language-server
       rcon-cli
-      clang-tools
       govulncheck
       pgcli
-      biome
       netcat-gnu
     ];
     package = pkgsUnstable.opencode;

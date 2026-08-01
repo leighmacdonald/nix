@@ -1,5 +1,10 @@
-{ config,
-lib,pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./autobrr.nix
     ./disk-config.nix
@@ -21,7 +26,7 @@ lib,pkgs, ...}: {
     ../../users/root.nix
     ../../users/leigh.nix
 
-    ../../modules/nodocumentation.nix
+    ../../modules/documentation.nix
     ../../modules/secrets.nix
     ../../modules/nix.nix
 
@@ -61,7 +66,7 @@ lib,pkgs, ...}: {
     "/external" = {
       device = "/dev/disk/by-id/usb-Seagate_Expansion_NA8KVQ9C-0:0-part1";
       fsType = "ext4";
-      options = ["noauto"];
+      options = [ "noauto" ];
     };
   };
 
@@ -142,7 +147,11 @@ lib,pkgs, ...}: {
     # https://wiki.nixos.org/wiki/Intel_Graphics
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [intel-media-driver intel-media-sdk intel-compute-runtime-legacy1];
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-media-sdk
+        intel-compute-runtime-legacy1
+      ];
     };
   };
   stylix = {
@@ -184,4 +193,6 @@ lib,pkgs, ...}: {
   };
 
   nix.settings.post-build-hook = null;
+
+  documentation.enable = false;
 }
