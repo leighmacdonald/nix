@@ -62,7 +62,7 @@ in {
     checkConfig = false;
     wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
     extraConfig = ''
-      bindsym --release BTN_EXTRA exec ydotool key F13:0
+      bindsym --whole-window BTN_EXTRA exec wpctl set-mute @DEFAULT_SOURCE@ toggle
     '';
     config = {
       bars = []; # Disables default bar
