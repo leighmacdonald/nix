@@ -141,28 +141,6 @@
             apiKey = "{file:~/.config/opencode/apikey}";
           };
           models = {
-            "Ternary-Bonsai-27B-Q2_g64" = {
-              name = "Ternary-Bonsai-27B-Q2_g64";
-              limit = {
-                context = 256000;
-                output = 64000;
-              };
-            };
-
-            "North-Mini-Code-1.0-UD-Q4_K_M" = {
-              name = "North-Mini-Code-1.0-UD-Q4_K_M";
-              limit = {
-                context = 256000;
-                output = 64000;
-              };
-              interleaved = {
-                field = "reasoning";
-              };
-              reasoning = true;
-              options = {
-                reasoningEffort = "high";
-              };
-            };
             "North-Mini-Code-1.0-UD-Q5_K_M" = {
               name = "North-Mini-Code-1.0-UD-Q5_K_M";
               limit = {
@@ -177,84 +155,11 @@
                 reasoningEffort = "high";
               };
             };
-            "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking" = {
-              name = "gemma-4-26B-A4B-it-UD-Q4_K_XL-thinking";
-              limit = {
-                context = 256000;
-                output = 65536;
-              };
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                ];
-                output = [
-                  "text"
-                ];
-              };
 
-              "reasoning" = true;
-              "options" = {
-                "reasoningEffort" = "high";
-              };
-            };
-
-            "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL" = {
-              name = "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL";
+            "Qwen3.8-27B-UD-Q4_K_XL" = {
+              name = "Qwen3.8-27B-UD-Q4_K_XL";
               limit = {
-                context = 256000;
-                output = 65536;
-              };
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-
-            "gemma-4-31B-it-qat-UD-Q4_K_XL" = {
-              name = "gemma-4-31B-it-qat-UD-Q4_K_XL";
-              limit = {
-                context = 256000;
-                output = 65536;
-              };
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-          "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL" = {
-            name = "Qwen3.6-27B-Q4_K_M-MTP";
-            limit = {
-              context = 128000;
-              output = 65536;
-            };
-            "reasoning" = true;
-            "options" = {
-              "reasoningEffort" = "high";
-            };
-            modalities = {
-              input = [
-                "text"
-              ];
-              output = [
-                "text"
-              ];
-            };
-          };
-            "Qwen3.6-27B-Q4_K_M-MTP" = {
-              name = "Qwen3.6-27B-Q4_K_M-MTP";
-              limit = {
-                context = 128000;
+                context = 120000;
                 output = 65536;
               };
               "reasoning" = true;
@@ -268,131 +173,6 @@
                 output = [
                   "text"
                 ];
-              };
-            };
-
-            "Qwopus3.6-27B-Coder-MTP-Q4_K_M" = {
-              name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = false;
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-
-            "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think" = {
-              name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = true;
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-              options = {
-                reasoningEffort = "high";
-              };
-            };
-            "Qwopus3.6-27B-Coder-MTP-Q5_K_M" = {
-              name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = false;
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-            "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think" = {
-              name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = true;
-              options = {
-                reasoningEffort = "high";
-              };
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-            "Qwen3.6-27B-UD-Q5_K_XL" = {
-              name = "Qwen3.6-27B-UD-Q5_K_XL";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = true;
-              options = {
-                "reasoningEffort" = "high";
-              };
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-            "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking" = {
-              name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = true;
-              options = {
-                reasoningEffort = "high";
-                modalities = {
-                  input = [
-                    "text"
-                  ];
-                  output = [
-                    "text"
-                  ];
-                };
-              };
-            };
-            "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP" = {
-              name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
-              limit = {
-                context = 128000;
-                output = 65536;
-                modalities = {
-                  input = [
-                    "text"
-                  ];
-                  output = [
-                    "text"
-                  ];
-                };
               };
             };
           };

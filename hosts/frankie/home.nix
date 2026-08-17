@@ -33,7 +33,7 @@
     #./mpd.nix
     ../../programs/jq.nix
     ../../programs/keepassxc.nix
-    #../../programs/kitty.nix
+    ../../programs/foot.nix
     #../../programs/qutebrowser.nix
     ../../programs/rmpc.nix
     ../../programs/rofi.nix

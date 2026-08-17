@@ -49,8 +49,8 @@ in
         mode = "eager";
         # provider = "zed";
         provider = "open_ai_compatible_api";
-        "open_ai_compatible_api" = {
-          prompt_format = "infer";
+        open_ai_compatible_api = {
+          prompt_format = "code_gemma";
           max_output_tokens = 512;
           #   model = "sweep-next-edit-1.5b.q8_0.v2";
           model = "codegemma-7b-f16";
@@ -81,7 +81,7 @@ in
           }
           {
             provider = "mtp-llama";
-            model = "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL";
+            model = "Qwen3.8-27B-UD-Q4_K_XL";
             enable_thinking = true;
           }
           # {
@@ -165,19 +165,6 @@ in
                 };
               }
               {
-                name = "Qwen-AgentWorld-35B-A3B-UD-Q4_K_XL";
-                max_tokens = 128000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 512;
-                capabilities = {
-                  tools = true;
-                  parallel_tool_calls = true;
-                  images = false;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
                 name = "North-Mini-Code-1.0-UD-Q4_K_M";
                 max_tokens = 128000;
                 max_output_tokens = 64000;
@@ -190,26 +177,11 @@ in
                   chat_completions = false;
                 };
               }
-
               {
-                name = "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL";
+                name = "Qwen3.8-27B-UD-Q4_K_XL";
                 max_tokens = 128000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 8192;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-
-              {
-                name = "gemma-4-31B-it-qat-UD-Q4_K_XL";
-                max_tokens = 128000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 8192;
+                max_output_tokens = 128000;
+                max_completion_tokens = 64000;
                 capabilities = {
                   tools = true;
                   images = true;
@@ -219,129 +191,13 @@ in
                 };
               }
 
-              {
-                name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "Qwopus3.6-27B-Coder-MTP-Q4_K_M-think";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "Qwopus3.6-27B-Coder-MTP-Q5_K_M-think";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Qwen3.6-27B-Q4_K_M-MTP";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Qwen3.6-27B-UD-Q5_K_XL";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 8192;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 8192;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Qwen3.6-35B-A3B-UD-Q4_K_XL-MTP-thinking";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 8192;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
-              {
-                name = "Nemotron-3-Nano-Omni-30B";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
-                capabilities = {
-                  tools = true;
-                  parallel_tool_calls = true;
-                  images = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
             ];
           };
         };
       };
       #theme = "Catppuccin Mocha";
       icon_theme = "Catppuccin Mocha";
+      colorize_brackets = true;
       telemetry = {
         diagnostics = false;
         metrics = false;

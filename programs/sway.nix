@@ -69,8 +69,8 @@ in {
       modifier = "Mod4";
       menu = "rofi -show drun -show-icons";
       #terminal = "kitty";
-      #terminal = "foot";
-      terminal = "${pkgsUnstable.ghostty}/bin/ghostty +new-window";
+      terminal = "${pkgsUnstable.foot}/bin/foot";
+      #terminal = "${pkgsUnstable.ghostty}/bin/ghostty +new-window";
       window = {
         border = 1;
         titlebar = false;

@@ -14,14 +14,14 @@ frankie:
     nixos-rebuild switch --flake .#frankie --build-host {{ build_host }} --target-host frankie.roto.lol --sudo
 
 winnie:
-    nixos-rebuild boot --flake .#winnie --build-host {{ build_host }} --target-host winnie.roto.lol --sudo
+    nixos-rebuild boot --flake .#winnie --build-host {{ build_host }} --target-host winnie.roto.lol --sudo --max-jobs 2 --cores 6
     ssh winnie.roto.lol sudo reboot
 
 rupert:
-    nixos-rebuild boot --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password
+    nixos-rebuild boot --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password --max-jobs 2 --cores 6
     ssh rupert.roto.lol sudo reboot 
 
 phyllis:
-    nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host 192.168.0.100 --sudo
+    nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host 192.168.0.100 --sudo --max-jobs 2 --cores 6
 
 all: frankie winnie rupert phyllis
