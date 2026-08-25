@@ -1,8 +1,10 @@
-{ pkgsUnstable, config, ... }:
-let
-  homeDir = config.home.homeDirectory;
-in
 {
+  pkgsUnstable,
+  config,
+  ...
+}: let
+  homeDir = config.home.homeDirectory;
+in {
   # ZED_OPEN_AI_COMPATIBLE_EDIT_PREDICTION_API_KEY
   # OPENAI_API_KEY
   stylix.targets.zed.enable = true;
@@ -50,14 +52,17 @@ in
         # provider = "zed";
         provider = "open_ai_compatible_api";
         open_ai_compatible_api = {
-          prompt_format = "code_gemma";
+          prompt_format = "sweep";
           max_output_tokens = 512;
           #   model = "sweep-next-edit-1.5b.q8_0.v2";
-          model = "codegemma-7b-f16";
+          model = "sweep-next-edit-v2-7b-q8_0";
           api_url = "https://llm.roto.lol/v1/completions";
         };
       };
       agent = {
+        sandbox_permissions = {
+          allow_unsandboxed = true;
+        };
         sidebar_side = "right";
         enable_feedback = false;
         limit_content_width = false;
@@ -65,7 +70,7 @@ in
         default_profile = "ask";
         default_model = {
           provider = "mtp-llama";
-          model = "codegemma-7b-f16";
+          model = "Qwen3.8-27B-UD-Q4_K_XL";
           enable_thinking = true;
         };
         inline_alternatives = [
@@ -115,8 +120,8 @@ in
           #   enable_thinking = true;
           # }
         ];
-        favorite_models = [ ];
-        model_parameters = [ ];
+        favorite_models = [];
+        model_parameters = [];
         tool_permissions = {
           default = "allow";
           tools = {
@@ -129,13 +134,13 @@ in
               #   { pattern = "^cargo\\s+(build|test|check)"; }
               #   { pattern = "^npm\\s+(install|test|run)"; }
               # ];
-              always_confirm = [ { pattern = "sudo\\s+/"; } ];
+              always_confirm = [{pattern = "sudo\\s+/";}];
               always_deny = [
-                { pattern = "^/storage"; }
-                { pattern = "^/etc"; }
-                { pattern = "\\.env"; }
-                { pattern = "secrets?/"; }
-                { pattern = "\\.(pem|key)$"; }
+                {pattern = "^/storage";}
+                {pattern = "^/etc";}
+                {pattern = "\\.env";}
+                {pattern = "secrets?/";}
+                {pattern = "\\.(pem|key)$";}
               ];
             };
           };
@@ -166,7 +171,7 @@ in
               }
               {
                 name = "North-Mini-Code-1.0-UD-Q4_K_M";
-                max_tokens = 128000;
+                max_tokens = 120000;
                 max_output_tokens = 64000;
                 max_completion_tokens = 8192;
                 capabilities = {
@@ -179,18 +184,60 @@ in
               }
               {
                 name = "Qwen3.8-27B-UD-Q4_K_XL";
-                max_tokens = 128000;
-                max_output_tokens = 128000;
-                max_completion_tokens = 64000;
+                max_tokens = 200000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 1024;
+                reasoning_effort = "max";
                 capabilities = {
                   tools = true;
                   images = true;
                   parallel_tool_calls = true;
                   prompt_cache_key = true;
-                  chat_completions = false;
+                  chat_completions = true;
                 };
               }
-
+              {
+                name = "Qwen3.8-27B-UD-Q4_K_M";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 1024;
+                reasoning_effort = "max";
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M";
+                max_tokens = 128000;
+                max_output_tokens = 64000;
+                max_completion_tokens = 1024;
+                reasoning_effort = "max";
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
+              {
+                name = "Qwen3.8-27B-IQ4_NL";
+                max_tokens = 120000;
+                max_output_tokens = 120000;
+                max_completion_tokens = 64000;
+                reasoning_effort = "max";
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = true;
+                  prompt_cache_key = true;
+                  chat_completions = true;
+                };
+              }
             ];
           };
         };
@@ -228,7 +275,7 @@ in
       use_smartcase_search = true;
       when_closing_with_no_tabs = "keep_window_open";
       file_types = {
-        "Askama" = [ "jinja2" ];
+        "Askama" = ["jinja2"];
       };
       git = {
         branch_picker = {

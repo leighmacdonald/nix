@@ -159,12 +159,70 @@
             "Qwen3.8-27B-UD-Q4_K_XL" = {
               name = "Qwen3.8-27B-UD-Q4_K_XL";
               limit = {
-                context = 120000;
+                context = 200000;
                 output = 65536;
               };
               "reasoning" = true;
               "options" = {
-                "reasoningEffort" = "high";
+                "reasoningEffort" = "max";
+              };
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+
+            "Qwen3.8-27B-UD-Q4_K_M" = {
+              name = "Qwen3.8-27B-UD-Q4_K_M";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "max";
+              };
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+            "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M" = {
+              name = "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              reasoning = true;
+              options = {
+                reasoningEffort = "max";
+              };
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
+            "Qwen3.8-27B-IQ4_NL" = {
+              name = "Qwen3.8-27B-IQ4_NL";
+              limit = {
+                context = 128000;
+                output = 65536;
+              };
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "max";
               };
               modalities = {
                 input = [

@@ -59,6 +59,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "python3.14-vllm-0.16.0"
     "pnpm-9.15.9"
+    "ladybird-0-unstable-2026-06-05"
   ];
   programs.neovim.enable = true;
   # Skip initial login since we enter key for FDE anyways.

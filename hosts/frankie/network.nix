@@ -3,7 +3,7 @@
     hostName = "frankie";
     bridges = {
       br0 = {
-        interfaces = [ "enp7s0" ];
+        interfaces = ["enp7s0"];
       };
     };
     interfaces = {
@@ -40,10 +40,12 @@
         8080
         8081
         8090
+        27015
       ];
       allowedUDPPorts = [
         6006
         6007
+        27015
         27715
       ];
     };

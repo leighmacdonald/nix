@@ -132,7 +132,6 @@
       pulseaudio-ctl
       ripgrep
       fd
-      texlive.combined.scheme-full
       mermaid-cli
       sqlfluff
       xdg-utils
@@ -157,31 +156,33 @@
       "$HOME/.sm-pkg/sdks/current/addons/sourcemod/scripting"
     ];
   };
-  programs.gh = {
-    enable = true;
-    settings = {
-      aliases = {};
-      editor = "nvim";
-      git_protocol = "ssh";
-      version = 1;
+  programs = {
+    gh = {
+      enable = true;
+      settings = {
+        aliases = {};
+        editor = "nvim";
+        git_protocol = "ssh";
+        version = 1;
+      };
     };
-  };
-  programs.kitty = {
-    enable = false;
-    settings = {
-      background_opacity = lib.mkForce "0.95";
-      dynamic_background_opacity = lib.mkForce "yes";
+    kitty = {
+      enable = false;
+      settings = {
+        background_opacity = lib.mkForce "0.95";
+        dynamic_background_opacity = lib.mkForce "yes";
+      };
     };
-  };
-  programs.obs-studio = {
-    enable = true;
-    package = pkgsUnstable.obs-studio;
-    plugins = with pkgsUnstable.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-      obs-tuna
-      obs-vkcapture
-      wlrobs
-    ];
+    obs-studio = {
+      enable = true;
+      package = pkgsUnstable.obs-studio;
+      plugins = with pkgsUnstable.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+        obs-tuna
+        obs-vkcapture
+        wlrobs
+      ];
+    };
   };
   stylix.targets = {
     ghostty.enable = false;

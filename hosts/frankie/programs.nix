@@ -26,11 +26,10 @@
       xrandr
       vulkan-tools
       atop
-      dbeaver-bin
       cudatoolkit
       #xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
-      #llm-agents.pi
+      llm-agents.herdr
       e2fsprogs
       #system76-keyboard-configurator
       #pkgsUnstable.ladybird
@@ -41,6 +40,9 @@
     appimage = {
       enable = true;
       binfmt = true;
+    };
+    ladybird = {
+      enable = false;
     };
     hyprland = {
       enable = false;
@@ -71,11 +73,11 @@
     uwsm = {
       enable = true;
       waylandCompositors = {
-        sway = {
-          prettyName = "Sway";
-          comment = "Sway compositor managed by UWSM";
-          binPath = "${pkgsUnstable.sway}/bin/sway";
-        };
+        #sway = {
+        #          prettyName = "Sway";
+        #          comment = "Sway compositor managed by UWSM";
+        #          binPath = "${pkgsUnstable.sway}/bin/sway";
+        #        };
         # hyprland = {
         #   prettyName = "Hyprland";
         #   comment = "Hyprland compositor managed by UWSM";
