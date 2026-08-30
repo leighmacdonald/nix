@@ -314,11 +314,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1787985059,
-        "narHash": "sha256-NQEbobIZAYguu7oUufLHdVQgOMBmHcMOno0eubhN3Lk=",
+        "lastModified": 1788051928,
+        "narHash": "sha256-kECfUc0gWhv1DV9ms16cfeKfhGaPpIn/LAIzzbjYShU=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "f975e5921db0675b8c535b25d019555936b15e9f",
+        "rev": "65ca78376903260aec548a63faadb59bb6599ef8",
         "type": "github"
       },
       "original": {
@@ -350,11 +350,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1787932216,
-        "narHash": "sha256-OPJDo+mIHErjQL/uaclMFvgSkQeInH2MFGxT93+VXps=",
+        "lastModified": 1787999920,
+        "narHash": "sha256-Kkk6FL42z+zAzM5R9kjjoC+CSrDrPY6m9BrLIe1bEkk=",
         "owner": "4evy",
         "repo": "nixcord",
-        "rev": "5b36c9187cabf90cb1659045c354cd6a0dd349ff",
+        "rev": "033bf2acdbfca8392dd2b2457dccc26f04982fb0",
         "type": "github"
       },
       "original": {
@@ -368,11 +368,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1787144466,
-        "narHash": "sha256-HHfv2/HkNSKbbSyU9iD/g8lbP6r4tl33sSw1W4rXCk0=",
+        "lastModified": 1788044418,
+        "narHash": "sha256-cmOd3iGoE140M2GidgQMQbyxHZ4dT7C0QZq2+CrXQyA=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "0471accf8d0a8210b31d947497d179ecc99e0021",
+        "rev": "dc3f0cfde2050172abf6c3cdb684f735c15a57c5",
         "type": "github"
       },
       "original": {
@@ -431,11 +431,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1787736819,
-        "narHash": "sha256-cV5xEJJK3BvhU8rEd4mC9UsmDi5qscv/kzGPhBRC5WA=",
+        "lastModified": 1787900134,
+        "narHash": "sha256-VYXO0XZlgj06dxJZRhrD3WoSsvq/c7+/Akyoa22pefw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9fbb54b33e91ee4ca368e35a78e0613c720600b3",
+        "rev": "83199d0d373dd3ac2b9a1996b1d0263f76ab7a4c",
         "type": "github"
       },
       "original": {
@@ -652,8 +652,8 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1787969372,
-        "narHash": "sha256-EewTOpYFcMO0Dq33UL+3+4fsv36YejfHSH/e0rkxMq8=",
+        "lastModified": 1788062417,
+        "narHash": "sha256-TvpsKUwm14Bo5jlM/imWvqODERUWIIYdmpq1iDN2m/I=",
         "path": "/projects/obs-mpd-status",
         "type": "path"
       },
