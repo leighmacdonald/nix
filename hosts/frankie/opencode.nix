@@ -2,9 +2,7 @@
   pkgsUnstable,
   config,
   ...
-}: let
-  homeDir = config.home.homeDirectory;
-in {
+}: {
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
