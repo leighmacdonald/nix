@@ -1,23 +1,40 @@
 { username, pkgs, ... }:
-{
-  environment.systemPackages = [
-    (pkgs.writeShellApplication {
-      name = "copy-music-qbt.sh";
-      # runtimeInputs = [ pkgs.cowsay ];
-      text = ''
-        DEST_ROOT="/storage/music/managed/"
-        TORRENT_PATH="$1"
-        NAME="$2"
-        CATEGORY="$3"
-        SAVE_PATH="$4"
 
-        if [[ "$CATEGORY" == "lidarr" || "$SAVE_PATH" == "/storage/music/downloads" ]]; then
-            echo "Copying $NAME"
-            cp -rv "$TORRENT_PATH" "$DEST_ROOT"
-        fi
-      '';
-    })
-  ];
+let
+  copyMusic = pkgs.writeShellApplication {
+    name = "copy-music-qbt.sh";
+    text = ''
+      DEST_ROOT="/storage/music/managed"
+      CONTENT_PATH="''${1:?missing content path}"
+      NAME="''${2:?missing torrent name}"
+      CATEGORY="''${3:-}"
+
+      if [[ "$CATEGORY" != "lidarr" ]]; then
+        echo "copy-music-qbt: skipping ''${NAME} (category: ''${CATEGORY})"
+        exit 0
+      fi
+
+      src="''${CONTENT_PATH%/}"
+      if [[ ! -e "$src" ]]; then
+        echo "copy-music-qbt: source not found: ''${src}" >&2
+        exit 1
+      fi
+
+      dest="$DEST_ROOT/$(basename "$src")"
+      if [[ -e "$dest" ]]; then
+        echo "copy-music-qbt: skipping ''${NAME} (already present: ''${dest})"
+        exit 0
+      fi
+
+      mkdir -p "$DEST_ROOT"
+      echo "copy-music-qbt: copying ''${NAME} -> ''${dest}"
+      cp -a "$src" "$dest"
+      echo "copy-music-qbt: done"
+    '';
+  };
+in
+{
+  environment.systemPackages = [ copyMusic ];
 
   services.qbittorrent = {
     enable = true;
@@ -90,6 +107,10 @@
         General.Locale = "en";
       };
       Rss.AutoDownloader.DownloadRepacks = false;
+      AutoRun = {
+        enabled = true;
+        program = "${copyMusic}/bin/copy-music-qbt.sh %F %N %L";
+      };
     };
   };
 }
