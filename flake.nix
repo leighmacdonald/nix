@@ -30,6 +30,8 @@
     };
 
     nvim.url = "github:leighmacdonald/nvim";
+
+    # obs-mpd-status.url = "path:/projects/obs-mpd-status";
   };
 
   outputs = {
