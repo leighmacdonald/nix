@@ -100,7 +100,7 @@ in {
               --repeat-penalty 1.0 \
               --reasoning on \
               --reasoning-preserve \
-              --chat-template-kwargs '{\"reasoning-effort\": \"max\"}' \
+              --chat-template-kwargs '{\"reasoning-effort\": \"xhigh\"}' \
               --port \${PORT}";
         };
         "Qwen3.8-27B-UD-Q4_K_M" = {
@@ -108,6 +108,9 @@ in {
           cmd = "\${binary} \
               -m \${models_dir}/Qwen3.8-27B-UD-Q4_K_M.gguf \
               -ngl 65  \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 7 \
+              --spec-draft-p-min 0.75 \
               --ctx-size 128000 \
               --no-mmproj-offload \
               --kv-unified \
@@ -123,32 +126,7 @@ in {
               --repeat-penalty 1.0 \
               --reasoning on \
               --reasoning-preserve \
-              --chat-template-kwargs '{\"reasoning-effort\": \"max\"}' \
-              --port \${PORT}";
-        };
-
-        "Qwen3.8-27B-IQ4_NL" = {
-          name = "Qwen3.8-27B-IQ4_NL";
-          cmd = "\${binary} \
-              -m \${models_dir}/Qwen3.8-27B-IQ4_NL.gguf \
-              -ngl 65  \
-              --ctx-size 128000 \
-              --no-mmproj-offload \
-              --kv-unified \
-              -fa on --jinja \
-              --cache-ram -1 \
-              --cache-type-k q4_0 \
-              --cache-type-v q4_0 \
-              --temp 1.0 \
-              --min-p 0.0 \
-              --top-k 20 \
-              --top-p 0.95 \
-              --presence-penalty 0.0 \
-              --repeat-penalty 1.0 \
-              --reasoning on \
-              --reasoning-preserve \
-              --spec-default --spec-type draft-mtp --spec-draft-n-max 7 \
-              --chat-template-kwargs '{\"reasoning-effort\": \"max\"}' \
+              --chat-template-kwargs '{\"reasoning-effort\": \"xhigh\"}' \
               --port \${PORT}";
         };
       };
