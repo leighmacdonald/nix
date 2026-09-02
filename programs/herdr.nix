@@ -1,13 +1,8 @@
 {
-  pkgs,
   inputs,
   ...
 }: {
-environment = {
-  systemPackages = with pkgs; [
-    killall
-        inputs.llm-agents.herdr
-  ];
+  home.packages = [ inputs.llm-agents.packages.x86_64-linux.herdr ];
   xdg = {
     configFile."herdr/config.toml".text = ''
       # Show first-run notification setup on startup.
@@ -227,6 +222,5 @@ environment = {
       # scrollback_limit_bytes = 10000000
 
     '';
-  };
   };
 }

@@ -2,7 +2,9 @@
   pkgsUnstable,
   config,
   ...
-}: {
+}: let
+  homeDir = config.home.homeDirectory;
+in {
   stylix.targets.opencode.enable = false;
 
   xdg.configFile = {
@@ -95,6 +97,16 @@
         - Suggest improvements for readability and performance
       '';
     };
+    skills = {
+      golang-concurrency = "./skills/golang-concurrency";
+      golang-context = "./skills/golang-context";
+      golang-design-patterns = "./skills/golang-design-patterns";
+      golang-error-handling = "./skills/golang-error-handling";
+      golang-gopls = "./skills/golang-gopls";
+      golang-performance = "./skills/golang-performance";
+      golang-testing = "./skills/golang-testing";
+      sourcemod = "./skills/sourcemod";
+    };
     settings = {
       plugin = [
         "opencode-skills"
@@ -105,7 +117,24 @@
       share = "disabled";
       formatter = true;
       autoupdate = false;
-      lsp = true;
+      #      lsp = {
+      #        command = ["${pkgsUnstable.sourcepawn-studio}/bin/sourcepawn-studio"];
+      #        initialization = {
+      #          hover_actions_debug_enable = true;
+      #          hover_actions_enable = true;
+      #          hover_actions_gotoTypeDef_enable = true;
+      #          hover_actions_implementations_enable = true;
+      #          hover_actions_references_enable = true;
+      #          hover_actions_run_enable = true;
+      #          eventsGameName = "Team Fortress 2";
+      #          includeDirectories = [
+      #            "${homeDir}/.sm-pkg/sdks/current/addons/sourcemod/scripting/include"
+      #          ];
+      #          compiler = {
+      #            path = "${homeDir}/.sm-pkg/sdks/current/addons/sourcemod/scripting/spcomp64";
+      #          };
+      #        };
+      #      };
       compaction = {
         auto = true;
         prune = true;

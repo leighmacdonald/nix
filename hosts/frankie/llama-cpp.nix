@@ -12,19 +12,6 @@
     })
   }/bin/llama-server";
 in {
-  systemd.services.autocomplete = {
-    description = "llama-server for autocomplete";
-    enable = false;
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "simple";
-      User = username;
-      Restart = "always";
-      ExecStart = "${binary} -m ${models_dir}/fitm/sweep-next-edit-1.5b.q8_0.v2.gguf -ngl 99 -c 8192 --host 0.0.0.0 --port 8081";
-    };
-  };
-
   hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {
     # etc."llm/vllm.Dockerfile" = {
@@ -89,58 +76,6 @@ in {
       #   "$(env.API_KEY_2)"
       # ];
       models = {
-        # codegemma-1.1-2b-f16.gguf
-        # codegemma-7b-f16.gguf
-        # https://huggingface.co/google/gemma-7b-it/discussions/38#65d7b14adb51f7c160769fa1
-        "codegemma-7b-f16" = {
-          name = "codegemma-7b-f16";
-          cmd = "\${binary}
-             -m \${models_dir}/fitm/codegemma-7b-f16.gguf \
-             -ngl 99 -c 8192 --temp 0.0 --repeat-penalty 1.0 \${common_args} --port \${PORT}";
-        };
-
-        # omnicoder-9b-q8_0.gguf
-        "omnicoder-9b-q8_0" = {
-          name = "omnicoder-9b-q8_0";
-          cmd = "\${binary}
-             -m \${models_dir}/fitm/omnicoder-9b-q8_0.gguf \
-             -ngl 99 \
-             -c 8192 \
-             \${common_args} \
-             --port \${PORT}";
-        };
-        # sweep-next-edit-v2-7b-q8_0.gguf https://huggingface.co/Cyanophyte/sweep-next-edit-v2-7B-Q8_0-GGUF
-        "sweep-next-edit-v2-7b-q8_0" = {
-          name = "sweep-next-edit-v2-7b-q8_0";
-          cmd = "\${binary}
-             -m \${models_dir}/fitm/sweep-next-edit-v2-7b-q8_0.gguf \
-             -ngl 99 \
-             -c 8192 \
-             \${common_args} \
-             --port \${PORT}";
-        };
-
-        "DeepSeek-Coder-V2-Lite-Instruct-Q8_0" = {
-          name = "DeepSeek-Coder-V2-Lite-Instruct-Q8_0";
-          cmd = "\${binary}
-             -m \${models_dir}/DeepSeek-Coder-V2-Lite-Instruct-Q8_0.gguf \
-             -ngl 99 \
-             -c 8192 \
-             \${common_args} \
-             --port \${PORT}";
-        };
-
-        "DeepSeek-Coder-V2-Lite-Instruct.IQ4_XS" = {
-          name = "DeepSeek-Coder-V2-Lite-Instruct.IQ4_XS";
-          cmd = "\${binary}
-             -m \${models_dir}/DeepSeek-Coder-V2-Lite-Instruct.IQ4_XS.gguf \
-             -ngl 99 \
-             -c 8192 \
-             \${common_args} \
-             --port \${PORT}";
-        };
-        # 64 layers total for qwen36-27b
-        # https://github.com/rapatel0/rq-models
         #               --spec-type draft-mtp \
         #--spec-draft-n-max 7 \
         #--spec-draft-p-min 0.75 \
@@ -188,31 +123,6 @@ in {
               --repeat-penalty 1.0 \
               --reasoning on \
               --reasoning-preserve \
-              --chat-template-kwargs '{\"reasoning-effort\": \"max\"}' \
-              --port \${PORT}";
-        };
-
-        "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M" = {
-          name = "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M";
-          cmd = "\${binary} \
-              -m \${models_dir}/Qwen3.8-27B-Uncensored-noMTP-Q4_K_M.gguf \
-              -ngl 65  \
-              --ctx-size 128000 \
-              --no-mmproj-offload \
-              --kv-unified \
-              -fa on --jinja \
-              --cache-ram -1 \
-              --cache-type-k q4_0 \
-              --cache-type-v q4_0 \
-              --temp 1.0 \
-              --min-p 0.0 \
-              --top-k 20 \
-              --top-p 0.95 \
-              --presence-penalty 0.0 \
-              --repeat-penalty 1.0 \
-              --reasoning on \
-              --reasoning-preserve \
-              --spec-default --spec-type draft-mtp --spec-draft-n-max 7 \
               --chat-template-kwargs '{\"reasoning-effort\": \"max\"}' \
               --port \${PORT}";
         };

@@ -49,15 +49,15 @@ in {
     userSettings = {
       edit_predictions = {
         mode = "eager";
-        # provider = "zed";
-        provider = "open_ai_compatible_api";
-        open_ai_compatible_api = {
-          prompt_format = "sweep";
-          max_output_tokens = 512;
-          #   model = "sweep-next-edit-1.5b.q8_0.v2";
-          model = "sweep-next-edit-v2-7b-q8_0";
-          api_url = "https://llm.roto.lol/v1/completions";
-        };
+        provider = "zed";
+        # provider = "open_ai_compatible_api";
+        # open_ai_compatible_api = {
+        #   prompt_format = "sweep";
+        #   max_output_tokens = 512;
+        #   #   model = "sweep-next-edit-1.5b.q8_0.v2";
+        #   model = "sweep-next-edit-v2-7b-q8_0";
+        #   api_url = "https://llm.roto.lol/v1/completions";
+        # };
       };
       agent = {
         sandbox_permissions = {

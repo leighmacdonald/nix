@@ -21,6 +21,7 @@
     ../../programs/fzf.nix
     ../../programs/ghostty.nix
     ../../programs/git.nix
+    ../../programs/herdr.nix
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
@@ -182,6 +183,7 @@
         obs-vkcapture
         wlrobs
       ];
+      #  ++ [ inputs.obs-mpd-status.packages.x86_64-linux.default ];
     };
   };
   stylix.targets = {
