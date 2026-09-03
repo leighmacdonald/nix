@@ -26,32 +26,17 @@
       vulkan-tools
       atop
       cudatoolkit
-      #xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
       llm-agents.herdr
       e2fsprogs
+      x11_ssh_askpass
       #system76-keyboard-configurator
-      #pkgsUnstable.ladybird
     ];
   };
   programs = {
-    thunar.enable = true;
     appimage = {
       enable = true;
       binfmt = true;
-    };
-    ladybird = {
-      enable = false;
-    };
-    hyprland = {
-      enable = false;
-      withUWSM = true;
-      xwayland.enable = true;
-      # set the flake package
-      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      #package = pkgsUnstable.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      #portalPackage = pkgsUnstable.xdg-desktop-portal-hyprland;
     };
     steam = {
       enable = true;
@@ -84,8 +69,5 @@
         # };
       };
     };
-    #  fish = {
-    #    enable = true;
-    #  };
   };
 }

@@ -1,8 +1,5 @@
 { username, ... }:
 {
-  services.ssh-agent = {
-    enable = true;
-  };
   programs.ssh = {
     extraConfig = "AddKeysToAgent yes";
     enableDefaultConfig = false;

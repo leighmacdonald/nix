@@ -168,21 +168,6 @@
             apiKey = "{file:~/.config/opencode/apikey}";
           };
           models = {
-            "North-Mini-Code-1.0-UD-Q5_K_M" = {
-              name = "North-Mini-Code-1.0-UD-Q5_K_M";
-              limit = {
-                context = 256000;
-                output = 64000;
-              };
-              interleaved = {
-                field = "reasoning";
-              };
-              reasoning = true;
-              options = {
-                reasoningEffort = "high";
-              };
-            };
-
             "Qwen3.8-27B-UD-Q4_K_XL" = {
               name = "Qwen3.8-27B-UD-Q4_K_XL";
               limit = {
@@ -191,7 +176,7 @@
               };
               "reasoning" = true;
               "options" = {
-                "reasoningEffort" = "max";
+                "reasoningEffort" = "xhigh";
               };
               modalities = {
                 input = [
@@ -211,45 +196,7 @@
               };
               "reasoning" = true;
               "options" = {
-                "reasoningEffort" = "max";
-              };
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-            "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M" = {
-              name = "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              reasoning = true;
-              options = {
-                reasoningEffort = "max";
-              };
-              modalities = {
-                input = [
-                  "text"
-                ];
-                output = [
-                  "text"
-                ];
-              };
-            };
-            "Qwen3.8-27B-IQ4_NL" = {
-              name = "Qwen3.8-27B-IQ4_NL";
-              limit = {
-                context = 128000;
-                output = 65536;
-              };
-              "reasoning" = true;
-              "options" = {
-                "reasoningEffort" = "max";
+                "reasoningEffort" = "xhigh";
               };
               modalities = {
                 input = [

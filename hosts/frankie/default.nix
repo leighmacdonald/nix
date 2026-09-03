@@ -2,7 +2,8 @@
   username,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nvim.nixosModules.default
     ./audio.nix
@@ -42,6 +43,7 @@
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix
+    ../../services/ssh-agent.nix
     ../../services/tailscale.nix
   ];
   programs.ydotool = {
@@ -53,7 +55,7 @@
     KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
   '';
   # fix password not working
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   security.polkit.enable = true;
   # TODO remove
   nixpkgs.config.permittedInsecurePackages = [
