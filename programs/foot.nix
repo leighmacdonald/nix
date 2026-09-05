@@ -1,6 +1,9 @@
 {lib, ...}: {
   stylix.targets.foot = {
     enable = true;
+    fonts = {
+      enable = true;
+    };
     opacity = {
       enable = true;
     };
@@ -19,6 +22,7 @@
       main = {
         dpi-aware = lib.mkForce "yes";
         bold-text-in-bright = "yes";
+        #font = "TX-02:size=22";
       };
       bell = {
         urgent = "yes";
@@ -29,6 +33,7 @@
       colors-dark = {
         alpha = lib.mkForce 0.95;
       };
+
       cursor = {
         style = "beam";
         blink = "yes";
