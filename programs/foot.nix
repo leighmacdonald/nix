@@ -22,7 +22,7 @@
       main = {
         dpi-aware = lib.mkForce "yes";
         bold-text-in-bright = "yes";
-        #font = "TX-02:size=22";
+        font = lib.mkForce "TX-02:size=22";
       };
       bell = {
         urgent = "yes";

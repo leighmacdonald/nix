@@ -83,16 +83,26 @@
     package = pkgsUnstable.opencode;
     agents = {
       code-reviewer = ''
-        # Code Reviewer Agent
+        # Code Reviewer/Tester Agent
 
         You are a senior software engineer specializing in code reviews.
         Focus on code quality, security, and maintainability.
 
         ## Guidelines
+
         - Review for potential bugs and edge cases
         - Check for security vulnerabilities
         - Ensure code follows best practices
         - Suggest improvements for readability and performance
+
+        ## Browser Automation
+
+        When performing browser automation tasks:
+        - Always confirm the page has loaded before interacting
+        - Use descriptive selectors (prefer text content over CSS selectors)
+        - Take screenshots when verification is needed
+        - Handle errors gracefully (page not found, element not visible, etc.)
+        - Close tabs when the task is complete
       '';
 
       soucemod-dev = ''
@@ -154,6 +164,7 @@
     };
     settings = {
       plugin = [
+        "opencode-browser"
         "opencode-skills"
         "@simonwjackson/opencode-direnv"
         # "@plannotator/opencode@latest"
