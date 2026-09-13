@@ -1,12 +1,12 @@
 {
-  pkgs,
+  # pkgs,
   ...
 }:
 {
 
   boot = {
-    #kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_zen;
+    #kernelPackages = pkgs.linuxPackages_;
+    #kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     initrd = {

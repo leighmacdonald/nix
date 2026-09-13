@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ lib, ... }: {
   stylix.targets.foot = {
     enable = true;
     fonts = {
@@ -20,9 +20,10 @@
     # https://man.archlinux.org/man/foot.ini.5
     settings = {
       main = {
-        dpi-aware = lib.mkForce "yes";
+        # Font family/size (TX-02:size=<stylix fonts.sizes.terminal>) and
+        # dpi-aware=no are managed by stylix.targets.foot above, so foot
+        # follows the compositor scale factor like ghostty/kitty.
         bold-text-in-bright = "yes";
-        font = lib.mkForce "TX-02:size=22";
       };
       bell = {
         urgent = "yes";

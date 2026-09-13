@@ -1,9 +1,38 @@
 {
   pkgsUnstable,
   config,
+  lib,
+  pkgs,
   ...
-}: {
+}:
+let
+  opencodeSkills = {
+    golang-concurrency = ./skills/golang-concurrency;
+    golang-context = ./skills/golang-context;
+    golang-design-patterns = ./skills/golang-design-patterns;
+    golang-error-handling = ./skills/golang-error-handling;
+    golang-gopls = ./skills/golang-gopls;
+    golang-performance = ./skills/golang-performance;
+    golang-testing = ./skills/golang-testing;
+  };
+  opencodeSkillsDir = pkgs.runCommand "opencode-skills" { } (
+    "mkdir -p $out\n"
+    + lib.concatMapStrings (name: "cp -r ${opencodeSkills.${name}} $out/${name}\n") (
+      lib.attrNames opencodeSkills
+    )
+  );
+in
+{
   stylix.targets.opencode.enable = false;
+
+  home.activation.opencode-skills = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    skillsDir="$HOME/.config/opencode/skills"
+    if [[ -e "$skillsDir" ]]; then
+      $DRY_RUN_CMD rm -rf "$skillsDir"
+    fi
+    $DRY_RUN_CMD mkdir -p "$skillsDir"
+    $DRY_RUN_CMD cp -rf --no-preserve=mode '${opencodeSkillsDir}'/* "$skillsDir"/
+  '';
 
   xdg.configFile = {
     "opencode/themes/ayu-dark.json".source =
@@ -151,16 +180,6 @@
         - Rcon can be accessed via `100.69.69.100:27015` with password `testtest`
         - The server home is `/home/tf2server/srcds-tst-1/` You can use scp/sftp to copy plugins and extensions for testing to this location.
       '';
-    };
-    skills = {
-      #golang-concurrency = "./skills/golang-concurrency";
-      #      golang-context = "./skills/golang-context";
-      #     golang-design-patterns = "./skills/golang-design-patterns";
-      #      golang-error-handling = "./skills/golang-error-handling";
-      #      golang-gopls = "./skills/golang-gopls";
-      #      golang-performance = "./skills/golang-performance";
-      #      golang-testing = "./skills/golang-testing";
-      sourcemod = "./skills/sourcemod";
     };
     settings = {
       plugin = [
