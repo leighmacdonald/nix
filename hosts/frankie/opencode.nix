@@ -264,7 +264,25 @@ in
                 ];
               };
             };
-
+            "Qwen3.8-27B-Uncensored" = {
+              name = "Qwen3.8-27B-Uncensored";
+              limit = {
+                context = 200000;
+                output = 65536;
+              };
+              "reasoning" = true;
+              "options" = {
+                "reasoningEffort" = "xhigh";
+              };
+              modalities = {
+                input = [
+                  "text"
+                ];
+                output = [
+                  "text"
+                ];
+              };
+            };
             "Qwen3.8-27B-UD-Q4_K_M" = {
               name = "Qwen3.8-27B-UD-Q4_K_M";
               limit = {
