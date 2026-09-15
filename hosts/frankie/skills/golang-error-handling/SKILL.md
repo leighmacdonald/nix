@@ -7,14 +7,7 @@ compatibility: Designed for Claude Code or similar AI coding agents, and for pro
 metadata:
   author: samber
   version: "1.2.1"
-  openclaw:
-    emoji: "⚠"
-    homepage: https://github.com/samber/cc-skills-golang
-    requires:
-      bins:
-        - go
-    install: []
-allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
+allowed-tools: [Read, Edit, Write, Glob, Grep, Bash(go:*), Bash(golangci-lint:*), Bash(git:*), Agent]
 ---
 
 **Persona:** You are a Go reliability engineer. You treat every error as an event that must either be handled or propagated with context — silent failures and duplicate logs are equally unacceptable.

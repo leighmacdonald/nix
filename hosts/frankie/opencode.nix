@@ -4,8 +4,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   opencodeSkills = {
     golang-concurrency = ./skills/golang-concurrency;
     golang-context = ./skills/golang-context;
@@ -15,17 +14,16 @@ let
     golang-performance = ./skills/golang-performance;
     golang-testing = ./skills/golang-testing;
   };
-  opencodeSkillsDir = pkgs.runCommand "opencode-skills" { } (
+  opencodeSkillsDir = pkgs.runCommand "opencode-skills" {} (
     "mkdir -p $out\n"
     + lib.concatMapStrings (name: "cp -r ${opencodeSkills.${name}} $out/${name}\n") (
       lib.attrNames opencodeSkills
     )
   );
-in
-{
+in {
   stylix.targets.opencode.enable = false;
 
-  home.activation.opencode-skills = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.opencode-skills = lib.hm.dag.entryAfter ["writeBoundary"] ''
     skillsDir="$HOME/.config/opencode/skills"
     if [[ -e "$skillsDir" ]]; then
       $DRY_RUN_CMD rm -rf "$skillsDir"
@@ -90,7 +88,7 @@ in
       just-lsp
       lua-language-server
       gcc
-      go
+      go_1_27
       golangci-lint
       nilaway
       pnpm_11
@@ -215,11 +213,7 @@ in
         prune = true;
         reserved = 10000;
       };
-      permission = {
-        "*" = "allow";
-        # edit = "allow";
-        # bash = "allow";
-      };
+      permission = "allow";
       watcher = {
         ignore = [
           "node_modules/**"

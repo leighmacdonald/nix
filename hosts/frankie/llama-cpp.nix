@@ -108,7 +108,6 @@ in {
           name = "Qwen3.8-27B-Uncensored";
           cmd = "\${binary} \
               -m \${models_dir}/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-IQ4_XS.gguf \
-              -ngl 65  \
               --spec-type draft-mtp \
               --spec-draft-n-max 5 \
               --spec-draft-p-min 0.75 \
