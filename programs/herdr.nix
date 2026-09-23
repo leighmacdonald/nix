@@ -2,7 +2,7 @@
   inputs,
   ...
 }: {
-  home.packages = [ inputs.llm-agents.packages.x86_64-linux.herdr ];
+  # home.packages = [ inputs.llm-agents.packages.x86_64-linux.herdr ];
   xdg = {
     configFile."herdr/config.toml".text = ''
       # Show first-run notification setup on startup.

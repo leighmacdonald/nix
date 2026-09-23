@@ -36,6 +36,8 @@
     ../../services/tailscale.nix
     ../../services/binary-cache.nix
     ../../services/mpd.nix
+    ../../services/fstrim.nix
+    ../../services/fwupd.nix
   ];
   fileSystems = {
     "/storage/music" = {

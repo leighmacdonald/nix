@@ -31,6 +31,8 @@
 
     ../../fs/nfs-mounts.nix
 
+    ../../programs/nh.nix
+
     ../../modules/documentation.nix
     ../../modules/fonts.nix
     ../../modules/nix-ld.nix
@@ -40,6 +42,8 @@
     ../../modules/unfree.nix
     ../../modules/nix.nix
 
+    ../../services/fwupd.nix
+    ../../services/avahi.nix
     ../../services/docker.nix
     ../../services/node_exporter.nix
     ../../services/openssh.nix
