@@ -38,6 +38,7 @@
     ../../services/mpd.nix
     ../../services/fstrim.nix
     ../../services/fwupd.nix
+    ../../services/avahi.nix
   ];
   fileSystems = {
     "/storage/music" = {
