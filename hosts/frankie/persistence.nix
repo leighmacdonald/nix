@@ -34,6 +34,7 @@
     enable = true;
     hideMounts = false;
     directories = [
+      "/root/.cache"
       "/var/lib/nixos"
       "/var/lib/docker"
       "/var/log"
@@ -63,6 +64,7 @@
         ".config/gh"
         ".config/discordo"
         ".config/tf-tui"
+        ".config/orca"
         ".logseq"
         ".cache"
         ".cargo"

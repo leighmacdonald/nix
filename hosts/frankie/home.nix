@@ -6,7 +6,8 @@
   pkgsUnstable,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nixcord.homeModules.nixcord
 
@@ -69,8 +70,8 @@
   };
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
     "org/gtk/settings/file-chooser" = {
       show-hidden = true;
@@ -136,6 +137,7 @@
       mermaid-cli
       sqlfluff
       xdg-utils
+      pkgs.llm-agents.orca
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
@@ -150,6 +152,8 @@
       NVD_BACKEND = "direct";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
       DEFAULT_BROWSER = "${pkgsUnstable.firefox}/bin/firefox";
+      BUN_TMPDIR = "/projects/.bun_tmpdir";
+      TMPDIR = "/projects/.tmpdir";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"
@@ -161,7 +165,7 @@
     gh = {
       enable = true;
       settings = {
-        aliases = {};
+        aliases = { };
         editor = "nvim";
         git_protocol = "ssh";
         version = 1;
