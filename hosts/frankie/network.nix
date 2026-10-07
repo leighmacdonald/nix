@@ -1,9 +1,19 @@
 {
+  # Explicitly keep IPv6 enabled (default true, but guards against any
+  # module disabling it) and accept Router Advertisements on br0 even
+  # though IPv6 forwarding is enabled (required for the bridge/VMs).
+  # accept_ra=1 ignores RAs when forwarding is on, which leaves br0
+  # with only a link-local address; accept_ra=2 fixes SLAAC.
+  networking.enableIPv6 = true;
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.br0.accept_ra" = 2;
+    "net.ipv6.conf.br0.autoconf" = 1;
+  };
   networking = {
     hostName = "frankie";
     bridges = {
       br0 = {
-        interfaces = ["enp7s0"];
+        interfaces = [ "enp7s0" ];
       };
     };
     interfaces = {

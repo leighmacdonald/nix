@@ -22,6 +22,7 @@
           "dom.screenwakelock.enabled" = false;
           "permissions.default.screen-wake-lock" = 0;
           "webgl.disabled" = false;
+          "browser.nova.enabled" = false;
           "privacy.resistFingerprinting" = false;
           "privacy.clearOnShutdown.history" = false;
           "privacy.clearOnShutdown.cookies" = false;

@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   networking.firewall.allowedTCPPorts = [
     80
     443
@@ -25,10 +26,8 @@
     email = "leigh.macdonald@gmail.com";
     virtualHosts = {
       "bt.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -39,10 +38,8 @@
         '';
       };
       "gbans.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -64,10 +61,8 @@
         '';
       };
       "radarr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -78,10 +73,8 @@
         '';
       };
       "llm.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -92,10 +85,8 @@
         '';
       };
       "autocomplete.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -106,12 +97,10 @@
         '';
       };
       "oc.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
           basic_auth {
             ${username} {$BASIC_AUTH_PASSWORD}
-          }
-          log  {
-              output discard
           }
           tls {
               dns cloudflare {$API_KEY}
@@ -123,10 +112,8 @@
         '';
       };
       "lidarr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -137,10 +124,8 @@
         '';
       };
       "sonarr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log  {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -151,10 +136,8 @@
         '';
       };
       "bazarr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -165,10 +148,8 @@
         '';
       };
       "autobrr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -180,10 +161,8 @@
         '';
       };
       "prowlarr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -194,10 +173,8 @@
         '';
       };
       "overseerr.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -208,10 +185,8 @@
         '';
       };
       "pgadmin.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           reverse_proxy /* rupert.roto.lol:5050 {
               header_up Host {host}
               header_up X-Real-IP {remote_host}
@@ -222,10 +197,8 @@
         '';
       };
       "jellyfin.roto.lol" = {
+        logFormat = null;
         extraConfig = ''
-          log {
-              output discard
-          }
           tls {
               dns cloudflare {$API_KEY}
           }
@@ -243,7 +216,7 @@
       };
     };
     package = pkgs.caddy.withPlugins {
-      plugins = ["github.com/caddy-dns/cloudflare@v0.2.4"];
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
       #hash = "sha256-bzMqxWTqrJ1skZmRTXyEMCKStXpljbqe5r0Ve2cnBfM=";
       hash = "sha256-dQvk6ezY6TQ1J7PjhCXnThF/SqVgPwBO8/RXzHCY+js=";
     };
