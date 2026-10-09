@@ -79,6 +79,7 @@
         ".local/share/fish"
         ".local/share/fonts"
         ".local/share/net.lrclib.lrcget"
+        ".local/share/QGIS"
         ".vscode"
         ".continue"
         "screenshots"

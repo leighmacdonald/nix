@@ -20,6 +20,7 @@
       unrar
       glaze
       pkg-config
+      qgis
       openssl
       git
       xrandr

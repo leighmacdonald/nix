@@ -154,34 +154,8 @@ in {
       language_models = {
         openai_compatible = {
           mtp-llama = {
-            api_url = "https://llm.roto.lol/v1";
+            api_url = "http://frankie.roto.lol:8080/v1";
             available_models = [
-              {
-                name = "codegemma-2b-f16";
-                max_tokens = 8192;
-                max_output_tokens = 8192;
-                max_completion_tokens = 512;
-                capabilities = {
-                  tools = false;
-                  parallel_tool_calls = false;
-                  images = false;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "North-Mini-Code-1.0-UD-Q4_K_M";
-                max_tokens = 120000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 8192;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = false;
-                };
-              }
               {
                 name = "Qwen3.8-27B-UD-Q4_K_XL";
                 max_tokens = 200000;
@@ -201,34 +175,6 @@ in {
                 max_tokens = 128000;
                 max_output_tokens = 64000;
                 max_completion_tokens = 1024;
-                reasoning_effort = "max";
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "Qwen3.8-27B-Uncensored-noMTP-Q4_K_M";
-                max_tokens = 128000;
-                max_output_tokens = 64000;
-                max_completion_tokens = 1024;
-                reasoning_effort = "max";
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = true;
-                  prompt_cache_key = true;
-                  chat_completions = true;
-                };
-              }
-              {
-                name = "Qwen3.8-27B-IQ4_NL";
-                max_tokens = 120000;
-                max_output_tokens = 120000;
-                max_completion_tokens = 64000;
                 reasoning_effort = "max";
                 capabilities = {
                   tools = true;

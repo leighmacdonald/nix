@@ -9,6 +9,7 @@
     ./autobrr.nix
     ./disk-config.nix
     ./bazarr.nix
+    ./cloudflared.nix
     ./postgres.nix
     ./jellyfin.nix
     ./jellyseer.nix

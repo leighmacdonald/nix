@@ -237,7 +237,7 @@ in
           npm = "@ai-sdk/openai-compatible";
           name = "local";
           options = {
-            baseURL = "https://llm.roto.lol/v1";
+            baseURL = "http://frankie.roto.lol:8080/v1";
             apiKey = "{file:~/.config/opencode/apikey}";
           };
           models = {

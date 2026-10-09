@@ -32,8 +32,8 @@ Use the mcp_nix server.
 | Host    | Arch    | Notes                                                                        |
 | ------- | ------- | ---------------------------------------------------------------------------- |
 | frankie | x86_64  | Main desktop, NVIDIA, Hyprland, LLM tools, llm-agents overlay, unstable pkgs |
-| winnie  | aarch64 | RPi4, disko for disk layout, reverse proxy, ddns-updater                     |
-| rupert  | x86_64  | Media Server                                                                 |
+| winnie  | aarch64 | RPi4, disko for disk layout                                              |
+| rupert  | x86_64  | Media Server, cloudflared tunnel (public ingress)                      |
 | phyllis | aarch64 | RPi4, bedroom htpc                                                           |
 
 ## Flake inputs

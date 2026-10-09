@@ -20,6 +20,10 @@ in
     listenbrainz_token = {
       owner = username;
     };
+    # Cloudflare Tunnel credentials JSON (`cloudflared tunnel create rupert`).
+    # Loaded by the cloudflared systemd service via LoadCredential, so the
+    # default root-owned 0400 mode is correct.
+    "cloudflared-tunnel.json" = { };
     "beets.yaml" = {
       owner = username;
       mode = "777"; # FIXME
