@@ -5,6 +5,8 @@
     settings = {
       #post-build-hook = lib.mkDefault "/etc/nix/upload-to-cache.sh";
       auto-optimise-store = true;
+      # apply flake nixConfig (e.g. llm-agents' numtide cache) without warnings
+      accept-flake-config = true;
       #secret-key-files = "/var/secrets/cache-private-key.pem";
       trusted-users = [ username ];
       extra-platforms = [
