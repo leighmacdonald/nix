@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   opencodeSkills = {
     golang-concurrency = ./skills/golang-concurrency;
     golang-context = ./skills/golang-context;
@@ -14,16 +15,28 @@
     golang-performance = ./skills/golang-performance;
     golang-testing = ./skills/golang-testing;
   };
-  opencodeSkillsDir = pkgs.runCommand "opencode-skills" {} (
+  opencodeSkillsDir = pkgs.runCommand "opencode-skills" { } (
     "mkdir -p $out\n"
     + lib.concatMapStrings (name: "cp -r ${opencodeSkills.${name}} $out/${name}\n") (
       lib.attrNames opencodeSkills
     )
   );
-in {
+  opencode2 = pkgs.symlinkJoin {
+    pname = "opencode2";
+    version = pkgs.llm-agents.opencode2.version;
+    paths = [ pkgs.llm-agents.opencode2 ];
+    postBuild = ''
+      ln -s $out/bin/opencode2 $out/bin/opencode
+    '';
+    meta = pkgs.llm-agents.opencode2.meta // {
+      mainProgram = "opencode";
+    };
+  };
+in
+{
   stylix.targets.opencode.enable = false;
 
-  home.activation.opencode-skills = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.opencode-skills = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     skillsDir="$HOME/.config/opencode/skills"
     if [[ -e "$skillsDir" ]]; then
       $DRY_RUN_CMD rm -rf "$skillsDir"
@@ -107,7 +120,7 @@ in {
       pgcli
       netcat-gnu
     ];
-    package = pkgs.llm-agents.opencode;
+    package = opencode2;
     agents = {
       code-reviewer = ''
         # Code Reviewer/Tester Agent
