@@ -4,8 +4,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   opencodeSkills = {
     golang-concurrency = ./skills/golang-concurrency;
     golang-context = ./skills/golang-context;
@@ -15,17 +14,16 @@ let
     golang-performance = ./skills/golang-performance;
     golang-testing = ./skills/golang-testing;
   };
-  opencodeSkillsDir = pkgs.runCommand "opencode-skills" { } (
+  opencodeSkillsDir = pkgs.runCommand "opencode-skills" {} (
     "mkdir -p $out\n"
     + lib.concatMapStrings (name: "cp -r ${opencodeSkills.${name}} $out/${name}\n") (
       lib.attrNames opencodeSkills
     )
   );
-in
-{
+in {
   stylix.targets.opencode.enable = false;
 
-  home.activation.opencode-skills = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.opencode-skills = lib.hm.dag.entryAfter ["writeBoundary"] ''
     skillsDir="$HOME/.config/opencode/skills"
     if [[ -e "$skillsDir" ]]; then
       $DRY_RUN_CMD rm -rf "$skillsDir"
@@ -192,6 +190,26 @@ in
       share = "disabled";
       formatter = true;
       autoupdate = false;
+      mcp = {
+        github = {
+          type = "local";
+          command = [
+            "docker"
+            "run"
+            "-i"
+            "--rm"
+            "-p"
+            "127.0.0.1:8085:8085"
+            "-e"
+            "GITHUB_OAUTH_CALLBACK_PORT"
+            "ghcr.io/github/github-mcp-server"
+          ];
+          enabled = true;
+          environment = {
+            "GITHUB_OAUTH_CALLBACK_PORT" = "8085";
+          };
+        };
+      };
       #      lsp = {
       #        command = ["${pkgsUnstable.sourcepawn-studio}/bin/sourcepawn-studio"];
       #        initialization = {
@@ -254,6 +272,7 @@ in
               modalities = {
                 input = [
                   "text"
+                  "image"
                 ];
                 output = [
                   "text"
@@ -273,6 +292,7 @@ in
               modalities = {
                 input = [
                   "text"
+                  "image"
                 ];
                 output = [
                   "text"

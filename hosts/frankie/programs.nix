@@ -32,6 +32,8 @@
       e2fsprogs
       x11_ssh_askpass
       #system76-keyboard-configurator
+      android-studio
+      just
     ];
   };
   programs = {

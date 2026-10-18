@@ -7,6 +7,7 @@
   imports = [
     inputs.nvim.nixosModules.default
     ./audio.nix
+    ./android.nix
     ./boot.nix
     ./disko.nix
     ./hardware.nix

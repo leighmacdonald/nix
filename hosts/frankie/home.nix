@@ -85,6 +85,10 @@
         source = "${inputs.self}/wallpaper";
         recursive = true;
       };
+      # Symlink to the current nixpkgs SDK (read-only store path).
+      "Android/Sdk" = {
+        source = "${pkgs.androidenv.androidPkgs.androidsdk}/libexec/android-sdk";
+      };
     };
     shell = {
       enableShellIntegration = true;
@@ -154,10 +158,14 @@
       DEFAULT_BROWSER = "${pkgsUnstable.firefox}/bin/firefox";
       BUN_TMPDIR = "/projects/.bun_tmpdir";
       TMPDIR = "/projects/.tmpdir";
+      ANDROID_HOME = "$HOME/Android/Sdk";
+      ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
     };
     sessionPath = [
       "$HOME/.nix-profile/bin"
       "/nix/var/nix/profiles/default/bin"
+      "$HOME/Android/Sdk/platform-tools"
+      "$HOME/Android/Sdk/cmdline-tools/latest/bin"
       "$HOME/.sm-pkg/sdks/current/addons/sourcemod/scripting"
     ];
   };

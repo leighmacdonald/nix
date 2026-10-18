@@ -2,8 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
-  imports = [inputs.stylix.nixosModules.stylix];
+}:
+{
+  imports = [ inputs.stylix.nixosModules.stylix ];
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
@@ -18,7 +19,7 @@
     fonts = {
       sizes = {
         applications = 14;
-        terminal = 14;
+        terminal = 20;
         desktop = 18;
         popups = 18;
       };

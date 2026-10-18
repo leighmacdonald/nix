@@ -53,6 +53,7 @@
     ];
     users.${username} = {
       directories = [
+        ".android"
         ".config/mozilla"
         ".config/vesktop"
         ".config/mpd"
@@ -65,6 +66,7 @@
         ".config/discordo"
         ".config/tf-tui"
         ".config/orca"
+        "Android"
         ".logseq"
         ".cache"
         ".cargo"
