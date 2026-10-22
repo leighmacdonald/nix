@@ -4,14 +4,16 @@
   lib,
   username,
   ...
-}: let
+}:
+let
   models_dir = "/projects/models";
   binary = "${
     (pkgsUnstable.llama-cpp.override {
       cudaSupport = true;
     })
   }/bin/llama-server";
-in {
+in
+{
   hardware.nvidia-container-toolkit.enable = lib.mkForce true;
   environment = {
     # etc."llm/vllm.Dockerfile" = {
@@ -36,11 +38,11 @@ in {
       })
     ];
   };
-  users.groups.llama-swap = {};
+  users.groups.llama-swap = { };
   users.users.llama-swap = {
     isSystemUser = true;
     group = "llama-swap";
-    extraGroups = ["docker"];
+    extraGroups = [ "docker" ];
   };
   # system.activationScripts.buildVllm = ''
   #   ${pkgs.docker}/bin/docker build -t vllm-local -f "$(realpath /etc/llm/vllm.Dockerfile)" .
@@ -84,6 +86,7 @@ in {
           name = "Qwen3.8-27B-UD-Q4_K_XL";
           cmd = "\${binary} \
               -m \${models_dir}/Qwen3.8-27B-UD-Q4_K_XL.gguf \
+              --mmproj \${models_dir}/mmproj-F16.gguf \
               -ngl 65  \
               --ctx-size 200000 \
               --no-mmproj-offload \
@@ -108,6 +111,7 @@ in {
           name = "Qwen3.8-27B-Uncensored";
           cmd = "\${binary} \
               -m \${models_dir}/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-IQ4_XS.gguf \
+              --mmproj \${models_dir}/mmproj-F16.gguf \
               --spec-type draft-mtp \
               --spec-draft-n-max 5 \
               --spec-draft-p-min 0.75 \
@@ -130,11 +134,11 @@ in {
               --port \${PORT}";
         };
 
-
         "Qwen3.8-27B-UD-Q4_K_M" = {
           name = "Qwen3.8-27B-UD-Q4_K_M";
           cmd = "\${binary} \
               -m \${models_dir}/Qwen3.8-27B-UD-Q4_K_M.gguf \
+              --mmproj \${models_dir}/mmproj-F16.gguf \
               -ngl 65  \
               --spec-type draft-mtp \
               --spec-draft-n-max 7 \

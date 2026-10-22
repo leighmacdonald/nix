@@ -141,7 +141,7 @@
       mermaid-cli
       sqlfluff
       xdg-utils
-      pkgs.llm-agents.orca
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.orca
     ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

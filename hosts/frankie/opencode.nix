@@ -1,11 +1,13 @@
 {
   pkgsUnstable,
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
+  llmAgents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   opencodeSkills = {
     golang-concurrency = ./skills/golang-concurrency;
     golang-context = ./skills/golang-context;
@@ -23,12 +25,12 @@ let
   );
   opencode2 = pkgs.symlinkJoin {
     pname = "opencode2";
-    version = pkgs.llm-agents.opencode2.version;
-    paths = [ pkgs.llm-agents.opencode2 ];
+    version = llmAgents.opencode2.version;
+    paths = [ llmAgents.opencode2 ];
     postBuild = ''
       ln -s $out/bin/opencode2 $out/bin/opencode
     '';
-    meta = pkgs.llm-agents.opencode2.meta // {
+    meta = llmAgents.opencode2.meta // {
       mainProgram = "opencode";
     };
   };
@@ -193,12 +195,6 @@ in
       '';
     };
     settings = {
-      plugin = [
-        "opencode-browser"
-        "opencode-skills"
-        "@simonwjackson/opencode-direnv"
-        # "@plannotator/opencode@latest"
-      ];
       default_agent = "plan";
       share = "disabled";
       formatter = true;
@@ -325,6 +321,7 @@ in
               modalities = {
                 input = [
                   "text"
+                  "image"
                 ];
                 output = [
                   "text"
