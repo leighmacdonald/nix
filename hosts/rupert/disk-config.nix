@@ -5,7 +5,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_1TB_S2RENX0H717117Z";
         content = {
           type = "gpt";
           partitions = {
@@ -52,10 +52,10 @@
                       "noatime"
                     ];
                   };
-                  "/backup" = {
-                    mountpoint = "/backup";
+                  "/downloads" = {
+                    mountpoint = "/downloads";
                     mountOptions = [
-                      "subvol=backup"
+                      "subvol=downloads"
                       "compress=zstd"
                       "noatime"
                     ];

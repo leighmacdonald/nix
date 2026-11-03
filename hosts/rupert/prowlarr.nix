@@ -1,7 +1,7 @@
 {
-  systemd.services.prowlarr = {
-    requires = [ "postgresql.target" ];
-  };
+  # systemd.services.prowlarr = {
+  #   requires = [ "postgresql.target" ];
+  # };
   services.prowlarr = {
     enable = true;
     openFirewall = true;
@@ -14,11 +14,11 @@
       log = {
         analyticsEnabled = false;
       };
-      postgres = {
-        host = "rupert.roto.lol";
-        port = 5432;
-        user = "prowlarr";
-      };
+      # postgres = {
+      #   host = "rupert.roto.lol";
+      #   port = 5432;
+      #   user = "prowlarr";
+      # };
     };
   };
 }

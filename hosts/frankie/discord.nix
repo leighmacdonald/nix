@@ -2,8 +2,8 @@
   programs.nixcord = {
     enable = true;
     user = username;
-    discord.vencord.enable = true; # Standard Vencord
-    vesktop.enable = true;
+    #discord.vencord.enable = true; # Standard Vencord
+    #vesktop.enable = true;
     config = {
       frameless = true;
       transparent = true;

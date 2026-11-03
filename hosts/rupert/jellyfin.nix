@@ -5,8 +5,8 @@
     openFirewall = true;
     user = username;
     group = "lusers";
-    cacheDir = "/backup/config/jellyfin/cache";
-    dataDir = "/backup/config/jellyfin";
+    cacheDir = "/storage/misc/config/jellyfin/cache";
+    dataDir = "/storage/misc/config/jellyfin";
     #port = 8096;
   };
 

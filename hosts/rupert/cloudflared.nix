@@ -22,7 +22,7 @@
     enable = true;
     tunnels = {
       # 2113e6b1-f6d7-45b4-a90b-2af19588bc1e.cfargotunnel.com
-      "2113e6b1-f6d7-45b4-a90b-2af19588bc1e" = {
+      "83b090fa-41ff-4051-8391-f64a3acf45a2" = {
         credentialsFile = config.sops.secrets."cloudflared-tunnel.json".path;
         default = "http_status:404";
         ingress = {

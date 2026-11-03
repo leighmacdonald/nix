@@ -6,11 +6,10 @@
 }:
 {
   imports = [
-    ./autobrr.nix
     ./disk-config.nix
     ./bazarr.nix
     ./cloudflared.nix
-    ./postgres.nix
+    #./postgres.nix
     ./jellyfin.nix
     ./jellyseer.nix
     ./lidarr.nix
@@ -42,19 +41,34 @@
     ../../services/avahi.nix
   ];
   fileSystems = {
-    "/storage/music" = {
-      device = "music";
-      fsType = "zfs";
-    };
     "/storage" = {
-      device = "media";
+      device = "storage";
       fsType = "zfs";
     };
+
+    "/storage/tv" = {
+      device = "/dev/disk/by-uuid/1b23fd51-f6bf-42ae-982f-a21a333ce3f2";
+      fsType = "ext4";
+      depends = [ "/storage" ];
+    };
+
+    "/storage/movies" = {
+      device = "/dev/disk/by-uuid/7f141dcd-fb90-4ba4-8774-46c06c88fc3d";
+      fsType = "ext4";
+      depends = [ "/storage" ];
+    };
+
+    # "/storage/downloads" = {
+    #   device = "/storage/music/media/downloads";
+    #   fsType = "none";
+    #   options = [ "bind" ];
+    # };
 
     "/export/storage" = {
       device = "/storage";
       fsType = "none";
       options = [ "bind" ];
+      depends = [ "/storage" ];
     };
 
     # "/export/storage/music" = {
@@ -85,19 +99,64 @@
           /export 192.168.0.0/24(rw,fsid=0,no_subtree_check)
           /export/backup 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
           /export/storage 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
-          /export/storage/music 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
+          /export/storage/tv 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
+          /export/storage/movies 192.168.0.0/24(rw,nohide,insecure,no_subtree_check)
         '';
       };
     };
   };
+
+  # Hard-bind services to the mount units for the paths they use, so the
+  # ZFS pool (/storage) and its child mounts (tv/movies ext4, /export bind
+  # mounts) are mounted before these services start. If a mount fails,
+  # the dependent services stay down rather than running against bare
+  # mountpoint directories.
+  systemd.services =
+    let
+      storageDeps = {
+        jellyfin = [ "storage.mount" ];
+        qbittorrent = [ "storage.mount" ];
+        mpd = [ "storage.mount" ];
+        mpdscribble = [ "storage.mount" ];
+        seerr = [ "storage.mount" ];
+        lidarr = [ "storage.mount" ];
+        prowlarr = [ "storage.mount" ];
+        sonarr = [
+          "storage.mount"
+          "storage-tv.mount"
+        ];
+        radarr = [
+          "storage.mount"
+          "storage-movies.mount"
+        ];
+        bazarr = [
+          "storage.mount"
+          "storage-tv.mount"
+          "storage-movies.mount"
+        ];
+        nfs-server = [
+          "storage.mount"
+          "export-storage.mount"
+          "export-backup.mount"
+        ];
+        nfs-mountd = [
+          "storage.mount"
+          "export-storage.mount"
+          "export-backup.mount"
+        ];
+      };
+    in
+    lib.mapAttrs (_: mounts: {
+      after = mounts;
+      requires = mounts;
+    }) storageDeps;
 
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs = {
       forceImportRoot = false;
       extraPools = [
-        "media"
-        "music"
+        "storage"
       ];
     };
     kernelModules = [ "kvm-intel" ];

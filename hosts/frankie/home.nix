@@ -27,7 +27,7 @@
     ../../programs/gpg.nix
     ../../programs/home-manager.nix
     ../../modules/tx-02.nix
-    ./discord.nix
+    #./discord.nix
     ./steam.nix
     ../../programs/sway.nix
     #./hyprland
@@ -133,7 +133,7 @@
       imagemagick
       ghostscript_headless
       sqlite
-      discordo
+      discord
       libappindicator-gtk3
       pulseaudio-ctl
       ripgrep

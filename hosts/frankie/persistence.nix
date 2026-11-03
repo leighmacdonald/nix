@@ -60,6 +60,7 @@
         ".config/input-remapper-2"
         ".config/obs-studio/"
         ".config/comfy-ui/"
+        ".config/D2 Survivors/"
         ".config/opencode"
         ".config/mcp/"
         ".config/gh"

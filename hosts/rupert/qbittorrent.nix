@@ -45,7 +45,7 @@ in
     webuiPort = 8080;
     user = username;
     group = "lusers";
-    profileDir = "/backup/config/qbittorrent";
+    profileDir = "/storage/misc/config/qbittorrent";
     serverConfig = {
       LegalNotice.Accepted = true;
       Application = {
@@ -56,14 +56,14 @@ in
           DeleteOld = true;
           Enabled = true;
           MaxSizeBytes = 66560;
-          Path = "/backup/config/qbittorrent/qBittorrent/data/logs";
+          Path = "/storage/misc/config/qbittorrent/qBittorrent/data/logs";
         };
       };
       BitTorrent = {
         Session = {
           AddTorrentStopped = false;
           BTProtocol = "TCP";
-          DefaultSavePath = "/storage/downloads/complete";
+          DefaultSavePath = "/downloads/complete";
           Encryption = 1;
           LSDEnabled = false;
           MaxActiveDownloads = 4;
@@ -77,13 +77,13 @@ in
           QueueingSystemEnabled = true;
           SSL.Port = 64129;
           ShareLimitAction = "Stop";
-          TempPath = "/storage/downloads/incomplete";
+          TempPath = "/downloads/incomplete";
           TempPathEnabled = true;
-          TorrentExportDirectory = "/storage/downloads/torrents";
+          TorrentExportDirectory = "/storage/misc/torrents";
         };
       };
       Core = {
-        TorrentExportDirectory = "/storage/downloads/torrents";
+        TorrentExportDirectory = "/storage/misc/torrents";
       };
       Meta = {
         MigrationVersion = 8;

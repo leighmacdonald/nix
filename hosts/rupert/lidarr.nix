@@ -1,8 +1,8 @@
 { username, ... }:
 {
-  systemd.services.lidarr = {
-    requires = [ "postgresql.target" ];
-  };
+  # systemd.services.lidarr = {
+  #   requires = [ "postgresql.target" ];
+  # };
   services.lidarr = {
     enable = true;
     openFirewall = true;
@@ -12,11 +12,11 @@
     settings = {
       log.analyticsEnabled = false;
       server.port = 8686;
-      postgres = {
-        host = "rupert.roto.lol";
-        port = 5432;
-        user = "lidarr";
-      };
+      # postgres = {
+      #   host = "rupert.roto.lol";
+      #   port = 5432;
+      #   user = "lidarr";
+      # };
     };
   };
 }
