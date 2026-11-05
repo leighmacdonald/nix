@@ -19,7 +19,6 @@ winnie:
 
 rupert:
     nixos-rebuild boot --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password --max-jobs 2 --cores 6
-    ssh rupert.roto.lol sudo reboot 
 
 phyllis:
     nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host 192.168.0.100 --sudo --max-jobs 2 --cores 6
