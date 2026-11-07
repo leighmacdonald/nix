@@ -229,7 +229,22 @@
   networking = {
     hostName = "rupert";
     hostId = "0a2c4f84";
+    enableIPv6 = true;
     wireless.enable = false;
+    # The ISP router does not offer SLAAC (RA has autonomous=off) and its
+    # DHCPv6 server answers "No addresses available for this interface",
+    # so the global address is pinned statically in the on-link /64 that
+    # the router advertises. Update the prefix here if the ISP renumbers.
+    interfaces.eno1.ipv6.addresses = [
+      {
+        address = "2001:56a:7426:6d00::201";
+        prefixLength = 64;
+      }
+    ];
+    # Static IPv6 would otherwise make dhcpcd disable Router Advertisements
+    # for eno1, and with them the IPv6 default route. Keep RS enabled; dhcpcd
+    # installs the default route from the router's RA.
+    dhcpcd.IPv6rs = true;
     firewall = {
       enable = true;
       allowedTCPPorts = [

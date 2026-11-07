@@ -1,16 +1,11 @@
-{
-  # pkgs,
-  ...
-}:
-{
-
+{pkgs, ...}: {
   boot = {
-    #kernelPackages = pkgs.linuxPackages_;
+    # kernelPackages = pkgs.linuxPackages_7_3;
     #kernelPackages = pkgs.linuxPackages_zen;
-    kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
     initrd = {
-      kernelModules = [ ];
+      kernelModules = [];
       availableKernelModules = [
         "aesni_intel"
         "cryptd"

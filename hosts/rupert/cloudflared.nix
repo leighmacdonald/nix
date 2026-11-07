@@ -44,4 +44,11 @@
       };
     };
   };
+
+  # services.cloudflared.tunnels.<name>.protocol doesn't exist in the pinned
+  # nixpkgs (26.05), so pass the same setting via cloudflared's documented
+  # env var. When nixpkgs gains the option, this can become
+  # `protocol = "http2";` in the tunnel definition above.
+  systemd.services."cloudflared-tunnel-83b090fa-41ff-4051-8391-f64a3acf45a2".environment.TUNNEL_TRANSPORT_PROTOCOL =
+    "http2";
 }
