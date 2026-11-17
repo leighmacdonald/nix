@@ -81,47 +81,54 @@ in
     };
     enable = true;
     enableMcpIntegration = false; # prefer per project configs
-    extraPackages = with pkgsUnstable; [
-      uv
-      nodejs
-      shfmt
-      ripgrep
-      biome
-      rustfmt
-      clang-tools
-      nixfmt
-      direnv
-      ansible-lint
-      git
-      nil
-      nixd
-      nvd
-      nixpkgs-fmt
-      statix
-      deadnix
-      just
-      just-lsp
-      lua-language-server
-      gcc
-      go_1_27
-      golangci-lint
-      nilaway
-      pnpm_11
-      buf
-      delve
-      markdownlint-cli2
-      sourcepawn-studio
-      protoc-gen-go
-      protoc-gen-connect-go
-      oapi-codegen
-      sql-formatter
-      protoc-gen-es
-      protobuf-language-server
-      rcon-cli
-      govulncheck
-      pgcli
-      netcat-gnu
-    ];
+    extraPackages =
+      (with pkgsUnstable; [
+        uv
+        nodejs
+        shfmt
+        ripgrep
+        biome
+        rustfmt
+        clang-tools
+        nixfmt
+        direnv
+        ansible-lint
+        git
+        nil
+        nixd
+        nvd
+        nixpkgs-fmt
+        statix
+        deadnix
+        just
+        just-lsp
+        lua-language-server
+        gcc
+        go_1_27
+        golangci-lint
+        pnpm_11
+        buf
+        delve
+        markdownlint-cli2
+        sourcepawn-studio
+        protoc-gen-go
+        protoc-gen-connect-go
+        oapi-codegen
+        sql-formatter
+        protoc-gen-es
+        protobuf-language-server
+        rcon-cli
+        govulncheck
+        pgcli
+        netcat-gnu
+      ])
+      ++ [
+        # pkgsUnstable's nilaway is compiled with Go 1.27, whose go/ssa
+        # panics ("unexpected expr: *ast.KeyValueExpr") on nilaway's test
+        # corpus, so its derivation fails and isn't on the binary cache.
+        # Stable uses Go 1.26 and is the same nilaway version.
+        pkgs.nilaway
+      ];
     package = opencode2;
     agents = {
       code-reviewer = ''
