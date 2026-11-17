@@ -34,7 +34,6 @@
     ../../services/node_exporter.nix
     ../../services/openssh.nix
     ../../services/tailscale.nix
-    ../../services/binary-cache.nix
     ../../services/mpd.nix
     ../../services/fstrim.nix
     ../../services/fwupd.nix
@@ -90,7 +89,7 @@
 
   services = {
     rpcbind = {
-      enable = true;
+      enable = false;
     };
     nfs = {
       server = {

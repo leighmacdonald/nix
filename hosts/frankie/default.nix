@@ -1,11 +1,11 @@
 {
   username,
   inputs,
+  pkgs,
   ...
 }:
 {
   imports = [
-    inputs.nvim.nixosModules.default
     ./audio.nix
     ./android.nix
     ./boot.nix
@@ -22,6 +22,7 @@
     ./services.nix
     #./ollama.nix
     ./llama-cpp.nix
+    ./rtk.nix
 
     ../../env/locale.nix
     ../../env/console.nix
@@ -68,7 +69,13 @@
     "pnpm-9.15.9"
     "ladybird-0-unstable-2026-06-05"
   ];
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    # nvim's own NixOS module uses the deprecated `pkgs.system` alias, which
+    # prints an evaluation warning. Select the package by host platform here
+    # instead; the resulting derivation is identical.
+    package = inputs.nvim.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
   # Skip initial login since we enter key for FDE anyways.
   services.getty = {
     autologinUser = username;

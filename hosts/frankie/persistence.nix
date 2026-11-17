@@ -2,7 +2,8 @@
   username,
   inputs,
   ...
-}: {
+}:
+{
   # https://github.com/nix-community/home-manager/issues/322#issuecomment-3662161429
   systemd.services."home-manager-${username}" = {
     preStart = ''
@@ -14,7 +15,7 @@
     '';
   };
 
-  imports = [inputs.impermanence.nixosModules.impermanence];
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   fileSystems = {
     "/" = {
       device = "none";
@@ -40,6 +41,7 @@
       "/var/log"
       "/var/lib/tailscale"
       "/var/lib/libvirt"
+      "/var/lib/rtk-proxy"
       #Permissions incorrect otherwise.
       {
         directory = "/home/${username}/.ssh";

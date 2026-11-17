@@ -1,5 +1,10 @@
 build_host := "frankie.roto.lol"
 
+# The desktop session exports an empty SSH_ASKPASS, which makes ssh try to
+# exec a nonexistent helper whenever it needs to prompt. Never use askpass;
+# prompt on the terminal (or authenticate via the agent) instead.
+export SSH_ASKPASS_REQUIRE := "never"
+
 diff:
     nvd diff /run/current-system ./result
     nix store diff-closures /var/run/current-system ./result
@@ -13,14 +18,7 @@ frankie:
     # just --justfile {{ justfile() }} diff
     nixos-rebuild switch --flake .#frankie --build-host {{ build_host }} --target-host frankie.roto.lol --sudo
 
-winnie:
-    nixos-rebuild boot --flake .#winnie --build-host {{ build_host }} --target-host winnie.roto.lol --sudo --max-jobs 2 --cores 6
-    ssh winnie.roto.lol sudo reboot
-
 rupert:
     nixos-rebuild boot --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password --max-jobs 2 --cores 6
-
-phyllis:
-    nixos-rebuild boot --flake .#phyllis --build-host {{ build_host }} --target-host 192.168.0.100 --sudo --max-jobs 2 --cores 6
 
 all: frankie winnie rupert phyllis

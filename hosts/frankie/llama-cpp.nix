@@ -56,11 +56,13 @@ in
     EnvironmentFile = "/etc/llama-swap/envfile";
   };
   services.llama-swap = {
-    port = 8080;
-    listenAddress = "0.0.0.0";
+    # Port 8080 is served by rtk-proxy (see ./rtk.nix); llama-swap only needs
+    # to be reachable locally from there.
+    port = 8081;
+    listenAddress = "127.0.0.1";
     enable = true;
     package = pkgsUnstable.llama-swap;
-    openFirewall = true;
+    openFirewall = false;
     settings = {
       globalTTL = 1800;
       apiKeys = [
