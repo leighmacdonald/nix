@@ -28,7 +28,6 @@
       atop
       cudatoolkit
       xdg-desktop-portal-gtk
-      # llm-agents.herdr
       e2fsprogs
       x11_ssh_askpass
       #system76-keyboard-configurator

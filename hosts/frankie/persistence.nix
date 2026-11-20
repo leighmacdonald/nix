@@ -69,6 +69,7 @@
         ".config/discordo"
         ".config/tf-tui"
         ".config/orca"
+        ".config/rtk"
         "Android"
         ".logseq"
         ".cache"

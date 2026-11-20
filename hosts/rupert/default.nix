@@ -9,6 +9,7 @@
     ./disk-config.nix
     ./bazarr.nix
     ./cloudflared.nix
+    ./exportarr.nix
     #./postgres.nix
     ./jellyfin.nix
     ./jellyseer.nix
@@ -88,9 +89,6 @@
   };
 
   services = {
-    rpcbind = {
-      enable = false;
-    };
     nfs = {
       server = {
         enable = true;

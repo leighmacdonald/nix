@@ -3,7 +3,9 @@
 
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
+    
     nixcord.url = "github:4evy/nixcord";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,8 +21,6 @@
       url = "github:nix-community/stylix/release-26.05";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
@@ -39,7 +39,6 @@
       nixpkgs,
       home-manager,
       llm-agents,
-      nixos-hardware,
       stylix,
       nvim,
       ...
@@ -49,107 +48,6 @@
     in
     {
       nixosConfigurations = {
-        # armv7l is not that well supported
-        #
-        # mika =
-        #   let
-        #     hostName = "mika";
-        #     specialArgs = {
-        #       inherit username;
-        #       inherit hostName;
-        #       inherit inputs;
-        #     };
-        #   in
-        #   nixpkgs.lib.nixosSystem {
-        #     inherit specialArgs;
-        #     system = "armv7l-linux";
-        #     modules = [
-        #       stylix.nixosModules.stylix
-        #       ./hosts/${hostName}
-        #       home-manager.nixosModules.home-manager
-        #       {
-        #         home-manager = {
-        #           useGlobalPkgs = true;
-        #           useUserPackages = true;
-        #           extraSpecialArgs = inputs // specialArgs;
-        #           users.${username} = import ./hosts/${hostName}/home.nix;
-        #         };
-        #       }
-        #     ];
-        #   };
-        phyllis =
-          let
-            hostName = "phyllis";
-            specialArgs = {
-              inherit username;
-              inherit hostName;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "aarch64-linux";
-            modules = [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              stylix.nixosModules.stylix
-              ./hosts/${hostName}
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/${hostName}/home.nix;
-                };
-              }
-            ];
-          };
-        winnie =
-          let
-            hostName = "winnie";
-            specialArgs = {
-              inherit username;
-              inherit hostName;
-              inherit inputs;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "aarch64-linux";
-            modules = [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              inputs.disko.nixosModules.disko
-              ./hosts/${hostName}
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./hosts/${hostName}/home.nix;
-                };
-              }
-            ];
-          };
-
-        # frankieiso =
-        #   let
-        #     hostName = "frankie";
-        #     specialArgs = {
-        #       inherit username;
-        #       inherit hostName;
-        #       inherit inputs;
-        #     };
-        #   in
-        #   nixpkgs.lib.nixosSystem {
-        #     modules = [
-        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-        #       #"${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-        #       ./hosts/${hostName}
-        #     ];
-        #     inherit specialArgs;
-        #   };
-
         frankie =
           let
             hostName = "frankie";

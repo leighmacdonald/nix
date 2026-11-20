@@ -17,6 +17,11 @@ in
     lidarr_env = {
       inherit mode;
     };
+    # Bare API keys for the exportarr Prometheus exporters.
+    sonarr_api_key = { };
+    radarr_api_key = { };
+    lidarr_api_key = { };
+    prowlarr_api_key = { };
     listenbrainz_token = {
       owner = username;
     };

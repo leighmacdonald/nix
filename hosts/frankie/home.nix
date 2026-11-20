@@ -22,7 +22,6 @@
     ../../programs/fzf.nix
     ../../programs/ghostty.nix
     ../../programs/git.nix
-    ../../programs/herdr.nix
     ../../programs/go.nix
     ../../programs/gpg.nix
     ../../programs/home-manager.nix

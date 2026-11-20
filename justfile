@@ -19,6 +19,6 @@ frankie:
     nixos-rebuild switch --flake .#frankie --build-host {{ build_host }} --target-host frankie.roto.lol --sudo
 
 rupert:
-    nixos-rebuild boot --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password --max-jobs 2 --cores 6
+    nixos-rebuild switch --flake .#rupert --build-host {{ build_host }} --target-host rupert.roto.lol --sudo --ask-sudo-password --max-jobs 2 --cores 6
 
-all: frankie winnie rupert phyllis
+all: frankie rupert
